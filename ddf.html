@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Deep Dark Fantasy | 夜航游戏局</title>
+    <title>Deep♂Dark♂Fantasy | 夜航游戏局</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="fantasy-mode">
@@ -14,32 +14,47 @@
         <a class="brand-mark" href="index.html" aria-label="回到普通游戏大厅">
           <span class="brand-sigil">D</span>
           <span>
-            <strong>Deep Dark Fantasy</strong>
-            <small>夜航游戏局 · 独立黑卡</small>
+            <strong>Deep♂Dark♂Fantasy</strong>
+            <small>夜航游戏局 · 独立 DDF</small>
           </span>
         </a>
         <nav class="quick-nav" aria-label="页面导航">
           <a href="index.html">普通模式</a>
-          <a href="#gamePicker">游戏</a>
-          <a href="#bankSection">黑卡题库</a>
+          <a href="#gamePicker">玩法</a>
+          <a href="#bankSection">DDF 题库</a>
           <a href="#rulesSection">边界</a>
         </nav>
       </header>
 
       <section class="setup-panel ddf-panel" id="setupPanel" aria-labelledby="gameTitle">
         <div class="brand-block">
-          <p class="eyebrow">DDF · 18+ · 强同意 · 可立即停止</p>
-          <h1 id="gameTitle">Deep Dark Fantasy</h1>
-          <p class="lede">独立黑卡页面。只适合高信任、明确同意、边界清晰的开放玩家；每张卡都可以拒绝、改写或跳过。</p>
+          <figure class="ddf-hero-poster" aria-label="Deep♂Dark♂Fantasy VHS 主视觉">
+            <img src="assets/ddf-vhs-poster.png" alt="Deep♂Dark♂Fantasy 紫色 VHS 梗图封面" />
+          </figure>
+
+          <div class="ddf-copy">
+            <p class="eyebrow">DDF · 21+ · 兄贵♂哲学</p>
+            <h1 class="ddf-title" id="gameTitle">
+              <span>Deep♂Dark</span>
+              <span>Fantasy</span>
+            </h1>
+            <p class="lede">兄贵♂哲学 DDF。大屁股 pose，Gachi♂摔跤，暗紫霓虹，硬汉台词，全部爆破。</p>
+          </div>
+
+          <div class="ddf-stamps" aria-label="风格标签">
+            <span>GACHI♂MUCHI</span>
+            <span>VHS♂NOISE</span>
+            <span>哲♂学</span>
+          </div>
 
           <div class="hero-metrics" aria-label="DDF 玩法概览">
             <div>
-              <strong>2</strong>
+              <strong>1</strong>
               <span>种玩法</span>
             </div>
             <div>
               <strong id="heroQuestionCount">0</strong>
-              <span>张黑卡</span>
+              <span>个 DDF</span>
             </div>
             <div>
               <strong>1</strong>
@@ -51,22 +66,14 @@
         <form class="setup-form" id="setupForm">
           <input type="hidden" name="spiceLevel" value="fantasy" />
 
-          <section class="game-picker" id="gamePicker" aria-label="选择 DDF 游戏">
-            <button class="game-card is-active" type="button" data-game="flight">
-              <span class="game-icon flight-icon" aria-hidden="true"></span>
-              <span>
-                <strong>DDF 飞行棋</strong>
-                <small>掷骰起飞，只抽 Deep Dark Fantasy 黑卡。</small>
-              </span>
-              <b>黑卡航线</b>
-            </button>
-            <button class="game-card" type="button" data-game="truth">
-              <span class="game-icon card-icon" aria-hidden="true"></span>
+          <section class="game-picker ddf-only-picker" id="gamePicker" aria-label="DDF 真心话大冒险">
+            <button class="game-card is-active" type="button" data-game="truth">
+              <span class="game-icon wrestle-icon" aria-hidden="true"></span>
               <span>
                 <strong>DDF 真心话大冒险</strong>
-                <small>轮流抽黑卡，完成得分，跳过记录。</small>
+                <small>真心话、兄贵摔跤、大屁股 pose、Gachi 挑战。</small>
               </span>
-              <b>快速黑卡</b>
+              <b>摔跤♂速攻</b>
             </button>
           </section>
 
@@ -91,8 +98,8 @@
 
             <section class="locked-mode" aria-label="当前模式">
               <span>当前模式</span>
-              <strong>Deep Dark Fantasy</strong>
-              <p>只抽 DDF 专属黑卡，不混入普通题库。</p>
+              <strong>Deep♂Dark♂Fantasy</strong>
+              <p>只玩兄贵♂哲学 DDF。</p>
             </section>
           </div>
 
@@ -103,54 +110,54 @@
           <section class="rules-preview" id="rulesSection" aria-label="DDF 安全边界">
             <article class="fantasy-rule">
               <span class="rule-number">01</span>
-              <strong>先确认安全词</strong>
-              <p>开始前必须确认继续、减速、停止三个信号。</p>
+              <strong>安全词♂确认</strong>
+              <p>继续 / 减速 / 停止。</p>
             </article>
             <article class="fantasy-rule">
               <span class="rule-number">02</span>
-              <strong>任何卡可改写</strong>
-              <p>不舒服就改写到双方都接受的版本。</p>
+              <strong>改写♂自由</strong>
+              <p>不舒服就换成兄贵版。</p>
             </article>
             <article class="fantasy-rule">
               <span class="rule-number">03</span>
-              <strong>不解释也可拒绝</strong>
-              <p>拒绝、换题、跳过都不需要说明原因。</p>
+              <strong>拒绝♂无罪</strong>
+              <p>换题 / 跳过 / 停止。</p>
             </article>
             <article class="fantasy-rule">
               <span class="rule-number">04</span>
-              <strong>结束要收尾</strong>
-              <p>强度结束后用照顾性语言或拥抱收尾。</p>
+              <strong>收尾♂礼仪</strong>
+              <p>击掌，喝水，回到现实。</p>
             </article>
           </section>
 
           <label class="consent-row">
             <input type="checkbox" id="consentCheck" required />
-            <span>所有玩家已满 18 岁，明确同意进入 DDF 黑卡模式，并接受任何任务都可以立即停止、换题或跳过。</span>
+            <span>21+，全员同意进入兄贵♂哲学模式；任何题都可停止、换题或跳过。</span>
           </label>
 
-          <button class="primary-action start-action" id="startButton" type="submit">开始 DDF 飞行棋</button>
+          <button class="primary-action start-action" id="startButton" type="submit">开始 DDF 真心话大冒险</button>
         </form>
       </section>
 
       <section class="bank-section" id="bankSection" aria-labelledby="bankTitle">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">DDF 测试面板</p>
-            <h2 id="bankTitle">黑卡题库预览</h2>
+            <p class="eyebrow">兄贵♂题目</p>
+            <h2 id="bankTitle">摔跤♂DDF 预览</h2>
           </div>
-          <p id="bankSummary">DDF 页面只显示专属黑卡题库。</p>
+          <p id="bankSummary">只显示兄贵♂哲学 DDF。</p>
         </div>
         <div class="bank-grid" id="questionBank" aria-live="polite"></div>
       </section>
 
-      <section class="game-view is-hidden" id="gameView" aria-label="DDF 飞行棋桌面">
+      <section class="game-view is-hidden" id="gameView" aria-label="DDF 摔跤挑战桌面">
         <header class="top-bar">
           <div>
-            <p class="eyebrow">DDF 飞行棋</p>
+            <p class="eyebrow">DDF 摔跤挑战</p>
             <h2 id="roundTitle">第 1 轮</h2>
           </div>
           <div class="top-actions">
-            <button class="secondary-action" id="flightHomeButton" type="button">黑卡大厅</button>
+            <button class="secondary-action" id="flightHomeButton" type="button">DDF 大厅</button>
             <button class="secondary-action" id="restartButton" type="button">重新开局</button>
           </div>
         </header>
@@ -172,7 +179,7 @@
             <div class="moves-panel" id="movesPanel" aria-live="polite"></div>
           </aside>
 
-          <section class="board-wrap" aria-label="飞行棋棋盘">
+          <section class="board-wrap" aria-label="DDF 擂台">
             <div class="board" id="board"></div>
           </section>
 
@@ -190,7 +197,7 @@
             <h2 id="truthRoundTitle">第 1 轮</h2>
           </div>
           <div class="top-actions">
-            <button class="secondary-action" id="truthHomeButton" type="button">黑卡大厅</button>
+            <button class="secondary-action" id="truthHomeButton" type="button">DDF 大厅</button>
             <button class="secondary-action" id="truthRestartButton" type="button">重新开局</button>
           </div>
         </header>
@@ -200,7 +207,7 @@
             <div class="turn-card truth-turn" id="truthTurnCard">
               <span class="status-label">轮到</span>
               <strong id="truthPlayerName">玩家 1</strong>
-              <p id="truthHint">选择真心话、大冒险或随机抽卡。</p>
+              <p id="truthHint">选择真心话、大冒险或随机题。</p>
             </div>
             <div class="truth-controls">
               <button class="primary-action" id="truthButton" type="button">真心话</button>
@@ -209,16 +216,16 @@
             </div>
           </aside>
 
-          <section class="truth-stage" aria-label="任务卡">
-            <div class="deck-rail" aria-hidden="true">
+          <section class="truth-stage" aria-label="DDF 挑战">
+            <div class="deck-rail ddf-rail" aria-hidden="true">
               <span></span>
               <span></span>
               <span></span>
             </div>
             <article class="prompt-card" id="promptCard">
-              <p class="eyebrow" id="promptType">等待抽卡</p>
-              <h3 id="promptTitle">选择一种黑卡</h3>
-              <p id="promptText">抽到的 DDF 黑卡会显示在这里。完成后加 1 分，跳过会记录一次。</p>
+              <p class="eyebrow" id="promptType">等待题目</p>
+              <h3 id="promptTitle">选择一种 DDF</h3>
+              <p id="promptText">兄贵♂DDF 会显示在这里。完成后加 1 分，跳过会记录一次。</p>
             </article>
             <div class="prompt-actions">
               <button class="secondary-action" id="skipPromptButton" type="button" disabled>跳过</button>
@@ -236,8 +243,8 @@
 
     <dialog class="task-dialog" id="taskDialog">
       <form method="dialog">
-        <p class="eyebrow" id="taskType">DDF 黑卡</p>
-        <h3 id="taskTitle">任务卡</h3>
+        <p class="eyebrow" id="taskType">兄贵♂DDF</p>
+        <h3 id="taskTitle">DDF 挑战</h3>
         <p id="taskText"></p>
         <div class="dialog-actions">
           <button class="secondary-action" id="skipTaskButton" value="skip" type="submit">跳过 / 换题</button>
