@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>夜航游戏局</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-texture" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <header class="site-header">
+        <a class="brand-mark" href="#setupPanel" aria-label="回到游戏大厅">
+          <span class="brand-sigil">N</span>
+          <span>
+            <strong>夜航游戏局</strong>
+            <small>情侣成人桌游合集</small>
+          </span>
+        </a>
+        <nav class="quick-nav" aria-label="页面导航">
+          <a href="#gamePicker">游戏</a>
+          <a href="#bankSection">题库</a>
+          <a href="#rulesSection">边界</a>
+          <a href="ddf.html">DDF</a>
+        </nav>
+      </header>
+
+      <section class="setup-panel" id="setupPanel" aria-labelledby="gameTitle">
+        <div class="brand-block">
+          <p class="eyebrow">2-4 人 · 18+ · 可跳过</p>
+          <h1 id="gameTitle">今晚玩点更有默契的</h1>
+          <p class="lede">选择一款情侣向桌游，设置人数和尺度。题库当前以测试面板展示，方便你上线 GitHub Pages 前检查内容。</p>
+
+          <div class="hero-metrics" aria-label="玩法概览">
+            <div>
+              <strong>2</strong>
+              <span>种游戏</span>
+            </div>
+            <div>
+              <strong id="heroQuestionCount">0</strong>
+              <span>张任务卡</span>
+            </div>
+            <div>
+              <strong>3</strong>
+              <span>尺度档</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="setup-form" id="setupForm">
+          <section class="game-picker" id="gamePicker" aria-label="选择游戏">
+            <button class="game-card is-active" type="button" data-game="flight">
+              <span class="game-icon flight-icon" aria-hidden="true"></span>
+              <span>
+                <strong>夜航飞行棋</strong>
+                <small>掷骰起飞、撞机回库、抽情侣任务卡。</small>
+              </span>
+              <b>策略 + 互动</b>
+            </button>
+            <button class="game-card" type="button" data-game="truth">
+              <span class="game-icon card-icon" aria-hidden="true"></span>
+              <span>
+                <strong>真心话大冒险</strong>
+                <small>轮流抽真心话或大冒险，完成得分。</small>
+              </span>
+              <b>快速开局</b>
+            </button>
+          </section>
+
+          <div class="setup-grid">
+            <fieldset>
+              <legend>玩家人数</legend>
+              <div class="segmented" role="radiogroup" aria-label="玩家人数">
+                <label>
+                  <input type="radio" name="playerCount" value="2" checked />
+                  <span>2 位</span>
+                </label>
+                <label>
+                  <input type="radio" name="playerCount" value="3" />
+                  <span>3 位</span>
+                </label>
+                <label>
+                  <input type="radio" name="playerCount" value="4" />
+                  <span>4 位</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>任务尺度</legend>
+              <div class="segmented" role="radiogroup" aria-label="任务尺度">
+                <label>
+                  <input type="radio" name="spiceLevel" value="soft" checked />
+                  <span>暧昧</span>
+                </label>
+                <label>
+                  <input type="radio" name="spiceLevel" value="warm" />
+                  <span>升温</span>
+                </label>
+                <label>
+                  <input type="radio" name="spiceLevel" value="hot" />
+                  <span>夜深</span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+
+          <fieldset class="name-fields" id="nameFields">
+            <legend>玩家昵称</legend>
+          </fieldset>
+
+          <section class="rules-preview" id="rulesSection" aria-label="安全边界">
+            <article>
+              <span class="rule-number">01</span>
+              <strong>所有任务可拒绝</strong>
+              <p>任何人都可以说停、换题或跳过，不需要解释原因。</p>
+            </article>
+            <article>
+              <span class="rule-number">02</span>
+              <strong>尺度只升不突袭</strong>
+              <p>从暧昧、升温到夜深，题目保持情侣向，不做露骨强迫。</p>
+            </article>
+            <article>
+              <span class="rule-number">03</span>
+              <strong>测试显示题库</strong>
+              <p>上线前默认展示题库，便于检查文字、分类和尺度。</p>
+            </article>
+          </section>
+
+          <a class="ddf-entry" href="ddf.html">
+            <span>Deep Dark Fantasy</span>
+            <strong>进入独立黑卡页面</strong>
+            <small>高信任开放玩家专用，进入后只抽 DDF 专属题库。</small>
+          </a>
+
+          <label class="consent-row">
+            <input type="checkbox" id="consentCheck" required />
+            <span>所有玩家已满 18 岁，并同意任何任务都可以说停、换题或跳过。</span>
+          </label>
+
+          <button class="primary-action start-action" id="startButton" type="submit">开始夜航飞行棋</button>
+        </form>
+      </section>
+
+      <section class="bank-section" id="bankSection" aria-labelledby="bankTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">测试面板</p>
+            <h2 id="bankTitle">当前题库预览</h2>
+          </div>
+          <p id="bankSummary">选择游戏和尺度后，这里会显示实际抽取范围。</p>
+        </div>
+        <div class="bank-grid" id="questionBank" aria-live="polite"></div>
+      </section>
+
+      <section class="game-view is-hidden" id="gameView" aria-label="夜航飞行棋桌面">
+        <header class="top-bar">
+          <div>
+            <p class="eyebrow">夜航飞行棋</p>
+            <h2 id="roundTitle">第 1 轮</h2>
+          </div>
+          <div class="top-actions">
+            <button class="secondary-action" id="flightHomeButton" type="button">游戏大厅</button>
+            <button class="secondary-action" id="restartButton" type="button">重新开局</button>
+          </div>
+        </header>
+
+        <div class="game-layout">
+          <aside class="side-panel" aria-label="玩家状态">
+            <div class="turn-card" id="turnCard">
+              <span class="status-label">当前玩家</span>
+              <strong id="currentPlayerName">玩家 1</strong>
+              <p id="turnHint">点击掷骰开始这一回合。</p>
+            </div>
+            <div class="dice-box">
+              <button class="dice-button" id="rollButton" type="button">
+                <span id="diceValue">?</span>
+                <small>掷骰</small>
+              </button>
+              <button class="secondary-action" id="endTurnButton" type="button" disabled>结束回合</button>
+            </div>
+            <div class="moves-panel" id="movesPanel" aria-live="polite"></div>
+          </aside>
+
+          <section class="board-wrap" aria-label="飞行棋棋盘">
+            <div class="board" id="board"></div>
+          </section>
+
+          <aside class="side-panel log-panel" aria-label="游戏记录">
+            <div class="players-list" id="playersList"></div>
+            <div class="log-list" id="logList" aria-live="polite"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="truth-view is-hidden" id="truthView" aria-label="真心话大冒险桌面">
+        <header class="top-bar">
+          <div>
+            <p class="eyebrow">真心话大冒险</p>
+            <h2 id="truthRoundTitle">第 1 轮</h2>
+          </div>
+          <div class="top-actions">
+            <button class="secondary-action" id="truthHomeButton" type="button">游戏大厅</button>
+            <button class="secondary-action" id="truthRestartButton" type="button">重新开局</button>
+          </div>
+        </header>
+
+        <div class="truth-layout">
+          <aside class="side-panel" aria-label="当前玩家">
+            <div class="turn-card truth-turn" id="truthTurnCard">
+              <span class="status-label">轮到</span>
+              <strong id="truthPlayerName">玩家 1</strong>
+              <p id="truthHint">选择真心话、大冒险或随机抽卡。</p>
+            </div>
+            <div class="truth-controls">
+              <button class="primary-action" id="truthButton" type="button">真心话</button>
+              <button class="primary-action action-alt" id="dareButton" type="button">大冒险</button>
+              <button class="secondary-action" id="randomPromptButton" type="button">随机</button>
+            </div>
+          </aside>
+
+          <section class="truth-stage" aria-label="任务卡">
+            <div class="deck-rail" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <article class="prompt-card" id="promptCard">
+              <p class="eyebrow" id="promptType">等待抽卡</p>
+              <h3 id="promptTitle">选择一种卡牌</h3>
+              <p id="promptText">抽到的任务会显示在这里。完成后加 1 分，跳过会记录一次。</p>
+            </article>
+            <div class="prompt-actions">
+              <button class="secondary-action" id="skipPromptButton" type="button" disabled>跳过</button>
+              <button class="primary-action" id="completePromptButton" type="button" disabled>完成</button>
+            </div>
+          </section>
+
+          <aside class="side-panel log-panel" aria-label="真心话大冒险记录">
+            <div class="players-list" id="truthPlayersList"></div>
+            <div class="log-list" id="truthLogList" aria-live="polite"></div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="task-dialog" id="taskDialog">
+      <form method="dialog">
+        <p class="eyebrow" id="taskType">心动任务</p>
+        <h3 id="taskTitle">任务卡</h3>
+        <p id="taskText"></p>
+        <div class="dialog-actions">
+          <button class="secondary-action" id="skipTaskButton" value="skip" type="submit">跳过 / 换题</button>
+          <button class="primary-action" id="completeTaskButton" value="done" type="submit">完成</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="script.js"></script>
+  </body>
+</html>
