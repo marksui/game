@@ -15,15 +15,23 @@
           <span class="brand-sigil">D</span>
           <span>
             <strong>Deep♂Dark♂Fantasy</strong>
-            <small>夜航游戏局 · 独立 DDF</small>
+            <small>夜航游戏局 · 独立 Deep♂Dark♂Fantasy</small>
           </span>
         </a>
-        <nav class="quick-nav" aria-label="页面导航">
-          <a href="index.html">普通模式</a>
-          <a href="#gamePicker">玩法</a>
-          <a href="#bankSection">DDF 题库</a>
-          <a href="#rulesSection">边界</a>
-        </nav>
+        <div class="header-content">
+          <nav class="quick-nav" aria-label="页面导航">
+            <a href="index.html">普通大厅</a>
+            <a href="#gamePicker">玩法</a>
+            <a href="#bankSection">题库</a>
+            <a href="#rulesSection">边界</a>
+          </nav>
+          <div class="header-meta" aria-label="页面状态">
+            <span>Deep♂Dark♂Fantasy</span>
+            <span>21+</span>
+            <span>独立页面</span>
+            <span>可跳过</span>
+          </div>
+        </div>
       </header>
 
       <section class="setup-panel ddf-panel" id="setupPanel" aria-labelledby="gameTitle">
@@ -33,28 +41,26 @@
           </figure>
 
           <div class="ddf-copy">
-            <p class="eyebrow">DDF · 21+ · 兄贵♂哲学</p>
+            <p class="eyebrow">21+ · 兄贵♂哲学</p>
             <h1 class="ddf-title" id="gameTitle">
               <span>Deep♂Dark</span>
               <span>Fantasy</span>
             </h1>
-            <p class="lede">兄贵♂哲学 DDF。大屁股 pose，Gachi♂摔跤，暗紫霓虹，硬汉台词，全部爆破。</p>
+            <p class="lede">Deep♂Dark♂Fantasy 兄贵♂哲学。</p>
           </div>
 
           <div class="ddf-stamps" aria-label="风格标签">
-            <span>GACHI♂MUCHI</span>
-            <span>VHS♂NOISE</span>
             <span>哲♂学</span>
           </div>
 
-          <div class="hero-metrics" aria-label="DDF 玩法概览">
+          <div class="hero-metrics" aria-label="Deep♂Dark♂Fantasy 玩法概览">
             <div>
               <strong>1</strong>
               <span>种玩法</span>
             </div>
             <div>
               <strong id="heroQuestionCount">0</strong>
-              <span>个 DDF</span>
+              <span>个题目</span>
             </div>
             <div>
               <strong>1</strong>
@@ -66,12 +72,12 @@
         <form class="setup-form" id="setupForm">
           <input type="hidden" name="spiceLevel" value="fantasy" />
 
-          <section class="game-picker ddf-only-picker" id="gamePicker" aria-label="DDF 真心话大冒险">
+          <section class="game-picker ddf-only-picker" id="gamePicker" aria-label="Deep♂Dark♂Fantasy 真心话大冒险">
             <button class="game-card is-active" type="button" data-game="truth">
               <span class="game-icon wrestle-icon" aria-hidden="true"></span>
               <span>
-                <strong>DDF 真心话大冒险</strong>
-                <small>真心话、兄贵摔跤、大屁股 pose、Gachi 挑战。</small>
+                <strong>Deep♂Dark♂Fantasy</strong>
+                <small>兄贵♂哲学专属真心话大冒险。</small>
               </span>
               <b>摔跤♂速攻</b>
             </button>
@@ -99,7 +105,7 @@
             <section class="locked-mode" aria-label="当前模式">
               <span>当前模式</span>
               <strong>Deep♂Dark♂Fantasy</strong>
-              <p>只玩兄贵♂哲学 DDF。</p>
+              <p>只玩 Deep♂Dark♂Fantasy。</p>
             </section>
           </div>
 
@@ -107,7 +113,7 @@
             <legend>玩家昵称</legend>
           </fieldset>
 
-          <section class="rules-preview" id="rulesSection" aria-label="DDF 安全边界">
+          <section class="rules-preview" id="rulesSection" aria-label="Deep♂Dark♂Fantasy 安全边界">
             <article class="fantasy-rule">
               <span class="rule-number">01</span>
               <strong>安全词♂确认</strong>
@@ -135,7 +141,7 @@
             <span>21+，全员同意进入兄贵♂哲学模式；任何题都可停止、换题或跳过。</span>
           </label>
 
-          <button class="primary-action start-action" id="startButton" type="submit">开始 DDF 真心话大冒险</button>
+          <button class="primary-action start-action" id="startButton" type="submit">开始 Deep♂Dark♂Fantasy</button>
         </form>
       </section>
 
@@ -143,21 +149,21 @@
         <div class="section-heading">
           <div>
             <p class="eyebrow">兄贵♂题目</p>
-            <h2 id="bankTitle">摔跤♂DDF 预览</h2>
+            <h2 id="bankTitle">Deep♂Dark♂Fantasy 预览</h2>
           </div>
-          <p id="bankSummary">只显示兄贵♂哲学 DDF。</p>
+          <p id="bankSummary">只显示 Deep♂Dark♂Fantasy 题目。</p>
         </div>
         <div class="bank-grid" id="questionBank" aria-live="polite"></div>
       </section>
 
-      <section class="game-view is-hidden" id="gameView" aria-label="DDF 摔跤挑战桌面">
+      <section class="game-view is-hidden" id="gameView" aria-label="Deep♂Dark♂Fantasy 挑战桌面">
         <header class="top-bar">
           <div>
-            <p class="eyebrow">DDF 摔跤挑战</p>
+            <p class="eyebrow">Deep♂Dark♂Fantasy</p>
             <h2 id="roundTitle">第 1 轮</h2>
           </div>
           <div class="top-actions">
-            <button class="secondary-action" id="flightHomeButton" type="button">DDF 大厅</button>
+            <button class="secondary-action" id="flightHomeButton" type="button">游戏大厅</button>
             <button class="secondary-action" id="restartButton" type="button">重新开局</button>
           </div>
         </header>
@@ -179,7 +185,7 @@
             <div class="moves-panel" id="movesPanel" aria-live="polite"></div>
           </aside>
 
-          <section class="board-wrap" aria-label="DDF 擂台">
+          <section class="board-wrap" aria-label="Deep♂Dark♂Fantasy 擂台">
             <div class="board" id="board"></div>
           </section>
 
@@ -190,14 +196,14 @@
         </div>
       </section>
 
-      <section class="truth-view is-hidden" id="truthView" aria-label="DDF 真心话大冒险桌面">
+      <section class="truth-view is-hidden" id="truthView" aria-label="Deep♂Dark♂Fantasy 真心话大冒险桌面">
         <header class="top-bar">
           <div>
-            <p class="eyebrow">DDF 真心话大冒险</p>
+            <p class="eyebrow">Deep♂Dark♂Fantasy</p>
             <h2 id="truthRoundTitle">第 1 轮</h2>
           </div>
           <div class="top-actions">
-            <button class="secondary-action" id="truthHomeButton" type="button">DDF 大厅</button>
+            <button class="secondary-action" id="truthHomeButton" type="button">游戏大厅</button>
             <button class="secondary-action" id="truthRestartButton" type="button">重新开局</button>
           </div>
         </header>
@@ -216,7 +222,7 @@
             </div>
           </aside>
 
-          <section class="truth-stage" aria-label="DDF 挑战">
+          <section class="truth-stage" aria-label="Deep♂Dark♂Fantasy 挑战">
             <div class="deck-rail ddf-rail" aria-hidden="true">
               <span></span>
               <span></span>
@@ -224,8 +230,8 @@
             </div>
             <article class="prompt-card" id="promptCard">
               <p class="eyebrow" id="promptType">等待题目</p>
-              <h3 id="promptTitle">选择一种 DDF</h3>
-              <p id="promptText">兄贵♂DDF 会显示在这里。完成后加 1 分，跳过会记录一次。</p>
+              <h3 id="promptTitle">选择 Deep♂Dark♂Fantasy</h3>
+              <p id="promptText">Deep♂Dark♂Fantasy 题目会显示在这里。完成后加 1 分，跳过会记录一次。</p>
             </article>
             <div class="prompt-actions">
               <button class="secondary-action" id="skipPromptButton" type="button" disabled>跳过</button>
@@ -233,7 +239,7 @@
             </div>
           </section>
 
-          <aside class="side-panel log-panel" aria-label="DDF 记录">
+          <aside class="side-panel log-panel" aria-label="Deep♂Dark♂Fantasy 记录">
             <div class="players-list" id="truthPlayersList"></div>
             <div class="log-list" id="truthLogList" aria-live="polite"></div>
           </aside>
@@ -243,8 +249,8 @@
 
     <dialog class="task-dialog" id="taskDialog">
       <form method="dialog">
-        <p class="eyebrow" id="taskType">兄贵♂DDF</p>
-        <h3 id="taskTitle">DDF 挑战</h3>
+        <p class="eyebrow" id="taskType">Deep♂Dark♂Fantasy</p>
+        <h3 id="taskTitle">挑战</h3>
         <p id="taskText"></p>
         <div class="dialog-actions">
           <button class="secondary-action" id="skipTaskButton" value="skip" type="submit">跳过 / 换题</button>

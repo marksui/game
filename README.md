@@ -1,8 +1,8 @@
 # 夜航游戏局
 
-一个适合成年人情侣或双人约会局的静态网页游戏合集。支持 2-4 位玩家，当前包含夜航飞行棋和真心话大冒险，并提供 Deep♂Dark♂Fantasy 独立 DDF 页面。
+一个适合成年人情侣或双人约会局的静态网页游戏合集。支持 2-4 位玩家，当前包含夜航飞行棋、真心话大冒险、骰子升温、默契挑战、心动轮盘、任务盲盒和角色剧本，并提供 Deep♂Dark♂Fantasy 独立页面。
 
-直接打开 `index.html` 即可开始。兄贵♂DDF 内容在 `ddf.html` 独立页面中，进入后只玩专属真心话大冒险题库，并使用 `assets/ddf-vhs-poster.png` 作为 VHS 主视觉。
+直接打开 `index.html` 即可开始。Deep♂Dark♂Fantasy 内容在 `ddf.html` 独立页面中，进入后只玩专属真心话大冒险题库，并使用 `assets/ddf-vhs-poster.png` 作为主视觉。
 
 ## GitHub Pages 发布
 
@@ -15,4 +15,5 @@
 
 1. 跑 `node --check script.js` 确认脚本语法通过。
 2. 打开 `index.html`，确认默认 2 人是 `Boy`、`Girl`，切换 3/4 人后新增玩家是 `Player 3`、`Player 4`。
-3. 打开 `ddf.html`，确认黑紫 VHS 主视觉加载，题库只显示兄贵♂DDF。
+3. 切换普通页 7 个玩法，确认骰子升温会显示骰子数量选择，题库预览会跟随玩法和尺度变化。
+4. 打开 `ddf.html`，确认主视觉加载，题库只显示 Deep♂Dark♂Fantasy。

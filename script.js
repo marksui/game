@@ -77,7 +77,7 @@ const flightDecks = {
     { type: "兄贵♂", title: "慢速♂登场", text: "用 5 秒做一个夸张硬汉入场动作。" },
     { type: "兄贵♂", title: "暗号♂演练", text: "设计继续 / 暂停手势，各演一次。" },
     { type: "兄贵♂", title: "哲♂学停顿", text: "全员沉默 8 秒，只保持硬汉表情。" },
-    { type: "兄贵♂", title: "被选♂兄贵", text: "指定一位玩家给你的下一次 DDF 加一个 ♂ 字。" },
+    { type: "兄贵♂", title: "被选♂兄贵", text: "指定一位玩家给你的下一次挑战加一个 ♂ 字。" },
     { type: "兄贵♂", title: "低声♂报幕", text: "用低沉 VHS 旁白读出自己的兄贵代号。" },
     { type: "兄贵♂", title: "距离♂审判", text: "摆出双人封面构图，保持 10 秒。" },
     { type: "兄贵♂", title: "角色♂反转", text: "主导旁白和回应旁白交换，再喊一次标题。" },
@@ -87,7 +87,7 @@ const flightDecks = {
     { type: "兄贵♂", title: "暗紫♂舞台", text: "用 3 个词布置一个暗紫霓虹摔跤舞台。" },
     { type: "兄贵♂", title: "停住♂别动", text: "定格成封面姿势 8 秒，任何人可喊停。" },
     { type: "兄贵♂", title: "只许♂复读", text: "接下来 1 分钟，你只能复读最后一个关键词加 ♂。" },
-    { type: "兄贵♂", title: "黑夜♂奖励", text: "完成本轮后，指定下一位玩家拿到 DDF。" },
+    { type: "兄贵♂", title: "黑夜♂奖励", text: "完成本轮后，指定下一位玩家拿到 Deep♂Dark♂Fantasy。" },
     { type: "兄贵♂", title: "最终♂确认", text: "全员确认：继续 / 减速 / 停止。" },
     { type: "兄贵♂", title: "收尾♂礼仪", text: "击掌、喝水、喊一次：Good♂Job。" },
     { type: "兄贵♂", title: "兄贵♂登场", text: "摆出最夸张硬汉 pose，再喊出今晚安全词。" },
@@ -98,7 +98,7 @@ const flightDecks = {
     { type: "兄贵♂", title: "爆裂♂凝视", text: "和一位玩家对视 15 秒，笑场算兄贵胜利。" },
     { type: "兄贵♂", title: "霓虹♂警报", text: "全员复述停止信号；说错的人回答真心话。" },
     { type: "兄贵♂", title: "肌肉♂审判", text: "指定一位玩家给你一个可拒绝的硬汉指令。" },
-    { type: "兄贵♂", title: "硬汉♂反转", text: "主导权交换，下一次 DDF 由被选择者决定完成或改写。" },
+    { type: "兄贵♂", title: "硬汉♂反转", text: "主导权交换，下一次挑战由被选择者决定完成或改写。" },
     { type: "兄贵♂", title: "哲♂学爆燃", text: "说一句最中二、最像 VHS 封面的硬汉台词。" },
     { type: "兄贵♂", title: "粉紫♂封印", text: "选一个禁用词，到下一轮前说出口就后退 1 格。" },
     { type: "兄贵♂", title: "兄贵♂收束", text: "用一句 Good♂Job 把气氛拉回安全区。" },
@@ -198,7 +198,7 @@ const truthDecks = {
   },
   fantasy: {
     truth: [
-      { title: "大屁股♂哲学", text: "在 DDF 宇宙里，大屁股代表力量、稳定、压迫感还是搞笑？" },
+      { title: "大屁股♂哲学", text: "在 Deep♂Dark♂Fantasy 宇宙里，大屁股代表力量、稳定、压迫感还是搞笑？" },
       { title: "摔跤♂角色", text: "今晚你是选手、裁判、解说、观众还是最终 Boss？" },
       { title: "擂台♂代号", text: "给自己取一个摔跤入场名，必须带一个 ♂。" },
       { title: "屁股♂评级", text: "用 1 到 10 给自己的擂台气势打分，不评价真实身材。" },
@@ -209,7 +209,7 @@ const truthDecks = {
       { title: "封面♂姿势", text: "描述一个双人 VHS 摔跤封面姿势。" },
       { title: "屁股♂镜头", text: "如果镜头突然推进，你会给这一幕取什么标题？" },
       { title: "暗紫♂擂台", text: "用 3 个词布置今晚的暗紫霓虹摔跤舞台。" },
-      { title: "裁判♂规则", text: "如果你是裁判，今晚第一条 DDF 规则叫什么？" },
+      { title: "裁判♂规则", text: "如果你是裁判，今晚第一条 Deep♂Dark♂Fantasy 规则叫什么？" },
       { title: "Gachi♂冠军", text: "本局最像冠军的人是谁？给 TA 一个称号。" },
       { title: "热身♂菜单", text: "今天的 Gachi 热身项目叫什么名字？" },
       { title: "锁技♂命名", text: "发明一个不伤人的假摔跤招式名。" },
@@ -479,6 +479,177 @@ Object.entries(importedTruthDareDecks).forEach(([level, deck]) => {
   truthDecks[level].dare.push(...deck.dare);
 });
 
+const diceDecks = {
+  soft: [
+    { type: "骰子", title: "眼神停留", text: "和当前玩家对视，结束后各说一个此刻感受。" },
+    { type: "骰子", title: "手心暗号", text: "在对方掌心写一个字，让 TA 猜。" },
+    { type: "骰子", title: "限定称呼", text: "为当前玩家取一个今晚限定昵称，并使用到下一轮。" },
+    { type: "骰子", title: "同步呼吸", text: "一起放慢呼吸，保持同一个节奏。" },
+    { type: "骰子", title: "三词夸奖", text: "用 3 个不重复的词夸当前玩家。" },
+    { type: "骰子", title: "距离选择", text: "当前玩家选择一个舒服距离，双方保持不说话。" },
+    { type: "骰子", title: "温度问题", text: "问对方一个轻松但会心动的问题。" },
+    { type: "骰子", title: "今晚暗号", text: "设计一个继续暗号和一个暂停暗号。" },
+  ],
+  warm: [
+    { type: "升温骰", title: "耳边邀请", text: "贴近耳边说一句克制的邀请，可改为轻声朗读。" },
+    { type: "升温骰", title: "慢速靠近", text: "用很慢的速度靠近对方，任何一方都可以停。" },
+    { type: "升温骰", title: "触碰许可", text: "问一个许可问题，得到同意后完成一个轻触或改成牵手。" },
+    { type: "升温骰", title: "心跳台词", text: "用认真语气说一句让对方心跳加快的话。" },
+    { type: "升温骰", title: "低声倒数", text: "低声倒数，结束时由对方决定靠近或暂停。" },
+    { type: "升温骰", title: "肩颈放松", text: "为一位同意的玩家做肩颈或手部放松。" },
+    { type: "升温骰", title: "主动交换", text: "当前玩家提出一个温柔指令，对方可改写。" },
+    { type: "升温骰", title: "只准耳语", text: "到下一位玩家行动前，你们之间只能耳语。" },
+  ],
+  hot: [
+    { type: "夜深骰", title: "十五秒许可", text: "选择一个双方舒服的亲密动作，随时可停。" },
+    { type: "夜深骰", title: "主动权", text: "当前玩家决定本轮节奏：慢一点、近一点或停一下。" },
+    { type: "夜深骰", title: "边界内靠近", text: "说清楚边界后，完成一个双方同意的靠近动作。" },
+    { type: "夜深骰", title: "克制命令", text: "给对方一句强势但温柔的小指令，对方可拒绝。" },
+    { type: "夜深骰", title: "心动停顿", text: "气氛升温时停住，只看着对方。" },
+    { type: "夜深骰", title: "掌心路线", text: "让对方在掌心画一条路线，你猜它代表什么。" },
+    { type: "夜深骰", title: "亲密请求", text: "提出一个今晚可以完成的亲密请求，并允许对方改写。" },
+    { type: "夜深骰", title: "收尾照顾", text: "完成后说一句你希望对方如何照顾你的感受。" },
+  ],
+};
+
+const syncDecks = {
+  soft: [
+    { type: "默契", title: "同时说答案", text: "同时说出今晚最适合的一个关键词，相同就双方得分。" },
+    { type: "默契", title: "偏好盲猜", text: "猜对方更喜欢拥抱、牵手、并肩坐还是对视。" },
+    { type: "默契", title: "三秒选择", text: "主持人报二选一，当前玩家和伴侣 3 秒内同时回答。" },
+    { type: "默契", title: "今天细节", text: "猜对方今天最满意自己的一个细节。" },
+    { type: "默契", title: "心情同步", text: "同时用一个词形容现在心情，相近即可得分。" },
+    { type: "默契", title: "约会选择", text: "同时选择下一次约会主题：散步、电影、吃饭或宅家。" },
+    { type: "默契", title: "眼神暗号", text: "用眼神传一个词，对方猜中得分。" },
+    { type: "默契", title: "安全边界", text: "双方各说一个今晚需要被尊重的边界。" },
+  ],
+  warm: [
+    { type: "升温默契", title: "心跳开关", text: "各写下一个会让自己心动的动作，公布后找共同点。" },
+    { type: "升温默契", title: "靠近节奏", text: "同时选择今晚节奏：慢热、主动、被引导或轮流。" },
+    { type: "升温默契", title: "最想听到", text: "猜对方现在最想听到的一句话。" },
+    { type: "升温默契", title: "亲密排序", text: "把牵手、拥抱、亲吻、耳语按今晚期待排序，然后对比。" },
+    { type: "升温默契", title: "默契倒数", text: "不商量，从 5 倒数后同时做一个靠近或暂停手势。" },
+    { type: "升温默契", title: "角色选择", text: "同时选择今晚更想主导、被照顾、撒娇或安静陪伴。" },
+    { type: "升温默契", title: "隐藏愿望", text: "猜对方今晚想被怎样照顾。" },
+    { type: "升温默契", title: "一句邀请", text: "两人各说一句邀请，对方选择更心动的一句。" },
+  ],
+  hot: [
+    { type: "夜深默契", title: "许可清单", text: "各说一个今晚愿意尝试的亲密互动和一个绝对不做的边界。" },
+    { type: "夜深默契", title: "开放刻度", text: "同时用 1 到 10 表示今晚开放程度，再解释差异。" },
+    { type: "夜深默契", title: "主动权交换", text: "猜对方更想掌控哪一件小事：距离、称呼、节奏或结束方式。" },
+    { type: "夜深默契", title: "最有效台词", text: "猜哪一句话最容易让对方心跳加快。" },
+    { type: "夜深默契", title: "停顿信号", text: "双方各设计一个停止和一个继续信号，立即演练。" },
+    { type: "夜深默契", title: "幻想方向", text: "各说一个安全、可停止、不露骨的幻想方向，找共同区间。" },
+    { type: "夜深默契", title: "收尾偏好", text: "猜对方更喜欢完成后拥抱、聊天、喝水还是安静靠着。" },
+    { type: "夜深默契", title: "今晚规则", text: "一起制定一条只属于今晚的亲密规则。" },
+  ],
+};
+
+const miniGameMeta = {
+  wheel: {
+    name: "心动轮盘",
+    action: "旋转轮盘",
+    waitingTitle: "等待轮盘旋转",
+    waitingText: "轮盘会决定本轮题目、对象和互动节奏。",
+    visual: "wheel",
+  },
+  box: {
+    name: "任务盲盒",
+    action: "开启盲盒",
+    waitingTitle: "选择一个盲盒",
+    waitingText: "先开启盲盒，再决定完成、改写或跳过。",
+    visual: "box",
+  },
+  story: {
+    name: "角色剧本",
+    action: "抽剧本",
+    waitingTitle: "等待剧本",
+    waitingText: "抽取一段情侣小剧本，分配角色后即兴演。",
+    visual: "story",
+  },
+};
+
+const miniGameDecks = {
+  wheel: {
+    soft: [
+      { type: "轮盘", title: "视线停留", text: "轮盘指向一位玩家，和 TA 对视 12 秒，然后各说一个关键词。" },
+      { type: "轮盘", title: "昵称转盘", text: "给轮盘指向的人取一个今晚限定昵称。" },
+      { type: "轮盘", title: "掌心问题", text: "在对方掌心写一个字，对方猜中则双方得分。" },
+      { type: "轮盘", title: "轻声邀请", text: "用轻声邀请对方做一个不越界的小动作。" },
+      { type: "轮盘", title: "双人默契", text: "同时说出今晚最适合的一个词，相近就算完成。" },
+      { type: "轮盘", title: "温柔靠近", text: "轮盘指向的人决定靠近、保持距离或换题。" },
+    ],
+    warm: [
+      { type: "升温轮盘", title: "耳边轮盘", text: "贴近轮盘指向的人耳边，说一句克制的邀请。" },
+      { type: "升温轮盘", title: "慢速倒数", text: "从 10 慢慢倒数，对方决定每 3 秒靠近或暂停。" },
+      { type: "升温轮盘", title: "主动一分钟", text: "当前玩家安排 1 分钟氛围，所有动作都可拒绝。" },
+      { type: "升温轮盘", title: "心动台词", text: "轮盘指向的人指定一个语气，你用这个语气说一句心动台词。" },
+      { type: "升温轮盘", title: "触碰许可", text: "问一个许可问题，得到同意后完成一个轻触或改成牵手。" },
+      { type: "升温轮盘", title: "专属称呼", text: "到下一轮前，只能用一个专属称呼叫对方。" },
+    ],
+    hot: [
+      { type: "夜深轮盘", title: "节奏选择", text: "轮盘决定本轮节奏：更慢、更近、暂停或交换主动权。" },
+      { type: "夜深轮盘", title: "边界内邀请", text: "提出一个亲密邀请，并先说清楚可停止信号。" },
+      { type: "夜深轮盘", title: "克制命令", text: "给轮盘指向的人一句温柔但强势的小指令，对方可改写。" },
+      { type: "夜深轮盘", title: "心动暂停", text: "互动升温时停住 10 秒，只看着对方。" },
+      { type: "夜深轮盘", title: "收尾选择", text: "完成后由对方选择拥抱、喝水、聊天或安静靠着。" },
+      { type: "夜深轮盘", title: "许可复述", text: "双方复述继续、减速、停止信号，然后完成一个舒服的靠近动作。" },
+    ],
+  },
+  box: {
+    soft: [
+      { type: "盲盒", title: "A 号心动", text: "说一个最近让你心动的细节。" },
+      { type: "盲盒", title: "B 号靠近", text: "向对方靠近一步，保持 8 秒。" },
+      { type: "盲盒", title: "C 号夸奖", text: "用 3 个词认真夸对方。" },
+      { type: "盲盒", title: "隐藏问题", text: "问对方一个轻松但能增加了解的问题。" },
+      { type: "盲盒", title: "今晚暗号", text: "一起设计一个继续暗号和一个暂停暗号。" },
+      { type: "盲盒", title: "交换愿望", text: "各说一个这周想被对方陪伴完成的小愿望。" },
+    ],
+    warm: [
+      { type: "升温盲盒", title: "低声盲盒", text: "用低声说一句今晚限定台词。" },
+      { type: "升温盲盒", title: "靠近盲盒", text: "用 15 秒慢慢靠近，对方可随时叫停。" },
+      { type: "升温盲盒", title: "手腕暗号", text: "轻触手腕一次代表继续，两次代表暂停，先演练。" },
+      { type: "升温盲盒", title: "角色盲盒", text: "选择主导、被照顾、撒娇或安静陪伴中的一个角色。" },
+      { type: "升温盲盒", title: "心跳盲盒", text: "说一句你觉得最能让对方心跳加快的话。" },
+      { type: "升温盲盒", title: "暂停盲盒", text: "突然停住 8 秒，只用眼神交流。" },
+    ],
+    hot: [
+      { type: "夜深盲盒", title: "许可盲盒", text: "提出一个亲密请求，并允许对方改写。" },
+      { type: "夜深盲盒", title: "主动盲盒", text: "当前玩家决定本轮是慢一点、近一点还是停一下。" },
+      { type: "夜深盲盒", title: "边界盲盒", text: "先说一个不能越过的边界，再完成一个舒服互动。" },
+      { type: "夜深盲盒", title: "台词盲盒", text: "用强势但温柔的语气说一句指令，对方可拒绝。" },
+      { type: "夜深盲盒", title: "收尾盲盒", text: "完成后说一句希望对方如何照顾你。" },
+      { type: "夜深盲盒", title: "交换盲盒", text: "把下一轮完成方式交给对方决定。" },
+    ],
+  },
+  story: {
+    soft: [
+      { type: "剧本", title: "第一次约会", text: "角色 A 安排约会结尾，角色 B 只用三个问题回应。" },
+      { type: "剧本", title: "雨夜电梯", text: "两人被困在电梯里 30 秒，只能聊今晚最想做的小事。" },
+      { type: "剧本", title: "酒吧重逢", text: "假装久别重逢，各说一句不会尴尬的开场白。" },
+      { type: "剧本", title: "秘密暗号", text: "角色 A 发明暗号，角色 B 猜它代表靠近、暂停还是继续。" },
+      { type: "剧本", title: "餐桌告白", text: "用最平静的语气说一句最直接的夸奖。" },
+      { type: "剧本", title: "深夜电话", text: "一人打电话，一人回应，只能说短句。" },
+    ],
+    warm: [
+      { type: "升温剧本", title: "暧昧审问", text: "角色 A 问三个心动问题，角色 B 必须认真回答一个。" },
+      { type: "升温剧本", title: "慢动作邀请", text: "角色 A 用 20 秒邀请靠近，角色 B 决定继续或暂停。" },
+      { type: "升温剧本", title: "耳语任务", text: "全程只能耳语，完成一段 30 秒即兴对话。" },
+      { type: "升温剧本", title: "交换主动", text: "两人各当 20 秒主导者，只能给可拒绝的小指令。" },
+      { type: "升温剧本", title: "心动台词", text: "角色 A 说一句邀请，角色 B 改写得更心动。" },
+      { type: "升温剧本", title: "安全词演练", text: "把继续、减速、停止编进一段自然对话。" },
+    ],
+    hot: [
+      { type: "夜深剧本", title: "边界谈判", text: "两人用角色身份谈一个亲密请求和一个明确边界。" },
+      { type: "夜深剧本", title: "主动权合同", text: "角色 A 提出一分钟规则，角色 B 修改到舒服为止。" },
+      { type: "夜深剧本", title: "克制靠近", text: "两人慢慢靠近但不能急，任何一方可停。" },
+      { type: "夜深剧本", title: "停顿对白", text: "对话中必须停顿两次，每次 6 秒只看对方。" },
+      { type: "夜深剧本", title: "收尾照顾", text: "即兴演完后，角色 B 选择如何收尾和照顾情绪。" },
+      { type: "夜深剧本", title: "今晚规则", text: "用角色身份制定一条今晚限定规则。" },
+    ],
+  },
+};
+
 const eventTypes = [
   { key: "truth", color: "#e1ad4f" },
   { key: "touch", color: "#3dc2b4" },
@@ -533,6 +704,7 @@ const bankSection = document.querySelector("#bankSection");
 const questionBank = document.querySelector("#questionBank");
 const bankSummary = document.querySelector("#bankSummary");
 const heroQuestionCount = document.querySelector("#heroQuestionCount");
+const diceOptions = document.querySelector("#diceOptions");
 
 const gameView = document.querySelector("#gameView");
 const board = document.querySelector("#board");
@@ -568,6 +740,63 @@ const truthLogList = document.querySelector("#truthLogList");
 const truthHomeButton = document.querySelector("#truthHomeButton");
 const truthRestartButton = document.querySelector("#truthRestartButton");
 
+const diceView = document.querySelector("#diceView");
+const diceRoundTitle = document.querySelector("#diceRoundTitle");
+const diceTurnCard = document.querySelector("#diceTurnCard");
+const dicePlayerName = document.querySelector("#dicePlayerName");
+const diceHint = document.querySelector("#diceHint");
+const warmDiceButton = document.querySelector("#warmDiceButton");
+const warmDiceTotal = document.querySelector("#warmDiceTotal");
+const activeDiceCount = document.querySelector("#activeDiceCount");
+const diceFaces = document.querySelector("#diceFaces");
+const dicePromptCard = document.querySelector("#dicePromptCard");
+const dicePromptType = document.querySelector("#dicePromptType");
+const dicePromptTitle = document.querySelector("#dicePromptTitle");
+const dicePromptText = document.querySelector("#dicePromptText");
+const skipDiceButton = document.querySelector("#skipDiceButton");
+const completeDiceButton = document.querySelector("#completeDiceButton");
+const dicePlayersList = document.querySelector("#dicePlayersList");
+const diceLogList = document.querySelector("#diceLogList");
+const diceHomeButton = document.querySelector("#diceHomeButton");
+const diceRestartButton = document.querySelector("#diceRestartButton");
+
+const syncView = document.querySelector("#syncView");
+const syncRoundTitle = document.querySelector("#syncRoundTitle");
+const syncTurnCard = document.querySelector("#syncTurnCard");
+const syncPlayerName = document.querySelector("#syncPlayerName");
+const syncHint = document.querySelector("#syncHint");
+const syncDrawButton = document.querySelector("#syncDrawButton");
+const syncPromptCard = document.querySelector("#syncPromptCard");
+const syncPromptType = document.querySelector("#syncPromptType");
+const syncPromptTitle = document.querySelector("#syncPromptTitle");
+const syncPromptText = document.querySelector("#syncPromptText");
+const skipSyncButton = document.querySelector("#skipSyncButton");
+const completeSyncButton = document.querySelector("#completeSyncButton");
+const syncPlayersList = document.querySelector("#syncPlayersList");
+const syncLogList = document.querySelector("#syncLogList");
+const syncHomeButton = document.querySelector("#syncHomeButton");
+const syncRestartButton = document.querySelector("#syncRestartButton");
+
+const miniView = document.querySelector("#miniView");
+const miniGameLabel = document.querySelector("#miniGameLabel");
+const miniRoundTitle = document.querySelector("#miniRoundTitle");
+const miniTurnCard = document.querySelector("#miniTurnCard");
+const miniPlayerName = document.querySelector("#miniPlayerName");
+const miniHint = document.querySelector("#miniHint");
+const miniDrawButton = document.querySelector("#miniDrawButton");
+const miniVisual = document.querySelector("#miniVisual");
+const miniChoiceGrid = document.querySelector("#miniChoiceGrid");
+const miniPromptCard = document.querySelector("#miniPromptCard");
+const miniPromptType = document.querySelector("#miniPromptType");
+const miniPromptTitle = document.querySelector("#miniPromptTitle");
+const miniPromptText = document.querySelector("#miniPromptText");
+const skipMiniButton = document.querySelector("#skipMiniButton");
+const completeMiniButton = document.querySelector("#completeMiniButton");
+const miniPlayersList = document.querySelector("#miniPlayersList");
+const miniLogList = document.querySelector("#miniLogList");
+const miniHomeButton = document.querySelector("#miniHomeButton");
+const miniRestartButton = document.querySelector("#miniRestartButton");
+
 const taskDialog = document.querySelector("#taskDialog");
 const taskType = document.querySelector("#taskType");
 const taskTitle = document.querySelector("#taskTitle");
@@ -578,6 +807,8 @@ const isFantasyPage = document.body.classList.contains("fantasy-mode");
 let selectedGame = isFantasyPage ? "truth" : "flight";
 let state = createEmptyState();
 let pendingTask = null;
+let diceAnimationId = 0;
+let miniAnimationId = 0;
 
 function createEmptyState() {
   return {
@@ -592,11 +823,22 @@ function createEmptyState() {
     winnerId: null,
     lastMovedPieceId: null,
     currentPrompt: null,
+    diceCount: 2,
+    diceRolls: [],
+    diceRolling: false,
+    miniGame: null,
+    miniChoices: [],
+    miniSpinning: false,
+    miniWheelRotation: 0,
   };
 }
 
 function getSelectedSpiceLevel() {
   return new FormData(setupForm).get("spiceLevel") || "soft";
+}
+
+function getSelectedDiceCount() {
+  return Number(new FormData(setupForm).get("diceCount")) || 2;
 }
 
 function getDeckLevels(spiceLevel) {
@@ -619,18 +861,48 @@ function getTruthDeck(kind, spiceLevel = state.spiceLevel) {
   }));
 }
 
+function getDiceDeck(spiceLevel = state.spiceLevel) {
+  return getDeckLevels(spiceLevel).flatMap((level) => diceDecks[level]);
+}
+
+function getSyncDeck(spiceLevel = state.spiceLevel) {
+  return getDeckLevels(spiceLevel).flatMap((level) => syncDecks[level]);
+}
+
+function getMiniDeck(game = state.miniGame, spiceLevel = state.spiceLevel) {
+  return getDeckLevels(spiceLevel).flatMap((level) => miniGameDecks[game][level]);
+}
+
 function getVisibleQuestionCards() {
   const spiceLevel = getSelectedSpiceLevel();
   if (spiceLevel === "fantasy") {
     return [...getTruthDeck("truth", spiceLevel), ...getTruthDeck("dare", spiceLevel)].map((card) => ({
       ...card,
-      mode: "DDF 真心话大冒险",
+      mode: "Deep♂Dark♂Fantasy 真心话大冒险",
     }));
   }
   if (selectedGame === "flight") {
     return getFlightDeck(spiceLevel).map((card) => ({
       ...card,
       mode: "飞行棋",
+    }));
+  }
+  if (selectedGame === "dice") {
+    return getDiceDeck(spiceLevel).map((card) => ({
+      ...card,
+      mode: "骰子升温",
+    }));
+  }
+  if (selectedGame === "sync") {
+    return getSyncDeck(spiceLevel).map((card) => ({
+      ...card,
+      mode: "默契挑战",
+    }));
+  }
+  if (miniGameMeta[selectedGame]) {
+    return getMiniDeck(selectedGame, spiceLevel).map((card) => ({
+      ...card,
+      mode: miniGameMeta[selectedGame].name,
     }));
   }
   return [...getTruthDeck("truth", spiceLevel), ...getTruthDeck("dare", spiceLevel)].map((card) => ({
@@ -644,13 +916,25 @@ function renderQuestionBank() {
   const spiceLevel = getSelectedSpiceLevel();
   const spiceName = { soft: "暧昧", warm: "升温", hot: "夜深", fantasy: "Deep♂Dark♂Fantasy" }[spiceLevel];
   const gameName =
-    spiceLevel === "fantasy" ? "DDF 真心话大冒险" : selectedGame === "flight" ? "夜航飞行棋" : "真心话大冒险";
+    spiceLevel === "fantasy"
+      ? "Deep♂Dark♂Fantasy 真心话大冒险"
+      : {
+          flight: "夜航飞行棋",
+          truth: "真心话大冒险",
+          dice: "骰子升温",
+          sync: "默契挑战",
+          wheel: "心动轮盘",
+          box: "任务盲盒",
+          story: "角色剧本",
+        }[selectedGame];
   document.body.classList.toggle("fantasy-mode", spiceLevel === "fantasy");
   heroQuestionCount.textContent = String(cards.length);
   bankSummary.textContent =
     spiceLevel === "fantasy"
-      ? `${gameName} · ${spiceName}：只显示 DDF 题目，共 ${cards.length} 个。`
-      : `${gameName} · ${spiceName}：当前测试会抽取 ${cards.length} 张卡。`;
+      ? `${gameName} · ${spiceName}：只显示 Deep♂Dark♂Fantasy 题目，共 ${cards.length} 个。`
+      : selectedGame === "dice"
+        ? `${gameName} · ${spiceName}：当前使用 ${getSelectedDiceCount()} 颗骰子，题库 ${cards.length} 个。`
+        : `${gameName} · ${spiceName}：当前测试会抽取 ${cards.length} 张卡。`;
   questionBank.innerHTML = "";
 
   cards.forEach((card, index) => {
@@ -669,19 +953,23 @@ function renderQuestionBank() {
 function setSelectedGame(game) {
   const fantasy = getSelectedSpiceLevel() === "fantasy";
   selectedGame = fantasy ? "truth" : game;
+  diceOptions?.classList.toggle("is-hidden", selectedGame !== "dice");
   gameCards.forEach((card) => {
     const active = card.dataset.game === selectedGame;
     card.classList.toggle("is-active", active);
     card.setAttribute("aria-pressed", String(active));
   });
-  startButton.textContent =
-    selectedGame === "flight"
-      ? fantasy
-        ? "开始 DDF 真心话大冒险"
-        : "开始夜航飞行棋"
-      : fantasy
-        ? "开始 DDF 真心话大冒险"
-        : "开始真心话大冒险";
+  startButton.textContent = fantasy
+    ? "开始 Deep♂Dark♂Fantasy"
+    : {
+        flight: "开始夜航飞行棋",
+        truth: "开始真心话大冒险",
+        dice: "开始骰子升温",
+        sync: "开始默契挑战",
+        wheel: "开始心动轮盘",
+        box: "开始任务盲盒",
+        story: "开始角色剧本",
+      }[selectedGame];
   renderQuestionBank();
 }
 
@@ -731,6 +1019,18 @@ function startGame(event) {
     startTruthGame();
     return;
   }
+  if (selectedGame === "dice") {
+    startDiceGame();
+    return;
+  }
+  if (selectedGame === "sync") {
+    startSyncGame();
+    return;
+  }
+  if (miniGameMeta[selectedGame]) {
+    startMiniGame(selectedGame);
+    return;
+  }
   startFlightGame();
 }
 
@@ -740,12 +1040,25 @@ function hideLobby() {
   scrollToTop();
 }
 
+function cancelMotionEffects() {
+  diceAnimationId += 1;
+  miniAnimationId += 1;
+  diceFaces?.classList.remove("is-rolling", "is-final");
+  warmDiceButton?.classList.remove("is-rolling");
+  rollButton?.classList.remove("is-rolling");
+  miniVisual?.classList.remove("is-spinning", "is-settled");
+}
+
 function showLobby(resetForm = false) {
+  cancelMotionEffects();
   state = createEmptyState();
   pendingTask = null;
   if (taskDialog.open) taskDialog.close();
   gameView.classList.add("is-hidden");
   truthView.classList.add("is-hidden");
+  diceView?.classList.add("is-hidden");
+  syncView?.classList.add("is-hidden");
+  miniView?.classList.add("is-hidden");
   setupPanel.classList.remove("is-hidden");
   bankSection.classList.remove("is-hidden");
   if (resetForm) {
@@ -766,6 +1079,9 @@ function startFlightGame() {
 
   hideLobby();
   truthView.classList.add("is-hidden");
+  diceView?.classList.add("is-hidden");
+  syncView?.classList.add("is-hidden");
+  miniView?.classList.add("is-hidden");
   gameView.classList.remove("is-hidden");
   addLog("游戏开始。掷到 6 可以起飞，四架飞机全部进入终点即获胜。");
   buildBoard();
@@ -781,12 +1097,437 @@ function startTruthGame() {
 
   hideLobby();
   gameView.classList.add("is-hidden");
+  diceView?.classList.add("is-hidden");
+  syncView?.classList.add("is-hidden");
+  miniView?.classList.add("is-hidden");
   truthView.classList.remove("is-hidden");
   addLog("真心话大冒险开始。完成题目得 1 分，跳过会记录一次。");
   if (state.spiceLevel === "fantasy") {
-    state.log = ["DDF 真心话大冒险开始。完成挑战得 1 分，跳过会记录一次。"];
+    state.log = ["Deep♂Dark♂Fantasy 开始。完成挑战得 1 分，跳过会记录一次。"];
   }
   renderTruth();
+}
+
+function startDiceGame() {
+  state = createEmptyState();
+  state.mode = "dice";
+  state.phase = "roll";
+  state.spiceLevel = getSelectedSpiceLevel();
+  state.diceCount = getSelectedDiceCount();
+  state.players = buildPlayers(false);
+
+  hideLobby();
+  gameView.classList.add("is-hidden");
+  truthView.classList.add("is-hidden");
+  diceView?.classList.remove("is-hidden");
+  syncView?.classList.add("is-hidden");
+  miniView?.classList.add("is-hidden");
+  addLog(`骰子升温开始。当前使用 ${state.diceCount} 颗骰子，完成得 1 分。`);
+  clearDicePrompt();
+  renderDice();
+}
+
+function renderDice() {
+  if (!diceView) return;
+  const player = getCurrentPlayer();
+  diceRoundTitle.textContent = `第 ${state.round} 轮`;
+  dicePlayerName.textContent = player?.name || "游戏结束";
+  diceTurnCard.style.borderLeftColor = player?.color || "var(--gold)";
+  diceHint.textContent = state.diceRolling
+    ? "骰子滚动中，等点数停稳。"
+    : state.currentPrompt
+      ? "完成或跳过当前骰子任务后进入下一位。"
+      : "点击投骰，点数会组合成升温任务。";
+  warmDiceButton.disabled = Boolean(state.currentPrompt) || state.diceRolling;
+  warmDiceButton.classList.toggle("is-rolling", state.diceRolling);
+  skipDiceButton.disabled = !state.currentPrompt || state.diceRolling;
+  completeDiceButton.disabled = !state.currentPrompt || state.diceRolling;
+  activeDiceCount.textContent = `${state.diceCount} 颗骰子`;
+
+  renderDiceFaces();
+  renderPlayers(dicePlayersList, (item, index) => {
+    const prefix = index === state.currentPlayerIndex ? "当前 · " : "";
+    return { name: `${prefix}${item.name}`, score: `${item.score} 分 / 跳过 ${item.skips}` };
+  });
+  renderLog(diceLogList);
+}
+
+function renderDiceFaces() {
+  const rolls = state.diceRolling
+    ? Array.from({ length: state.diceCount }, () => Math.floor(Math.random() * 6) + 1)
+    : state.diceRolls.length
+      ? state.diceRolls
+      : Array.from({ length: state.diceCount }, () => "?");
+  paintDiceFaces(rolls, state.diceRolling);
+}
+
+function paintDiceFaces(rolls, isRolling = false) {
+  diceFaces.innerHTML = "";
+  diceFaces.classList.toggle("is-rolling", isRolling);
+  diceFaces.classList.toggle("is-final", !isRolling && rolls.some((value) => value !== "?"));
+  rolls.forEach((value, index) => {
+    const face = document.createElement("span");
+    face.style.setProperty("--i", index);
+    face.textContent = value;
+    diceFaces.append(face);
+  });
+  const total = rolls.reduce((sum, value) => sum + (Number(value) || 0), 0);
+  warmDiceTotal.textContent = total || "?";
+}
+
+function rollWarmDice() {
+  if (state.mode !== "dice" || state.currentPrompt || state.diceRolling) return;
+  const animationId = diceAnimationId + 1;
+  diceAnimationId = animationId;
+  state.diceRolling = true;
+  state.diceRolls = [];
+  dicePromptType.textContent = "骰子滚动中";
+  dicePromptTitle.textContent = "点数正在落下";
+  dicePromptText.textContent = "等骰子停稳后，本轮任务会自动翻开。";
+  dicePromptCard.classList.remove("is-dealt");
+  renderDice();
+
+  const rollInterval = window.setInterval(() => {
+    if (animationId !== diceAnimationId || state.mode !== "dice") {
+      window.clearInterval(rollInterval);
+      return;
+    }
+    const previewRolls = Array.from({ length: state.diceCount }, () => Math.floor(Math.random() * 6) + 1);
+    paintDiceFaces(previewRolls, true);
+  }, 72);
+
+  window.setTimeout(() => {
+    window.clearInterval(rollInterval);
+    if (animationId !== diceAnimationId || state.mode !== "dice") return;
+    finishWarmDiceRoll();
+  }, 860);
+}
+
+function finishWarmDiceRoll() {
+  state.diceRolling = false;
+  state.diceRolls = Array.from({ length: state.diceCount }, () => Math.floor(Math.random() * 6) + 1);
+  const total = state.diceRolls.reduce((sum, value) => sum + value, 0);
+  const band = getDiceBand(total, state.diceCount);
+  const deck = getDiceDeck();
+  const task = deck[(total + state.round + state.currentPlayerIndex) % deck.length];
+  const duration = Math.min(60, 6 + total * 2);
+  state.currentPrompt = {
+    ...task,
+    type: `${state.diceCount} 骰 / ${total} 点`,
+    title: `${band.title} · ${task.title}`,
+    text: `${task.text} 计时 ${duration} 秒；任何人都可以改写、减速或跳过。`,
+  };
+  dicePromptType.textContent = state.currentPrompt.type;
+  dicePromptTitle.textContent = state.currentPrompt.title;
+  dicePromptText.textContent = state.currentPrompt.text;
+  dicePromptCard.classList.remove("is-dealt");
+  void dicePromptCard.offsetWidth;
+  dicePromptCard.classList.add("is-dealt");
+  addLog(`${getCurrentPlayer().name} 投出 ${state.diceRolls.join(" + ")} = ${total}，拿到 ${band.title}。`);
+  renderDice();
+}
+
+function getDiceBand(total, count) {
+  const ratio = (total - count) / (count * 5);
+  if (ratio < 0.26) return { title: "慢热" };
+  if (ratio < 0.52) return { title: "暧昧" };
+  if (ratio < 0.78) return { title: "升温" };
+  return { title: "加码" };
+}
+
+function completeDicePrompt() {
+  if (!state.currentPrompt) return;
+  const player = getCurrentPlayer();
+  player.score += 1;
+  addLog(`${player.name} 完成骰子任务：${state.currentPrompt.title}，获得 1 分。`);
+  clearDicePrompt();
+  advancePlayer();
+  renderDice();
+}
+
+function skipDicePrompt() {
+  if (!state.currentPrompt) return;
+  const player = getCurrentPlayer();
+  player.skips += 1;
+  addLog(`${player.name} 跳过骰子任务：${state.currentPrompt.title}。`);
+  clearDicePrompt();
+  advancePlayer();
+  renderDice();
+}
+
+function clearDicePrompt() {
+  state.currentPrompt = null;
+  state.diceRolls = [];
+  state.diceRolling = false;
+  if (!dicePromptType) return;
+  dicePromptType.textContent = "等待投骰";
+  dicePromptTitle.textContent = "选择骰子数量后开始";
+  dicePromptText.textContent = "骰子点数会决定升温等级、互动时长和本轮任务。";
+  dicePromptCard.classList.remove("is-dealt");
+}
+
+function startSyncGame() {
+  state = createEmptyState();
+  state.mode = "sync";
+  state.phase = "draw";
+  state.spiceLevel = getSelectedSpiceLevel();
+  state.players = buildPlayers(false);
+
+  hideLobby();
+  gameView.classList.add("is-hidden");
+  truthView.classList.add("is-hidden");
+  diceView?.classList.add("is-hidden");
+  syncView?.classList.remove("is-hidden");
+  miniView?.classList.add("is-hidden");
+  addLog("默契挑战开始。抽挑战、完成得 1 分，任何题都可跳过。");
+  clearSyncPrompt();
+  renderSync();
+}
+
+function renderSync() {
+  if (!syncView) return;
+  const player = getCurrentPlayer();
+  syncRoundTitle.textContent = `第 ${state.round} 轮`;
+  syncPlayerName.textContent = player?.name || "游戏结束";
+  syncTurnCard.style.borderLeftColor = player?.color || "var(--teal)";
+  syncHint.textContent = state.currentPrompt ? "完成或跳过当前默契挑战后进入下一位。" : "抽一个默契挑战，答对或完成得 1 分。";
+  syncDrawButton.disabled = Boolean(state.currentPrompt);
+  skipSyncButton.disabled = !state.currentPrompt;
+  completeSyncButton.disabled = !state.currentPrompt;
+
+  renderPlayers(syncPlayersList, (item, index) => {
+    const prefix = index === state.currentPlayerIndex ? "当前 · " : "";
+    return { name: `${prefix}${item.name}`, score: `${item.score} 分 / 跳过 ${item.skips}` };
+  });
+  renderLog(syncLogList);
+}
+
+function drawSyncPrompt() {
+  if (state.mode !== "sync" || state.currentPrompt) return;
+  const deck = getSyncDeck();
+  const card = deck[Math.floor(Math.random() * deck.length)];
+  state.currentPrompt = card;
+  syncPromptType.textContent = card.type;
+  syncPromptTitle.textContent = card.title;
+  syncPromptText.textContent = card.text;
+  syncPromptCard.classList.remove("is-dealt");
+  void syncPromptCard.offsetWidth;
+  syncPromptCard.classList.add("is-dealt");
+  addLog(`${getCurrentPlayer().name} 抽到默契挑战：${card.title}。`);
+  renderSync();
+}
+
+function completeSyncPrompt() {
+  if (!state.currentPrompt) return;
+  const player = getCurrentPlayer();
+  player.score += 1;
+  addLog(`${player.name} 完成默契挑战：${state.currentPrompt.title}，获得 1 分。`);
+  clearSyncPrompt();
+  advancePlayer();
+  renderSync();
+}
+
+function skipSyncPrompt() {
+  if (!state.currentPrompt) return;
+  const player = getCurrentPlayer();
+  player.skips += 1;
+  addLog(`${player.name} 跳过默契挑战：${state.currentPrompt.title}。`);
+  clearSyncPrompt();
+  advancePlayer();
+  renderSync();
+}
+
+function clearSyncPrompt() {
+  state.currentPrompt = null;
+  if (!syncPromptType) return;
+  syncPromptType.textContent = "等待挑战";
+  syncPromptTitle.textContent = "抽一个升温默契题";
+  syncPromptText.textContent = "同步回答、盲猜偏好或完成一个双方都舒服的小互动。";
+  syncPromptCard.classList.remove("is-dealt");
+}
+
+function startMiniGame(game) {
+  state = createEmptyState();
+  state.mode = "mini";
+  state.phase = "draw";
+  state.spiceLevel = getSelectedSpiceLevel();
+  state.miniGame = game;
+  state.players = buildPlayers(false);
+
+  hideLobby();
+  gameView.classList.add("is-hidden");
+  truthView.classList.add("is-hidden");
+  diceView?.classList.add("is-hidden");
+  syncView?.classList.add("is-hidden");
+  miniView?.classList.remove("is-hidden");
+  addLog(`${miniGameMeta[game].name}开始。完成得 1 分，任何题都可跳过。`);
+  clearMiniPrompt();
+  renderMini();
+}
+
+function renderMini() {
+  if (!miniView) return;
+  const player = getCurrentPlayer();
+  const meta = miniGameMeta[state.miniGame];
+  miniGameLabel.textContent = meta.name;
+  miniRoundTitle.textContent = `第 ${state.round} 轮`;
+  miniPlayerName.textContent = player?.name || "游戏结束";
+  miniTurnCard.style.borderLeftColor = player?.color || "var(--rose)";
+  miniHint.textContent = state.currentPrompt
+    ? "完成或跳过当前题目后进入下一位。"
+    : state.miniSpinning
+      ? "轮盘正在旋转，等待停下。"
+    : state.miniGame === "box"
+      ? "先开一个盲盒，再决定完成或跳过。"
+      : `点击${meta.action}，抽取本轮题目。`;
+  miniDrawButton.textContent = meta.action;
+  miniDrawButton.disabled = Boolean(state.currentPrompt) || state.miniChoices.length > 0 || state.miniSpinning;
+  skipMiniButton.disabled = !state.currentPrompt || state.miniSpinning;
+  completeMiniButton.disabled = !state.currentPrompt || state.miniSpinning;
+  miniVisual.dataset.mode = meta.visual;
+  miniVisual.classList.toggle("is-spinning", state.miniSpinning);
+  miniVisual.classList.toggle("is-settled", state.miniGame === "wheel" && !state.miniSpinning && Boolean(state.currentPrompt));
+  miniVisual.style.setProperty("--wheel-rest", `${state.miniWheelRotation}deg`);
+
+  renderPlayers(miniPlayersList, (item, index) => {
+    const prefix = index === state.currentPlayerIndex ? "当前 · " : "";
+    return { name: `${prefix}${item.name}`, score: `${item.score} 分 / 跳过 ${item.skips}` };
+  });
+  renderLog(miniLogList);
+}
+
+function drawMiniPrompt() {
+  if (state.mode !== "mini" || state.currentPrompt || state.miniChoices.length || state.miniSpinning) return;
+  if (state.miniGame === "wheel") {
+    spinMiniWheel();
+    return;
+  }
+  if (state.miniGame === "box") {
+    prepareMiniChoices();
+    return;
+  }
+  revealMiniPrompt(getRandomMiniCard());
+}
+
+function spinMiniWheel() {
+  const card = getRandomMiniCard();
+  const animationId = miniAnimationId + 1;
+  const spinAmount = 1080 + Math.floor(Math.random() * 360);
+  const nextRotation = (state.miniWheelRotation + spinAmount) % 360;
+
+  miniAnimationId = animationId;
+  state.miniSpinning = true;
+  miniVisual.style.setProperty("--wheel-start", `${state.miniWheelRotation}deg`);
+  miniVisual.style.setProperty("--wheel-spin", `${spinAmount}deg`);
+  miniPromptType.textContent = "轮盘旋转中";
+  miniPromptTitle.textContent = "指针正在选择对象";
+  miniPromptText.textContent = "轮盘停下后，本轮题目会自动翻开。";
+  miniPromptCard.classList.remove("is-dealt");
+  renderMini();
+
+  miniVisual.classList.remove("is-spinning", "is-settled");
+  void miniVisual.offsetWidth;
+  miniVisual.classList.add("is-spinning");
+
+  window.setTimeout(() => {
+    if (animationId !== miniAnimationId || state.mode !== "mini" || state.miniGame !== "wheel") return;
+    state.miniSpinning = false;
+    state.miniWheelRotation = nextRotation;
+    miniVisual.style.setProperty("--wheel-rest", `${nextRotation}deg`);
+    miniVisual.classList.remove("is-spinning");
+    miniVisual.classList.add("is-settled");
+    revealMiniPrompt(card);
+  }, 1180);
+}
+
+function prepareMiniChoices() {
+  const deck = shuffleCards(getMiniDeck()).slice(0, 3);
+  state.miniChoices = deck;
+  miniChoiceGrid.classList.remove("is-hidden");
+  miniPromptType.textContent = "任务盲盒";
+  miniPromptTitle.textContent = "选择 A / B / C";
+  miniPromptText.textContent = "三个盲盒都可以拒绝、改写或跳过。";
+  miniPromptCard.classList.remove("is-dealt");
+  void miniPromptCard.offsetWidth;
+  miniPromptCard.classList.add("is-dealt");
+  addLog(`${getCurrentPlayer().name} 摆出 3 个任务盲盒。`);
+  renderMini();
+}
+
+function chooseMiniBox(index) {
+  if (state.mode !== "mini" || state.miniGame !== "box" || state.currentPrompt || !state.miniChoices.length) return;
+  const card = state.miniChoices[index] || state.miniChoices[0];
+  state.miniChoices = [];
+  miniChoiceGrid.classList.add("is-hidden");
+  revealMiniPrompt(card);
+}
+
+function revealMiniPrompt(card) {
+  state.currentPrompt = card;
+  miniPromptType.textContent = card.type;
+  miniPromptTitle.textContent = card.title;
+  miniPromptText.textContent = decorateMiniPrompt(card.text);
+  miniPromptCard.classList.remove("is-dealt");
+  void miniPromptCard.offsetWidth;
+  miniPromptCard.classList.add("is-dealt");
+  addLog(`${getCurrentPlayer().name} 拿到${miniGameMeta[state.miniGame].name}：${card.title}。`);
+  renderMini();
+}
+
+function getRandomMiniCard() {
+  const deck = getMiniDeck();
+  return deck[Math.floor(Math.random() * deck.length)];
+}
+
+function decorateMiniPrompt(text) {
+  const target = getRandomOtherPlayerName();
+  if (state.miniGame === "wheel") return `${text} 本轮对象：${target}。`;
+  if (state.miniGame === "story") return `${text} 表演 30-60 秒，结束后可以互换角色再来一次。`;
+  return text;
+}
+
+function getRandomOtherPlayerName() {
+  const current = getCurrentPlayer();
+  const pool = state.players.filter((player) => player.id !== current?.id);
+  const target = pool[Math.floor(Math.random() * pool.length)] || current;
+  return target?.name || "当前玩家";
+}
+
+function completeMiniPrompt() {
+  if (!state.currentPrompt) return;
+  const player = getCurrentPlayer();
+  player.score += 1;
+  addLog(`${player.name} 完成${miniGameMeta[state.miniGame].name}：${state.currentPrompt.title}，获得 1 分。`);
+  clearMiniPrompt();
+  advancePlayer();
+  renderMini();
+}
+
+function skipMiniPrompt() {
+  if (!state.currentPrompt) return;
+  const player = getCurrentPlayer();
+  player.skips += 1;
+  addLog(`${player.name} 跳过${miniGameMeta[state.miniGame].name}：${state.currentPrompt.title}。`);
+  clearMiniPrompt();
+  advancePlayer();
+  renderMini();
+}
+
+function clearMiniPrompt() {
+  state.currentPrompt = null;
+  state.miniChoices = [];
+  state.miniSpinning = false;
+  if (!miniPromptType) return;
+  const meta = miniGameMeta[state.miniGame] || miniGameMeta.wheel;
+  miniChoiceGrid.classList.add("is-hidden");
+  miniPromptType.textContent = "等待开始";
+  miniPromptTitle.textContent = meta.waitingTitle;
+  miniPromptText.textContent = meta.waitingText;
+  miniPromptCard.classList.remove("is-dealt");
+}
+
+function shuffleCards(cards) {
+  return [...cards].sort(() => Math.random() - 0.5);
 }
 
 function buildBoard() {
@@ -959,6 +1700,11 @@ function renderMoves() {
 
 function rollDice() {
   if (state.phase !== "roll" || state.winnerId !== null) return;
+  rollButton.classList.remove("is-rolling");
+  void rollButton.offsetWidth;
+  rollButton.classList.add("is-rolling");
+  window.setTimeout(() => rollButton.classList.remove("is-rolling"), 620);
+
   state.lastRoll = Math.floor(Math.random() * 6) + 1;
   const player = getCurrentPlayer();
   addLog(`${player.name} 掷出 ${state.lastRoll}。`);
@@ -1125,7 +1871,7 @@ function renderTruth() {
   truthHint.textContent =
     state.spiceLevel === "fantasy"
       ? state.currentPrompt
-        ? "完成或跳过当前 DDF 后进入下一位。"
+        ? "完成或跳过当前 Deep♂Dark♂Fantasy 后进入下一位。"
         : "选择真心话、大冒险或随机题。"
       : state.currentPrompt
         ? "完成或跳过当前卡牌后进入下一位。"
@@ -1187,9 +1933,9 @@ function clearPromptCard() {
   state.currentPrompt = null;
   const isFantasy = state.spiceLevel === "fantasy";
   promptType.textContent = isFantasy ? "等待题目" : "等待抽卡";
-  promptTitle.textContent = isFantasy ? "选择一种 DDF" : "选择一种卡牌";
+  promptTitle.textContent = isFantasy ? "选择 Deep♂Dark♂Fantasy" : "选择一种卡牌";
   promptText.textContent = isFantasy
-    ? "兄贵♂DDF 会显示在这里。完成后加 1 分，跳过会记录一次。"
+    ? "Deep♂Dark♂Fantasy 题目会显示在这里。完成后加 1 分，跳过会记录一次。"
     : "抽到的任务会显示在这里。完成后加 1 分，跳过会记录一次。";
   promptCard.classList.remove("is-dealt");
 }
@@ -1244,7 +1990,9 @@ gameCards.forEach((card) => {
 
 setupForm.addEventListener("change", (event) => {
   if (event.target.name === "playerCount") syncNameFields();
-  if (event.target.name === "spiceLevel" || event.target.name === "playerCount") renderQuestionBank();
+  if (event.target.name === "spiceLevel" || event.target.name === "playerCount" || event.target.name === "diceCount") {
+    renderQuestionBank();
+  }
 });
 setupForm.addEventListener("submit", startGame);
 
@@ -1261,6 +2009,27 @@ completePromptButton.addEventListener("click", completePrompt);
 skipPromptButton.addEventListener("click", skipPrompt);
 truthRestartButton.addEventListener("click", () => showLobby(true));
 truthHomeButton.addEventListener("click", () => showLobby(false));
+
+warmDiceButton?.addEventListener("click", rollWarmDice);
+completeDiceButton?.addEventListener("click", completeDicePrompt);
+skipDiceButton?.addEventListener("click", skipDicePrompt);
+diceRestartButton?.addEventListener("click", () => showLobby(true));
+diceHomeButton?.addEventListener("click", () => showLobby(false));
+
+syncDrawButton?.addEventListener("click", drawSyncPrompt);
+completeSyncButton?.addEventListener("click", completeSyncPrompt);
+skipSyncButton?.addEventListener("click", skipSyncPrompt);
+syncRestartButton?.addEventListener("click", () => showLobby(true));
+syncHomeButton?.addEventListener("click", () => showLobby(false));
+
+miniDrawButton?.addEventListener("click", drawMiniPrompt);
+completeMiniButton?.addEventListener("click", completeMiniPrompt);
+skipMiniButton?.addEventListener("click", skipMiniPrompt);
+miniRestartButton?.addEventListener("click", () => showLobby(true));
+miniHomeButton?.addEventListener("click", () => showLobby(false));
+miniChoiceGrid?.querySelectorAll("button").forEach((button) => {
+  button.addEventListener("click", () => chooseMiniBox(Number(button.dataset.choice)));
+});
 
 syncNameFields();
 setSelectedGame(selectedGame);
