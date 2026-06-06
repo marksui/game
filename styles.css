@@ -4791,6 +4791,305 @@ body.quick-dice-page .page-texture {
   .mini-choice-grid {
     grid-template-columns: 1fr;
   }
+
+  .index-page .app-shell {
+    padding: 12px 10px 24px;
+  }
+
+  body.index-page {
+    overflow-x: hidden;
+  }
+
+  .index-page .setup-panel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    gap: 12px;
+    padding-top: 4px;
+    overflow: hidden;
+  }
+
+  .index-page .setup-form {
+    order: 1;
+    display: grid;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    gap: 12px;
+    padding: 14px;
+    overflow: hidden;
+  }
+
+  .index-page .brand-block {
+    order: 2;
+    gap: 14px;
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .index-page .brand-block .lede {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .index-page .brand-block .lobby-board {
+    display: none;
+  }
+
+  .index-page h1 {
+    font-size: clamp(2.1rem, 12vw, 3.1rem);
+    line-height: 0.95;
+  }
+
+  .index-page .form-heading {
+    display: grid;
+    gap: 4px;
+    justify-content: start;
+    align-items: start;
+  }
+
+  .index-page .form-heading h2 {
+    font-size: 1.22rem;
+  }
+
+  .index-page .game-picker {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .index-page .game-card {
+    grid-template-columns: 38px minmax(0, 1fr);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    gap: 10px;
+    align-items: center;
+    min-height: 74px;
+    border-radius: 14px;
+    padding: 10px;
+  }
+
+  .index-page .game-card > span:not(.game-icon) {
+    min-width: 0;
+  }
+
+  .index-page .settings-dock,
+  .index-page .setup-grid,
+  .index-page .name-fields,
+  .index-page .rules-preview,
+  .index-page .launch-row {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .index-page .game-card .game-icon {
+    width: 38px;
+    border-radius: 12px;
+  }
+
+  .index-page .game-card strong {
+    margin-bottom: 2px;
+    font-size: 0.98rem;
+  }
+
+  .index-page .game-card small {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 0.82rem;
+    line-height: 1.35;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .index-page .game-card b {
+    grid-column: 2;
+    align-self: start;
+    max-width: 100%;
+    font-size: 0.72rem;
+    line-height: 1.2;
+    text-align: left;
+  }
+
+  .index-page .setting-panel,
+  .index-page .launch-panel {
+    padding: 12px;
+  }
+
+  .index-page .setup-grid,
+  .index-page .name-fields,
+  .index-page .rules-preview,
+  .index-page .launch-row {
+    gap: 10px;
+  }
+
+  .index-page .segmented span,
+  .index-page .name-input input {
+    min-height: 46px;
+    border-radius: 12px;
+  }
+
+  .index-page .dice-options .segmented {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .index-page .rules-preview article {
+    padding: 12px;
+  }
+
+  .index-page .ddf-entry {
+    padding: 12px;
+  }
+
+  .index-page .ddf-entry small {
+    display: none;
+  }
+
+  .index-page .consent-row {
+    align-items: flex-start;
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .index-page .start-action,
+  .index-page .primary-action,
+  .index-page .secondary-action {
+    min-height: 48px;
+  }
+
+  .index-page .game-view,
+  .index-page .truth-view,
+  .index-page .dice-view,
+  .index-page .quick-dice-view,
+  .index-page .sync-view,
+  .index-page .mini-view {
+    gap: 12px;
+    padding-top: 4px;
+  }
+
+  .index-page .top-bar {
+    gap: 10px;
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  .index-page .top-bar h2 {
+    font-size: clamp(1.5rem, 8vw, 2.2rem);
+    line-height: 1;
+  }
+
+  .index-page .top-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .index-page .game-layout,
+  .index-page .truth-layout,
+  .index-page .dice-layout,
+  .index-page .quick-dice-layout,
+  .index-page .sync-layout,
+  .index-page .mini-layout {
+    gap: 12px;
+  }
+
+  .index-page .side-panel {
+    gap: 10px;
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  .index-page .turn-card {
+    min-height: 0;
+    gap: 5px;
+    padding: 12px;
+  }
+
+  .index-page .turn-card strong {
+    font-size: clamp(1.35rem, 7vw, 1.9rem);
+    line-height: 1.08;
+  }
+
+  .index-page .turn-card p {
+    line-height: 1.45;
+  }
+
+  .index-page .truth-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .index-page .prompt-actions,
+  .index-page .dialog-actions {
+    gap: 8px;
+  }
+
+  .index-page .players-list {
+    gap: 6px;
+  }
+
+  .index-page .player-row {
+    min-height: 38px;
+    padding: 7px 9px;
+  }
+
+  .index-page .log-panel {
+    max-height: 260px;
+    overflow: hidden;
+  }
+
+  .index-page .log-list {
+    max-height: 176px;
+  }
+
+  .index-page .board-wrap,
+  .index-page .truth-stage,
+  .index-page .dice-stage,
+  .index-page .quick-dice-stage,
+  .index-page .mini-stage {
+    border-radius: 16px;
+  }
+
+  .index-page .truth-stage,
+  .index-page .dice-stage,
+  .index-page .mini-stage {
+    min-height: 380px;
+    padding: 14px;
+  }
+
+  .index-page .quick-dice-stage {
+    min-height: 500px;
+  }
+
+  .index-page .prompt-card {
+    padding: 18px;
+  }
+
+  .index-page .prompt-card h3 {
+    font-size: clamp(1.7rem, 9vw, 2.45rem);
+    line-height: 1.02;
+  }
+
+  .index-page .task-dialog form {
+    padding: 18px;
+  }
+
+  .index-page .page-texture {
+    animation-duration: 36s;
+  }
+
+  .index-page .brand-block::before,
+  .index-page .brand-block::after,
+  .index-page .game-card::after,
+  .index-page .quick-dice-stage::before,
+  .index-page .quick-dice-faces::before,
+  .index-page .quick-dice-faces::after {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

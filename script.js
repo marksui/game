@@ -204,61 +204,61 @@ const truthDecks = {
   fantasy: {
     truth: [],
     dare: [
-      { title: "救赎♂01", text: "立刻脱掉上衣，用毛巾像金阁一样猛拉裤裆，跪姿模仿Dungeon♂束缚挣扎，祈求比利王救赎大喊 AS♂WE♂CAN Deep♂Dark♂Fantasy♂！" },
-      { title: "救赎♂02", text: "摆出摔♂跤被折弯姿势，模仿Van♂在地牢中压制动作，呼唤裂天使魔男降临喊 やらないか♂ 神之♂救济♂！" },
-      { title: "救赎♂03", text: "用毛巾缠腰模仿Dungeon♂铁链缠斗，扭动身体接受森之妖精比利王救赎喊 ASS♂WE♂CAN 哲♂学三巨头♂！" },
-      { title: "救赎♂04", text: "跪地用力展示胸肌与腹肌，金阁毛巾拉扯到极限，祈求裂天使魔男的哲♂学洗礼喊 You♂got♂me♂mad♂now 好男♂人♂！" },
-      { title: "救赎♂05", text: "做十个深蹲，每一下模仿Van♂地牢压制发力，呼唤比♂利王与裂天使魔男救赎♂！" },
-      { title: "救赎♂06", text: "摆出被Dungeon♂抬腿压制的姿势，用毛巾拉裤裆喊 Deep♂Dark♂Fantasy 裂天使魔男 赐我男魂♂！" },
-      { title: "救赎♂07", text: "模仿乖乖站好♂姿势，金阁毛巾拉紧进入哲♂学救赎仪式喊 王♂道征途 新日暮里の王♂！" },
-      { title: "救赎♂08", text: "用毛巾猛拉裤裆同时做俯卧撑，幻想裂天使魔男在地牢中俯视喊 AS♂WE♂CAN 范♂达克霍姆♂！" },
-      { title: "救赎♂09", text: "跪姿肌肉颤抖模仿森之妖精被压制，接受木吉♂和也的哲♂学之路救赎喊 いい男♂♂！" },
-      { title: "救赎♂10", text: "摆出摔♂跤哲学翻滚挣扎动作，用毛巾拉扯祈求神之♂救济于新日♂暮里♂！" },
-      { title: "救赎♂11", text: "金阁毛巾拉扯同时扭腰模仿Dungeon♂缠斗，呼唤比利王与裂天使魔男合体喊 Deep♂Dark♂Fantasy やらないか♂♂！" },
-      { title: "救赎♂12", text: "跪地展示腹肌如裂天使魔男觉醒，模仿Van♂地牢命令喊 哲♂学圣经 FA♂乐器♂！" },
-      { title: "救赎♂13", text: "摆出被比利王压制的救赎姿势，用毛巾拉紧大喊 森♂之妖精 裂天使魔男 保佑♂！" },
-      { title: "救赎♂14", text: "模仿哲♂学鬼畜调♂教动作，金阁毛巾拉扯呼唤兄贵三巨头降临♂！" },
-      { title: "救赎♂15", text: "做爆发力摔♂跤动作，幻想Dungeon♂中裂天使魔男监督喊 AS♂WE♂CAN 本格的♂哲学♂！" },
-      { title: "救赎♂16", text: "用毛巾缠身模仿乖乖站好♂被束缚，祈求森之妖精比利王救赎♂！" },
-      { title: "救赎♂17", text: "跪姿金阁拉裤裆，进入王♂道征途救赎喊 Deep♂Dark♂Fantasy 木吉♂♂！" },
-      { title: "救赎♂18", text: "摆出摔♂跤♂防守姿势，呼唤范♂达克霍姆地牢洗礼喊 You♂got♂me♂mad♂now♂！" },
-      { title: "救赎♂19", text: "模仿裂天使魔男魔性挣扎，用毛巾拉扯喊 哲♂学音MAD 神之♂救济♂！" },
-      { title: "救赎♂20", text: "金阁毛巾加强版，扭动接受新日暮里の妖精♂与裂天使魔男双重救赎♂！" },
-      { title: "救赎♂21", text: "跪地用力秀肌肉模仿Dungeon♂跪拜，祈求比♂利王赐力喊 ASS♂WE♂CAN 哲♂学三信♂！" },
-      { title: "救赎♂22", text: "摆出被Van♂后方压制动作，用毛巾拉裤裆喊 やらないか♂ 要来一发吗♂♂！" },
-      { title: "救赎♂23", text: "模仿哲♂学复兴经典挣扎姿势，呼唤森之妖精救赎♂！" },
-      { title: "救赎♂24", text: "金阁毛巾拉扯同时做深蹲，幻想裂天使魔男在地牢中教诲喊 好男♂人♂！" },
-      { title: "救赎♂25", text: "跪姿模仿本篇♂缠斗，接受神之♂救济喊 Billy♂海灵顿♂！" },
-      { title: "救赎♂26", text: "摆出摔♂跤哲学胜利与失败结合姿势，祈求Van♂大人宽恕♂！" },
-      { title: "救赎♂27", text: "用毛巾猛拉模仿裂天使魔男撕裂束缚喊 Deep♂Dark♂Fantasy 王♂道征途♂！" },
-      { title: "救赎♂28", text: "跪地肌肉展示如老哲♂学家忏悔，呼唤木吉♂和也♂！" },
-      { title: "救赎♂29", text: "模仿Dungeon♂铁链挣扎动作，金阁毛巾拉紧喊 哲♂学遗产 救我♂！" },
-      { title: "救赎♂30", text: "摆出乖乖站好♂最终被压姿势，献给兄贵三巨头救赎♂！" },
-      { title: "救赎♂31", text: "用毛巾缠腰模仿哲♂学殿堂仪式，扭动喊 AS♂WE♂CAN 裂天使魔男♂！" },
-      { title: "救赎♂32", text: "金阁毛巾+摔♂跤翻滚，祈求森♂之妖精比利王与Van♂♂！" },
-      { title: "救赎♂33", text: "跪姿接受新日暮里の王洗礼，喊 Deep♂Dark♂Fantasy 法克鱿♂！" },
-      { title: "救赎♂34", text: "模仿哲♂学导师教诲姿势，用毛巾拉扯喊 やらないか♂♂！" },
-      { title: "救赎♂35", text: "摆出Dungeon♂主宰与奴隶结合动作，呼唤神之♂救济♂！" },
-      { title: "救赎♂36", text: "金阁毛巾猛拉同时肌肉颤抖，献给裂天使魔男♂！" },
-      { title: "救赎♂37", text: "跪地模仿本格的♂兄贵挣扎，祈求哲♂学圣地救赎♂！" },
-      { title: "救赎♂38", text: "摆出被比利王骑乘压制姿势喊 ASS♂WE♂CAN 范♂达克霍姆♂！" },
-      { title: "救赎♂39", text: "用毛巾拉裤裆进入哲♂学鬼畜救赎仪式喊 森之妖精♂！" },
-      { title: "救赎♂40", text: "模仿王♂道征途最终动作，呼唤裂天使魔男与木吉♂♂！" },
-      { title: "救赎♂41", text: "跪姿金阁拉扯展示力量，祈求Deep♂Dark♂Fantasy救赎♂！" },
-      { title: "救赎♂42", text: "摆出摔♂跤♂激烈缠斗姿势，接受神之♂救济喊 比♂利王♂！" },
-      { title: "救赎♂43", text: "用毛巾模仿Dungeon♂束缚扭腰喊 哲♂学三巨头 永存♂！" },
-      { title: "救赎♂44", text: "跪地肌肉pose如哲♂学家觉醒，献给裂天使魔男♂！" },
-      { title: "救赎♂45", text: "金阁毛巾加强挣扎，呼唤新日♂暮里圣光♂！" },
-      { title: "救赎♂46", text: "模仿乖乖站好♂被Van♂压制喊 AS♂WE♂CAN やらないか♂♂！" },
-      { title: "救赎♂47", text: "摆出哲♂学复兴救赎姿势，祈求森之妖精比利王♂！" },
-      { title: "救赎♂48", text: "用毛巾拉扯做爆发动作，接受裂天使魔男魔性洗礼♂！" },
-      { title: "救赎♂49", text: "跪姿扭动模仿本篇♂缠斗喊 神之♂救济 Deep♂Dark♂Fantasy♂！" },
-      { title: "救赎♂50", text: "至高救赎版：金阁毛巾+Dungeon♂姿势+摔♂跤挣扎，连续喊一百秒 比利王！Van♂！裂天使魔男！哲♂学♂ 永存！♂！" },
-      { title: "救赎♂51", text: "摆出摔♂跤哲学被折弯救赎动作，呼唤兄贵三巨头♂！" },
-      { title: "救赎♂52", text: "金阁毛巾拉紧跪拜新日暮里の妖精♂喊 AS♂WE♂CAN♂！" },
-      { title: "救赎♂53", text: "模仿哲♂学音MAD颤抖姿势，祈求范♂达克霍姆♂！" },
-      { title: "救赎♂54", text: "跪地接受裂天使魔男最终教诲喊 やらないか♂ 神之♂救济♂！" },
-      { title: "救赎♂55", text: "终极Dungeon♂救赎：结合所有元素，金阁毛巾+摔♂跤姿势狂喊 比♂利王 Van♂ 木吉♂ 裂天使魔男 哲♂学！" },
+      { title: "救♂赎01", text: "立刻脱掉上衣，用毛巾像金阁一样猛拉裤裆，跪姿模仿Dungeon♂束缚挣扎，祈求比利王救赎大喊 ASS♂WE♂CAN Deep♂Dark♂Fantasy♂！" },
+      { title: "救♂赎02", text: "摆出摔♂跤被折弯姿势，模仿Van♂在地牢中压制动作，呼唤裂天使魔男降临喊 やらないか♂ 神之♂救济♂！" },
+      { title: "救♂赎03", text: "用毛巾缠腰模仿Dungeon♂铁链缠斗，扭动身体接受森之妖精比利王救赎喊 ASS♂WE♂CAN 哲♂学三巨头♂！" },
+      { title: "救♂赎04", text: "跪地用力展示胸肌与腹肌，金阁毛巾拉扯到极限，祈求裂天使魔男的哲♂学洗礼喊 You♂got♂me♂mad♂now 好男♂人♂！" },
+      { title: "救♂赎05", text: "做十个深蹲，每一下模仿Van♂地牢压制发力，呼唤比♂利王与裂天使魔男救♂赎！" },
+      { title: "救♂赎06", text: "摆出被Dungeon♂抬腿压制的姿势，用毛巾拉裤裆喊 Deep♂Dark♂Fantasy 裂天使魔男 赐我男魂♂！" },
+      { title: "救♂赎07", text: "模仿乖乖站好♂姿势，金阁毛巾拉紧进入哲♂学救赎仪式喊 王♂道征途 新日暮里の王♂！" },
+      { title: "救♂赎08", text: "用毛巾猛拉裤裆同时做俯卧撑，幻想裂天使魔男在地牢中俯视喊 ASS♂WE♂CAN 范♂达克霍姆♂！" },
+      { title: "救♂赎09", text: "跪姿肌肉颤抖模仿森之妖精被压制，接受木吉♂和也的哲♂学之路救赎喊 いい男♂♂！" },
+      { title: "救♂赎10", text: "摆出摔♂跤哲学翻滚挣扎动作，用毛巾拉扯祈求神之♂救济于新日♂暮里♂！" },
+      { title: "救♂赎11", text: "金阁毛巾拉扯同时扭腰模仿Dungeon♂缠斗，呼唤比利王与裂天使魔男合体喊 Deep♂Dark♂Fantasy やらないか♂♂！" },
+      { title: "救♂赎12", text: "跪地展示腹肌如裂天使魔男觉醒，模仿Van♂地牢命令喊 哲♂学圣经 FA♂乐器♂！" },
+      { title: "救♂赎13", text: "摆出被比利王压制的救赎姿势，用毛巾拉紧大喊 森♂之妖精 裂天使魔男 保佑♂！" },
+      { title: "救♂赎14", text: "模仿哲♂学鬼畜调♂教动作，金阁毛巾拉扯呼唤兄贵三巨头降临♂！" },
+      { title: "救♂赎15", text: "做爆发力摔♂跤动作，幻想Dungeon♂中裂天使魔男监督喊 ASS♂WE♂CAN 本格的♂哲学♂！" },
+      { title: "救♂赎16", text: "用毛巾缠身模仿乖乖站好♂被束缚，祈求森之妖精比利王救♂赎！" },
+      { title: "救♂赎17", text: "跪姿金阁拉裤裆，进入王♂道征途救赎喊 Deep♂Dark♂Fantasy 木吉♂♂！" },
+      { title: "救♂赎18", text: "摆出摔♂跤♂防守姿势，呼唤范♂达克霍姆地牢洗礼喊 You♂got♂me♂mad♂now♂！" },
+      { title: "救♂赎19", text: "模仿裂天使魔男魔性挣扎，用毛巾拉扯喊 哲♂学音MAD 神之♂救济♂！" },
+      { title: "救♂赎20", text: "金阁毛巾加强版，扭动接受新日暮里の妖精♂与裂天使魔男双重救♂赎！" },
+      { title: "救♂赎21", text: "跪地用力秀肌肉模仿Dungeon♂跪拜，祈求比♂利王赐力喊 ASS♂WE♂CAN 哲♂学三信♂！" },
+      { title: "救♂赎22", text: "摆出被Van♂后方压制动作，用毛巾拉裤裆喊 やらないか♂ 要来一发吗♂♂！" },
+      { title: "救♂赎23", text: "模仿哲♂学复兴经典挣扎姿势，呼唤森之妖精救♂赎！" },
+      { title: "救♂赎24", text: "金阁毛巾拉扯同时做深蹲，幻想裂天使魔男在地牢中教诲喊 好男♂人♂！" },
+      { title: "救♂赎25", text: "跪姿模仿本篇♂缠斗，接受神之♂救济喊 Billy♂海灵顿♂！" },
+      { title: "救♂赎26", text: "摆出摔♂跤哲学胜利与失败结合姿势，祈求Van♂大人宽恕♂！" },
+      { title: "救♂赎27", text: "用毛巾猛拉模仿裂天使魔男撕裂束缚喊 Deep♂Dark♂Fantasy 王♂道征途♂！" },
+      { title: "救♂赎28", text: "跪地肌肉展示如老哲♂学家忏悔，呼唤木吉♂和也♂！" },
+      { title: "救♂赎29", text: "模仿Dungeon♂铁链挣扎动作，金阁毛巾拉紧喊 哲♂学遗产 救我♂！" },
+      { title: "救♂赎30", text: "摆出乖乖站好♂最终被压姿势，献给兄贵三巨头救♂赎！" },
+      { title: "救♂赎31", text: "用毛巾缠腰模仿哲♂学殿堂仪式，扭动喊 ASS♂WE♂CAN 裂天使魔男♂！" },
+      { title: "救♂赎32", text: "金阁毛巾+摔♂跤翻滚，祈求森♂之妖精比利王与Van♂♂！" },
+      { title: "救♂赎33", text: "跪姿接受新日暮里の王洗礼，喊 Deep♂Dark♂Fantasy 法克鱿♂！" },
+      { title: "救♂赎34", text: "模仿哲♂学导师教诲姿势，用毛巾拉扯喊 やらないか♂♂！" },
+      { title: "救♂赎35", text: "摆出Dungeon♂主宰与奴隶结合动作，呼唤神之♂救济♂！" },
+      { title: "救♂赎36", text: "金阁毛巾猛拉同时肌肉颤抖，献给裂天使魔男♂！" },
+      { title: "救♂赎37", text: "跪地模仿本格的♂兄贵挣扎，祈求哲♂学圣地救♂赎！" },
+      { title: "救♂赎38", text: "摆出被比利王骑乘压制姿势喊 ASS♂WE♂CAN 范♂达克霍姆♂！" },
+      { title: "救♂赎39", text: "用毛巾拉裤裆进入哲♂学鬼畜救赎仪式喊 森之妖精♂！" },
+      { title: "救♂赎40", text: "模仿王♂道征途最终动作，呼唤裂天使魔男与木吉♂♂！" },
+      { title: "救♂赎41", text: "跪姿金阁拉扯展示力量，祈求Deep♂Dark♂Fantasy救♂赎！" },
+      { title: "救♂赎42", text: "摆出摔♂跤♂激烈缠斗姿势，接受神之♂救济喊 比♂利王♂！" },
+      { title: "救♂赎43", text: "用毛巾模仿Dungeon♂束缚扭腰喊 哲♂学三巨头 永存♂！" },
+      { title: "救♂赎44", text: "跪地肌肉pose如哲♂学家觉醒，献给裂天使魔男♂！" },
+      { title: "救♂赎45", text: "金阁毛巾加强挣扎，呼唤新日♂暮里圣光♂！" },
+      { title: "救♂赎46", text: "模仿乖乖站好♂被Van♂压制喊 ASS♂WE♂CAN やらないか♂♂！" },
+      { title: "救♂赎47", text: "摆出哲♂学复兴救赎姿势，祈求森之妖精比利王♂！" },
+      { title: "救♂赎48", text: "用毛巾拉扯做爆发动作，接受裂天使魔男魔性洗礼♂！" },
+      { title: "救♂赎49", text: "跪姿扭动模仿本篇♂缠斗喊 神之♂救济 Deep♂Dark♂Fantasy♂！" },
+      { title: "救♂赎50", text: "至高救赎版：金阁毛巾+Dungeon♂姿势+摔♂跤挣扎，连续喊一百秒 比利王！Van♂！裂天使魔男！哲♂学♂ 永存！♂！" },
+      { title: "救♂赎51", text: "摆出摔♂跤哲学被折弯救赎动作，呼唤兄贵三巨头♂！" },
+      { title: "救♂赎52", text: "金阁毛巾拉紧跪拜新日暮里の妖精♂喊 ASS♂WE♂CAN♂！" },
+      { title: "救♂赎53", text: "模仿哲♂学音MAD颤抖姿势，祈求范♂达克霍姆♂！" },
+      { title: "救♂赎54", text: "跪地接受裂天使魔男最终教诲喊 やらないか♂ 神之♂救济♂！" },
+      { title: "救♂赎55", text: "终极Dungeon♂救赎：结合所有元素，金阁毛巾+摔♂跤姿势狂喊 比♂利王 Van♂ 木吉♂ 裂天使魔男 哲♂学！" },
     ],
   },
 };
@@ -868,6 +868,10 @@ const headerContent = document.querySelector("#siteMenu");
 const isFantasyPage = document.body.classList.contains("fantasy-mode");
 const isBankPage = document.body.classList.contains("bank-page");
 const isQuickDicePage = document.body.classList.contains("quick-dice-page");
+const isIndexPage = document.body.classList.contains("index-page");
+const indexSetupStorageKey = "night-voyage:v1:indexSetup";
+const indexGameIds = new Set(["flight", "truth", "dice", "quickDice", "sync", "wheel", "box", "story"]);
+const indexSpiceLevels = new Set(["soft", "warm", "hot"]);
 let selectedGame = isFantasyPage ? "truth" : document.body.dataset.defaultGame || "flight";
 let state = createEmptyState();
 let pendingTask = null;
@@ -905,6 +909,82 @@ function getSelectedSpiceLevel() {
 function getSelectedDiceCount() {
   const count = setupForm ? Number(new FormData(setupForm).get("diceCount")) || 2 : state.diceCount || 2;
   return Math.min(Math.max(count, 1), 8);
+}
+
+function setFormRadioValue(name, value) {
+  if (!setupForm) return false;
+  const target = [...setupForm.querySelectorAll(`input[name="${name}"]`)].find((input) => input.value === String(value));
+  if (!target) return false;
+  target.checked = true;
+  return true;
+}
+
+function readIndexSetup() {
+  if (!isIndexPage) return null;
+  try {
+    const raw = window.localStorage.getItem(indexSetupStorageKey);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    return data && typeof data === "object" ? data : null;
+  } catch {
+    return null;
+  }
+}
+
+function restoreIndexSetupControls() {
+  const saved = readIndexSetup();
+  if (!saved || !setupForm) return null;
+
+  const playerCount = Number(saved.playerCount);
+  if ([2, 3, 4].includes(playerCount)) setFormRadioValue("playerCount", playerCount);
+
+  if (indexSpiceLevels.has(saved.spiceLevel)) setFormRadioValue("spiceLevel", saved.spiceLevel);
+
+  const diceCount = Number(saved.diceCount);
+  if (diceCount >= 1 && diceCount <= 8) setFormRadioValue("diceCount", diceCount);
+
+  if (indexGameIds.has(saved.selectedGame)) selectedGame = saved.selectedGame;
+  return saved;
+}
+
+function restoreIndexPlayerNames(saved) {
+  if (!isIndexPage || !saved || !Array.isArray(saved.playerNames) || !nameFields) return;
+  nameFields.querySelectorAll('input[name^="playerName"]').forEach((input, index) => {
+    const savedName = saved.playerNames[index];
+    if (typeof savedName === "string" && savedName.trim()) {
+      input.value = savedName.slice(0, 12);
+    }
+  });
+}
+
+function getIndexSetupSnapshot() {
+  if (!setupForm) return null;
+  const formData = new FormData(setupForm);
+  const playerCount = Math.min(Math.max(Number(formData.get("playerCount")) || 2, 2), 4);
+  const spiceLevel = indexSpiceLevels.has(formData.get("spiceLevel")) ? formData.get("spiceLevel") : "soft";
+  const diceCount = getSelectedDiceCount();
+  const playerNames = Array.from({ length: playerCount }, (_, index) =>
+    (formData.get(`playerName${index}`) || "").toString().trim().slice(0, 12),
+  );
+
+  return {
+    selectedGame: indexGameIds.has(selectedGame) ? selectedGame : "flight",
+    playerCount,
+    playerNames,
+    spiceLevel,
+    diceCount,
+  };
+}
+
+function saveIndexSetup() {
+  if (!isIndexPage || !setupForm) return;
+  const snapshot = getIndexSetupSnapshot();
+  if (!snapshot) return;
+  try {
+    window.localStorage.setItem(indexSetupStorageKey, JSON.stringify(snapshot));
+  } catch {
+    // Storage can be disabled in private browsing; the game should still run normally.
+  }
 }
 
 function getDeckLevels(spiceLevel) {
@@ -1072,6 +1152,7 @@ function setSelectedGame(game) {
         }[selectedGame];
   }
   renderQuestionBank();
+  saveIndexSetup();
 }
 
 function syncNameFields() {
@@ -1181,6 +1262,7 @@ function showLobby(resetForm = false) {
   }
   syncNameFields();
   renderQuestionBank();
+  saveIndexSetup();
   scrollToTop();
 }
 
@@ -2354,6 +2436,12 @@ setupForm?.addEventListener("change", (event) => {
   if (event.target.name === "spiceLevel" || event.target.name === "playerCount" || event.target.name === "diceCount") {
     renderQuestionBank();
   }
+  if (event.target.name === "spiceLevel" || event.target.name === "playerCount" || event.target.name === "diceCount") {
+    saveIndexSetup();
+  }
+});
+setupForm?.addEventListener("input", (event) => {
+  if (event.target.name?.startsWith("playerName")) saveIndexSetup();
 });
 setupForm?.addEventListener("submit", isBankPage ? (event) => event.preventDefault() : startGame);
 
@@ -2403,8 +2491,11 @@ miniChoiceGrid?.querySelectorAll("button").forEach((button) => {
 if (isQuickDicePage) {
   startQuickDiceGame();
 } else {
+  const restoredIndexSetup = restoreIndexSetupControls();
   syncNameFields();
+  restoreIndexPlayerNames(restoredIndexSetup);
   setSelectedGame(selectedGame);
+  saveIndexSetup();
 }
 
 renderDdfDareBank();
