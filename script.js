@@ -2296,6 +2296,26 @@ function scrollToTop() {
   window.scrollTo({ top: 0, left: 0, behavior: "auto" });
 }
 
+function initDdfPosterCarousel() {
+  const slides = [...document.querySelectorAll(".ddf-poster-slide")];
+  if (slides.length <= 1) {
+    slides[0]?.classList.add("is-active");
+    return;
+  }
+  let activeIndex = 0;
+  const showSlide = (index) => {
+    activeIndex = index % slides.length;
+    slides.forEach((slide, slideIndex) => {
+      const isActive = slideIndex === activeIndex;
+      slide.classList.toggle("is-active", isActive);
+      slide.style.opacity = isActive ? "1" : "0";
+      slide.style.transform = isActive ? "translateZ(0) scale(1.018)" : "translateZ(0) scale(1.045)";
+    });
+  };
+  showSlide(0);
+  window.setInterval(() => showSlide(activeIndex + 1), 5000);
+}
+
 function setHeaderMenu(open) {
   if (!siteHeader || !navToggle || !headerContent) return;
   siteHeader.classList.toggle("is-menu-open", open);
@@ -2388,3 +2408,4 @@ if (isQuickDicePage) {
 }
 
 renderDdfDareBank();
+initDdfPosterCarousel();
