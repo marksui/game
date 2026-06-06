@@ -10,6 +10,11 @@ const playerPresets = [
   { name: "Player 4", color: "#8d78ea", start: 42, baseClass: "base-3" },
 ];
 
+const ddfPlayerPresets = playerPresets.map((preset, index) => ({
+  ...preset,
+  name: ["Van♂", "比♂利♂王", "裂♂天♂使魔男", "最强♂人类木吉"][index] || preset.name,
+}));
+
 const flightDecks = {
   soft: [
     { type: "真心话", title: "心动开场", text: "说一个最容易让你心动的小动作。" },
@@ -197,57 +202,63 @@ const truthDecks = {
     ],
   },
   fantasy: {
-    truth: [
-      { title: "大屁股♂哲学", text: "在 Deep♂Dark♂Fantasy 宇宙里，大屁股代表力量、稳定、压迫感还是搞笑？" },
-      { title: "摔跤♂角色", text: "今晚你是选手、裁判、解说、观众还是最终 Boss？" },
-      { title: "擂台♂代号", text: "给自己取一个摔跤入场名，必须带一个 ♂。" },
-      { title: "屁股♂评级", text: "用 1 到 10 给自己的擂台气势打分，不评价真实身材。" },
-      { title: "Gachi♂入场曲", text: "你的摔跤入场曲叫什么？越 VHS 越好。" },
-      { title: "VAN♂样名言", text: "说一句你想写在摔跤海报上的硬汉台词。" },
-      { title: "压制♂宣言", text: "如果你赢下一回合，你的胜利宣言是什么？" },
-      { title: "摔跤♂偏好", text: "更喜欢锁技、压制、反杀、逃脱还是夸张报幕？" },
-      { title: "封面♂姿势", text: "描述一个双人 VHS 摔跤封面姿势。" },
-      { title: "屁股♂镜头", text: "如果镜头突然推进，你会给这一幕取什么标题？" },
-      { title: "暗紫♂擂台", text: "用 3 个词布置今晚的暗紫霓虹摔跤舞台。" },
-      { title: "裁判♂规则", text: "如果你是裁判，今晚第一条 Deep♂Dark♂Fantasy 规则叫什么？" },
-      { title: "Gachi♂冠军", text: "本局最像冠军的人是谁？给 TA 一个称号。" },
-      { title: "热身♂菜单", text: "今天的 Gachi 热身项目叫什么名字？" },
-      { title: "锁技♂命名", text: "发明一个不伤人的假摔跤招式名。" },
-      { title: "大屁股♂台词", text: "说一句很夸张但不露骨的“大屁股登场”台词。" },
-      { title: "哲♂学底线", text: "说一个不能被梗图气氛冲掉的停止信号。" },
-      { title: "VHS♂回放", text: "复述上一轮最像录像带回放的一幕。" },
-      { title: "粉紫♂警报", text: "说一个今晚禁止出现的普通词，把它封印成 ♂。" },
-      { title: "观众♂呼声", text: "给在场观众设计一句应援口号。" },
-      { title: "胜利♂姿势", text: "你赢下摔跤回合后的定格姿势叫什么？" },
-      { title: "失败♂退场", text: "如果被压制失败，你会用什么台词退场？" },
-      { title: "Good♂Job", text: "说一句最适合赛后收尾的 Good♂Job 台词。" },
-      { title: "Deep♂Dark", text: "用一句话解释今晚为什么叫 Deep♂Dark♂Fantasy。" },
-    ],
+    truth: [],
     dare: [
-      { title: "大屁股♂Pose", text: "摆一个夸张大屁股摔跤 pose，保持 5 秒。" },
-      { title: "屁股♂入场", text: "背对观众席完成 3 秒摔跤入场定格。" },
-      { title: "Gachi♂锁定", text: "和一位同意的玩家做 5 秒假锁技构图，不用力。" },
-      { title: "摔跤♂压制", text: "和一位同意的玩家做 5 秒安全压制姿势，可隔空。" },
-      { title: "裁判♂拍地", text: "当裁判拍地三下，大喊：One! Two! Three!" },
-      { title: "VHS♂报幕", text: "用老录像带旁白腔介绍下一位选手。" },
-      { title: "屁股♂冠军", text: "给自己颁发“大屁股冠军腰带”，并发表 5 秒感言。" },
-      { title: "擂台♂转身", text: "慢慢转身看向观众席，做硬汉凝视 5 秒。" },
-      { title: "反杀♂定格", text: "表演一个安全反杀定格动作，其他人给招式名。" },
-      { title: "霓虹♂锁技", text: "发明一个粉紫霓虹锁技名，并摆出对应姿势。" },
-      { title: "Gachi♂倒数", text: "用低沉声音从 10 倒数到 1，每个数字加一个 ♂。" },
-      { title: "Deep♂合唱", text: "全员一起喊：Deep♂Dark♂Fantasy。" },
-      { title: "屁股♂字幕", text: "给当前画面配一句夸张摔跤字幕。" },
-      { title: "VAN♂样入场", text: "从座位起身，用 3 秒完成硬汉入场。" },
-      { title: "Gachi♂训练", text: "做 3 次空气深蹲或空气推举，每次喊一个 ♂。" },
-      { title: "兄贵♂镜头", text: "假装镜头推进，慢慢抬头看向观众席。" },
-      { title: "哲♂学击掌", text: "和一位玩家郑重击掌，宣布本回合成立。" },
-      { title: "VHS♂卡顿", text: "接下来三句话都要像录像带卡顿。" },
-      { title: "摔跤♂挑战", text: "和一位同意的玩家做 10 秒安全手腕角力。" },
-      { title: "屁股♂警报", text: "大喊一句原创“大屁股警报”台词。" },
-      { title: "粉紫♂封面", text: "摆出粉紫霓虹封面姿势，保持 6 秒。" },
-      { title: "Good♂Job", text: "给一位玩家一个郑重 Good♂Job。" },
-      { title: "兄贵♂宣誓", text: "全员各说一个不越界的摔跤规则。" },
-      { title: "哲♂学退场", text: "用最严肃的表情完成本轮退场动作。" },
+      { title: "救赎♂01", text: "立刻脱掉上衣，用毛巾像金阁一样猛拉裤裆，跪姿模仿Dungeon♂束缚挣扎，祈求比利王救赎大喊 AS♂WE♂CAN Deep♂Dark♂Fantasy♂！" },
+      { title: "救赎♂02", text: "摆出摔♂跤被折弯姿势，模仿Van♂在地牢中压制动作，呼唤裂天使魔男降临喊 やらないか♂ 神之♂救济♂！" },
+      { title: "救赎♂03", text: "用毛巾缠腰模仿Dungeon♂铁链缠斗，扭动身体接受森之妖精比利王救赎喊 ASS♂WE♂CAN 哲♂学三巨头♂！" },
+      { title: "救赎♂04", text: "跪地用力展示胸肌与腹肌，金阁毛巾拉扯到极限，祈求裂天使魔男的哲♂学洗礼喊 You♂got♂me♂mad♂now 好男♂人♂！" },
+      { title: "救赎♂05", text: "做十个深蹲，每一下模仿Van♂地牢压制发力，呼唤比♂利王与裂天使魔男救赎♂！" },
+      { title: "救赎♂06", text: "摆出被Dungeon♂抬腿压制的姿势，用毛巾拉裤裆喊 Deep♂Dark♂Fantasy 裂天使魔男 赐我男魂♂！" },
+      { title: "救赎♂07", text: "模仿乖乖站好♂姿势，金阁毛巾拉紧进入哲♂学救赎仪式喊 王♂道征途 新日暮里の王♂！" },
+      { title: "救赎♂08", text: "用毛巾猛拉裤裆同时做俯卧撑，幻想裂天使魔男在地牢中俯视喊 AS♂WE♂CAN 范♂达克霍姆♂！" },
+      { title: "救赎♂09", text: "跪姿肌肉颤抖模仿森之妖精被压制，接受木吉♂和也的哲♂学之路救赎喊 いい男♂♂！" },
+      { title: "救赎♂10", text: "摆出摔♂跤哲学翻滚挣扎动作，用毛巾拉扯祈求神之♂救济于新日♂暮里♂！" },
+      { title: "救赎♂11", text: "金阁毛巾拉扯同时扭腰模仿Dungeon♂缠斗，呼唤比利王与裂天使魔男合体喊 Deep♂Dark♂Fantasy やらないか♂♂！" },
+      { title: "救赎♂12", text: "跪地展示腹肌如裂天使魔男觉醒，模仿Van♂地牢命令喊 哲♂学圣经 FA♂乐器♂！" },
+      { title: "救赎♂13", text: "摆出被比利王压制的救赎姿势，用毛巾拉紧大喊 森♂之妖精 裂天使魔男 保佑♂！" },
+      { title: "救赎♂14", text: "模仿哲♂学鬼畜调♂教动作，金阁毛巾拉扯呼唤兄贵三巨头降临♂！" },
+      { title: "救赎♂15", text: "做爆发力摔♂跤动作，幻想Dungeon♂中裂天使魔男监督喊 AS♂WE♂CAN 本格的♂哲学♂！" },
+      { title: "救赎♂16", text: "用毛巾缠身模仿乖乖站好♂被束缚，祈求森之妖精比利王救赎♂！" },
+      { title: "救赎♂17", text: "跪姿金阁拉裤裆，进入王♂道征途救赎喊 Deep♂Dark♂Fantasy 木吉♂♂！" },
+      { title: "救赎♂18", text: "摆出摔♂跤♂防守姿势，呼唤范♂达克霍姆地牢洗礼喊 You♂got♂me♂mad♂now♂！" },
+      { title: "救赎♂19", text: "模仿裂天使魔男魔性挣扎，用毛巾拉扯喊 哲♂学音MAD 神之♂救济♂！" },
+      { title: "救赎♂20", text: "金阁毛巾加强版，扭动接受新日暮里の妖精♂与裂天使魔男双重救赎♂！" },
+      { title: "救赎♂21", text: "跪地用力秀肌肉模仿Dungeon♂跪拜，祈求比♂利王赐力喊 ASS♂WE♂CAN 哲♂学三信♂！" },
+      { title: "救赎♂22", text: "摆出被Van♂后方压制动作，用毛巾拉裤裆喊 やらないか♂ 要来一发吗♂♂！" },
+      { title: "救赎♂23", text: "模仿哲♂学复兴经典挣扎姿势，呼唤森之妖精救赎♂！" },
+      { title: "救赎♂24", text: "金阁毛巾拉扯同时做深蹲，幻想裂天使魔男在地牢中教诲喊 好男♂人♂！" },
+      { title: "救赎♂25", text: "跪姿模仿本篇♂缠斗，接受神之♂救济喊 Billy♂海灵顿♂！" },
+      { title: "救赎♂26", text: "摆出摔♂跤哲学胜利与失败结合姿势，祈求Van♂大人宽恕♂！" },
+      { title: "救赎♂27", text: "用毛巾猛拉模仿裂天使魔男撕裂束缚喊 Deep♂Dark♂Fantasy 王♂道征途♂！" },
+      { title: "救赎♂28", text: "跪地肌肉展示如老哲♂学家忏悔，呼唤木吉♂和也♂！" },
+      { title: "救赎♂29", text: "模仿Dungeon♂铁链挣扎动作，金阁毛巾拉紧喊 哲♂学遗产 救我♂！" },
+      { title: "救赎♂30", text: "摆出乖乖站好♂最终被压姿势，献给兄贵三巨头救赎♂！" },
+      { title: "救赎♂31", text: "用毛巾缠腰模仿哲♂学殿堂仪式，扭动喊 AS♂WE♂CAN 裂天使魔男♂！" },
+      { title: "救赎♂32", text: "金阁毛巾+摔♂跤翻滚，祈求森♂之妖精比利王与Van♂♂！" },
+      { title: "救赎♂33", text: "跪姿接受新日暮里の王洗礼，喊 Deep♂Dark♂Fantasy 法克鱿♂！" },
+      { title: "救赎♂34", text: "模仿哲♂学导师教诲姿势，用毛巾拉扯喊 やらないか♂♂！" },
+      { title: "救赎♂35", text: "摆出Dungeon♂主宰与奴隶结合动作，呼唤神之♂救济♂！" },
+      { title: "救赎♂36", text: "金阁毛巾猛拉同时肌肉颤抖，献给裂天使魔男♂！" },
+      { title: "救赎♂37", text: "跪地模仿本格的♂兄贵挣扎，祈求哲♂学圣地救赎♂！" },
+      { title: "救赎♂38", text: "摆出被比利王骑乘压制姿势喊 ASS♂WE♂CAN 范♂达克霍姆♂！" },
+      { title: "救赎♂39", text: "用毛巾拉裤裆进入哲♂学鬼畜救赎仪式喊 森之妖精♂！" },
+      { title: "救赎♂40", text: "模仿王♂道征途最终动作，呼唤裂天使魔男与木吉♂♂！" },
+      { title: "救赎♂41", text: "跪姿金阁拉扯展示力量，祈求Deep♂Dark♂Fantasy救赎♂！" },
+      { title: "救赎♂42", text: "摆出摔♂跤♂激烈缠斗姿势，接受神之♂救济喊 比♂利王♂！" },
+      { title: "救赎♂43", text: "用毛巾模仿Dungeon♂束缚扭腰喊 哲♂学三巨头 永存♂！" },
+      { title: "救赎♂44", text: "跪地肌肉pose如哲♂学家觉醒，献给裂天使魔男♂！" },
+      { title: "救赎♂45", text: "金阁毛巾加强挣扎，呼唤新日♂暮里圣光♂！" },
+      { title: "救赎♂46", text: "模仿乖乖站好♂被Van♂压制喊 AS♂WE♂CAN やらないか♂♂！" },
+      { title: "救赎♂47", text: "摆出哲♂学复兴救赎姿势，祈求森之妖精比利王♂！" },
+      { title: "救赎♂48", text: "用毛巾拉扯做爆发动作，接受裂天使魔男魔性洗礼♂！" },
+      { title: "救赎♂49", text: "跪姿扭动模仿本篇♂缠斗喊 神之♂救济 Deep♂Dark♂Fantasy♂！" },
+      { title: "救赎♂50", text: "至高救赎版：金阁毛巾+Dungeon♂姿势+摔♂跤挣扎，连续喊一百秒 比利王！Van♂！裂天使魔男！哲♂学♂ 永存！♂！" },
+      { title: "救赎♂51", text: "摆出摔♂跤哲学被折弯救赎动作，呼唤兄贵三巨头♂！" },
+      { title: "救赎♂52", text: "金阁毛巾拉紧跪拜新日暮里の妖精♂喊 AS♂WE♂CAN♂！" },
+      { title: "救赎♂53", text: "模仿哲♂学音MAD颤抖姿势，祈求范♂达克霍姆♂！" },
+      { title: "救赎♂54", text: "跪地接受裂天使魔男最终教诲喊 やらないか♂ 神之♂救济♂！" },
+      { title: "救赎♂55", text: "终极Dungeon♂救赎：结合所有元素，金阁毛巾+摔♂跤姿势狂喊 比♂利王 Van♂ 木吉♂ 裂天使魔男 哲♂学！" },
     ],
   },
 };
@@ -657,6 +668,39 @@ const eventTypes = [
   { key: "reverse", color: "#8d78ea" },
 ];
 
+const quickDiceCards = [
+  { mode: "纯骰子", type: "快掷", title: "不设玩家", text: "进入后不会轮换玩家，也不会记录分数，只保留每次投骰结果。" },
+  { mode: "纯骰子", type: "快选", title: "1-8 颗骰子", text: "大厅或页面内都可以切换骰子数量，适合快速决定点数。" },
+  { mode: "纯骰子", type: "动画", title: "连续投掷", text: "每次投骰都有滚动、弹跳和落地反馈，结果会自动写入记录。" },
+];
+
+const dicePipMap = {
+  1: [5],
+  2: [1, 9],
+  3: [1, 5, 9],
+  4: [1, 3, 7, 9],
+  5: [1, 3, 5, 7, 9],
+  6: [1, 3, 4, 6, 7, 9],
+};
+
+const diceFaceRotation = {
+  1: "rotateX(0deg) rotateY(0deg)",
+  2: "rotateX(-90deg) rotateY(0deg)",
+  3: "rotateX(0deg) rotateY(90deg)",
+  4: "rotateX(0deg) rotateY(-90deg)",
+  5: "rotateX(90deg) rotateY(0deg)",
+  6: "rotateX(0deg) rotateY(180deg)",
+};
+
+const diceCubeFaces = [
+  { value: 1, className: "front" },
+  { value: 2, className: "top" },
+  { value: 3, className: "right" },
+  { value: 4, className: "left" },
+  { value: 5, className: "bottom" },
+  { value: 6, className: "back" },
+];
+
 const trackCoordinates = Array.from({ length: TRACK_LENGTH }, (_, index) => {
   if (index <= 12) return { row: 1, col: index + 1 };
   if (index <= 23) return { row: index - 11, col: 13 };
@@ -703,6 +747,8 @@ const startButton = document.querySelector("#startButton");
 const bankSection = document.querySelector("#bankSection");
 const questionBank = document.querySelector("#questionBank");
 const bankSummary = document.querySelector("#bankSummary");
+const ddfDareBank = document.querySelector("#ddfDareBank");
+const ddfDareBankSummary = document.querySelector("#ddfDareBankSummary");
 const heroQuestionCount = document.querySelector("#heroQuestionCount");
 const diceOptions = document.querySelector("#diceOptions");
 
@@ -760,6 +806,19 @@ const diceLogList = document.querySelector("#diceLogList");
 const diceHomeButton = document.querySelector("#diceHomeButton");
 const diceRestartButton = document.querySelector("#diceRestartButton");
 
+const quickDiceView = document.querySelector("#quickDiceView");
+const quickDiceFaces = document.querySelector("#quickDiceFaces");
+const quickDiceTotal = document.querySelector("#quickDiceTotal");
+const quickDiceFormula = document.querySelector("#quickDiceFormula");
+const quickDiceButtonTotal = document.querySelector("#quickDiceButtonTotal");
+const quickDiceRollButton = document.querySelector("#quickDiceRollButton");
+const quickDiceCounts = document.querySelector("#quickDiceCounts");
+const quickDiceCountLabel = document.querySelector("#quickDiceCountLabel");
+const quickDiceMaxLabel = document.querySelector("#quickDiceMaxLabel");
+const quickDiceLogList = document.querySelector("#quickDiceLogList");
+const quickDiceHomeButton = document.querySelector("#quickDiceHomeButton");
+const quickDiceResetButton = document.querySelector("#quickDiceResetButton");
+
 const syncView = document.querySelector("#syncView");
 const syncRoundTitle = document.querySelector("#syncRoundTitle");
 const syncTurnCard = document.querySelector("#syncTurnCard");
@@ -802,9 +861,14 @@ const taskType = document.querySelector("#taskType");
 const taskTitle = document.querySelector("#taskTitle");
 const taskText = document.querySelector("#taskText");
 const skipTaskButton = document.querySelector("#skipTaskButton");
+const siteHeader = document.querySelector(".site-header");
+const navToggle = document.querySelector(".nav-toggle");
+const headerContent = document.querySelector("#siteMenu");
 
 const isFantasyPage = document.body.classList.contains("fantasy-mode");
-let selectedGame = isFantasyPage ? "truth" : "flight";
+const isBankPage = document.body.classList.contains("bank-page");
+const isQuickDicePage = document.body.classList.contains("quick-dice-page");
+let selectedGame = isFantasyPage ? "truth" : document.body.dataset.defaultGame || "flight";
 let state = createEmptyState();
 let pendingTask = null;
 let diceAnimationId = 0;
@@ -834,11 +898,13 @@ function createEmptyState() {
 }
 
 function getSelectedSpiceLevel() {
+  if (!setupForm) return "soft";
   return new FormData(setupForm).get("spiceLevel") || "soft";
 }
 
 function getSelectedDiceCount() {
-  return Number(new FormData(setupForm).get("diceCount")) || 2;
+  const count = setupForm ? Number(new FormData(setupForm).get("diceCount")) || 2 : state.diceCount || 2;
+  return Math.min(Math.max(count, 1), 8);
 }
 
 function getDeckLevels(spiceLevel) {
@@ -861,6 +927,10 @@ function getTruthDeck(kind, spiceLevel = state.spiceLevel) {
   }));
 }
 
+function getAvailableTruthKinds(spiceLevel = state.spiceLevel) {
+  return ["truth", "dare"].filter((kind) => getTruthDeck(kind, spiceLevel).length > 0);
+}
+
 function getDiceDeck(spiceLevel = state.spiceLevel) {
   return getDeckLevels(spiceLevel).flatMap((level) => diceDecks[level]);
 }
@@ -878,7 +948,7 @@ function getVisibleQuestionCards() {
   if (spiceLevel === "fantasy") {
     return [...getTruthDeck("truth", spiceLevel), ...getTruthDeck("dare", spiceLevel)].map((card) => ({
       ...card,
-      mode: "Deep♂Dark♂Fantasy 真心话大冒险",
+      mode: "Deep♂Dark♂Fantasy 大冒险",
     }));
   }
   if (selectedGame === "flight") {
@@ -892,6 +962,9 @@ function getVisibleQuestionCards() {
       ...card,
       mode: "骰子升温",
     }));
+  }
+  if (selectedGame === "quickDice") {
+    return quickDiceCards;
   }
   if (selectedGame === "sync") {
     return getSyncDeck(spiceLevel).map((card) => ({
@@ -917,21 +990,25 @@ function renderQuestionBank() {
   const spiceName = { soft: "暧昧", warm: "升温", hot: "夜深", fantasy: "Deep♂Dark♂Fantasy" }[spiceLevel];
   const gameName =
     spiceLevel === "fantasy"
-      ? "Deep♂Dark♂Fantasy 真心话大冒险"
+      ? "Deep♂Dark♂Fantasy 大冒险"
       : {
           flight: "夜航飞行棋",
           truth: "真心话大冒险",
           dice: "骰子升温",
+          quickDice: "纯骰子",
           sync: "默契挑战",
           wheel: "心动轮盘",
           box: "任务盲盒",
           story: "角色剧本",
         }[selectedGame];
   document.body.classList.toggle("fantasy-mode", spiceLevel === "fantasy");
-  heroQuestionCount.textContent = String(cards.length);
+  if (heroQuestionCount) heroQuestionCount.textContent = String(cards.length);
+  if (!questionBank || !bankSummary) return;
   bankSummary.textContent =
     spiceLevel === "fantasy"
       ? `${gameName} · ${spiceName}：只显示 Deep♂Dark♂Fantasy 题目，共 ${cards.length} 个。`
+      : selectedGame === "quickDice"
+        ? `${gameName}：不需要玩家人数，当前快掷 ${getSelectedDiceCount()} 颗骰子。`
       : selectedGame === "dice"
         ? `${gameName} · ${spiceName}：当前使用 ${getSelectedDiceCount()} 颗骰子，题库 ${cards.length} 个。`
         : `${gameName} · ${spiceName}：当前测试会抽取 ${cards.length} 张卡。`;
@@ -950,35 +1027,61 @@ function renderQuestionBank() {
   });
 }
 
+function renderDdfDareBank() {
+  if (!ddfDareBank || !ddfDareBankSummary) return;
+  const cards = truthDecks.fantasy.dare;
+  ddfDareBankSummary.textContent = `显示 Deep♂Dark♂Fantasy 大冒险词条，共 ${cards.length} 条。`;
+  ddfDareBank.innerHTML = "";
+
+  cards.forEach((card, index) => {
+    const item = document.createElement("article");
+    item.className = "bank-card ddf-bank-card";
+    item.style.animationDelay = `${Math.min(index, 18) * 18}ms`;
+    item.innerHTML = `
+      <span>Deep♂Dark♂Fantasy / 大冒险</span>
+      <strong>${escapeHtml(card.title)}</strong>
+      <p>${escapeHtml(card.text)}</p>
+    `;
+    ddfDareBank.append(item);
+  });
+}
+
 function setSelectedGame(game) {
   const fantasy = getSelectedSpiceLevel() === "fantasy";
   selectedGame = fantasy ? "truth" : game;
-  diceOptions?.classList.toggle("is-hidden", selectedGame !== "dice");
+  const isDiceMode = selectedGame === "dice" || selectedGame === "quickDice";
+  diceOptions?.classList.toggle("is-hidden", !isDiceMode);
+  setupForm?.classList.toggle("is-quick-dice", selectedGame === "quickDice");
   gameCards.forEach((card) => {
     const active = card.dataset.game === selectedGame;
     card.classList.toggle("is-active", active);
     card.setAttribute("aria-pressed", String(active));
   });
-  startButton.textContent = fantasy
-    ? "开始 Deep♂Dark♂Fantasy"
-    : {
-        flight: "开始夜航飞行棋",
-        truth: "开始真心话大冒险",
-        dice: "开始骰子升温",
-        sync: "开始默契挑战",
-        wheel: "开始心动轮盘",
-        box: "开始任务盲盒",
-        story: "开始角色剧本",
-      }[selectedGame];
+  if (startButton) {
+    startButton.textContent = fantasy
+      ? "开始 Deep♂Dark♂Fantasy"
+      : {
+          flight: "开始夜航飞行棋",
+          truth: "开始真心话大冒险",
+          dice: "开始骰子升温",
+          quickDice: "开始纯骰子",
+          sync: "开始默契挑战",
+          wheel: "开始心动轮盘",
+          box: "开始任务盲盒",
+          story: "开始角色剧本",
+        }[selectedGame];
+  }
   renderQuestionBank();
 }
 
 function syncNameFields() {
+  if (!setupForm || !nameFields) return;
   const count = Number(new FormData(setupForm).get("playerCount"));
   const existing = new FormData(setupForm);
   nameFields.querySelectorAll(".name-input").forEach((node) => node.remove());
+  const presets = isFantasyPage ? ddfPlayerPresets : playerPresets;
 
-  playerPresets.slice(0, count).forEach((preset, index) => {
+  presets.slice(0, count).forEach((preset, index) => {
     const label = document.createElement("label");
     label.className = "name-input";
     label.innerHTML = `
@@ -990,9 +1093,11 @@ function syncNameFields() {
 }
 
 function buildPlayers(includePieces) {
+  if (!setupForm) return [];
   const formData = new FormData(setupForm);
   const playerCount = Number(formData.get("playerCount"));
-  return playerPresets.slice(0, playerCount).map((preset, index) => {
+  const presets = isFantasyPage ? ddfPlayerPresets : playerPresets;
+  return presets.slice(0, playerCount).map((preset, index) => {
     const player = {
       id: index,
       name: (formData.get(`playerName${index}`) || preset.name).toString().trim() || preset.name,
@@ -1019,6 +1124,10 @@ function startGame(event) {
     startTruthGame();
     return;
   }
+  if (selectedGame === "quickDice") {
+    startQuickDiceGame();
+    return;
+  }
   if (selectedGame === "dice") {
     startDiceGame();
     return;
@@ -1035,8 +1144,9 @@ function startGame(event) {
 }
 
 function hideLobby() {
-  setupPanel.classList.add("is-hidden");
-  bankSection.classList.add("is-hidden");
+  document.body.classList.remove("is-quick-dice-active");
+  setupPanel?.classList.add("is-hidden");
+  bankSection?.classList.add("is-hidden");
   scrollToTop();
 }
 
@@ -1044,24 +1154,28 @@ function cancelMotionEffects() {
   diceAnimationId += 1;
   miniAnimationId += 1;
   diceFaces?.classList.remove("is-rolling", "is-final");
+  quickDiceFaces?.classList.remove("is-rolling", "is-final", "is-bursting");
   warmDiceButton?.classList.remove("is-rolling");
+  quickDiceRollButton?.classList.remove("is-rolling");
   rollButton?.classList.remove("is-rolling");
   miniVisual?.classList.remove("is-spinning", "is-settled");
 }
 
 function showLobby(resetForm = false) {
   cancelMotionEffects();
+  document.body.classList.remove("is-quick-dice-active");
   state = createEmptyState();
   pendingTask = null;
-  if (taskDialog.open) taskDialog.close();
-  gameView.classList.add("is-hidden");
-  truthView.classList.add("is-hidden");
+  if (taskDialog?.open) taskDialog.close();
+  gameView?.classList.add("is-hidden");
+  truthView?.classList.add("is-hidden");
   diceView?.classList.add("is-hidden");
+  quickDiceView?.classList.add("is-hidden");
   syncView?.classList.add("is-hidden");
   miniView?.classList.add("is-hidden");
-  setupPanel.classList.remove("is-hidden");
-  bankSection.classList.remove("is-hidden");
-  if (resetForm) {
+  setupPanel?.classList.remove("is-hidden");
+  bankSection?.classList.remove("is-hidden");
+  if (resetForm && setupForm) {
     setupForm.reset();
     setSelectedGame(isFantasyPage ? "truth" : "flight");
   }
@@ -1078,11 +1192,12 @@ function startFlightGame() {
   state.players = buildPlayers(true);
 
   hideLobby();
-  truthView.classList.add("is-hidden");
+  truthView?.classList.add("is-hidden");
   diceView?.classList.add("is-hidden");
+  quickDiceView?.classList.add("is-hidden");
   syncView?.classList.add("is-hidden");
   miniView?.classList.add("is-hidden");
-  gameView.classList.remove("is-hidden");
+  gameView?.classList.remove("is-hidden");
   addLog("游戏开始。掷到 6 可以起飞，四架飞机全部进入终点即获胜。");
   buildBoard();
   renderFlight();
@@ -1096,14 +1211,16 @@ function startTruthGame() {
   state.players = buildPlayers(false);
 
   hideLobby();
-  gameView.classList.add("is-hidden");
+  gameView?.classList.add("is-hidden");
   diceView?.classList.add("is-hidden");
+  quickDiceView?.classList.add("is-hidden");
   syncView?.classList.add("is-hidden");
   miniView?.classList.add("is-hidden");
-  truthView.classList.remove("is-hidden");
-  addLog("真心话大冒险开始。完成题目得 1 分，跳过会记录一次。");
+  truthView?.classList.remove("is-hidden");
   if (state.spiceLevel === "fantasy") {
-    state.log = ["Deep♂Dark♂Fantasy 开始。完成挑战得 1 分，跳过会记录一次。"];
+    state.log = ["Deep♂Dark♂Fantasy 大冒险开始。完成挑战得 1 分，跳过会记录一次。"];
+  } else {
+    addLog("真心话大冒险开始。完成题目得 1 分，跳过会记录一次。");
   }
   renderTruth();
 }
@@ -1117,9 +1234,10 @@ function startDiceGame() {
   state.players = buildPlayers(false);
 
   hideLobby();
-  gameView.classList.add("is-hidden");
-  truthView.classList.add("is-hidden");
+  gameView?.classList.add("is-hidden");
+  truthView?.classList.add("is-hidden");
   diceView?.classList.remove("is-hidden");
+  quickDiceView?.classList.add("is-hidden");
   syncView?.classList.add("is-hidden");
   miniView?.classList.add("is-hidden");
   addLog(`骰子升温开始。当前使用 ${state.diceCount} 颗骰子，完成得 1 分。`);
@@ -1162,17 +1280,79 @@ function renderDiceFaces() {
 }
 
 function paintDiceFaces(rolls, isRolling = false) {
-  diceFaces.innerHTML = "";
-  diceFaces.classList.toggle("is-rolling", isRolling);
-  diceFaces.classList.toggle("is-final", !isRolling && rolls.some((value) => value !== "?"));
+  paintDiceFaceSet(diceFaces, rolls, isRolling, warmDiceTotal);
+}
+
+function paintDiceFaceSet(target, rolls, isRolling = false, totalTarget = null) {
+  if (!target) return 0;
+  target.innerHTML = "";
+  target.classList.toggle("is-rolling", isRolling);
+  target.classList.toggle("is-final", !isRolling && rolls.some((value) => value !== "?"));
   rolls.forEach((value, index) => {
-    const face = document.createElement("span");
-    face.style.setProperty("--i", index);
-    face.textContent = value;
-    diceFaces.append(face);
+    target.append(createDiceFace(value, index));
   });
   const total = rolls.reduce((sum, value) => sum + (Number(value) || 0), 0);
-  warmDiceTotal.textContent = total || "?";
+  if (totalTarget) totalTarget.textContent = total || "?";
+  return total;
+}
+
+function createDiceFace(value, index) {
+  const face = document.createElement("span");
+  const number = Number(value);
+  face.className = "dice-face";
+  face.style.setProperty("--i", index);
+  face.style.setProperty("--bounce-delay", `${index * -72}ms`);
+  face.style.setProperty("--spin-delay", `${index * -68}ms`);
+  face.style.setProperty("--final-delay", `${index * 58}ms`);
+  face.style.setProperty("--burst-delay", `${Math.min(index, 7) * 18}ms`);
+  const direction = index % 2 === 0 ? -1 : 1;
+  const lane = (index % 4) - 1.5;
+  const tossX = Math.round(lane * 22 + direction * ((number || 2) + 3));
+  const tossY = -48 - (index % 3) * 10;
+  const settleRotate = ((index % 5) - 2) * 3;
+  face.style.setProperty("--throw-x", `${tossX}px`);
+  face.style.setProperty("--throw-y", `${tossY}px`);
+  face.style.setProperty("--land-x", `${Math.round(tossX * 0.28)}px`);
+  face.style.setProperty("--settle-r", `${settleRotate}deg`);
+  face.style.setProperty("--counter-r", `${settleRotate * -2}deg`);
+  face.style.setProperty("--land-delay", `${Math.min(index, 7) * 22}ms`);
+  if (!number) {
+    face.classList.add("is-blank");
+    face.textContent = "?";
+    return face;
+  }
+  face.classList.add(`face-value-${number}`);
+  face.style.setProperty("--final-rotation", diceFaceRotation[number] || diceFaceRotation[1]);
+  const spinX = 520 + index * 37 + number * 41;
+  const spinY = -620 - index * 31 - number * 43;
+  const spinZ = 74 + index * 17;
+  face.style.setProperty("--spin-x", `${spinX}deg`);
+  face.style.setProperty("--spin-y", `${spinY}deg`);
+  face.style.setProperty("--spin-z", `${spinZ}deg`);
+  face.style.setProperty("--spin-mid-x", `${Math.round(spinX * 0.42)}deg`);
+  face.style.setProperty("--spin-mid-y", `${Math.round(spinY * 0.42)}deg`);
+  face.style.setProperty("--spin-mid-z", `${Math.round(spinZ * -0.22)}deg`);
+  face.setAttribute("aria-label", `${number} 点`);
+  const cube = document.createElement("span");
+  cube.className = "dice-cube";
+  cube.setAttribute("aria-hidden", "true");
+  diceCubeFaces.forEach((item) => {
+    const side = document.createElement("span");
+    side.className = `dice-cube__face dice-cube__face--${item.className}`;
+    side.append(...createDicePips(item.value));
+    cube.append(side);
+  });
+  face.append(cube);
+  return face;
+}
+
+function createDicePips(value) {
+  const activePips = dicePipMap[value] || [];
+  return Array.from({ length: 9 }, (_, dotIndex) => {
+    const pip = document.createElement("i");
+    pip.className = `dice-cube__pip${activePips.includes(dotIndex + 1) ? " is-on" : ""}`;
+    return pip;
+  });
 }
 
 function rollWarmDice() {
@@ -1266,6 +1446,99 @@ function clearDicePrompt() {
   dicePromptCard.classList.remove("is-dealt");
 }
 
+function startQuickDiceGame() {
+  state = createEmptyState();
+  state.mode = "quickDice";
+  state.phase = "roll";
+  state.diceCount = getSelectedDiceCount();
+
+  hideLobby();
+  document.body.classList.add("is-quick-dice-active");
+  gameView?.classList.add("is-hidden");
+  truthView?.classList.add("is-hidden");
+  diceView?.classList.add("is-hidden");
+  quickDiceView?.classList.remove("is-hidden");
+  syncView?.classList.add("is-hidden");
+  miniView?.classList.add("is-hidden");
+  addLog("纯骰子开始。选择数量后可随时切换并连续投掷。");
+  renderQuickDice();
+}
+
+function renderQuickDice() {
+  if (!quickDiceView) return;
+  const rolls = state.diceRolling
+    ? Array.from({ length: state.diceCount }, () => Math.floor(Math.random() * 6) + 1)
+    : state.diceRolls.length
+      ? state.diceRolls
+      : Array.from({ length: state.diceCount }, () => "?");
+  const total = paintDiceFaceSet(quickDiceFaces, rolls, state.diceRolling, quickDiceTotal);
+  quickDiceButtonTotal.textContent = total || "?";
+  quickDiceFormula.textContent = state.diceRolling
+    ? "骰子正在滚动..."
+    : state.diceRolls.length
+      ? `${state.diceRolls.join(" + ")} = ${total}`
+      : `当前 ${state.diceCount} 颗骰子，点一下开始。`;
+  quickDiceRollButton.disabled = state.diceRolling;
+  quickDiceRollButton.classList.toggle("is-rolling", state.diceRolling);
+  quickDiceCountLabel.textContent = `${state.diceCount} 颗`;
+  quickDiceMaxLabel.textContent = `${state.diceCount * 6} 点`;
+  quickDiceCounts?.querySelectorAll("button").forEach((button) => {
+    const active = Number(button.dataset.count) === state.diceCount;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", String(active));
+    button.disabled = state.diceRolling;
+  });
+  renderLog(quickDiceLogList);
+}
+
+function rollQuickDice() {
+  if (state.mode !== "quickDice" || state.diceRolling) return;
+  const animationId = diceAnimationId + 1;
+  diceAnimationId = animationId;
+  state.diceRolling = true;
+  state.diceRolls = [];
+  quickDiceFaces?.classList.remove("is-bursting");
+  renderQuickDice();
+
+  window.setTimeout(() => {
+    if (animationId !== diceAnimationId || state.mode !== "quickDice") return;
+    finishQuickDiceRoll();
+  }, 940);
+}
+
+function finishQuickDiceRoll() {
+  state.diceRolling = false;
+  state.diceRolls = Array.from({ length: state.diceCount }, () => Math.floor(Math.random() * 6) + 1);
+  const total = state.diceRolls.reduce((sum, value) => sum + value, 0);
+  addLog(`${state.diceCount} 颗骰子：${state.diceRolls.join(" + ")} = ${total}`);
+  renderQuickDice();
+  quickDiceFaces?.classList.remove("is-bursting");
+  if (quickDiceFaces) {
+    void quickDiceFaces.offsetWidth;
+    quickDiceFaces.classList.add("is-bursting");
+  }
+}
+
+function setQuickDiceCount(count) {
+  if (state.mode !== "quickDice" || state.diceRolling) return;
+  state.diceCount = Math.min(Math.max(Number(count) || 2, 1), 8);
+  state.diceRolls = [];
+  syncSelectedDiceCount(state.diceCount);
+  renderQuickDice();
+}
+
+function resetQuickDiceHistory() {
+  if (state.mode !== "quickDice") return;
+  state.log = [];
+  state.diceRolls = [];
+  renderQuickDice();
+}
+
+function syncSelectedDiceCount(count) {
+  const input = setupForm?.querySelector(`input[name="diceCount"][value="${count}"]`);
+  if (input) input.checked = true;
+}
+
 function startSyncGame() {
   state = createEmptyState();
   state.mode = "sync";
@@ -1274,9 +1547,10 @@ function startSyncGame() {
   state.players = buildPlayers(false);
 
   hideLobby();
-  gameView.classList.add("is-hidden");
-  truthView.classList.add("is-hidden");
+  gameView?.classList.add("is-hidden");
+  truthView?.classList.add("is-hidden");
   diceView?.classList.add("is-hidden");
+  quickDiceView?.classList.add("is-hidden");
   syncView?.classList.remove("is-hidden");
   miniView?.classList.add("is-hidden");
   addLog("默契挑战开始。抽挑战、完成得 1 分，任何题都可跳过。");
@@ -1355,9 +1629,10 @@ function startMiniGame(game) {
   state.players = buildPlayers(false);
 
   hideLobby();
-  gameView.classList.add("is-hidden");
-  truthView.classList.add("is-hidden");
+  gameView?.classList.add("is-hidden");
+  truthView?.classList.add("is-hidden");
   diceView?.classList.add("is-hidden");
+  quickDiceView?.classList.add("is-hidden");
   syncView?.classList.add("is-hidden");
   miniView?.classList.remove("is-hidden");
   addLog(`${miniGameMeta[game].name}开始。完成得 1 分，任何题都可跳过。`);
@@ -1466,7 +1741,7 @@ function revealMiniPrompt(card) {
   state.currentPrompt = card;
   miniPromptType.textContent = card.type;
   miniPromptTitle.textContent = card.title;
-  miniPromptText.textContent = decorateMiniPrompt(card.text);
+  renderMiniPromptText(card.text);
   miniPromptCard.classList.remove("is-dealt");
   void miniPromptCard.offsetWidth;
   miniPromptCard.classList.add("is-dealt");
@@ -1479,11 +1754,37 @@ function getRandomMiniCard() {
   return deck[Math.floor(Math.random() * deck.length)];
 }
 
+function renderMiniPromptText(text) {
+  if (state.miniGame === "wheel") {
+    const target = getRandomOtherPlayerName();
+    miniPromptText.innerHTML = `
+      <span class="prompt-copy">${escapeHtml(text)}</span>
+      <span class="target-callout">
+        <small>本轮对象</small>
+        <strong>${escapeHtml(target)}</strong>
+      </span>
+    `;
+    return;
+  }
+  miniPromptText.textContent = decorateMiniPrompt(text);
+}
+
 function decorateMiniPrompt(text) {
-  const target = getRandomOtherPlayerName();
-  if (state.miniGame === "wheel") return `${text} 本轮对象：${target}。`;
   if (state.miniGame === "story") return `${text} 表演 30-60 秒，结束后可以互换角色再来一次。`;
   return text;
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (character) => {
+    const entities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    };
+    return entities[character];
+  });
 }
 
 function getRandomOtherPlayerName() {
@@ -1865,6 +2166,8 @@ function nextTurn() {
 
 function renderTruth() {
   const player = getCurrentPlayer();
+  const availableKinds = getAvailableTruthKinds();
+  const hasCurrentPrompt = Boolean(state.currentPrompt);
   truthRoundTitle.textContent = `第 ${state.round} 轮`;
   truthPlayerName.textContent = player?.name || "游戏结束";
   truthTurnCard.style.borderLeftColor = player?.color || "var(--teal)";
@@ -1872,13 +2175,13 @@ function renderTruth() {
     state.spiceLevel === "fantasy"
       ? state.currentPrompt
         ? "完成或跳过当前 Deep♂Dark♂Fantasy 后进入下一位。"
-        : "选择真心话、大冒险或随机题。"
+        : "点击大冒险抽题。"
       : state.currentPrompt
         ? "完成或跳过当前卡牌后进入下一位。"
         : "选择真心话、大冒险或随机抽卡。";
-  truthButton.disabled = Boolean(state.currentPrompt);
-  dareButton.disabled = Boolean(state.currentPrompt);
-  randomPromptButton.disabled = Boolean(state.currentPrompt);
+  if (truthButton) truthButton.disabled = hasCurrentPrompt || !availableKinds.includes("truth");
+  if (dareButton) dareButton.disabled = hasCurrentPrompt || !availableKinds.includes("dare");
+  if (randomPromptButton) randomPromptButton.disabled = hasCurrentPrompt || !availableKinds.length;
   skipPromptButton.disabled = !state.currentPrompt;
   completePromptButton.disabled = !state.currentPrompt;
 
@@ -1891,8 +2194,15 @@ function renderTruth() {
 
 function drawPrompt(kind) {
   if (state.mode !== "truth" || state.currentPrompt) return;
-  const resolvedKind = kind === "random" ? (Math.random() > 0.5 ? "truth" : "dare") : kind;
+  const availableKinds = getAvailableTruthKinds();
+  if (!availableKinds.length) return;
+  const resolvedKind =
+    kind === "random" ? availableKinds[Math.floor(Math.random() * availableKinds.length)] : kind;
   const deck = getTruthDeck(resolvedKind);
+  if (!deck.length) {
+    renderTruth();
+    return;
+  }
   const card = deck[Math.floor(Math.random() * deck.length)];
   state.currentPrompt = card;
   promptType.textContent = card.type;
@@ -1933,9 +2243,9 @@ function clearPromptCard() {
   state.currentPrompt = null;
   const isFantasy = state.spiceLevel === "fantasy";
   promptType.textContent = isFantasy ? "等待题目" : "等待抽卡";
-  promptTitle.textContent = isFantasy ? "选择 Deep♂Dark♂Fantasy" : "选择一种卡牌";
+  promptTitle.textContent = isFantasy ? "选择大冒险" : "选择一种卡牌";
   promptText.textContent = isFantasy
-    ? "Deep♂Dark♂Fantasy 题目会显示在这里。完成后加 1 分，跳过会记录一次。"
+    ? "Deep♂Dark♂Fantasy 大冒险题目会显示在这里。完成后加 1 分，跳过会记录一次。"
     : "抽到的任务会显示在这里。完成后加 1 分，跳过会记录一次。";
   promptCard.classList.remove("is-dealt");
 }
@@ -1946,6 +2256,7 @@ function advancePlayer() {
 }
 
 function renderPlayers(target, getMeta) {
+  if (!target) return;
   target.innerHTML = "";
   state.players.forEach((item, index) => {
     const meta = getMeta(item, index);
@@ -1961,6 +2272,7 @@ function renderPlayers(target, getMeta) {
 }
 
 function renderLog(target) {
+  if (!target) return;
   target.innerHTML = "";
   state.log.slice(0, 10).forEach((entry) => {
     const player = state.players.find((item) => entry.startsWith(item.name));
@@ -1984,37 +2296,74 @@ function scrollToTop() {
   window.scrollTo({ top: 0, left: 0, behavior: "auto" });
 }
 
+function setHeaderMenu(open) {
+  if (!siteHeader || !navToggle || !headerContent) return;
+  siteHeader.classList.toggle("is-menu-open", open);
+  navToggle.setAttribute("aria-expanded", String(open));
+  navToggle.setAttribute("aria-label", open ? "关闭页面导航" : "打开页面导航");
+  headerContent.setAttribute("aria-hidden", String(!open));
+  headerContent.style.maxHeight = open ? "420px" : "0px";
+  headerContent.style.opacity = open ? "1" : "0";
+  headerContent.style.pointerEvents = open ? "auto" : "none";
+  headerContent.style.transform = open ? "translateY(0) scale(1)" : "translateY(-6px) scale(0.98)";
+}
+
 gameCards.forEach((card) => {
   card.addEventListener("click", () => setSelectedGame(card.dataset.game));
 });
 
-setupForm.addEventListener("change", (event) => {
+setHeaderMenu(false);
+navToggle?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  setHeaderMenu(!siteHeader?.classList.contains("is-menu-open"));
+});
+headerContent?.addEventListener("click", (event) => {
+  if (event.target.closest("a")) setHeaderMenu(false);
+});
+document.addEventListener("click", (event) => {
+  if (siteHeader?.classList.contains("is-menu-open") && !siteHeader.contains(event.target)) {
+    setHeaderMenu(false);
+  }
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") setHeaderMenu(false);
+});
+
+setupForm?.addEventListener("change", (event) => {
   if (event.target.name === "playerCount") syncNameFields();
   if (event.target.name === "spiceLevel" || event.target.name === "playerCount" || event.target.name === "diceCount") {
     renderQuestionBank();
   }
 });
-setupForm.addEventListener("submit", startGame);
+setupForm?.addEventListener("submit", isBankPage ? (event) => event.preventDefault() : startGame);
 
-rollButton.addEventListener("click", rollDice);
-endTurnButton.addEventListener("click", nextTurn);
-restartButton.addEventListener("click", () => showLobby(true));
-flightHomeButton.addEventListener("click", () => showLobby(false));
-taskDialog.addEventListener("close", handleTaskClose);
+rollButton?.addEventListener("click", rollDice);
+endTurnButton?.addEventListener("click", nextTurn);
+restartButton?.addEventListener("click", () => showLobby(true));
+flightHomeButton?.addEventListener("click", () => showLobby(false));
+taskDialog?.addEventListener("close", handleTaskClose);
 
-truthButton.addEventListener("click", () => drawPrompt("truth"));
-dareButton.addEventListener("click", () => drawPrompt("dare"));
-randomPromptButton.addEventListener("click", () => drawPrompt("random"));
-completePromptButton.addEventListener("click", completePrompt);
-skipPromptButton.addEventListener("click", skipPrompt);
-truthRestartButton.addEventListener("click", () => showLobby(true));
-truthHomeButton.addEventListener("click", () => showLobby(false));
+truthButton?.addEventListener("click", () => drawPrompt("truth"));
+dareButton?.addEventListener("click", () => drawPrompt("dare"));
+randomPromptButton?.addEventListener("click", () => drawPrompt("random"));
+completePromptButton?.addEventListener("click", completePrompt);
+skipPromptButton?.addEventListener("click", skipPrompt);
+truthRestartButton?.addEventListener("click", () => showLobby(true));
+truthHomeButton?.addEventListener("click", () => showLobby(false));
 
 warmDiceButton?.addEventListener("click", rollWarmDice);
 completeDiceButton?.addEventListener("click", completeDicePrompt);
 skipDiceButton?.addEventListener("click", skipDicePrompt);
 diceRestartButton?.addEventListener("click", () => showLobby(true));
 diceHomeButton?.addEventListener("click", () => showLobby(false));
+
+quickDiceRollButton?.addEventListener("click", rollQuickDice);
+quickDiceHomeButton?.addEventListener("click", () => showLobby(false));
+quickDiceResetButton?.addEventListener("click", resetQuickDiceHistory);
+quickDiceCounts?.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-count]");
+  if (button) setQuickDiceCount(button.dataset.count);
+});
 
 syncDrawButton?.addEventListener("click", drawSyncPrompt);
 completeSyncButton?.addEventListener("click", completeSyncPrompt);
@@ -2031,5 +2380,11 @@ miniChoiceGrid?.querySelectorAll("button").forEach((button) => {
   button.addEventListener("click", () => chooseMiniBox(Number(button.dataset.choice)));
 });
 
-syncNameFields();
-setSelectedGame(selectedGame);
+if (isQuickDicePage) {
+  startQuickDiceGame();
+} else {
+  syncNameFields();
+  setSelectedGame(selectedGame);
+}
+
+renderDdfDareBank();

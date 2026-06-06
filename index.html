@@ -18,16 +18,21 @@
             <small>情侣成人桌游合集</small>
           </span>
         </a>
-        <div class="header-content">
+        <button class="nav-toggle" type="button" aria-controls="siteMenu" aria-expanded="false" aria-label="打开页面导航">
+          <span aria-hidden="true"></span>
+        </button>
+        <div class="header-content" id="siteMenu">
           <nav class="quick-nav" aria-label="页面导航">
-            <a href="#gamePicker">游戏库</a>
-            <a href="#bankSection">题库预览</a>
+            <a href="index.html#gamePicker" aria-current="page">游戏库</a>
+            <a href="bank.html">题库预览</a>
+            <a href="dice.html">纯骰子</a>
             <a href="#rulesSection">边界规则</a>
             <a href="ddf.html">Deep♂Dark♂Fantasy</a>
           </nav>
           <div class="header-meta" aria-label="站点状态">
-            <span>7 种玩法</span>
+            <span>8 种玩法</span>
             <span>2-4 人</span>
+            <span>纯骰快掷</span>
             <span>21+</span>
             <span>可跳过</span>
             <span>GitHub Pages</span>
@@ -39,11 +44,11 @@
         <div class="brand-block">
           <p class="eyebrow">2-4 人 · 21+ · 可跳过</p>
           <h1 id="gameTitle">夜航游戏大厅</h1>
-          <p class="lede">选择玩法、设置人数和尺度，直接进入本轮游戏。题库预览保留在大厅下方，方便发布前检查内容。</p>
+          <p class="lede">选择玩法、设置人数和尺度，直接进入本轮游戏。题库预览已经拆到独立页面，页眉可以直接进入检查。</p>
 
           <div class="hero-metrics" aria-label="玩法概览">
             <div>
-              <strong>7</strong>
+              <strong>8</strong>
               <span>种玩法</span>
             </div>
             <div>
@@ -66,8 +71,8 @@
               <strong>GitHub Pages</strong>
             </article>
             <article>
-              <span>独立入口</span>
-              <strong>Deep♂Dark♂Fantasy</strong>
+              <span>页眉入口</span>
+              <strong>题库预览 / 纯骰子</strong>
             </article>
           </div>
         </div>
@@ -102,6 +107,14 @@
                 <small>选择骰子数量，点数决定互动强度和时长。</small>
               </span>
               <b>随机 + 升温</b>
+            </button>
+            <button class="game-card quick-dice-card" type="button" data-game="quickDice">
+              <span class="game-icon pure-dice-icon" aria-hidden="true"></span>
+              <span>
+                <strong>纯骰子</strong>
+                <small>不设置玩家，快速选择几颗骰子，直接看点数。</small>
+              </span>
+              <b>快选 + 动画</b>
             </button>
             <button class="game-card" type="button" data-game="sync">
               <span class="game-icon sync-icon" aria-hidden="true"></span>
@@ -138,7 +151,7 @@
           </section>
 
           <div class="settings-dock">
-            <section class="setting-panel">
+            <section class="setting-panel setup-setting-panel">
               <div class="form-heading compact">
                 <p class="eyebrow">Setup</p>
                 <h2>本局设置</h2>
@@ -205,11 +218,23 @@
                     <input type="radio" name="diceCount" value="5" />
                     <span>5 颗</span>
                   </label>
+                  <label>
+                    <input type="radio" name="diceCount" value="6" />
+                    <span>6 颗</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="diceCount" value="7" />
+                    <span>7 颗</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="diceCount" value="8" />
+                    <span>8 颗</span>
+                  </label>
                 </div>
               </fieldset>
             </section>
 
-            <section class="setting-panel">
+            <section class="setting-panel player-setting-panel">
               <div class="form-heading compact">
                 <p class="eyebrow">Players</p>
                 <h2>玩家昵称</h2>
@@ -233,8 +258,8 @@
             </article>
             <article>
               <span class="rule-number">03</span>
-              <strong>测试显示题库</strong>
-              <p>上线前默认展示题库，便于检查文字、分类和尺度。</p>
+              <strong>题库单独检查</strong>
+              <p>题库预览拆成独立页面，便于检查文字、分类和尺度。</p>
             </article>
           </section>
 
@@ -247,7 +272,7 @@
 
             <div class="launch-panel">
               <label class="consent-row">
-                <input type="checkbox" id="consentCheck" required />
+                <input type="checkbox" id="consentCheck" required checked />
                 <span>所有玩家已满 21 岁，并同意任何任务都可以说停、换题或跳过。</span>
               </label>
 
@@ -255,17 +280,6 @@
             </div>
           </div>
         </form>
-      </section>
-
-      <section class="bank-section" id="bankSection" aria-labelledby="bankTitle">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">测试面板</p>
-            <h2 id="bankTitle">当前题库预览</h2>
-          </div>
-          <p id="bankSummary">选择游戏和尺度后，这里会显示实际抽取范围。</p>
-        </div>
-        <div class="bank-grid" id="questionBank" aria-live="polite"></div>
       </section>
 
       <section class="game-view is-hidden" id="gameView" aria-label="夜航飞行棋桌面">
@@ -405,6 +419,71 @@
           <aside class="side-panel log-panel" aria-label="骰子升温记录">
             <div class="players-list" id="dicePlayersList"></div>
             <div class="log-list" id="diceLogList" aria-live="polite"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="quick-dice-view is-hidden" id="quickDiceView" aria-label="纯骰子桌面">
+        <header class="top-bar">
+          <div>
+            <p class="eyebrow">Quick Dice</p>
+            <h2>纯骰子</h2>
+          </div>
+          <div class="top-actions">
+            <button class="secondary-action" id="quickDiceHomeButton" type="button">游戏大厅</button>
+            <button class="secondary-action" id="quickDiceResetButton" type="button">清空记录</button>
+          </div>
+        </header>
+
+        <div class="quick-dice-layout">
+          <section class="quick-dice-stage" aria-label="纯骰子结果">
+            <div class="quick-dice-copy">
+              <p class="eyebrow">No Players</p>
+              <h3>选几颗，马上投</h3>
+              <p>这个页面只负责骰子点数，不轮换玩家、不记分。适合临时决定顺序、惩罚数值或任何需要快掷的场景。</p>
+            </div>
+
+            <div class="quick-dice-dashboard">
+              <div class="quick-total-card" aria-live="polite">
+                <span>总点数</span>
+                <strong id="quickDiceTotal">?</strong>
+                <small id="quickDiceFormula">选择骰子数量后投掷</small>
+              </div>
+              <button class="dice-button big-roll quick-roll-button" id="quickDiceRollButton" type="button">
+                <span id="quickDiceButtonTotal">?</span>
+                <small>投骰子</small>
+              </button>
+            </div>
+
+            <div class="quick-dice-counts" id="quickDiceCounts" role="radiogroup" aria-label="快速选择骰子数量">
+              <button type="button" data-count="1" aria-pressed="false">1</button>
+              <button type="button" data-count="2" aria-pressed="true">2</button>
+              <button type="button" data-count="3" aria-pressed="false">3</button>
+              <button type="button" data-count="4" aria-pressed="false">4</button>
+              <button type="button" data-count="5" aria-pressed="false">5</button>
+              <button type="button" data-count="6" aria-pressed="false">6</button>
+              <button type="button" data-count="7" aria-pressed="false">7</button>
+              <button type="button" data-count="8" aria-pressed="false">8</button>
+            </div>
+
+            <div class="dice-faces quick-dice-faces" id="quickDiceFaces" aria-live="polite">
+              <span>?</span>
+              <span>?</span>
+            </div>
+          </section>
+
+          <aside class="side-panel log-panel quick-history-panel" aria-label="纯骰子记录">
+            <div class="quick-stat-grid">
+              <article>
+                <span>骰子</span>
+                <strong id="quickDiceCountLabel">2 颗</strong>
+              </article>
+              <article>
+                <span>点数上限</span>
+                <strong id="quickDiceMaxLabel">12 点</strong>
+              </article>
+            </div>
+            <div class="log-list" id="quickDiceLogList" aria-live="polite"></div>
           </aside>
         </div>
       </section>

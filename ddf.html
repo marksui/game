@@ -6,7 +6,7 @@
     <title>Deep♂Dark♂Fantasy | 夜航游戏局</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="fantasy-mode">
+  <body class="fantasy-mode ddf-dare-only">
     <div class="page-texture" aria-hidden="true"></div>
 
     <main class="app-shell">
@@ -18,12 +18,15 @@
             <small>夜航游戏局 · 独立 Deep♂Dark♂Fantasy</small>
           </span>
         </a>
-        <div class="header-content">
+        <button class="nav-toggle" type="button" aria-controls="siteMenu" aria-expanded="false" aria-label="打开页面导航">
+          <span aria-hidden="true"></span>
+        </button>
+        <div class="header-content" id="siteMenu">
           <nav class="quick-nav" aria-label="页面导航">
-            <a href="index.html">普通大厅</a>
-            <a href="#gamePicker">玩法</a>
-            <a href="#bankSection">题库</a>
-            <a href="#rulesSection">边界</a>
+            <a href="index.html#gamePicker">游戏库</a>
+            <a href="bank.html">题库预览</a>
+            <a href="dice.html">纯骰子</a>
+            <a href="ddf.html" aria-current="page">Deep♂Dark♂Fantasy</a>
           </nav>
           <div class="header-meta" aria-label="页面状态">
             <span>Deep♂Dark♂Fantasy</span>
@@ -36,8 +39,33 @@
 
       <section class="setup-panel ddf-panel" id="setupPanel" aria-labelledby="gameTitle">
         <div class="brand-block">
+          <div class="ddf-glyph-field" aria-hidden="true">
+            <span>♂</span>
+            <span>♂</span>
+            <span>♂</span>
+            <span>♂</span>
+            <span>♂</span>
+            <span>♂</span>
+          </div>
+
           <figure class="ddf-hero-poster" aria-label="Deep♂Dark♂Fantasy VHS 主视觉">
-            <img src="assets/ddf-vhs-poster.png" alt="Deep♂Dark♂Fantasy 紫色 VHS 梗图封面" />
+            <span class="ddf-poster-smoke" aria-hidden="true"></span>
+            <span class="ddf-poster-frame">
+              <img
+                class="ddf-poster-slide"
+                src="assets/ddf-slide-strongest.png"
+                alt="最强人类木吉 紫色闪电海报"
+                loading="eager"
+                decoding="async"
+              />
+              <img
+                class="ddf-poster-slide"
+                src="assets/ddf-slide-asswecan.png"
+                alt="ASS WE CAN 紫色地牢海报"
+                loading="eager"
+                decoding="async"
+              />
+            </span>
           </figure>
 
           <div class="ddf-copy">
@@ -46,7 +74,10 @@
               <span>Deep♂Dark</span>
               <span>Fantasy</span>
             </h1>
-            <p class="lede">Deep♂Dark♂Fantasy 兄贵♂哲学。</p>
+            <p class="lede ddf-hero-intro">
+              <strong>兄贵♂ 神之♂救济 哲♂学救赎大冒险列表来啦！</strong>
+              <span>本格的♂ 兄贵♂本篇 哲♂学殿堂 传承之作！以新日暮里の王、森之♂妖精比♂利♂王、Van♂、木吉♂和也等兄贵三巨头 为救世主，通过王♂道征途般的肌肉摔♂角哲学，带你走上哲♂学之路，获得神之♂救济与Deep♂Dark♂Fantasy的灵魂救赎！每条皆为本格的哲♂学之旅，ASS♂WE♂CAN！</span>
+            </p>
           </div>
 
           <div class="ddf-stamps" aria-label="风格标签">
@@ -72,14 +103,14 @@
         <form class="setup-form" id="setupForm">
           <input type="hidden" name="spiceLevel" value="fantasy" />
 
-          <section class="game-picker ddf-only-picker" id="gamePicker" aria-label="Deep♂Dark♂Fantasy 真心话大冒险">
+          <section class="game-picker ddf-only-picker" id="gamePicker" aria-label="Deep♂Dark♂Fantasy 大冒险">
             <button class="game-card is-active" type="button" data-game="truth">
               <span class="game-icon wrestle-icon" aria-hidden="true"></span>
               <span>
                 <strong>Deep♂Dark♂Fantasy</strong>
-                <small>兄贵♂哲学专属真心话大冒险。</small>
+                <small>兄贵♂哲学专属大冒险。</small>
               </span>
-              <b>摔跤♂速攻</b>
+              <b>大冒险♂速攻</b>
             </button>
           </section>
 
@@ -88,7 +119,7 @@
               <legend>玩家人数</legend>
               <div class="segmented" role="radiogroup" aria-label="玩家人数">
                 <label>
-                  <input type="radio" name="playerCount" value="2" checked />
+                  <input type="radio" name="playerCount" value="2" />
                   <span>2 位</span>
                 </label>
                 <label>
@@ -96,64 +127,24 @@
                   <span>3 位</span>
                 </label>
                 <label>
-                  <input type="radio" name="playerCount" value="4" />
+                  <input type="radio" name="playerCount" value="4" checked />
                   <span>4 位</span>
                 </label>
               </div>
             </fieldset>
-
-            <section class="locked-mode" aria-label="当前模式">
-              <span>当前模式</span>
-              <strong>Deep♂Dark♂Fantasy</strong>
-              <p>只玩 Deep♂Dark♂Fantasy。</p>
-            </section>
           </div>
 
           <fieldset class="name-fields" id="nameFields">
             <legend>玩家昵称</legend>
           </fieldset>
 
-          <section class="rules-preview" id="rulesSection" aria-label="Deep♂Dark♂Fantasy 安全边界">
-            <article class="fantasy-rule">
-              <span class="rule-number">01</span>
-              <strong>安全词♂确认</strong>
-              <p>继续 / 减速 / 停止。</p>
-            </article>
-            <article class="fantasy-rule">
-              <span class="rule-number">02</span>
-              <strong>改写♂自由</strong>
-              <p>不舒服就换成兄贵版。</p>
-            </article>
-            <article class="fantasy-rule">
-              <span class="rule-number">03</span>
-              <strong>拒绝♂无罪</strong>
-              <p>换题 / 跳过 / 停止。</p>
-            </article>
-            <article class="fantasy-rule">
-              <span class="rule-number">04</span>
-              <strong>收尾♂礼仪</strong>
-              <p>击掌，喝水，回到现实。</p>
-            </article>
-          </section>
-
           <label class="consent-row">
-            <input type="checkbox" id="consentCheck" required />
+            <input type="checkbox" id="consentCheck" required checked />
             <span>21+，全员同意进入兄贵♂哲学模式；任何题都可停止、换题或跳过。</span>
           </label>
 
           <button class="primary-action start-action" id="startButton" type="submit">开始 Deep♂Dark♂Fantasy</button>
         </form>
-      </section>
-
-      <section class="bank-section" id="bankSection" aria-labelledby="bankTitle">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">兄贵♂题目</p>
-            <h2 id="bankTitle">Deep♂Dark♂Fantasy 预览</h2>
-          </div>
-          <p id="bankSummary">只显示 Deep♂Dark♂Fantasy 题目。</p>
-        </div>
-        <div class="bank-grid" id="questionBank" aria-live="polite"></div>
       </section>
 
       <section class="game-view is-hidden" id="gameView" aria-label="Deep♂Dark♂Fantasy 挑战桌面">
@@ -196,7 +187,7 @@
         </div>
       </section>
 
-      <section class="truth-view is-hidden" id="truthView" aria-label="Deep♂Dark♂Fantasy 真心话大冒险桌面">
+      <section class="truth-view is-hidden" id="truthView" aria-label="Deep♂Dark♂Fantasy 大冒险桌面">
         <header class="top-bar">
           <div>
             <p class="eyebrow">Deep♂Dark♂Fantasy</p>
@@ -213,16 +204,19 @@
             <div class="turn-card truth-turn" id="truthTurnCard">
               <span class="status-label">轮到</span>
               <strong id="truthPlayerName">玩家 1</strong>
-              <p id="truthHint">选择真心话、大冒险或随机题。</p>
+              <p id="truthHint">点击大冒险抽题。</p>
             </div>
             <div class="truth-controls">
-              <button class="primary-action" id="truthButton" type="button">真心话</button>
-              <button class="primary-action action-alt" id="dareButton" type="button">大冒险</button>
-              <button class="secondary-action" id="randomPromptButton" type="button">随机</button>
+              <button class="primary-action action-alt ddf-dare-action" id="dareButton" type="button">大冒险</button>
             </div>
           </aside>
 
           <section class="truth-stage" aria-label="Deep♂Dark♂Fantasy 挑战">
+            <div class="ddf-stage-runes" aria-hidden="true">
+              <span>♂</span>
+              <span>♂</span>
+              <span>♂</span>
+            </div>
             <div class="deck-rail ddf-rail" aria-hidden="true">
               <span></span>
               <span></span>
@@ -230,8 +224,8 @@
             </div>
             <article class="prompt-card" id="promptCard">
               <p class="eyebrow" id="promptType">等待题目</p>
-              <h3 id="promptTitle">选择 Deep♂Dark♂Fantasy</h3>
-              <p id="promptText">Deep♂Dark♂Fantasy 题目会显示在这里。完成后加 1 分，跳过会记录一次。</p>
+              <h3 id="promptTitle">选择大冒险</h3>
+              <p id="promptText">Deep♂Dark♂Fantasy 大冒险题目会显示在这里。完成后加 1 分，跳过会记录一次。</p>
             </article>
             <div class="prompt-actions">
               <button class="secondary-action" id="skipPromptButton" type="button" disabled>跳过</button>
@@ -244,6 +238,17 @@
             <div class="log-list" id="truthLogList" aria-live="polite"></div>
           </aside>
         </div>
+      </section>
+
+      <section class="bank-section ddf-bank-section" id="ddfDareBankSection" aria-labelledby="ddfDareBankTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Deep♂Dark♂Fantasy</p>
+            <h2 id="ddfDareBankTitle">大冒险词库</h2>
+          </div>
+          <p id="ddfDareBankSummary">显示 Deep♂Dark♂Fantasy 大冒险词条。</p>
+        </div>
+        <div class="bank-grid ddf-bank-grid" id="ddfDareBank" aria-live="polite"></div>
       </section>
     </main>
 

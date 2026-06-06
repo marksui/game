@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>纯骰子 · 夜航游戏局</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="quick-dice-page" data-default-game="quickDice">
+    <div class="page-texture" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <header class="site-header">
+        <a class="brand-mark" href="index.html" aria-label="回到游戏库">
+          <span class="brand-sigil">N</span>
+          <span>
+            <strong>夜航游戏局</strong>
+            <small>纯骰子快掷</small>
+          </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-controls="siteMenu" aria-expanded="false" aria-label="打开页面导航">
+          <span aria-hidden="true"></span>
+        </button>
+        <div class="header-content" id="siteMenu">
+          <nav class="quick-nav" aria-label="页面导航">
+            <a href="index.html#gamePicker">游戏库</a>
+            <a href="bank.html">题库预览</a>
+            <a href="dice.html" aria-current="page">纯骰子</a>
+            <a href="ddf.html">Deep♂Dark♂Fantasy</a>
+          </nav>
+          <div class="header-meta" aria-label="站点状态">
+            <span>无玩家设置</span>
+            <span>1-8 颗</span>
+            <span>连续投掷</span>
+            <span>低功耗</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="quick-dice-view is-hidden" id="quickDiceView" aria-label="纯骰子桌面">
+        <header class="top-bar">
+          <div>
+            <p class="eyebrow">Quick Dice</p>
+            <h2>纯骰子</h2>
+          </div>
+          <div class="top-actions">
+            <a class="secondary-action" href="index.html#gamePicker">游戏库</a>
+            <button class="secondary-action" id="quickDiceResetButton" type="button">清空记录</button>
+          </div>
+        </header>
+
+        <div class="quick-dice-layout">
+          <section class="quick-dice-stage" aria-label="纯骰子结果">
+            <div class="quick-dice-copy">
+              <p class="eyebrow">No Players</p>
+              <h3>选几颗，马上投</h3>
+              <p>这个页面只负责骰子点数，不轮换玩家、不记分。适合临时决定顺序、惩罚数值或任何需要快掷的场景。</p>
+            </div>
+
+            <div class="quick-dice-dashboard">
+              <div class="quick-total-card" aria-live="polite">
+                <span>总点数</span>
+                <strong id="quickDiceTotal">?</strong>
+                <small id="quickDiceFormula">选择骰子数量后投掷</small>
+              </div>
+              <button class="dice-button big-roll quick-roll-button" id="quickDiceRollButton" type="button">
+                <span id="quickDiceButtonTotal">?</span>
+                <small>投骰子</small>
+              </button>
+            </div>
+
+            <div class="quick-dice-counts" id="quickDiceCounts" role="radiogroup" aria-label="快速选择骰子数量">
+              <button type="button" data-count="1" aria-pressed="false">1</button>
+              <button type="button" data-count="2" aria-pressed="true">2</button>
+              <button type="button" data-count="3" aria-pressed="false">3</button>
+              <button type="button" data-count="4" aria-pressed="false">4</button>
+              <button type="button" data-count="5" aria-pressed="false">5</button>
+              <button type="button" data-count="6" aria-pressed="false">6</button>
+              <button type="button" data-count="7" aria-pressed="false">7</button>
+              <button type="button" data-count="8" aria-pressed="false">8</button>
+            </div>
+
+            <div class="dice-faces quick-dice-faces" id="quickDiceFaces" aria-live="polite">
+              <span>?</span>
+              <span>?</span>
+            </div>
+          </section>
+
+          <aside class="side-panel log-panel quick-history-panel" aria-label="纯骰子记录">
+            <div class="quick-stat-grid">
+              <article>
+                <span>骰子</span>
+                <strong id="quickDiceCountLabel">2 颗</strong>
+              </article>
+              <article>
+                <span>点数上限</span>
+                <strong id="quickDiceMaxLabel">12 点</strong>
+              </article>
+            </div>
+            <div class="log-list" id="quickDiceLogList" aria-live="polite"></div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>题库预览 · 夜航游戏局</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bank-page">
+    <div class="page-texture" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <header class="site-header">
+        <a class="brand-mark" href="index.html" aria-label="回到游戏库">
+          <span class="brand-sigil">N</span>
+          <span>
+            <strong>夜航游戏局</strong>
+            <small>题库预览</small>
+          </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-controls="siteMenu" aria-expanded="false" aria-label="打开页面导航">
+          <span aria-hidden="true"></span>
+        </button>
+        <div class="header-content" id="siteMenu">
+          <nav class="quick-nav" aria-label="页面导航">
+            <a href="index.html#gamePicker">游戏库</a>
+            <a href="bank.html" aria-current="page">题库预览</a>
+            <a href="dice.html">纯骰子</a>
+            <a href="ddf.html">Deep♂Dark♂Fantasy</a>
+          </nav>
+          <div class="header-meta" aria-label="站点状态">
+            <span>独立页面</span>
+            <span><b id="heroQuestionCount">0</b> 个题目</span>
+            <span>3 档尺度</span>
+            <span>可检查</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="bank-page-hero" aria-labelledby="bankPageTitle">
+        <div>
+          <p class="eyebrow">Question Bank</p>
+          <h1 id="bankPageTitle">题库预览</h1>
+          <p class="lede">单独检查每个玩法的题目范围、分类和尺度。这里不启动游戏，只展示实际会抽取的内容。</p>
+        </div>
+      </section>
+
+      <form class="bank-filter-form" id="setupForm" aria-label="题库筛选">
+        <section class="game-picker bank-picker" id="gamePicker" aria-label="选择题库">
+          <button class="game-card is-active" type="button" data-game="flight">
+            <span class="game-icon flight-icon" aria-hidden="true"></span>
+            <span>
+              <strong>夜航飞行棋</strong>
+              <small>飞行棋格子任务和事件卡。</small>
+            </span>
+            <b>棋盘任务</b>
+          </button>
+          <button class="game-card" type="button" data-game="truth">
+            <span class="game-icon card-icon" aria-hidden="true"></span>
+            <span>
+              <strong>真心话大冒险</strong>
+              <small>真心话、大冒险和随机抽卡。</small>
+            </span>
+            <b>卡牌题库</b>
+          </button>
+          <button class="game-card" type="button" data-game="dice">
+            <span class="game-icon dice-icon" aria-hidden="true"></span>
+            <span>
+              <strong>骰子升温</strong>
+              <small>点数决定任务强度和时长。</small>
+            </span>
+            <b>骰子任务</b>
+          </button>
+          <button class="game-card quick-dice-card" type="button" data-game="quickDice">
+            <span class="game-icon pure-dice-icon" aria-hidden="true"></span>
+            <span>
+              <strong>纯骰子</strong>
+              <small>快掷页面说明和状态。</small>
+            </span>
+            <b>页眉入口</b>
+          </button>
+          <button class="game-card" type="button" data-game="sync">
+            <span class="game-icon sync-icon" aria-hidden="true"></span>
+            <span>
+              <strong>默契挑战</strong>
+              <small>同步回答和关系互动。</small>
+            </span>
+            <b>默契题库</b>
+          </button>
+          <button class="game-card" type="button" data-game="wheel">
+            <span class="game-icon wheel-icon" aria-hidden="true"></span>
+            <span>
+              <strong>心动轮盘</strong>
+              <small>轮盘抽取的互动题目。</small>
+            </span>
+            <b>轮盘题库</b>
+          </button>
+          <button class="game-card" type="button" data-game="box">
+            <span class="game-icon box-icon" aria-hidden="true"></span>
+            <span>
+              <strong>任务盲盒</strong>
+              <small>三选一盲盒题目。</small>
+            </span>
+            <b>盲盒题库</b>
+          </button>
+          <button class="game-card" type="button" data-game="story">
+            <span class="game-icon story-icon" aria-hidden="true"></span>
+            <span>
+              <strong>角色剧本</strong>
+              <small>情侣小剧本和角色任务。</small>
+            </span>
+            <b>剧本题库</b>
+          </button>
+        </section>
+
+        <section class="bank-filter-panel">
+          <fieldset>
+            <legend>任务尺度</legend>
+            <div class="segmented" role="radiogroup" aria-label="任务尺度">
+              <label>
+                <input type="radio" name="spiceLevel" value="soft" checked />
+                <span>暧昧</span>
+              </label>
+              <label>
+                <input type="radio" name="spiceLevel" value="warm" />
+                <span>升温</span>
+              </label>
+              <label>
+                <input type="radio" name="spiceLevel" value="hot" />
+                <span>夜深</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="dice-options is-hidden" id="diceOptions">
+            <legend>骰子数量</legend>
+            <div class="segmented" role="radiogroup" aria-label="骰子数量">
+              <label>
+                <input type="radio" name="diceCount" value="1" />
+                <span>1 颗</span>
+              </label>
+              <label>
+                <input type="radio" name="diceCount" value="2" checked />
+                <span>2 颗</span>
+              </label>
+              <label>
+                <input type="radio" name="diceCount" value="3" />
+                <span>3 颗</span>
+              </label>
+              <label>
+                <input type="radio" name="diceCount" value="4" />
+                <span>4 颗</span>
+              </label>
+              <label>
+                <input type="radio" name="diceCount" value="5" />
+                <span>5 颗</span>
+              </label>
+              <label>
+                <input type="radio" name="diceCount" value="6" />
+                <span>6 颗</span>
+              </label>
+              <label>
+                <input type="radio" name="diceCount" value="7" />
+                <span>7 颗</span>
+              </label>
+              <label>
+                <input type="radio" name="diceCount" value="8" />
+                <span>8 颗</span>
+              </label>
+            </div>
+          </fieldset>
+        </section>
+      </form>
+
+      <section class="bank-section standalone-bank" id="bankSection" aria-labelledby="bankTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Preview</p>
+            <h2 id="bankTitle">当前题库</h2>
+          </div>
+          <p id="bankSummary">选择玩法和尺度后，这里会显示实际抽取范围。</p>
+        </div>
+        <div class="bank-grid" id="questionBank" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
