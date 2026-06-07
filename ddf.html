@@ -109,7 +109,7 @@
 
           <div class="hero-metrics" aria-label="Deep♂Dark♂Fantasy 玩法概览">
             <div>
-              <strong>1</strong>
+              <strong>2</strong>
               <span>种玩法</span>
             </div>
             <div>
@@ -117,8 +117,8 @@
               <span>个题目</span>
             </div>
             <div>
-              <strong>1</strong>
-              <span>专属模式</span>
+              <strong>4</strong>
+              <span>最多玩家</span>
             </div>
           </div>
         </div>
@@ -126,14 +126,22 @@
         <form class="setup-form" id="setupForm">
           <input type="hidden" name="spiceLevel" value="fantasy" />
 
-          <section class="game-picker ddf-only-picker" id="gamePicker" aria-label="Deep♂Dark♂Fantasy 大冒险">
+          <section class="game-picker ddf-only-picker" id="gamePicker" aria-label="Deep♂Dark♂Fantasy 玩法">
             <button class="game-card is-active" type="button" data-game="truth">
               <span class="game-icon wrestle-icon" aria-hidden="true"></span>
               <span>
-                <strong>Deep♂Dark♂Fantasy</strong>
-                <small>兄贵♂哲学专属大冒险。</small>
+                <strong>DDF 大冒险</strong>
+                <small>兄贵♂哲学专属挑战，完成得分。</small>
               </span>
               <b>大冒险♂速攻</b>
+            </button>
+            <button class="game-card" type="button" data-game="flight">
+              <span class="game-icon flight-icon" aria-hidden="true"></span>
+              <span>
+                <strong>DDF 飞行棋</strong>
+                <small>最多 4 人掷骰起飞，事件格抽挑战。</small>
+              </span>
+              <b>飞行棋♂对局</b>
             </button>
           </section>
 
@@ -185,6 +193,7 @@
         <div class="game-layout">
           <aside class="side-panel" aria-label="玩家状态">
             <div class="turn-card" id="turnCard">
+              <span class="turn-avatar" id="flightTurnAvatar" aria-hidden="true"></span>
               <span class="status-label">当前玩家</span>
               <strong id="currentPlayerName">玩家 1</strong>
               <p id="turnHint">点击掷骰开始这一回合。</p>
@@ -225,6 +234,7 @@
         <div class="truth-layout">
           <aside class="side-panel" aria-label="当前玩家">
             <div class="turn-card truth-turn" id="truthTurnCard">
+              <span class="turn-avatar" id="truthTurnAvatar" aria-hidden="true"></span>
               <span class="status-label">轮到</span>
               <strong id="truthPlayerName">玩家 1</strong>
               <p id="truthHint">点击大冒险抽题。</p>

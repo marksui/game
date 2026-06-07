@@ -635,6 +635,7 @@ button:disabled {
 .ddf-dare-only .bank-section,
 .ddf-dare-only .top-bar,
 .ddf-dare-only .side-panel,
+.ddf-dare-only .board-wrap,
 .ddf-dare-only .truth-stage,
 .ddf-dare-only .task-dialog form {
   border-color: rgba(107, 33, 168, 0.36);
@@ -1357,7 +1358,7 @@ h3 {
 }
 
 .ddf-only-picker {
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .ddf-panel .game-card {
@@ -1385,11 +1386,73 @@ h3 {
 }
 
 .ddf-panel .name-fields {
+  grid-template-columns: 1fr;
   gap: 10px;
 }
 
 .ddf-panel .name-input {
   gap: 5px;
+}
+
+.ddf-panel .name-input.has-avatar {
+  grid-template-columns: 44px minmax(0, 1fr);
+  align-items: center;
+}
+
+.ddf-panel .name-input.has-avatar .name-avatar {
+  grid-row: 1 / span 2;
+}
+
+.name-avatar,
+.player-avatar,
+.turn-avatar {
+  position: relative;
+  display: grid;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--player-color, var(--gold)) 70%, white);
+  background:
+    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.24), transparent 34%),
+    #100915;
+  overflow: hidden;
+}
+
+.name-avatar {
+  width: 44px;
+  border-radius: 12px;
+}
+
+.player-avatar {
+  width: 44px;
+  border-radius: 14px;
+  box-shadow: 0 0 0 0 rgba(225, 173, 79, 0);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.turn-avatar {
+  width: clamp(72px, 8vw, 104px);
+  border-radius: 18px;
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--player-color, var(--gold)) 18%, transparent),
+    0 16px 34px rgba(0, 0, 0, 0.34),
+    0 0 34px color-mix(in srgb, var(--player-color, var(--gold)) 28%, transparent);
+}
+
+.turn-avatar.is-empty {
+  display: none;
+}
+
+.name-avatar img,
+.player-avatar img,
+.turn-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.12) contrast(1.08);
+  transform: translateZ(0) scale(1.02);
 }
 
 .ddf-panel .name-input span {
@@ -1422,6 +1485,90 @@ h3 {
 .ddf-panel .start-action {
   min-height: 48px;
   font-size: 0.98rem;
+}
+
+.ddf-dare-only .turn-card {
+  align-items: start;
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.ddf-dare-only .truth-turn,
+.ddf-dare-only #turnCard {
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 14px;
+}
+
+.ddf-dare-only .truth-turn .turn-avatar,
+.ddf-dare-only #turnCard .turn-avatar {
+  grid-row: 1 / span 3;
+}
+
+.ddf-dare-only .truth-turn .status-label,
+.ddf-dare-only #turnCard .status-label,
+.ddf-dare-only .truth-turn strong,
+.ddf-dare-only #turnCard strong,
+.ddf-dare-only .truth-turn p,
+.ddf-dare-only #turnCard p {
+  min-width: 0;
+}
+
+.ddf-dare-only .truth-layout {
+  grid-template-columns: minmax(260px, 0.72fr) minmax(440px, 1.34fr) minmax(260px, 0.82fr);
+}
+
+.ddf-dare-only .truth-stage {
+  min-height: 620px;
+}
+
+.ddf-dare-only .truth-stage,
+.ddf-dare-only .prompt-card,
+.ddf-dare-only .prompt-actions,
+.ddf-dare-only .ddf-dare-action,
+.ddf-dare-only .player-row,
+.ddf-dare-only .move-button,
+.ddf-dare-only .dice-button {
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.ddf-dare-only .prompt-card.is-dealt {
+  transform: translateY(-2px) scale(1.01);
+}
+
+.ddf-dare-only .board-wrap {
+  overflow: hidden;
+}
+
+.ddf-dare-only .board {
+  border-color: rgba(168, 85, 247, 0.34);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(88, 28, 135, 0.18), transparent 38%),
+    #08050a;
+  box-shadow:
+    inset 0 0 36px rgba(0, 0, 0, 0.5),
+    0 0 38px rgba(147, 51, 234, 0.1);
+}
+
+.ddf-dare-only .cell {
+  border-color: rgba(68, 54, 78, 0.68);
+}
+
+.ddf-dare-only .cell.finish {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(225, 173, 79, 0.22), transparent 58%),
+    #27111e;
+}
+
+.ddf-dare-only .move-button:hover:not(:disabled),
+.ddf-dare-only .ddf-dare-action:hover:not(:disabled) {
+  transform: translateY(-2px);
 }
 
 .game-card {
@@ -3579,6 +3726,26 @@ body.quick-dice-page .page-texture {
   border-radius: 12px;
   background: var(--surface-strong);
   padding: 8px 10px;
+}
+
+.player-row.has-avatar {
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  min-height: 58px;
+}
+
+.ddf-dare-only .player-row.is-current {
+  border-color: color-mix(in srgb, var(--gold) 72%, white);
+  box-shadow:
+    inset 0 0 0 1px rgba(225, 173, 79, 0.14),
+    0 0 0 3px rgba(225, 173, 79, 0.08);
+}
+
+.ddf-dare-only .player-row.is-current .player-avatar {
+  border-color: color-mix(in srgb, var(--gold) 82%, white);
+  box-shadow:
+    0 0 0 3px rgba(225, 173, 79, 0.16),
+    0 0 28px rgba(255, 0, 180, 0.22);
+  transform: translateY(-1px) scale(1.04);
 }
 
 .player-color {

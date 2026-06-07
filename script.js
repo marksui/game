@@ -10,9 +10,17 @@ const playerPresets = [
   { name: "Player 4", color: "#8d78ea", start: 42, baseClass: "base-3" },
 ];
 
+const ddfAvatarPresets = [
+  { name: "Van♂", avatar: "assets/ddf-vhs-poster.png" },
+  { name: "比♂利♂王", avatar: "assets/ddf-slide-asswecan.png" },
+  { name: "最强♂人类木吉", avatar: "assets/ddf-slide-strongest.png" },
+  { name: "裂♂天♂使魔男", avatar: "assets/ddf-slide-punk.png" },
+];
+
 const ddfPlayerPresets = playerPresets.map((preset, index) => ({
   ...preset,
-  name: ["Van♂", "比♂利♂王", "裂♂天♂使魔男", "最强♂人类木吉"][index] || preset.name,
+  name: ddfAvatarPresets[index]?.name || preset.name,
+  avatar: ddfAvatarPresets[index]?.avatar || "",
 }));
 
 const flightDecks = {
@@ -756,6 +764,7 @@ const gameView = document.querySelector("#gameView");
 const board = document.querySelector("#board");
 const roundTitle = document.querySelector("#roundTitle");
 const currentPlayerName = document.querySelector("#currentPlayerName");
+const flightTurnAvatar = document.querySelector("#flightTurnAvatar");
 const turnHint = document.querySelector("#turnHint");
 const turnCard = document.querySelector("#turnCard");
 const diceValue = document.querySelector("#diceValue");
@@ -770,6 +779,7 @@ const flightHomeButton = document.querySelector("#flightHomeButton");
 const truthView = document.querySelector("#truthView");
 const truthRoundTitle = document.querySelector("#truthRoundTitle");
 const truthTurnCard = document.querySelector("#truthTurnCard");
+const truthTurnAvatar = document.querySelector("#truthTurnAvatar");
 const truthPlayerName = document.querySelector("#truthPlayerName");
 const truthHint = document.querySelector("#truthHint");
 const truthButton = document.querySelector("#truthButton");
@@ -1128,7 +1138,7 @@ function renderDdfDareBank() {
 
 function setSelectedGame(game) {
   const fantasy = getSelectedSpiceLevel() === "fantasy";
-  selectedGame = fantasy ? "truth" : game;
+  selectedGame = fantasy ? (game === "flight" ? "flight" : "truth") : game;
   const isDiceMode = selectedGame === "dice" || selectedGame === "quickDice";
   diceOptions?.classList.toggle("is-hidden", !isDiceMode);
   setupForm?.classList.toggle("is-quick-dice", selectedGame === "quickDice");
@@ -1139,7 +1149,9 @@ function setSelectedGame(game) {
   });
   if (startButton) {
     startButton.textContent = fantasy
-      ? "开始 Deep♂Dark♂Fantasy"
+      ? selectedGame === "flight"
+        ? "开始 DDF 飞行棋"
+        : "开始 DDF 大冒险"
       : {
           flight: "开始夜航飞行棋",
           truth: "开始真心话大冒险",
@@ -1164,10 +1176,14 @@ function syncNameFields() {
 
   presets.slice(0, count).forEach((preset, index) => {
     const label = document.createElement("label");
-    label.className = "name-input";
+    label.className = `name-input${preset.avatar ? " has-avatar" : ""}`;
+    const avatarMarkup = preset.avatar
+      ? `<span class="name-avatar" aria-hidden="true"><img src="${escapeHtml(preset.avatar)}" alt="" /></span>`
+      : "";
     label.innerHTML = `
+      ${avatarMarkup}
       <span>玩家 ${index + 1}</span>
-      <input name="playerName${index}" maxlength="12" value="${existing.get(`playerName${index}`) || preset.name}" />
+      <input name="playerName${index}" maxlength="12" value="${escapeHtml(existing.get(`playerName${index}`) || preset.name)}" />
     `;
     nameFields.append(label);
   });
@@ -1185,6 +1201,7 @@ function buildPlayers(includePieces) {
       color: preset.color,
       start: preset.start,
       baseClass: preset.baseClass,
+      avatar: preset.avatar || "",
       skipTokens: 0,
       score: 0,
       skips: 0,
@@ -1201,7 +1218,7 @@ function buildPlayers(includePieces) {
 
 function startGame(event) {
   event.preventDefault();
-  if (isFantasyPage || selectedGame === "truth") {
+  if (selectedGame === "truth") {
     startTruthGame();
     return;
   }
@@ -1280,7 +1297,11 @@ function startFlightGame() {
   syncView?.classList.add("is-hidden");
   miniView?.classList.add("is-hidden");
   gameView?.classList.remove("is-hidden");
-  addLog("游戏开始。掷到 6 可以起飞，四架飞机全部进入终点即获胜。");
+  addLog(
+    state.spiceLevel === "fantasy"
+      ? "DDF 飞行棋开始。掷到 6 可以起飞，事件格抽兄贵♂挑战。"
+      : "游戏开始。掷到 6 可以起飞，四架飞机全部进入终点即获胜。",
+  );
   buildBoard();
   renderFlight();
 }
@@ -2034,6 +2055,7 @@ function renderFlightSidebar() {
   const player = getCurrentPlayer();
   roundTitle.textContent = `第 ${state.round} 轮`;
   currentPlayerName.textContent = player?.name || "游戏结束";
+  renderTurnAvatar(flightTurnAvatar, player);
   turnCard.style.borderLeftColor = player?.color || "var(--gold)";
   turnHint.textContent = getTurnHint();
   diceValue.textContent = state.lastRoll || "?";
@@ -2252,6 +2274,7 @@ function renderTruth() {
   const hasCurrentPrompt = Boolean(state.currentPrompt);
   truthRoundTitle.textContent = `第 ${state.round} 轮`;
   truthPlayerName.textContent = player?.name || "游戏结束";
+  renderTurnAvatar(truthTurnAvatar, player);
   truthTurnCard.style.borderLeftColor = player?.color || "var(--teal)";
   truthHint.textContent =
     state.spiceLevel === "fantasy"
@@ -2337,17 +2360,39 @@ function advancePlayer() {
   if (state.currentPlayerIndex === 0) state.round += 1;
 }
 
+function renderTurnAvatar(target, player) {
+  if (!target) return;
+  target.innerHTML = "";
+  target.style.setProperty("--player-color", player?.color || "var(--gold)");
+  if (!player?.avatar) {
+    target.classList.add("is-empty");
+    return;
+  }
+  target.classList.remove("is-empty");
+  const image = document.createElement("img");
+  image.src = player.avatar;
+  image.alt = "";
+  target.append(image);
+}
+
 function renderPlayers(target, getMeta) {
   if (!target) return;
   target.innerHTML = "";
   state.players.forEach((item, index) => {
     const meta = getMeta(item, index);
+    const isCurrent = index === state.currentPlayerIndex && state.winnerId === null;
     const row = document.createElement("div");
     row.className = "player-row";
+    row.classList.toggle("is-current", isCurrent);
+    row.classList.toggle("has-avatar", Boolean(item.avatar));
+    if (isCurrent) row.setAttribute("aria-current", "true");
+    const marker = item.avatar
+      ? `<span class="player-avatar" style="--player-color: ${escapeHtml(item.color)}" aria-hidden="true"><img src="${escapeHtml(item.avatar)}" alt="" /></span>`
+      : `<span class="player-color" style="--player-color: ${escapeHtml(item.color)}"></span>`;
     row.innerHTML = `
-      <span class="player-color" style="--player-color: ${item.color}"></span>
-      <span class="player-name">${meta.name}</span>
-      <span class="player-score">${meta.score}</span>
+      ${marker}
+      <span class="player-name">${escapeHtml(meta.name)}</span>
+      <span class="player-score">${escapeHtml(meta.score)}</span>
     `;
     target.append(row);
   });
