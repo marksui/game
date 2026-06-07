@@ -386,6 +386,10 @@ button:disabled {
   pointer-events: none;
 }
 
+body.is-playing .site-header {
+  display: none;
+}
+
 .brand-mark,
 .quick-nav a {
   color: var(--ink);
@@ -1368,6 +1372,105 @@ h3 {
   padding: 12px;
 }
 
+.ddf-panel .game-icon {
+  width: 52px;
+  border-radius: 16px;
+  isolation: isolate;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -18px 28px rgba(0, 0, 0, 0.26),
+    0 14px 34px rgba(0, 0, 0, 0.28);
+}
+
+.ddf-panel .wrestle-icon {
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.26), transparent 25%),
+    radial-gradient(circle at 72% 82%, rgba(225, 173, 79, 0.26), transparent 34%),
+    linear-gradient(145deg, #5b164f, #1b0b24 66%, #08040d);
+  color: #ffd46b;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -18px 28px rgba(0, 0, 0, 0.28),
+    0 0 28px rgba(255, 0, 180, 0.2);
+}
+
+.ddf-panel .wrestle-icon::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 25px;
+  height: 32px;
+  border: 2px solid rgba(255, 212, 107, 0.88);
+  border-radius: 7px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.16), transparent 42%),
+    rgba(66, 18, 72, 0.92);
+  box-shadow:
+    8px 5px 0 -2px rgba(255, 0, 180, 0.34),
+    0 0 18px rgba(255, 212, 107, 0.28);
+  transform: rotate(-13deg);
+}
+
+.ddf-panel .wrestle-icon::after {
+  content: "♂";
+  position: absolute;
+  z-index: 2;
+  right: 8px;
+  bottom: 4px;
+  border: 0;
+  color: #ff8ee3;
+  font-size: 1.35rem;
+  font-weight: 1000;
+  line-height: 1;
+  text-shadow:
+    0 0 10px rgba(255, 0, 180, 0.68),
+    0 0 18px rgba(255, 212, 107, 0.28);
+  transform: rotate(10deg);
+}
+
+.ddf-panel .flight-icon {
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.26), transparent 24%),
+    linear-gradient(145deg, #4a3518, #1b1018 62%, #07040a);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -18px 28px rgba(0, 0, 0, 0.28),
+    0 0 26px rgba(225, 173, 79, 0.18);
+}
+
+.ddf-panel .flight-icon::before {
+  content: "";
+  width: 31px;
+  height: 31px;
+  border: 2px solid rgba(255, 212, 107, 0.88);
+  border-radius: 9px;
+  background:
+    radial-gradient(circle at 26% 26%, #ffd46b 0 3px, transparent 3.4px),
+    radial-gradient(circle at 74% 26%, #ffd46b 0 3px, transparent 3.4px),
+    radial-gradient(circle at 50% 50%, #ff8ee3 0 3px, transparent 3.4px),
+    radial-gradient(circle at 26% 74%, #ffd46b 0 3px, transparent 3.4px),
+    radial-gradient(circle at 74% 74%, #ffd46b 0 3px, transparent 3.4px),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.16), transparent 40%),
+    #2b1424;
+  box-shadow:
+    0 0 18px rgba(225, 173, 79, 0.24),
+    inset 0 0 14px rgba(0, 0, 0, 0.24);
+  transform: rotate(12deg);
+}
+
+.ddf-panel .flight-icon::after {
+  content: "";
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  width: 14px;
+  height: 14px;
+  border-top: 3px solid #ff8ee3;
+  border-right: 3px solid #ff8ee3;
+  transform: rotate(45deg);
+  filter: drop-shadow(0 0 8px rgba(255, 0, 180, 0.62));
+}
+
 .ddf-panel .game-card b {
   align-self: end;
 }
@@ -1543,27 +1646,330 @@ h3 {
 }
 
 .ddf-dare-only .board-wrap {
+  position: relative;
+  isolation: isolate;
   overflow: hidden;
+  padding: clamp(12px, 1.4vw, 18px);
+  border: 1px solid rgba(255, 0, 180, 0.18);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 52% 46%, rgba(255, 0, 180, 0.13), transparent 34%),
+    radial-gradient(circle at 18% 18%, rgba(126, 34, 206, 0.14), transparent 32%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.024) 0 1px, transparent 1px 38px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 42px),
+    linear-gradient(180deg, rgba(18, 7, 24, 0.98), rgba(4, 2, 7, 0.98));
+  box-shadow:
+    inset 0 0 34px rgba(0, 0, 0, 0.72),
+    0 24px 68px rgba(0, 0, 0, 0.42),
+    0 0 38px rgba(255, 0, 180, 0.1);
+}
+
+.ddf-dare-only .board-wrap::before,
+.ddf-dare-only .board-wrap::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.ddf-dare-only .board-wrap::before {
+  inset: 6px;
+  z-index: 0;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 28% 26%, rgba(198, 85, 255, 0.18), transparent 24%),
+    radial-gradient(circle at 72% 78%, rgba(255, 0, 180, 0.14), transparent 30%),
+    repeating-linear-gradient(132deg, transparent 0 26px, rgba(255, 255, 255, 0.035) 26px 28px, transparent 28px 56px);
+  filter: blur(0.2px);
+  opacity: 0.72;
+}
+
+.ddf-dare-only .board-wrap::after {
+  content: "♂";
+  right: clamp(16px, 3vw, 30px);
+  bottom: clamp(8px, 2vw, 22px);
+  z-index: 0;
+  color: rgba(255, 0, 180, 0.12);
+  font-size: clamp(4rem, 12vw, 9rem);
+  font-weight: 1000;
+  line-height: 1;
+  text-shadow:
+    0 0 28px rgba(255, 0, 180, 0.24),
+    0 0 60px rgba(126, 34, 206, 0.18);
+  transform: rotate(-14deg);
+  animation: ddfBoardGlyphPulse 5.8s ease-in-out infinite;
 }
 
 .ddf-dare-only .board {
   border-color: rgba(168, 85, 247, 0.34);
+  z-index: 1;
   background:
-    radial-gradient(circle at 50% 50%, rgba(88, 28, 135, 0.18), transparent 38%),
-    #08050a;
+    radial-gradient(circle at 50% 50%, rgba(225, 173, 79, 0.13), transparent 16%),
+    radial-gradient(circle at 50% 50%, rgba(88, 28, 135, 0.22), transparent 39%),
+    repeating-linear-gradient(90deg, rgba(255, 248, 239, 0.02) 0 1px, transparent 1px 9.09%),
+    repeating-linear-gradient(0deg, rgba(255, 248, 239, 0.018) 0 1px, transparent 1px 9.09%),
+    linear-gradient(135deg, rgba(31, 12, 40, 0.96), rgba(7, 3, 11, 0.98));
   box-shadow:
-    inset 0 0 36px rgba(0, 0, 0, 0.5),
-    0 0 38px rgba(147, 51, 234, 0.1);
+    inset 0 0 0 1px rgba(255, 0, 180, 0.12),
+    inset 0 0 44px rgba(0, 0, 0, 0.72),
+    0 0 0 1px rgba(225, 173, 79, 0.12),
+    0 0 48px rgba(147, 51, 234, 0.16);
 }
 
 .ddf-dare-only .cell {
   border-color: rgba(68, 54, 78, 0.68);
+  background:
+    linear-gradient(135deg, rgba(68, 52, 82, 0.72), rgba(22, 11, 28, 0.84)),
+    var(--cell);
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.035),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.28);
+}
+
+.ddf-dare-only .cell.safe {
+  background:
+    radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--cell-mark, var(--gold)) 46%, transparent), transparent 48%),
+    linear-gradient(135deg, rgba(90, 66, 106, 0.78), rgba(28, 14, 35, 0.94));
+}
+
+.ddf-dare-only .cell.start::after {
+  width: 42%;
+  background:
+    radial-gradient(circle at 36% 34%, #fff0b2, transparent 18%),
+    radial-gradient(circle at 50% 55%, var(--cell-mark, var(--gold)), rgba(255, 0, 180, 0.4) 68%, transparent 70%);
+  box-shadow:
+    0 0 10px color-mix(in srgb, var(--cell-mark, var(--gold)) 60%, transparent),
+    0 0 22px rgba(255, 0, 180, 0.18);
+}
+
+.ddf-dare-only .cell.event::after {
+  content: "♂";
+  display: grid;
+  width: 74%;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--cell-mark, var(--gold)) 58%, rgba(255, 255, 255, 0.14));
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.36), transparent 22%),
+    radial-gradient(circle at 52% 54%, color-mix(in srgb, var(--cell-mark, var(--gold)) 54%, #120516), rgba(8, 3, 11, 0.92) 70%);
+  color: #fff5df;
+  font-size: clamp(0.52rem, 1.05vw, 0.82rem);
+  font-weight: 1000;
+  line-height: 1;
+  text-shadow:
+    0 0 8px color-mix(in srgb, var(--cell-mark, var(--gold)) 80%, transparent),
+    0 0 18px rgba(255, 0, 180, 0.32);
+  box-shadow:
+    inset 0 0 10px rgba(255, 255, 255, 0.08),
+    0 0 12px color-mix(in srgb, var(--cell-mark, var(--gold)) 48%, transparent),
+    0 0 24px rgba(255, 0, 180, 0.16);
+}
+
+.ddf-dare-only .cell.runway {
+  background:
+    linear-gradient(90deg, rgba(255, 0, 180, 0.1), transparent 20% 80%, rgba(225, 173, 79, 0.08)),
+    repeating-linear-gradient(90deg, transparent 0 12px, rgba(255, 255, 255, 0.045) 12px 13px),
+    rgba(48, 37, 58, 0.9);
+  box-shadow:
+    inset 0 0 18px rgba(255, 0, 180, 0.08),
+    inset 0 0 0 1px rgba(225, 173, 79, 0.05);
 }
 
 .ddf-dare-only .cell.finish {
+  position: relative;
+  overflow: hidden;
   background:
-    radial-gradient(circle at 50% 50%, rgba(225, 173, 79, 0.22), transparent 58%),
-    #27111e;
+    radial-gradient(circle at 50% 45%, rgba(255, 223, 133, 0.2), transparent 24%),
+    radial-gradient(circle at 50% 50%, rgba(255, 0, 180, 0.18), transparent 58%),
+    linear-gradient(135deg, rgba(82, 31, 70, 0.98), rgba(19, 8, 18, 0.98));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 0, 180, 0.2),
+    inset 0 0 36px rgba(0, 0, 0, 0.58),
+    0 0 28px rgba(225, 173, 79, 0.14);
+}
+
+.ddf-dare-only .cell.finish::before {
+  content: "♂";
+  position: absolute;
+  inset: auto 0 -18% 0;
+  color: rgba(225, 173, 79, 0.16);
+  font-size: clamp(2.2rem, 6vw, 4.8rem);
+  font-weight: 1000;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 0 0 24px rgba(255, 0, 180, 0.25);
+  transform: rotate(-16deg);
+}
+
+.ddf-dare-only .finish-label {
+  position: relative;
+  z-index: 1;
+  color: #ffd46b;
+  letter-spacing: 0;
+  text-shadow:
+    0 0 10px rgba(225, 173, 79, 0.34),
+    0 0 20px rgba(255, 0, 180, 0.2);
+}
+
+.ddf-dare-only .base {
+  overflow: hidden;
+  gap: clamp(4px, 0.7vw, 7px);
+  padding: clamp(24px, 2.3vw, 28px) clamp(8px, 1vw, 12px) clamp(8px, 1vw, 12px);
+  border-color: color-mix(in srgb, var(--base-color) 72%, rgba(255, 255, 255, 0.14));
+  background:
+    radial-gradient(circle at 50% 8%, color-mix(in srgb, var(--base-color) 22%, transparent), transparent 34%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 18px),
+    linear-gradient(145deg, color-mix(in srgb, var(--base-color) 18%, rgba(33, 16, 39, 0.92)), rgba(9, 4, 12, 0.84));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 0 28px rgba(0, 0, 0, 0.48),
+    0 0 18px color-mix(in srgb, var(--base-color) 28%, transparent);
+}
+
+.ddf-dare-only .base::before {
+  z-index: 1;
+  color: #fff7ee;
+  text-shadow:
+    0 0 10px color-mix(in srgb, var(--base-color) 64%, transparent),
+    0 1px 0 rgba(0, 0, 0, 0.8);
+}
+
+.ddf-dare-only .base::after {
+  content: "♂";
+  position: absolute;
+  right: 8px;
+  bottom: -6px;
+  color: color-mix(in srgb, var(--base-color) 30%, transparent);
+  font-size: clamp(2rem, 4.4vw, 3.8rem);
+  font-weight: 1000;
+  line-height: 1;
+  text-shadow: 0 0 16px color-mix(in srgb, var(--base-color) 38%, transparent);
+  transform: rotate(-18deg);
+}
+
+.ddf-dare-only .plane {
+  width: clamp(32px, 4.1vw, 44px);
+  height: clamp(28px, 3.7vw, 38px);
+  border: 0;
+  border-radius: 999px;
+  background:
+    radial-gradient(ellipse at 50% 72%, color-mix(in srgb, var(--plane-color) 42%, transparent), transparent 62%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.16), transparent 34%),
+    rgba(7, 3, 10, 0.72);
+  color: #160915;
+  transform: none;
+  box-shadow:
+    0 7px 12px rgba(0, 0, 0, 0.46),
+    0 0 16px color-mix(in srgb, var(--plane-color) 46%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--plane-color) 46%, rgba(255, 255, 255, 0.16));
+}
+
+.ddf-dare-only .plane::before {
+  content: "";
+  position: absolute;
+  inset: 2px 4px 4px;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.56), transparent 20%),
+    linear-gradient(135deg, color-mix(in srgb, var(--plane-color) 88%, #fff2ba), var(--plane-color) 62%, color-mix(in srgb, var(--plane-color) 74%, #0b0610));
+  clip-path: polygon(
+    50% 0%,
+    61% 30%,
+    94% 42%,
+    98% 58%,
+    61% 55%,
+    61% 76%,
+    78% 88%,
+    78% 100%,
+    50% 88%,
+    22% 100%,
+    22% 88%,
+    39% 76%,
+    39% 55%,
+    2% 58%,
+    6% 42%,
+    39% 30%
+  );
+  filter:
+    drop-shadow(0 2px 0 rgba(0, 0, 0, 0.38))
+    drop-shadow(0 0 8px color-mix(in srgb, var(--plane-color) 58%, transparent));
+}
+
+.ddf-dare-only .plane::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  z-index: 2;
+  width: clamp(5px, 0.7vw, 8px);
+  height: clamp(8px, 1vw, 12px);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 212, 107, 0.52) 54%, rgba(255, 0, 180, 0.22));
+  box-shadow:
+    0 0 8px rgba(255, 248, 239, 0.42),
+    0 0 12px rgba(255, 0, 180, 0.26);
+  transform: translateX(-50%);
+}
+
+.ddf-dare-only .plane span {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  z-index: 3;
+  display: grid;
+  width: clamp(15px, 1.7vw, 19px);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--plane-color) 70%, #fff7ee);
+  border-radius: 999px;
+  background: rgba(8, 3, 11, 0.94);
+  color: #fff7ee;
+  font-size: clamp(0.56rem, 0.86vw, 0.72rem);
+  line-height: 1;
+  transform: none;
+  text-shadow:
+    0 0 8px color-mix(in srgb, var(--plane-color) 70%, transparent),
+    0 1px 0 rgba(0, 0, 0, 0.8);
+  box-shadow:
+    0 0 10px color-mix(in srgb, var(--plane-color) 40%, transparent),
+    0 2px 5px rgba(0, 0, 0, 0.44);
+}
+
+.ddf-dare-only .base .plane {
+  width: clamp(28px, 3.2vw, 36px);
+  height: clamp(25px, 3vw, 32px);
+}
+
+.ddf-dare-only .base .plane span {
+  width: clamp(13px, 1.45vw, 16px);
+  font-size: clamp(0.48rem, 0.76vw, 0.62rem);
+}
+
+.ddf-dare-only .plane.is-movable {
+  border-color: #ffd46b;
+  animation: ddfPlaneReady 920ms ease-in-out infinite;
+  box-shadow:
+    0 0 0 4px rgba(255, 212, 107, 0.18),
+    0 9px 14px rgba(0, 0, 0, 0.48),
+    0 0 24px color-mix(in srgb, var(--plane-color) 72%, rgba(255, 0, 180, 0.26)),
+    0 0 34px rgba(255, 212, 107, 0.14);
+}
+
+.ddf-dare-only .stack {
+  inset: 4px;
+}
+
+.ddf-dare-only .stack .plane {
+  width: clamp(21px, 2.9vw, 30px);
+  height: clamp(20px, 2.6vw, 27px);
+}
+
+.ddf-dare-only .stack .plane span {
+  right: -5px;
+  bottom: -5px;
+  width: clamp(12px, 1.4vw, 16px);
+  font-size: clamp(0.48rem, 0.72vw, 0.62rem);
 }
 
 .ddf-dare-only .move-button:hover:not(:disabled),
@@ -2416,6 +2822,73 @@ legend {
 .top-actions {
   display: flex;
   gap: 10px;
+}
+
+.round-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.round-flow span {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  min-width: 0;
+  min-height: 56px;
+  border: 1px solid rgba(255, 248, 239, 0.12);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 248, 239, 0.08), transparent 28%),
+    color-mix(in srgb, var(--surface) 86%, black);
+  padding: 10px 12px;
+}
+
+.round-flow span::after {
+  content: "";
+  position: absolute;
+  inset: auto 12px 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(225, 173, 79, 0.46), transparent);
+  opacity: 0.6;
+}
+
+.round-flow span[data-tone="active"] {
+  border-color: color-mix(in srgb, var(--gold) 62%, var(--line));
+  background:
+    radial-gradient(circle at 12% 18%, rgba(225, 173, 79, 0.16), transparent 30%),
+    color-mix(in srgb, var(--surface) 88%, black);
+}
+
+.round-flow span[data-tone="success"] {
+  border-color: color-mix(in srgb, var(--teal) 58%, var(--line));
+}
+
+.round-flow span[data-tone="skip"] {
+  border-color: color-mix(in srgb, var(--rose) 54%, var(--line));
+}
+
+.round-flow small,
+.round-flow strong {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.round-flow small {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 1000;
+  text-transform: uppercase;
+}
+
+.round-flow strong {
+  margin-top: 4px;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.08;
 }
 
 .game-layout,
@@ -3789,6 +4262,61 @@ body.quick-dice-page .page-texture {
   line-height: 1.5;
 }
 
+.table-toast {
+  position: fixed;
+  right: clamp(14px, 2vw, 28px);
+  bottom: clamp(14px, 2vw, 28px);
+  z-index: 90;
+  display: grid;
+  width: min(360px, calc(100vw - 28px));
+  gap: 4px;
+  border: 1px solid color-mix(in srgb, var(--gold) 54%, var(--line));
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 8% 0, rgba(225, 173, 79, 0.2), transparent 34%),
+    color-mix(in srgb, var(--surface) 92%, black);
+  color: var(--ink);
+  padding: 14px 16px;
+  box-shadow:
+    0 22px 54px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(14px) scale(0.98);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.table-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.table-toast[data-tone="success"] {
+  border-color: color-mix(in srgb, var(--teal) 62%, var(--line));
+  background:
+    radial-gradient(circle at 8% 0, rgba(61, 194, 180, 0.18), transparent 34%),
+    color-mix(in srgb, var(--surface) 92%, black);
+}
+
+.table-toast[data-tone="skip"] {
+  border-color: color-mix(in srgb, var(--rose) 62%, var(--line));
+  background:
+    radial-gradient(circle at 8% 0, rgba(220, 93, 114, 0.18), transparent 34%),
+    color-mix(in srgb, var(--surface) 92%, black);
+}
+
+.table-toast strong {
+  font-size: 1.02rem;
+  line-height: 1.15;
+}
+
+.table-toast small {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
 .task-dialog {
   width: min(560px, calc(100% - 32px));
   border: 0;
@@ -4093,6 +4621,32 @@ body.quick-dice-page .page-texture {
   100% {
     opacity: 0;
     transform: translateX(120%) skewX(-18deg);
+  }
+}
+
+@keyframes ddfBoardGlyphPulse {
+  0%,
+  100% {
+    opacity: 0.46;
+    transform: rotate(-14deg) scale(0.96);
+    filter: brightness(0.92);
+  }
+  48% {
+    opacity: 0.82;
+    transform: rotate(-7deg) scale(1.04);
+    filter: brightness(1.28);
+  }
+}
+
+@keyframes ddfPlaneReady {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+  }
+  52% {
+    transform: translateY(-3px) scale(1.08);
+    filter: brightness(1.25);
   }
 }
 
@@ -5155,6 +5709,17 @@ body.quick-dice-page .page-texture {
     gap: 8px;
   }
 
+  .index-page .round-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .index-page .round-flow span {
+    min-height: 50px;
+    border-radius: 12px;
+    padding: 9px 10px;
+  }
+
   .index-page .game-layout,
   .index-page .truth-layout,
   .index-page .dice-layout,
@@ -5242,6 +5807,14 @@ body.quick-dice-page .page-texture {
 
   .index-page .task-dialog form {
     padding: 18px;
+  }
+
+  .index-page .table-toast {
+    right: 10px;
+    bottom: 10px;
+    width: calc(100vw - 20px);
+    border-radius: 14px;
+    padding: 12px 14px;
   }
 
   .index-page .page-texture {

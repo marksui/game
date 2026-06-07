@@ -293,6 +293,7 @@
             <button class="secondary-action" id="restartButton" type="button">重新开局</button>
           </div>
         </header>
+        <div class="round-flow" id="flightFlow" aria-live="polite"></div>
 
         <div class="game-layout">
           <aside class="side-panel" aria-label="玩家状态">
@@ -333,6 +334,7 @@
             <button class="secondary-action" id="truthRestartButton" type="button">重新开局</button>
           </div>
         </header>
+        <div class="round-flow" id="truthFlow" aria-live="polite"></div>
 
         <div class="truth-layout">
           <aside class="side-panel" aria-label="当前玩家">
@@ -383,6 +385,7 @@
             <button class="secondary-action" id="diceRestartButton" type="button">重新开局</button>
           </div>
         </header>
+        <div class="round-flow" id="diceFlow" aria-live="polite"></div>
 
         <div class="dice-layout">
           <aside class="side-panel" aria-label="骰子玩家">
@@ -434,6 +437,7 @@
             <button class="secondary-action" id="quickDiceResetButton" type="button">清空记录</button>
           </div>
         </header>
+        <div class="round-flow" id="quickDiceFlow" aria-live="polite"></div>
 
         <div class="quick-dice-layout">
           <section class="quick-dice-stage" aria-label="纯骰子结果">
@@ -499,6 +503,7 @@
             <button class="secondary-action" id="syncRestartButton" type="button">重新开局</button>
           </div>
         </header>
+        <div class="round-flow" id="syncFlow" aria-live="polite"></div>
 
         <div class="sync-layout">
           <aside class="side-panel" aria-label="默契玩家">
@@ -547,6 +552,7 @@
             <button class="secondary-action" id="miniRestartButton" type="button">重新开局</button>
           </div>
         </header>
+        <div class="round-flow" id="miniFlow" aria-live="polite"></div>
 
         <div class="mini-layout">
           <aside class="side-panel" aria-label="小游戏玩家">
@@ -589,6 +595,8 @@
           </aside>
         </div>
       </section>
+
+      <div class="table-toast" id="tableToast" role="status" aria-live="polite" aria-atomic="true"></div>
     </main>
 
     <dialog class="task-dialog" id="taskDialog">

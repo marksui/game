@@ -78,44 +78,7 @@ const flightDecks = {
     { type: "反转", title: "权力交换", text: "下一张任务由对方决定完成、换题或跳过。" },
     { type: "亲密", title: "靠近倒计时", text: "从 10 倒数到 1，每个数字靠近一点，任何人可叫停。" },
   ],
-  fantasy: [
-    { type: "兄贵♂", title: "入场♂契约", text: "全员喊出安全词，再用最严肃的脸说：哲♂学开始。" },
-    { type: "兄贵♂", title: "黑夜♂身份", text: "给自己取一个兄贵代号，必须像 VHS 封面角色。" },
-    { type: "兄贵♂", title: "Gachi♂清单", text: "说出 3 个今晚可玩的兄贵梗：pose、台词、旁白。" },
-    { type: "兄贵♂", title: "VAN♂样指令", text: "用硬汉语气发出一个可改写指令。" },
-    { type: "兄贵♂", title: "Yes♂Sir", text: "用一句兄贵式回应：Yes Sir / No Sir / 换题 Sir。" },
-    { type: "兄贵♂", title: "眼神♂锁定", text: "对视 15 秒，笑场者喊：哲♂学胜利。" },
-    { type: "兄贵♂", title: "VHS♂闭眼", text: "闭眼 10 秒，听对方用老录像带声线报幕。" },
-    { type: "兄贵♂", title: "禁语♂训练", text: "到下回合前禁用一个普通词，改用 ♂ 代替。" },
-    { type: "兄贵♂", title: "慢速♂登场", text: "用 5 秒做一个夸张硬汉入场动作。" },
-    { type: "兄贵♂", title: "暗号♂演练", text: "设计继续 / 暂停手势，各演一次。" },
-    { type: "兄贵♂", title: "哲♂学停顿", text: "全员沉默 8 秒，只保持硬汉表情。" },
-    { type: "兄贵♂", title: "被选♂兄贵", text: "指定一位玩家给你的下一次挑战加一个 ♂ 字。" },
-    { type: "兄贵♂", title: "低声♂报幕", text: "用低沉 VHS 旁白读出自己的兄贵代号。" },
-    { type: "兄贵♂", title: "距离♂审判", text: "摆出双人封面构图，保持 10 秒。" },
-    { type: "兄贵♂", title: "角色♂反转", text: "主导旁白和回应旁白交换，再喊一次标题。" },
-    { type: "兄贵♂", title: "跳过♂惩罚", text: "跳过这题就喊一句：这就是哲♂学。" },
-    { type: "兄贵♂", title: "三段♂气势", text: "用三档声音说：热身、加重、爆裂。" },
-    { type: "兄贵♂", title: "台词♂改写", text: "把对方一句普通话改写成兄贵 VHS 台词。" },
-    { type: "兄贵♂", title: "暗紫♂舞台", text: "用 3 个词布置一个暗紫霓虹摔跤舞台。" },
-    { type: "兄贵♂", title: "停住♂别动", text: "定格成封面姿势 8 秒，任何人可喊停。" },
-    { type: "兄贵♂", title: "只许♂复读", text: "接下来 1 分钟，你只能复读最后一个关键词加 ♂。" },
-    { type: "兄贵♂", title: "黑夜♂奖励", text: "完成本轮后，指定下一位玩家拿到 Deep♂Dark♂Fantasy。" },
-    { type: "兄贵♂", title: "最终♂确认", text: "全员确认：继续 / 减速 / 停止。" },
-    { type: "兄贵♂", title: "收尾♂礼仪", text: "击掌、喝水、喊一次：Good♂Job。" },
-    { type: "兄贵♂", title: "兄贵♂登场", text: "摆出最夸张硬汉 pose，再喊出今晚安全词。" },
-    { type: "兄贵♂", title: "哲♂学宣言", text: "用录像带旁白腔宣读：同意、边界、随时停止。" },
-    { type: "兄贵♂", title: "Gachi♂试炼", text: "接受一轮硬汉夸奖，夸奖必须夸张但不越界。" },
-    { type: "兄贵♂", title: "VHS♂失真", text: "到下次行动前，说话像老录像带卡顿，每句不超过 8 个字。" },
-    { type: "兄贵♂", title: "黑紫♂电流", text: "用 3 个词描述气势：暗紫、爆裂、哲♂学。" },
-    { type: "兄贵♂", title: "爆裂♂凝视", text: "和一位玩家对视 15 秒，笑场算兄贵胜利。" },
-    { type: "兄贵♂", title: "霓虹♂警报", text: "全员复述停止信号；说错的人回答真心话。" },
-    { type: "兄贵♂", title: "肌肉♂审判", text: "指定一位玩家给你一个可拒绝的硬汉指令。" },
-    { type: "兄贵♂", title: "硬汉♂反转", text: "主导权交换，下一次挑战由被选择者决定完成或改写。" },
-    { type: "兄贵♂", title: "哲♂学爆燃", text: "说一句最中二、最像 VHS 封面的硬汉台词。" },
-    { type: "兄贵♂", title: "粉紫♂封印", text: "选一个禁用词，到下一轮前说出口就后退 1 格。" },
-    { type: "兄贵♂", title: "兄贵♂收束", text: "用一句 Good♂Job 把气氛拉回安全区。" },
-  ],
+  fantasy: [],
 };
 
 const truthDecks = {
@@ -767,6 +730,7 @@ const currentPlayerName = document.querySelector("#currentPlayerName");
 const flightTurnAvatar = document.querySelector("#flightTurnAvatar");
 const turnHint = document.querySelector("#turnHint");
 const turnCard = document.querySelector("#turnCard");
+const flightFlow = document.querySelector("#flightFlow");
 const diceValue = document.querySelector("#diceValue");
 const rollButton = document.querySelector("#rollButton");
 const endTurnButton = document.querySelector("#endTurnButton");
@@ -782,6 +746,7 @@ const truthTurnCard = document.querySelector("#truthTurnCard");
 const truthTurnAvatar = document.querySelector("#truthTurnAvatar");
 const truthPlayerName = document.querySelector("#truthPlayerName");
 const truthHint = document.querySelector("#truthHint");
+const truthFlow = document.querySelector("#truthFlow");
 const truthButton = document.querySelector("#truthButton");
 const dareButton = document.querySelector("#dareButton");
 const randomPromptButton = document.querySelector("#randomPromptButton");
@@ -801,6 +766,7 @@ const diceRoundTitle = document.querySelector("#diceRoundTitle");
 const diceTurnCard = document.querySelector("#diceTurnCard");
 const dicePlayerName = document.querySelector("#dicePlayerName");
 const diceHint = document.querySelector("#diceHint");
+const diceFlow = document.querySelector("#diceFlow");
 const warmDiceButton = document.querySelector("#warmDiceButton");
 const warmDiceTotal = document.querySelector("#warmDiceTotal");
 const activeDiceCount = document.querySelector("#activeDiceCount");
@@ -828,12 +794,14 @@ const quickDiceMaxLabel = document.querySelector("#quickDiceMaxLabel");
 const quickDiceLogList = document.querySelector("#quickDiceLogList");
 const quickDiceHomeButton = document.querySelector("#quickDiceHomeButton");
 const quickDiceResetButton = document.querySelector("#quickDiceResetButton");
+const quickDiceFlow = document.querySelector("#quickDiceFlow");
 
 const syncView = document.querySelector("#syncView");
 const syncRoundTitle = document.querySelector("#syncRoundTitle");
 const syncTurnCard = document.querySelector("#syncTurnCard");
 const syncPlayerName = document.querySelector("#syncPlayerName");
 const syncHint = document.querySelector("#syncHint");
+const syncFlow = document.querySelector("#syncFlow");
 const syncDrawButton = document.querySelector("#syncDrawButton");
 const syncPromptCard = document.querySelector("#syncPromptCard");
 const syncPromptType = document.querySelector("#syncPromptType");
@@ -852,6 +820,7 @@ const miniRoundTitle = document.querySelector("#miniRoundTitle");
 const miniTurnCard = document.querySelector("#miniTurnCard");
 const miniPlayerName = document.querySelector("#miniPlayerName");
 const miniHint = document.querySelector("#miniHint");
+const miniFlow = document.querySelector("#miniFlow");
 const miniDrawButton = document.querySelector("#miniDrawButton");
 const miniVisual = document.querySelector("#miniVisual");
 const miniChoiceGrid = document.querySelector("#miniChoiceGrid");
@@ -871,6 +840,7 @@ const taskType = document.querySelector("#taskType");
 const taskTitle = document.querySelector("#taskTitle");
 const taskText = document.querySelector("#taskText");
 const skipTaskButton = document.querySelector("#skipTaskButton");
+const tableToast = document.querySelector("#tableToast");
 const siteHeader = document.querySelector(".site-header");
 const navToggle = document.querySelector(".nav-toggle");
 const headerContent = document.querySelector("#siteMenu");
@@ -887,6 +857,7 @@ let state = createEmptyState();
 let pendingTask = null;
 let diceAnimationId = 0;
 let miniAnimationId = 0;
+let tableToastTimer = 0;
 
 function createEmptyState() {
   return {
@@ -919,6 +890,50 @@ function getSelectedSpiceLevel() {
 function getSelectedDiceCount() {
   const count = setupForm ? Number(new FormData(setupForm).get("diceCount")) || 2 : state.diceCount || 2;
   return Math.min(Math.max(count, 1), 8);
+}
+
+function getSpiceName(spiceLevel = getSelectedSpiceLevel()) {
+  return { soft: "暧昧", warm: "升温", hot: "夜深", fantasy: "Deep♂Dark♂Fantasy" }[spiceLevel] || "暧昧";
+}
+
+function renderRoundFlow(target, items) {
+  if (!target) return;
+  target.innerHTML = "";
+  items
+    .filter((item) => item && item.value !== undefined && item.value !== null)
+    .forEach((item) => {
+      const node = document.createElement("span");
+      if (item.tone) node.dataset.tone = item.tone;
+      const label = document.createElement("small");
+      label.textContent = item.label;
+      const value = document.createElement("strong");
+      value.textContent = String(item.value);
+      node.append(label, value);
+      target.append(node);
+    });
+}
+
+function showTableToast(title, text = "", tone = "success") {
+  if (!tableToast) return;
+  window.clearTimeout(tableToastTimer);
+  tableToast.dataset.tone = tone;
+  tableToast.innerHTML = "";
+  const strong = document.createElement("strong");
+  strong.textContent = title;
+  tableToast.append(strong);
+  if (text) {
+    const small = document.createElement("small");
+    small.textContent = text;
+    tableToast.append(small);
+  }
+  tableToast.classList.add("is-visible");
+  tableToastTimer = window.setTimeout(() => {
+    tableToast.classList.remove("is-visible");
+  }, 2200);
+}
+
+function getPhaseTone(hasPrompt) {
+  return hasPrompt ? "active" : "ready";
 }
 
 function setFormRadioValue(name, value) {
@@ -1077,7 +1092,7 @@ function getVisibleQuestionCards() {
 function renderQuestionBank() {
   const cards = getVisibleQuestionCards();
   const spiceLevel = getSelectedSpiceLevel();
-  const spiceName = { soft: "暧昧", warm: "升温", hot: "夜深", fantasy: "Deep♂Dark♂Fantasy" }[spiceLevel];
+  const spiceName = getSpiceName(spiceLevel);
   const gameName =
     spiceLevel === "fantasy"
       ? "Deep♂Dark♂Fantasy 大冒险"
@@ -1242,6 +1257,7 @@ function startGame(event) {
 }
 
 function hideLobby() {
+  document.body.classList.add("is-playing");
   document.body.classList.remove("is-quick-dice-active");
   setupPanel?.classList.add("is-hidden");
   bankSection?.classList.add("is-hidden");
@@ -1261,6 +1277,7 @@ function cancelMotionEffects() {
 
 function showLobby(resetForm = false) {
   cancelMotionEffects();
+  document.body.classList.remove("is-playing");
   document.body.classList.remove("is-quick-dice-active");
   state = createEmptyState();
   pendingTask = null;
@@ -1370,6 +1387,12 @@ function renderDice() {
     const prefix = index === state.currentPlayerIndex ? "当前 · " : "";
     return { name: `${prefix}${item.name}`, score: `${item.score} 分 / 跳过 ${item.skips}` };
   });
+  renderRoundFlow(diceFlow, [
+    { label: "当前", value: player?.name || "结束", tone: "active" },
+    { label: "阶段", value: state.diceRolling ? "滚动中" : state.currentPrompt ? "待处理" : "待投骰", tone: getPhaseTone(state.currentPrompt || state.diceRolling) },
+    { label: "骰子", value: `${state.diceCount} 颗` },
+    { label: "回合", value: `第 ${state.round} 轮` },
+  ]);
   renderLog(diceLogList);
 }
 
@@ -1507,6 +1530,7 @@ function finishWarmDiceRoll() {
   void dicePromptCard.offsetWidth;
   dicePromptCard.classList.add("is-dealt");
   addLog(`${getCurrentPlayer().name} 投出 ${state.diceRolls.join(" + ")} = ${total}，拿到 ${band.title}。`);
+  showTableToast(`${total} 点 · ${band.title}`, state.currentPrompt.title, "active");
   renderDice();
 }
 
@@ -1521,20 +1545,24 @@ function getDiceBand(total, count) {
 function completeDicePrompt() {
   if (!state.currentPrompt) return;
   const player = getCurrentPlayer();
+  const title = state.currentPrompt.title;
   player.score += 1;
-  addLog(`${player.name} 完成骰子任务：${state.currentPrompt.title}，获得 1 分。`);
+  addLog(`${player.name} 完成骰子任务：${title}，获得 1 分。`);
   clearDicePrompt();
   advancePlayer();
+  showTableToast("任务完成 +1", `${player.name} 完成：${title}`, "success");
   renderDice();
 }
 
 function skipDicePrompt() {
   if (!state.currentPrompt) return;
   const player = getCurrentPlayer();
+  const title = state.currentPrompt.title;
   player.skips += 1;
-  addLog(`${player.name} 跳过骰子任务：${state.currentPrompt.title}。`);
+  addLog(`${player.name} 跳过骰子任务：${title}。`);
   clearDicePrompt();
   advancePlayer();
+  showTableToast("已跳过", `${player.name} 跳过：${title}`, "skip");
   renderDice();
 }
 
@@ -1591,6 +1619,12 @@ function renderQuickDice() {
     button.setAttribute("aria-pressed", String(active));
     button.disabled = state.diceRolling;
   });
+  renderRoundFlow(quickDiceFlow, [
+    { label: "状态", value: state.diceRolling ? "滚动中" : state.diceRolls.length ? "已落点" : "待投骰", tone: state.diceRolling ? "active" : "ready" },
+    { label: "骰子", value: `${state.diceCount} 颗` },
+    { label: "上限", value: `${state.diceCount * 6} 点` },
+    { label: "最近", value: state.diceRolls.length ? `${total} 点` : "未投" },
+  ]);
   renderLog(quickDiceLogList);
 }
 
@@ -1614,6 +1648,7 @@ function finishQuickDiceRoll() {
   state.diceRolls = Array.from({ length: state.diceCount }, () => Math.floor(Math.random() * 6) + 1);
   const total = state.diceRolls.reduce((sum, value) => sum + value, 0);
   addLog(`${state.diceCount} 颗骰子：${state.diceRolls.join(" + ")} = ${total}`);
+  showTableToast(`落点 ${total}`, state.diceRolls.join(" + "), "active");
   renderQuickDice();
   quickDiceFaces?.classList.remove("is-bursting");
   if (quickDiceFaces) {
@@ -1634,6 +1669,7 @@ function resetQuickDiceHistory() {
   if (state.mode !== "quickDice") return;
   state.log = [];
   state.diceRolls = [];
+  showTableToast("记录已清空", "纯骰子历史重新开始。", "skip");
   renderQuickDice();
 }
 
@@ -1676,6 +1712,12 @@ function renderSync() {
     const prefix = index === state.currentPlayerIndex ? "当前 · " : "";
     return { name: `${prefix}${item.name}`, score: `${item.score} 分 / 跳过 ${item.skips}` };
   });
+  renderRoundFlow(syncFlow, [
+    { label: "当前", value: player?.name || "结束", tone: "active" },
+    { label: "阶段", value: state.currentPrompt ? "待处理" : "待抽题", tone: getPhaseTone(state.currentPrompt) },
+    { label: "尺度", value: getSpiceName(state.spiceLevel) },
+    { label: "回合", value: `第 ${state.round} 轮` },
+  ]);
   renderLog(syncLogList);
 }
 
@@ -1691,26 +1733,31 @@ function drawSyncPrompt() {
   void syncPromptCard.offsetWidth;
   syncPromptCard.classList.add("is-dealt");
   addLog(`${getCurrentPlayer().name} 抽到默契挑战：${card.title}。`);
+  showTableToast("抽到默契挑战", card.title, "active");
   renderSync();
 }
 
 function completeSyncPrompt() {
   if (!state.currentPrompt) return;
   const player = getCurrentPlayer();
+  const title = state.currentPrompt.title;
   player.score += 1;
-  addLog(`${player.name} 完成默契挑战：${state.currentPrompt.title}，获得 1 分。`);
+  addLog(`${player.name} 完成默契挑战：${title}，获得 1 分。`);
   clearSyncPrompt();
   advancePlayer();
+  showTableToast("默契完成 +1", `${player.name} 完成：${title}`, "success");
   renderSync();
 }
 
 function skipSyncPrompt() {
   if (!state.currentPrompt) return;
   const player = getCurrentPlayer();
+  const title = state.currentPrompt.title;
   player.skips += 1;
-  addLog(`${player.name} 跳过默契挑战：${state.currentPrompt.title}。`);
+  addLog(`${player.name} 跳过默契挑战：${title}。`);
   clearSyncPrompt();
   advancePlayer();
+  showTableToast("已跳过", `${player.name} 跳过：${title}`, "skip");
   renderSync();
 }
 
@@ -1771,7 +1818,20 @@ function renderMini() {
     const prefix = index === state.currentPlayerIndex ? "当前 · " : "";
     return { name: `${prefix}${item.name}`, score: `${item.score} 分 / 跳过 ${item.skips}` };
   });
+  renderRoundFlow(miniFlow, [
+    { label: "当前", value: player?.name || "结束", tone: "active" },
+    { label: "玩法", value: meta.name },
+    { label: "阶段", value: getMiniPhaseLabel(), tone: state.currentPrompt || state.miniSpinning || state.miniChoices.length ? "active" : "ready" },
+    { label: "回合", value: `第 ${state.round} 轮` },
+  ]);
   renderLog(miniLogList);
+}
+
+function getMiniPhaseLabel() {
+  if (state.miniSpinning) return "旋转中";
+  if (state.miniChoices.length) return "选盲盒";
+  if (state.currentPrompt) return "待处理";
+  return "待开始";
 }
 
 function drawMiniPrompt() {
@@ -1829,6 +1889,7 @@ function prepareMiniChoices() {
   void miniPromptCard.offsetWidth;
   miniPromptCard.classList.add("is-dealt");
   addLog(`${getCurrentPlayer().name} 摆出 3 个任务盲盒。`);
+  showTableToast("盲盒就绪", "选择 A / B / C 后翻开任务。", "active");
   renderMini();
 }
 
@@ -1849,6 +1910,7 @@ function revealMiniPrompt(card) {
   void miniPromptCard.offsetWidth;
   miniPromptCard.classList.add("is-dealt");
   addLog(`${getCurrentPlayer().name} 拿到${miniGameMeta[state.miniGame].name}：${card.title}。`);
+  showTableToast(`抽到${miniGameMeta[state.miniGame].name}`, card.title, "active");
   renderMini();
 }
 
@@ -1900,20 +1962,24 @@ function getRandomOtherPlayerName() {
 function completeMiniPrompt() {
   if (!state.currentPrompt) return;
   const player = getCurrentPlayer();
+  const title = state.currentPrompt.title;
   player.score += 1;
-  addLog(`${player.name} 完成${miniGameMeta[state.miniGame].name}：${state.currentPrompt.title}，获得 1 分。`);
+  addLog(`${player.name} 完成${miniGameMeta[state.miniGame].name}：${title}，获得 1 分。`);
   clearMiniPrompt();
   advancePlayer();
+  showTableToast("完成 +1", `${player.name} 完成：${title}`, "success");
   renderMini();
 }
 
 function skipMiniPrompt() {
   if (!state.currentPrompt) return;
   const player = getCurrentPlayer();
+  const title = state.currentPrompt.title;
   player.skips += 1;
-  addLog(`${player.name} 跳过${miniGameMeta[state.miniGame].name}：${state.currentPrompt.title}。`);
+  addLog(`${player.name} 跳过${miniGameMeta[state.miniGame].name}：${title}。`);
   clearMiniPrompt();
   advancePlayer();
+  showTableToast("已跳过", `${player.name} 跳过：${title}`, "skip");
   renderMini();
 }
 
@@ -2067,6 +2133,21 @@ function renderFlightSidebar() {
     const prefix = index === state.currentPlayerIndex && state.winnerId === null ? "当前 · " : "";
     return { name: `${prefix}${item.name}`, score: `${finished}/${PIECES_PER_PLAYER}` };
   });
+  renderRoundFlow(flightFlow, [
+    { label: "当前", value: player?.name || "结束", tone: "active" },
+    { label: "阶段", value: getFlightPhaseLabel(), tone: state.phase === "roll" ? "ready" : "active" },
+    { label: "骰子", value: state.lastRoll ? `${state.lastRoll} 点` : "待掷" },
+    { label: "回合", value: `第 ${state.round} 轮` },
+  ]);
+}
+
+function getFlightPhaseLabel() {
+  if (state.winnerId !== null) return "终局";
+  if (state.phase === "roll") return "掷骰";
+  if (state.phase === "choose") return "选飞机";
+  if (state.phase === "afterMove" && state.lastRoll === 6) return "继续行动";
+  if (state.phase === "afterMove") return "结束回合";
+  return "进行中";
 }
 
 function getTurnHint() {
@@ -2113,10 +2194,12 @@ function rollDice() {
   state.lastRoll = Math.floor(Math.random() * 6) + 1;
   const player = getCurrentPlayer();
   addLog(`${player.name} 掷出 ${state.lastRoll}。`);
+  showTableToast(`${player.name} 掷出 ${state.lastRoll} 点`, state.lastRoll === 6 ? "可以选择飞机起飞或继续推进。" : "选择可移动的飞机。", "active");
 
   const moves = getMovablePieces();
   if (!moves.length) {
     addLog(`${player.name} 没有可移动的飞机，回合结束。`);
+    showTableToast("没有可移动飞机", "点击结束回合进入下一位。", "skip");
     state.phase = "afterMove";
     renderFlight();
     return;
@@ -2165,6 +2248,7 @@ function movePiece(playerId, pieceId) {
 
   if (piece.progress === FINISH_PROGRESS) {
     addLog(`${player.name} 的 ${piece.id + 1} 号飞机进入终点。`);
+    showTableToast("抵达终点", `${player.name} 的 ${piece.id + 1} 号飞机完成航线。`, "success");
   } else {
     handleCollision(player, piece);
     drawFlightTask(player);
@@ -2236,12 +2320,15 @@ function handleTaskClose() {
     if (player?.skipTokens > 0) {
       player.skipTokens -= 1;
       addLog(`${player.name} 使用跳过券。`);
+      showTableToast("使用跳过券", `${player.name} 跳过本次任务。`, "skip");
     } else {
       addLog(`${player?.name || "玩家"} 跳过任务，后退 1 格。`);
       stepBackCurrentPiece();
+      showTableToast("任务已跳过", "后退 1 格，仍可继续本轮流程。", "skip");
     }
   } else {
     addLog(`${player?.name || "玩家"} 完成任务：${pendingTask.title}。`);
+    showTableToast("任务完成", pendingTask.title, "success");
   }
   pendingTask = null;
   renderFlight();
@@ -2259,8 +2346,10 @@ function nextTurn() {
   const keepTurn = state.lastRoll === 6 && state.phase === "afterMove";
   if (!keepTurn) {
     advancePlayer();
+    showTableToast("下一位", `${getCurrentPlayer().name} 准备行动。`, "ready");
   } else {
     addLog(`${getCurrentPlayer().name} 掷到 6，继续行动。`);
+    showTableToast("继续行动", `${getCurrentPlayer().name} 再掷一次。`, "active");
   }
   state.lastRoll = null;
   state.lastMovedPieceId = null;
@@ -2294,6 +2383,12 @@ function renderTruth() {
     const prefix = index === state.currentPlayerIndex ? "当前 · " : "";
     return { name: `${prefix}${item.name}`, score: `${item.score} 分 / 跳过 ${item.skips}` };
   });
+  renderRoundFlow(truthFlow, [
+    { label: "当前", value: player?.name || "结束", tone: "active" },
+    { label: "阶段", value: hasCurrentPrompt ? "待处理" : "待抽卡", tone: getPhaseTone(hasCurrentPrompt) },
+    { label: "尺度", value: getSpiceName(state.spiceLevel) },
+    { label: "回合", value: `第 ${state.round} 轮` },
+  ]);
   renderLog(truthLogList);
 }
 
@@ -2321,26 +2416,31 @@ function drawPrompt(kind) {
       ? `${getCurrentPlayer().name} 拿到${card.type}：${card.title}。`
       : `${getCurrentPlayer().name} 抽到${card.type}：${card.title}。`,
   );
+  showTableToast(`抽到${card.type}`, card.title, "active");
   renderTruth();
 }
 
 function completePrompt() {
   if (!state.currentPrompt) return;
   const player = getCurrentPlayer();
+  const title = state.currentPrompt.title;
   player.score += 1;
-  addLog(`${player.name} 完成：${state.currentPrompt.title}，获得 1 分。`);
+  addLog(`${player.name} 完成：${title}，获得 1 分。`);
   clearPromptCard();
   advancePlayer();
+  showTableToast("完成 +1", `${player.name} 完成：${title}`, "success");
   renderTruth();
 }
 
 function skipPrompt() {
   if (!state.currentPrompt) return;
   const player = getCurrentPlayer();
+  const title = state.currentPrompt.title;
   player.skips += 1;
-  addLog(`${player.name} 跳过：${state.currentPrompt.title}。`);
+  addLog(`${player.name} 跳过：${title}。`);
   clearPromptCard();
   advancePlayer();
+  showTableToast("已跳过", `${player.name} 跳过：${title}`, "skip");
   renderTruth();
 }
 
