@@ -731,6 +731,7 @@ const flightTurnAvatar = document.querySelector("#flightTurnAvatar");
 const turnHint = document.querySelector("#turnHint");
 const turnCard = document.querySelector("#turnCard");
 const flightFlow = document.querySelector("#flightFlow");
+const flightCue = document.querySelector("#flightCue");
 const diceValue = document.querySelector("#diceValue");
 const rollButton = document.querySelector("#rollButton");
 const endTurnButton = document.querySelector("#endTurnButton");
@@ -747,13 +748,16 @@ const truthTurnAvatar = document.querySelector("#truthTurnAvatar");
 const truthPlayerName = document.querySelector("#truthPlayerName");
 const truthHint = document.querySelector("#truthHint");
 const truthFlow = document.querySelector("#truthFlow");
+const truthCue = document.querySelector("#truthCue");
 const truthButton = document.querySelector("#truthButton");
 const dareButton = document.querySelector("#dareButton");
 const randomPromptButton = document.querySelector("#randomPromptButton");
 const promptCard = document.querySelector("#promptCard");
 const promptType = document.querySelector("#promptType");
 const promptTitle = document.querySelector("#promptTitle");
+const promptMeta = document.querySelector("#promptMeta");
 const promptText = document.querySelector("#promptText");
+const truthTimer = document.querySelector("#truthTimer");
 const skipPromptButton = document.querySelector("#skipPromptButton");
 const completePromptButton = document.querySelector("#completePromptButton");
 const truthPlayersList = document.querySelector("#truthPlayersList");
@@ -764,9 +768,11 @@ const truthRestartButton = document.querySelector("#truthRestartButton");
 const diceView = document.querySelector("#diceView");
 const diceRoundTitle = document.querySelector("#diceRoundTitle");
 const diceTurnCard = document.querySelector("#diceTurnCard");
+const diceTurnAvatar = document.querySelector("#diceTurnAvatar");
 const dicePlayerName = document.querySelector("#dicePlayerName");
 const diceHint = document.querySelector("#diceHint");
 const diceFlow = document.querySelector("#diceFlow");
+const diceCue = document.querySelector("#diceCue");
 const warmDiceButton = document.querySelector("#warmDiceButton");
 const warmDiceTotal = document.querySelector("#warmDiceTotal");
 const activeDiceCount = document.querySelector("#activeDiceCount");
@@ -774,7 +780,9 @@ const diceFaces = document.querySelector("#diceFaces");
 const dicePromptCard = document.querySelector("#dicePromptCard");
 const dicePromptType = document.querySelector("#dicePromptType");
 const dicePromptTitle = document.querySelector("#dicePromptTitle");
+const dicePromptMeta = document.querySelector("#dicePromptMeta");
 const dicePromptText = document.querySelector("#dicePromptText");
+const diceTimer = document.querySelector("#diceTimer");
 const skipDiceButton = document.querySelector("#skipDiceButton");
 const completeDiceButton = document.querySelector("#completeDiceButton");
 const dicePlayersList = document.querySelector("#dicePlayersList");
@@ -795,18 +803,23 @@ const quickDiceLogList = document.querySelector("#quickDiceLogList");
 const quickDiceHomeButton = document.querySelector("#quickDiceHomeButton");
 const quickDiceResetButton = document.querySelector("#quickDiceResetButton");
 const quickDiceFlow = document.querySelector("#quickDiceFlow");
+const quickDiceCue = document.querySelector("#quickDiceCue");
 
 const syncView = document.querySelector("#syncView");
 const syncRoundTitle = document.querySelector("#syncRoundTitle");
 const syncTurnCard = document.querySelector("#syncTurnCard");
+const syncTurnAvatar = document.querySelector("#syncTurnAvatar");
 const syncPlayerName = document.querySelector("#syncPlayerName");
 const syncHint = document.querySelector("#syncHint");
 const syncFlow = document.querySelector("#syncFlow");
+const syncCue = document.querySelector("#syncCue");
 const syncDrawButton = document.querySelector("#syncDrawButton");
 const syncPromptCard = document.querySelector("#syncPromptCard");
 const syncPromptType = document.querySelector("#syncPromptType");
 const syncPromptTitle = document.querySelector("#syncPromptTitle");
+const syncPromptMeta = document.querySelector("#syncPromptMeta");
 const syncPromptText = document.querySelector("#syncPromptText");
+const syncTimer = document.querySelector("#syncTimer");
 const skipSyncButton = document.querySelector("#skipSyncButton");
 const completeSyncButton = document.querySelector("#completeSyncButton");
 const syncPlayersList = document.querySelector("#syncPlayersList");
@@ -818,16 +831,20 @@ const miniView = document.querySelector("#miniView");
 const miniGameLabel = document.querySelector("#miniGameLabel");
 const miniRoundTitle = document.querySelector("#miniRoundTitle");
 const miniTurnCard = document.querySelector("#miniTurnCard");
+const miniTurnAvatar = document.querySelector("#miniTurnAvatar");
 const miniPlayerName = document.querySelector("#miniPlayerName");
 const miniHint = document.querySelector("#miniHint");
 const miniFlow = document.querySelector("#miniFlow");
+const miniCue = document.querySelector("#miniCue");
 const miniDrawButton = document.querySelector("#miniDrawButton");
 const miniVisual = document.querySelector("#miniVisual");
 const miniChoiceGrid = document.querySelector("#miniChoiceGrid");
 const miniPromptCard = document.querySelector("#miniPromptCard");
 const miniPromptType = document.querySelector("#miniPromptType");
 const miniPromptTitle = document.querySelector("#miniPromptTitle");
+const miniPromptMeta = document.querySelector("#miniPromptMeta");
 const miniPromptText = document.querySelector("#miniPromptText");
+const miniTimer = document.querySelector("#miniTimer");
 const skipMiniButton = document.querySelector("#skipMiniButton");
 const completeMiniButton = document.querySelector("#completeMiniButton");
 const miniPlayersList = document.querySelector("#miniPlayersList");
@@ -838,26 +855,41 @@ const miniRestartButton = document.querySelector("#miniRestartButton");
 const taskDialog = document.querySelector("#taskDialog");
 const taskType = document.querySelector("#taskType");
 const taskTitle = document.querySelector("#taskTitle");
+const taskMeta = document.querySelector("#taskMeta");
 const taskText = document.querySelector("#taskText");
 const skipTaskButton = document.querySelector("#skipTaskButton");
+const flightTaskTimer = document.querySelector("#flightTaskTimer");
+const tableMoment = document.querySelector("#tableMoment");
 const tableToast = document.querySelector("#tableToast");
 const siteHeader = document.querySelector(".site-header");
 const navToggle = document.querySelector(".nav-toggle");
 const headerContent = document.querySelector("#siteMenu");
+const timerCommandButtons = document.querySelectorAll("[data-timer-command]");
 
 const isFantasyPage = document.body.classList.contains("fantasy-mode");
+const isDdfPage = document.body.classList.contains("ddf-dare-only");
 const isBankPage = document.body.classList.contains("bank-page");
 const isQuickDicePage = document.body.classList.contains("quick-dice-page");
 const isIndexPage = document.body.classList.contains("index-page");
 const indexSetupStorageKey = "night-voyage:v1:indexSetup";
 const indexGameIds = new Set(["flight", "truth", "dice", "quickDice", "sync", "wheel", "box", "story"]);
 const indexSpiceLevels = new Set(["soft", "warm", "hot"]);
-let selectedGame = isFantasyPage ? "truth" : document.body.dataset.defaultGame || "flight";
+let selectedGame = isDdfPage ? "truth" : document.body.dataset.defaultGame || "flight";
 let state = createEmptyState();
 let pendingTask = null;
 let diceAnimationId = 0;
 let miniAnimationId = 0;
+let tableMomentTimer = 0;
 let tableToastTimer = 0;
+let taskTimerState = {
+  scope: null,
+  total: 30,
+  remaining: 30,
+  running: false,
+  finished: false,
+  endAt: 0,
+  intervalId: 0,
+};
 
 function createEmptyState() {
   return {
@@ -871,6 +903,8 @@ function createEmptyState() {
     log: [],
     winnerId: null,
     lastMovedPieceId: null,
+    lastMovedPlayerId: null,
+    lastPlayerFeedback: null,
     currentPrompt: null,
     diceCount: 2,
     diceRolls: [],
@@ -913,9 +947,32 @@ function renderRoundFlow(target, items) {
     });
 }
 
+function renderActionCue(target, label, text, tone = "ready") {
+  if (!target) return;
+  target.dataset.tone = tone;
+  target.innerHTML = "";
+  const small = document.createElement("span");
+  small.textContent = label;
+  const strong = document.createElement("strong");
+  strong.textContent = text;
+  target.append(small, strong);
+}
+
+function setRecommendedAction(target, active) {
+  if (!target) return;
+  const enabled = Boolean(active && !target.disabled);
+  if (enabled) {
+    target.setAttribute("data-recommended", "true");
+  } else {
+    target.removeAttribute("data-recommended");
+  }
+}
+
 function showTableToast(title, text = "", tone = "success") {
   if (!tableToast) return;
   window.clearTimeout(tableToastTimer);
+  pulseDeviceFeedback(tone);
+  showTableMoment(title, text, tone);
   tableToast.dataset.tone = tone;
   tableToast.innerHTML = "";
   const strong = document.createElement("strong");
@@ -932,8 +989,223 @@ function showTableToast(title, text = "", tone = "success") {
   }, 2200);
 }
 
+function getMomentLabel(tone = "active") {
+  if (tone === "success") return "达成";
+  if (tone === "skip") return "跳过";
+  if (tone === "ready") return "换位";
+  return "事件";
+}
+
+function showTableMoment(title, text = "", tone = "active") {
+  if (!tableMoment) return;
+  window.clearTimeout(tableMomentTimer);
+  tableMoment.dataset.tone = tone;
+  tableMoment.innerHTML = "";
+  const label = document.createElement("span");
+  label.textContent = getMomentLabel(tone);
+  const strong = document.createElement("strong");
+  strong.textContent = title;
+  tableMoment.append(label, strong);
+  if (text) {
+    const small = document.createElement("small");
+    small.textContent = text;
+    tableMoment.append(small);
+  }
+  tableMoment.classList.remove("is-visible");
+  void tableMoment.offsetWidth;
+  tableMoment.classList.add("is-visible");
+  tableMomentTimer = window.setTimeout(() => {
+    tableMoment.classList.remove("is-visible");
+  }, 1300);
+}
+
+function setPlayerFeedback(player, tone = "ready", label = "更新") {
+  if (!player) return;
+  state.lastPlayerFeedback = {
+    playerId: player.id,
+    tone,
+    label,
+  };
+}
+
 function getPhaseTone(hasPrompt) {
   return hasPrompt ? "active" : "ready";
+}
+
+function pulseDeviceFeedback(tone = "active") {
+  if (!navigator.vibrate) return;
+  const pattern =
+    tone === "success"
+      ? [10, 28, 10]
+      : tone === "skip"
+        ? 18
+        : tone === "active"
+          ? 8
+          : 0;
+  if (pattern) navigator.vibrate(pattern);
+}
+
+function setSurfaceState(view, player, phase, accent = "var(--gold)") {
+  if (!view) return;
+  view.dataset.phase = phase || "ready";
+  view.style.setProperty("--active-player", player?.color || accent);
+}
+
+function setPromptCardState(card, tone = "waiting", active = false) {
+  if (!card) return;
+  card.dataset.cardTone = tone || "waiting";
+  card.classList.toggle("has-live-prompt", Boolean(active));
+}
+
+function renderPromptMeta(target, items = []) {
+  if (!target) return;
+  target.innerHTML = "";
+  const visibleItems = items.filter((item) => item && item.label);
+  target.classList.toggle("is-empty", !visibleItems.length);
+  visibleItems.forEach((item) => {
+    const chip = document.createElement("span");
+    if (item.tone) chip.dataset.tone = item.tone;
+    chip.textContent = item.label;
+    target.append(chip);
+  });
+}
+
+const taskTimerRoots = {
+  flight: flightTaskTimer,
+  truth: truthTimer,
+  dice: diceTimer,
+  sync: syncTimer,
+  mini: miniTimer,
+};
+
+function getDefaultTimerSeconds(scope) {
+  if (scope === "sync") return 45;
+  if (scope === "mini") return 40;
+  return 30;
+}
+
+function formatTimer(seconds) {
+  const value = Math.max(0, Math.ceil(seconds));
+  const mins = Math.floor(value / 60);
+  const secs = value % 60;
+  return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+}
+
+function resetTaskTimer(scope, seconds = getDefaultTimerSeconds(scope)) {
+  window.clearInterval(taskTimerState.intervalId);
+  const duration = Math.max(5, Math.ceil(Number(seconds) || getDefaultTimerSeconds(scope)));
+  taskTimerState = {
+    scope,
+    total: duration,
+    remaining: duration,
+    running: false,
+    finished: false,
+    endAt: 0,
+    intervalId: 0,
+  };
+  renderTaskTimers();
+}
+
+function beginTaskTimer(scope, seconds = getDefaultTimerSeconds(scope)) {
+  resetTaskTimer(scope, seconds);
+  startTaskTimer(scope);
+}
+
+function ensureTaskTimer(scope, active, seconds = getDefaultTimerSeconds(scope)) {
+  if (!active) {
+    if (taskTimerState.scope === scope) clearTaskTimer(scope);
+    renderTaskTimers();
+    return;
+  }
+  if (taskTimerState.scope !== scope) resetTaskTimer(scope, seconds);
+  renderTaskTimers();
+}
+
+function clearTaskTimer(scope = null) {
+  if (scope && taskTimerState.scope !== scope) return;
+  window.clearInterval(taskTimerState.intervalId);
+  taskTimerState = {
+    scope: null,
+    total: 30,
+    remaining: 30,
+    running: false,
+    finished: false,
+    endAt: 0,
+    intervalId: 0,
+  };
+  renderTaskTimers();
+}
+
+function startTaskTimer(scope) {
+  if (taskTimerState.scope !== scope) resetTaskTimer(scope);
+  window.clearInterval(taskTimerState.intervalId);
+  if (taskTimerState.remaining <= 0 || taskTimerState.finished) {
+    taskTimerState.remaining = taskTimerState.total;
+    taskTimerState.finished = false;
+  }
+  taskTimerState.running = true;
+  taskTimerState.endAt = Date.now() + taskTimerState.remaining * 1000;
+  taskTimerState.intervalId = window.setInterval(updateTaskTimer, 250);
+  renderTaskTimers();
+}
+
+function pauseTaskTimer() {
+  if (!taskTimerState.scope || !taskTimerState.running) return;
+  taskTimerState.remaining = Math.max(0, Math.ceil((taskTimerState.endAt - Date.now()) / 1000));
+  taskTimerState.running = false;
+  window.clearInterval(taskTimerState.intervalId);
+  renderTaskTimers();
+}
+
+function toggleTaskTimer(scope) {
+  if (taskTimerState.scope !== scope) resetTaskTimer(scope);
+  if (taskTimerState.running) {
+    pauseTaskTimer();
+  } else {
+    startTaskTimer(scope);
+  }
+}
+
+function addTaskTimer(scope, seconds = 15) {
+  if (taskTimerState.scope !== scope) resetTaskTimer(scope);
+  const amount = Math.max(1, Number(seconds) || 15);
+  taskTimerState.total += amount;
+  taskTimerState.remaining += amount;
+  taskTimerState.finished = false;
+  if (taskTimerState.running) taskTimerState.endAt += amount * 1000;
+  renderTaskTimers();
+}
+
+function updateTaskTimer() {
+  if (!taskTimerState.scope || !taskTimerState.running) return;
+  taskTimerState.remaining = Math.max(0, Math.ceil((taskTimerState.endAt - Date.now()) / 1000));
+  if (taskTimerState.remaining > 0) {
+    renderTaskTimers();
+    return;
+  }
+  window.clearInterval(taskTimerState.intervalId);
+  taskTimerState.running = false;
+  taskTimerState.finished = true;
+  showTableToast("时间到", "可以完成、跳过或加 15 秒。", "active");
+  renderTaskTimers();
+}
+
+function renderTaskTimers() {
+  Object.entries(taskTimerRoots).forEach(([scope, root]) => {
+    if (!root) return;
+    const active = taskTimerState.scope === scope;
+    root.classList.toggle("is-hidden", !active);
+    if (!active) return;
+    const progress = taskTimerState.total
+      ? Math.max(0, Math.min(100, (taskTimerState.remaining / taskTimerState.total) * 100))
+      : 0;
+    root.dataset.state = taskTimerState.finished ? "done" : taskTimerState.running ? "running" : "paused";
+    root.style.setProperty("--timer-progress", `${progress}%`);
+    const time = root.querySelector("[data-timer-time]");
+    const toggle = root.querySelector('[data-timer-command="toggle"]');
+    if (time) time.textContent = formatTimer(taskTimerState.remaining);
+    if (toggle) toggle.textContent = taskTimerState.running ? "暂停" : taskTimerState.finished ? "重来" : "开始";
+  });
 }
 
 function setFormRadioValue(name, value) {
@@ -1021,6 +1293,14 @@ function getDeckLevels(spiceLevel) {
 
 function getFlightDeck(spiceLevel = state.spiceLevel) {
   return getDeckLevels(spiceLevel).flatMap((level) => flightDecks[level]);
+}
+
+function getDdfFlightDeck() {
+  return truthDecks.fantasy.dare.map((card) => ({
+    ...card,
+    type: "大冒险",
+    kind: "dare",
+  }));
 }
 
 function getTruthDeck(kind, spiceLevel = state.spiceLevel) {
@@ -1187,7 +1467,7 @@ function syncNameFields() {
   const count = Number(new FormData(setupForm).get("playerCount"));
   const existing = new FormData(setupForm);
   nameFields.querySelectorAll(".name-input").forEach((node) => node.remove());
-  const presets = isFantasyPage ? ddfPlayerPresets : playerPresets;
+  const presets = isDdfPage ? ddfPlayerPresets : playerPresets;
 
   presets.slice(0, count).forEach((preset, index) => {
     const label = document.createElement("label");
@@ -1208,7 +1488,7 @@ function buildPlayers(includePieces) {
   if (!setupForm) return [];
   const formData = new FormData(setupForm);
   const playerCount = Number(formData.get("playerCount"));
-  const presets = isFantasyPage ? ddfPlayerPresets : playerPresets;
+  const presets = isDdfPage ? ddfPlayerPresets : playerPresets;
   return presets.slice(0, playerCount).map((preset, index) => {
     const player = {
       id: index,
@@ -1277,6 +1557,7 @@ function cancelMotionEffects() {
 
 function showLobby(resetForm = false) {
   cancelMotionEffects();
+  clearTaskTimer();
   document.body.classList.remove("is-playing");
   document.body.classList.remove("is-quick-dice-active");
   state = createEmptyState();
@@ -1292,7 +1573,7 @@ function showLobby(resetForm = false) {
   bankSection?.classList.remove("is-hidden");
   if (resetForm && setupForm) {
     setupForm.reset();
-    setSelectedGame(isFantasyPage ? "truth" : "flight");
+    setSelectedGame(isDdfPage ? "truth" : "flight");
   }
   syncNameFields();
   renderQuestionBank();
@@ -1368,8 +1649,34 @@ function startDiceGame() {
 function renderDice() {
   if (!diceView) return;
   const player = getCurrentPlayer();
+  setSurfaceState(diceView, player, state.diceRolling ? "rolling" : state.currentPrompt ? "prompt" : "ready");
+  setPromptCardState(
+    dicePromptCard,
+    state.diceRolling ? "rolling" : state.currentPrompt?.cardTone || "waiting",
+    state.diceRolling || Boolean(state.currentPrompt),
+  );
+  renderPromptMeta(
+    dicePromptMeta,
+    state.diceRolling
+      ? [
+          { label: "自动翻题", tone: "active" },
+          { label: `${state.diceCount} 颗骰子`, tone: "ready" },
+        ]
+      : state.currentPrompt
+        ? [
+            { label: "完成 +1", tone: "success" },
+            { label: "可跳过", tone: "skip" },
+            { label: `计时 ${state.currentPrompt.timerSeconds || 30} 秒`, tone: "active" },
+          ]
+        : [
+            { label: `${state.diceCount} 颗骰子`, tone: "ready" },
+            { label: "投骰后出题", tone: "active" },
+          ],
+  );
+  ensureTaskTimer("dice", Boolean(state.currentPrompt) && !state.diceRolling, state.currentPrompt?.timerSeconds || 30);
   diceRoundTitle.textContent = `第 ${state.round} 轮`;
   dicePlayerName.textContent = player?.name || "游戏结束";
+  renderTurnAvatar(diceTurnAvatar, player);
   diceTurnCard.style.borderLeftColor = player?.color || "var(--gold)";
   diceHint.textContent = state.diceRolling
     ? "骰子滚动中，等点数停稳。"
@@ -1381,6 +1688,19 @@ function renderDice() {
   skipDiceButton.disabled = !state.currentPrompt || state.diceRolling;
   completeDiceButton.disabled = !state.currentPrompt || state.diceRolling;
   activeDiceCount.textContent = `${state.diceCount} 颗骰子`;
+  setRecommendedAction(warmDiceButton, !state.currentPrompt && !state.diceRolling);
+  setRecommendedAction(completeDiceButton, Boolean(state.currentPrompt) && !state.diceRolling);
+  setRecommendedAction(skipDiceButton, Boolean(state.currentPrompt) && !state.diceRolling);
+  renderActionCue(
+    diceCue,
+    state.diceRolling ? "骰子滚动中" : state.currentPrompt ? "处理任务" : "下一步",
+    state.diceRolling
+      ? "等骰子停稳，任务会自动翻开。"
+      : state.currentPrompt
+        ? "完成得 1 分；不合适就跳过进入下一位。"
+        : `点击投骰，${player?.name || "当前玩家"} 会拿到本轮任务。`,
+    state.diceRolling ? "active" : state.currentPrompt ? "active" : "ready",
+  );
 
   renderDiceFaces();
   renderPlayers(dicePlayersList, (item, index) => {
@@ -1519,6 +1839,8 @@ function finishWarmDiceRoll() {
   const duration = Math.min(60, 6 + total * 2);
   state.currentPrompt = {
     ...task,
+    cardTone: "dice",
+    timerSeconds: duration,
     type: `${state.diceCount} 骰 / ${total} 点`,
     title: `${band.title} · ${task.title}`,
     text: `${task.text} 计时 ${duration} 秒；任何人都可以改写、减速或跳过。`,
@@ -1530,7 +1852,9 @@ function finishWarmDiceRoll() {
   void dicePromptCard.offsetWidth;
   dicePromptCard.classList.add("is-dealt");
   addLog(`${getCurrentPlayer().name} 投出 ${state.diceRolls.join(" + ")} = ${total}，拿到 ${band.title}。`);
+  setPlayerFeedback(getCurrentPlayer(), "active", `${total} 点`);
   showTableToast(`${total} 点 · ${band.title}`, state.currentPrompt.title, "active");
+  beginTaskTimer("dice", duration);
   renderDice();
 }
 
@@ -1548,6 +1872,7 @@ function completeDicePrompt() {
   const title = state.currentPrompt.title;
   player.score += 1;
   addLog(`${player.name} 完成骰子任务：${title}，获得 1 分。`);
+  setPlayerFeedback(player, "success", "完成 +1");
   clearDicePrompt();
   advancePlayer();
   showTableToast("任务完成 +1", `${player.name} 完成：${title}`, "success");
@@ -1560,6 +1885,7 @@ function skipDicePrompt() {
   const title = state.currentPrompt.title;
   player.skips += 1;
   addLog(`${player.name} 跳过骰子任务：${title}。`);
+  setPlayerFeedback(player, "skip", "跳过");
   clearDicePrompt();
   advancePlayer();
   showTableToast("已跳过", `${player.name} 跳过：${title}`, "skip");
@@ -1567,6 +1893,7 @@ function skipDicePrompt() {
 }
 
 function clearDicePrompt() {
+  clearTaskTimer("dice");
   state.currentPrompt = null;
   state.diceRolls = [];
   state.diceRolling = false;
@@ -1597,6 +1924,12 @@ function startQuickDiceGame() {
 
 function renderQuickDice() {
   if (!quickDiceView) return;
+  setSurfaceState(
+    quickDiceView,
+    null,
+    state.diceRolling ? "rolling" : state.diceRolls.length ? "result" : "ready",
+    "var(--gold)",
+  );
   const rolls = state.diceRolling
     ? Array.from({ length: state.diceCount }, () => Math.floor(Math.random() * 6) + 1)
     : state.diceRolls.length
@@ -1611,6 +1944,7 @@ function renderQuickDice() {
       : `当前 ${state.diceCount} 颗骰子，点一下开始。`;
   quickDiceRollButton.disabled = state.diceRolling;
   quickDiceRollButton.classList.toggle("is-rolling", state.diceRolling);
+  setRecommendedAction(quickDiceRollButton, !state.diceRolling);
   quickDiceCountLabel.textContent = `${state.diceCount} 颗`;
   quickDiceMaxLabel.textContent = `${state.diceCount * 6} 点`;
   quickDiceCounts?.querySelectorAll("button").forEach((button) => {
@@ -1625,6 +1959,16 @@ function renderQuickDice() {
     { label: "上限", value: `${state.diceCount * 6} 点` },
     { label: "最近", value: state.diceRolls.length ? `${total} 点` : "未投" },
   ]);
+  renderActionCue(
+    quickDiceCue,
+    state.diceRolling ? "骰子滚动中" : state.diceRolls.length ? "继续投骰" : "下一步",
+    state.diceRolling
+      ? "点数落定后会写入历史。"
+      : state.diceRolls.length
+        ? `上次是 ${total} 点，可以换数量或继续投。`
+        : "选择骰子数量，然后投骰。",
+    state.diceRolling ? "active" : "ready",
+  );
   renderLog(quickDiceLogList);
 }
 
@@ -1700,13 +2044,39 @@ function startSyncGame() {
 function renderSync() {
   if (!syncView) return;
   const player = getCurrentPlayer();
+  setSurfaceState(syncView, player, state.currentPrompt ? "prompt" : "ready", "var(--rose)");
+  setPromptCardState(syncPromptCard, state.currentPrompt ? "sync" : "waiting", Boolean(state.currentPrompt));
+  renderPromptMeta(
+    syncPromptMeta,
+    state.currentPrompt
+      ? [
+          { label: "完成 +1", tone: "success" },
+          { label: "可跳过", tone: "skip" },
+          { label: "计时 45 秒", tone: "active" },
+        ]
+      : [
+          { label: "双方参与", tone: "ready" },
+          { label: "抽题开始", tone: "active" },
+        ],
+  );
+  ensureTaskTimer("sync", Boolean(state.currentPrompt), state.currentPrompt?.timerSeconds || 45);
   syncRoundTitle.textContent = `第 ${state.round} 轮`;
   syncPlayerName.textContent = player?.name || "游戏结束";
+  renderTurnAvatar(syncTurnAvatar, player);
   syncTurnCard.style.borderLeftColor = player?.color || "var(--teal)";
   syncHint.textContent = state.currentPrompt ? "完成或跳过当前默契挑战后进入下一位。" : "抽一个默契挑战，答对或完成得 1 分。";
   syncDrawButton.disabled = Boolean(state.currentPrompt);
   skipSyncButton.disabled = !state.currentPrompt;
   completeSyncButton.disabled = !state.currentPrompt;
+  setRecommendedAction(syncDrawButton, !state.currentPrompt);
+  setRecommendedAction(completeSyncButton, Boolean(state.currentPrompt));
+  setRecommendedAction(skipSyncButton, Boolean(state.currentPrompt));
+  renderActionCue(
+    syncCue,
+    state.currentPrompt ? "处理挑战" : "下一步",
+    state.currentPrompt ? "完成默契挑战得 1 分；跳过会轮到下一位。" : `${player?.name || "当前玩家"} 抽一个默契挑战。`,
+    state.currentPrompt ? "active" : "ready",
+  );
 
   renderPlayers(syncPlayersList, (item, index) => {
     const prefix = index === state.currentPlayerIndex ? "当前 · " : "";
@@ -1725,7 +2095,7 @@ function drawSyncPrompt() {
   if (state.mode !== "sync" || state.currentPrompt) return;
   const deck = getSyncDeck();
   const card = deck[Math.floor(Math.random() * deck.length)];
-  state.currentPrompt = card;
+  state.currentPrompt = { ...card, cardTone: "sync", timerSeconds: 45 };
   syncPromptType.textContent = card.type;
   syncPromptTitle.textContent = card.title;
   syncPromptText.textContent = card.text;
@@ -1733,7 +2103,9 @@ function drawSyncPrompt() {
   void syncPromptCard.offsetWidth;
   syncPromptCard.classList.add("is-dealt");
   addLog(`${getCurrentPlayer().name} 抽到默契挑战：${card.title}。`);
+  setPlayerFeedback(getCurrentPlayer(), "active", "抽挑战");
   showTableToast("抽到默契挑战", card.title, "active");
+  beginTaskTimer("sync", 45);
   renderSync();
 }
 
@@ -1743,6 +2115,7 @@ function completeSyncPrompt() {
   const title = state.currentPrompt.title;
   player.score += 1;
   addLog(`${player.name} 完成默契挑战：${title}，获得 1 分。`);
+  setPlayerFeedback(player, "success", "完成 +1");
   clearSyncPrompt();
   advancePlayer();
   showTableToast("默契完成 +1", `${player.name} 完成：${title}`, "success");
@@ -1755,6 +2128,7 @@ function skipSyncPrompt() {
   const title = state.currentPrompt.title;
   player.skips += 1;
   addLog(`${player.name} 跳过默契挑战：${title}。`);
+  setPlayerFeedback(player, "skip", "跳过");
   clearSyncPrompt();
   advancePlayer();
   showTableToast("已跳过", `${player.name} 跳过：${title}`, "skip");
@@ -1762,6 +2136,7 @@ function skipSyncPrompt() {
 }
 
 function clearSyncPrompt() {
+  clearTaskTimer("sync");
   state.currentPrompt = null;
   if (!syncPromptType) return;
   syncPromptType.textContent = "等待挑战";
@@ -1794,9 +2169,49 @@ function renderMini() {
   if (!miniView) return;
   const player = getCurrentPlayer();
   const meta = miniGameMeta[state.miniGame];
+  setSurfaceState(
+    miniView,
+    player,
+    state.miniSpinning ? "rolling" : state.currentPrompt ? "prompt" : state.miniChoices.length ? "choice" : "ready",
+    "var(--violet)",
+  );
+  setPromptCardState(
+    miniPromptCard,
+    state.miniSpinning
+      ? "rolling"
+      : state.miniChoices.length
+        ? "box"
+        : state.currentPrompt?.cardTone || "waiting",
+    state.miniSpinning || state.miniChoices.length || Boolean(state.currentPrompt),
+  );
+  renderPromptMeta(
+    miniPromptMeta,
+    state.miniSpinning
+      ? [
+          { label: "自动出题", tone: "active" },
+          { label: "等待停下", tone: "ready" },
+        ]
+      : state.miniChoices.length
+        ? [
+            { label: "三选一", tone: "active" },
+            { label: "可拒绝改写", tone: "skip" },
+          ]
+        : state.currentPrompt
+          ? [
+              { label: "完成 +1", tone: "success" },
+              { label: "可跳过", tone: "skip" },
+              { label: "计时 40 秒", tone: "active" },
+            ]
+          : [
+              { label: miniGameMeta[state.miniGame]?.name || "小游戏", tone: "ready" },
+              { label: "抽题开始", tone: "active" },
+            ],
+  );
+  ensureTaskTimer("mini", Boolean(state.currentPrompt) && !state.miniSpinning, state.currentPrompt?.timerSeconds || 40);
   miniGameLabel.textContent = meta.name;
   miniRoundTitle.textContent = `第 ${state.round} 轮`;
   miniPlayerName.textContent = player?.name || "游戏结束";
+  renderTurnAvatar(miniTurnAvatar, player);
   miniTurnCard.style.borderLeftColor = player?.color || "var(--rose)";
   miniHint.textContent = state.currentPrompt
     ? "完成或跳过当前题目后进入下一位。"
@@ -1809,6 +2224,13 @@ function renderMini() {
   miniDrawButton.disabled = Boolean(state.currentPrompt) || state.miniChoices.length > 0 || state.miniSpinning;
   skipMiniButton.disabled = !state.currentPrompt || state.miniSpinning;
   completeMiniButton.disabled = !state.currentPrompt || state.miniSpinning;
+  setRecommendedAction(miniDrawButton, !state.currentPrompt && !state.miniChoices.length && !state.miniSpinning);
+  setRecommendedAction(completeMiniButton, Boolean(state.currentPrompt) && !state.miniSpinning);
+  setRecommendedAction(skipMiniButton, Boolean(state.currentPrompt) && !state.miniSpinning);
+  miniChoiceGrid?.querySelectorAll("button").forEach((button) => {
+    const choiceIndex = Number(button.dataset.choice);
+    setRecommendedAction(button, Boolean(state.miniChoices[choiceIndex]) && !state.miniSpinning);
+  });
   miniVisual.dataset.mode = meta.visual;
   miniVisual.classList.toggle("is-spinning", state.miniSpinning);
   miniVisual.classList.toggle("is-settled", state.miniGame === "wheel" && !state.miniSpinning && Boolean(state.currentPrompt));
@@ -1824,7 +2246,22 @@ function renderMini() {
     { label: "阶段", value: getMiniPhaseLabel(), tone: state.currentPrompt || state.miniSpinning || state.miniChoices.length ? "active" : "ready" },
     { label: "回合", value: `第 ${state.round} 轮` },
   ]);
+  renderActionCue(miniCue, getMiniCueLabel(), getMiniCueText(player, meta), state.currentPrompt || state.miniSpinning || state.miniChoices.length ? "active" : "ready");
   renderLog(miniLogList);
+}
+
+function getMiniCueLabel() {
+  if (state.miniSpinning) return "轮盘旋转中";
+  if (state.miniChoices.length) return "选择盲盒";
+  if (state.currentPrompt) return "处理题目";
+  return "下一步";
+}
+
+function getMiniCueText(player, meta) {
+  if (state.miniSpinning) return "等指针停下，题目会自动翻开。";
+  if (state.miniChoices.length) return "选择 A / B / C 中的一个盲盒。";
+  if (state.currentPrompt) return "完成得 1 分；跳过会轮到下一位。";
+  return `${player?.name || "当前玩家"} 点击${meta.action}。`;
 }
 
 function getMiniPhaseLabel() {
@@ -1889,6 +2326,7 @@ function prepareMiniChoices() {
   void miniPromptCard.offsetWidth;
   miniPromptCard.classList.add("is-dealt");
   addLog(`${getCurrentPlayer().name} 摆出 3 个任务盲盒。`);
+  setPlayerFeedback(getCurrentPlayer(), "active", "摆盲盒");
   showTableToast("盲盒就绪", "选择 A / B / C 后翻开任务。", "active");
   renderMini();
 }
@@ -1902,7 +2340,7 @@ function chooseMiniBox(index) {
 }
 
 function revealMiniPrompt(card) {
-  state.currentPrompt = card;
+  state.currentPrompt = { ...card, cardTone: state.miniGame, timerSeconds: 40 };
   miniPromptType.textContent = card.type;
   miniPromptTitle.textContent = card.title;
   renderMiniPromptText(card.text);
@@ -1910,7 +2348,9 @@ function revealMiniPrompt(card) {
   void miniPromptCard.offsetWidth;
   miniPromptCard.classList.add("is-dealt");
   addLog(`${getCurrentPlayer().name} 拿到${miniGameMeta[state.miniGame].name}：${card.title}。`);
+  setPlayerFeedback(getCurrentPlayer(), "active", "抽题");
   showTableToast(`抽到${miniGameMeta[state.miniGame].name}`, card.title, "active");
+  beginTaskTimer("mini", 40);
   renderMini();
 }
 
@@ -1965,6 +2405,7 @@ function completeMiniPrompt() {
   const title = state.currentPrompt.title;
   player.score += 1;
   addLog(`${player.name} 完成${miniGameMeta[state.miniGame].name}：${title}，获得 1 分。`);
+  setPlayerFeedback(player, "success", "完成 +1");
   clearMiniPrompt();
   advancePlayer();
   showTableToast("完成 +1", `${player.name} 完成：${title}`, "success");
@@ -1977,6 +2418,7 @@ function skipMiniPrompt() {
   const title = state.currentPrompt.title;
   player.skips += 1;
   addLog(`${player.name} 跳过${miniGameMeta[state.miniGame].name}：${title}。`);
+  setPlayerFeedback(player, "skip", "跳过");
   clearMiniPrompt();
   advancePlayer();
   showTableToast("已跳过", `${player.name} 跳过：${title}`, "skip");
@@ -1984,6 +2426,7 @@ function skipMiniPrompt() {
 }
 
 function clearMiniPrompt() {
+  clearTaskTimer("mini");
   state.currentPrompt = null;
   state.miniChoices = [];
   state.miniSpinning = false;
@@ -2010,6 +2453,8 @@ function buildBoard() {
     const event = eventTypes[index % eventTypes.length];
     cell.className = `cell ${isSafe ? "safe" : "event"} ${isStart ? "start" : ""}`;
     cell.dataset.trackIndex = index;
+    cell.dataset.eventTone = event.key;
+    if (!isDdfPage) cell.dataset.tileLabel = isStart ? "START" : event.key.toUpperCase();
     cell.style.gridColumn = String(coord.col);
     cell.style.gridRow = String(coord.row);
     cell.style.setProperty("--cell-mark", event.color);
@@ -2021,6 +2466,7 @@ function buildBoard() {
       const cell = document.createElement("div");
       cell.className = "cell runway";
       cell.dataset.runway = String(playerIndex);
+      cell.dataset.tileLabel = "HOME";
       cell.style.gridColumn = String(coord.col);
       cell.style.gridRow = String(coord.row);
       cell.style.setProperty("--cell-mark", preset.color);
@@ -2054,6 +2500,7 @@ function renderFlight() {
 function renderBoardPieces() {
   board.querySelectorAll(".stack").forEach((stack) => stack.remove());
   board.querySelectorAll(".base .plane").forEach((plane) => plane.remove());
+  clearFlightBoardHighlights();
 
   const grouped = new Map();
   state.players.forEach((player) => {
@@ -2078,6 +2525,46 @@ function renderBoardPieces() {
     items.forEach(({ player, piece }) => stack.append(createPlaneElement(player, piece)));
     target.append(stack);
   });
+
+  markFlightMoveTargets();
+}
+
+function clearFlightBoardHighlights() {
+  board
+    .querySelectorAll(".is-move-origin, .is-move-target, .is-recent-move")
+    .forEach((cell) => {
+      cell.classList.remove("is-move-origin", "is-move-target", "is-recent-move");
+      cell.style.removeProperty("--target-color");
+      cell.removeAttribute("data-target-label");
+    });
+}
+
+function markFlightMoveTargets() {
+  if (state.mode !== "flight") return;
+  if (state.lastMovedPlayerId !== null && state.lastMovedPieceId !== null) {
+    const player = state.players[state.lastMovedPlayerId];
+    const piece = player?.pieces[state.lastMovedPieceId];
+    const recentCell = player && piece ? getLocationElement(getPieceLocationKey(player, piece)) : null;
+    if (recentCell) {
+      recentCell.classList.add("is-recent-move");
+      recentCell.style.setProperty("--target-color", player.color);
+    }
+  }
+
+  if (state.phase !== "choose") return;
+  getMovablePieces().forEach(({ player, piece }) => {
+    const origin = getLocationElement(getPieceLocationKey(player, piece));
+    const target = getLocationElement(getLandingLocationKey(player, piece));
+    if (origin) {
+      origin.classList.add("is-move-origin");
+      origin.style.setProperty("--target-color", player.color);
+    }
+    if (target) {
+      target.classList.add("is-move-target");
+      target.style.setProperty("--target-color", player.color);
+      target.dataset.targetLabel = String(piece.id + 1);
+    }
+  });
 }
 
 function createPlaneElement(player, piece) {
@@ -2088,6 +2575,9 @@ function createPlaneElement(player, piece) {
   plane.innerHTML = `<span>${piece.id + 1}</span>`;
   plane.setAttribute("aria-label", `${player.name} 的 ${piece.id + 1} 号飞机`);
   if (piece.progress === FINISH_PROGRESS) plane.classList.add("finished");
+  if (state.lastMovedPlayerId === player.id && state.lastMovedPieceId === piece.id) {
+    plane.classList.add("is-last-moved");
+  }
 
   const movable = getMovablePieces().some((item) => item.player.id === player.id && item.piece.id === piece.id);
   if (movable) {
@@ -2106,6 +2596,13 @@ function getPieceLocationKey(player, piece) {
   return `track-${(player.start + piece.progress) % TRACK_LENGTH}`;
 }
 
+function getLandingLocationKey(player, piece) {
+  const nextProgress = piece.progress < 0 ? 0 : piece.progress + state.lastRoll;
+  if (nextProgress === FINISH_PROGRESS) return "finish";
+  if (nextProgress >= TRACK_LENGTH) return `runway-${player.id}-${nextProgress - TRACK_LENGTH}`;
+  return `track-${(player.start + nextProgress) % TRACK_LENGTH}`;
+}
+
 function getLocationElement(key) {
   if (key === "finish") return board.querySelector("[data-finish='true']");
   if (key.startsWith("base")) return board.querySelector(`[data-base-player='${key.split("-")[1]}']`);
@@ -2119,6 +2616,7 @@ function getLocationElement(key) {
 
 function renderFlightSidebar() {
   const player = getCurrentPlayer();
+  setSurfaceState(gameView, player, state.winnerId !== null ? "finished" : state.phase);
   roundTitle.textContent = `第 ${state.round} 轮`;
   currentPlayerName.textContent = player?.name || "游戏结束";
   renderTurnAvatar(flightTurnAvatar, player);
@@ -2127,6 +2625,14 @@ function renderFlightSidebar() {
   diceValue.textContent = state.lastRoll || "?";
   rollButton.disabled = state.phase !== "roll" || state.winnerId !== null;
   endTurnButton.disabled = !["choose", "afterMove"].includes(state.phase) || state.winnerId !== null;
+  endTurnButton.textContent =
+    state.phase === "choose"
+      ? "跳过移动"
+      : state.phase === "afterMove" && state.lastRoll === 6
+        ? "继续掷骰"
+        : "下一位";
+  setRecommendedAction(rollButton, state.phase === "roll" && state.winnerId === null);
+  setRecommendedAction(endTurnButton, ["choose", "afterMove"].includes(state.phase) && state.winnerId === null);
 
   renderPlayers(playersList, (item, index) => {
     const finished = item.pieces.filter((piece) => piece.progress === FINISH_PROGRESS).length;
@@ -2139,6 +2645,7 @@ function renderFlightSidebar() {
     { label: "骰子", value: state.lastRoll ? `${state.lastRoll} 点` : "待掷" },
     { label: "回合", value: `第 ${state.round} 轮` },
   ]);
+  renderActionCue(flightCue, getFlightPhaseLabel(), getFlightActionCue(), state.phase === "roll" ? "ready" : "active");
 }
 
 function getFlightPhaseLabel() {
@@ -2156,6 +2663,19 @@ function getTurnHint() {
   if (state.phase === "choose") return `掷出 ${state.lastRoll}，选择一架可移动的飞机。`;
   if (state.phase === "afterMove" && state.lastRoll === 6) return "掷到 6，完成任务后可继续掷骰。";
   return "完成当前互动后结束回合。";
+}
+
+function getFlightActionCue() {
+  if (state.winnerId !== null) return "本局已结束，可以回大厅重新开局。";
+  if (state.phase === "roll") return "点击掷骰，让当前玩家行动。";
+  if (state.phase === "choose") {
+    const moves = getMovablePieces();
+    if (moves.length === 1) return `只有一个可选行动：${moves[0].label}。`;
+    return `选择一架发光飞机移动；共有 ${moves.length} 个可选行动。`;
+  }
+  if (state.phase === "afterMove" && state.lastRoll === 6) return "掷到 6，点击继续掷骰。";
+  if (state.phase === "afterMove") return "本回合已处理完，点击下一位。";
+  return "按当前阶段继续行动。";
 }
 
 function renderMoves() {
@@ -2179,6 +2699,7 @@ function renderMoves() {
       <span class="mini-plane" style="background: ${player.color}">${piece.id + 1}</span>
       <span>${label}</span>
     `;
+    setRecommendedAction(button, true);
     button.addEventListener("click", () => movePiece(player.id, piece.id));
     movesPanel.append(button);
   });
@@ -2194,6 +2715,7 @@ function rollDice() {
   state.lastRoll = Math.floor(Math.random() * 6) + 1;
   const player = getCurrentPlayer();
   addLog(`${player.name} 掷出 ${state.lastRoll}。`);
+  setPlayerFeedback(player, "active", `${state.lastRoll} 点`);
   showTableToast(`${player.name} 掷出 ${state.lastRoll} 点`, state.lastRoll === 6 ? "可以选择飞机起飞或继续推进。" : "选择可移动的飞机。", "active");
 
   const moves = getMovablePieces();
@@ -2245,11 +2767,14 @@ function movePiece(playerId, pieceId) {
   const oldProgress = piece.progress;
   piece.progress = oldProgress < 0 ? 0 : piece.progress + state.lastRoll;
   state.lastMovedPieceId = piece.id;
+  state.lastMovedPlayerId = player.id;
 
   if (piece.progress === FINISH_PROGRESS) {
     addLog(`${player.name} 的 ${piece.id + 1} 号飞机进入终点。`);
+    setPlayerFeedback(player, "success", "进终点");
     showTableToast("抵达终点", `${player.name} 的 ${piece.id + 1} 号飞机完成航线。`, "success");
   } else {
+    setPlayerFeedback(player, "active", "移动");
     handleCollision(player, piece);
     drawFlightTask(player);
   }
@@ -2294,7 +2819,7 @@ function handleCollision(player, piece) {
 }
 
 function drawFlightTask(player) {
-  const deck = getFlightDeck();
+  const deck = isDdfPage ? getDdfFlightDeck() : getFlightDeck();
   const task = deck[Math.floor(Math.random() * deck.length)];
   if (task.title === "跳过券") player.skipTokens += 1;
   showFlightTask(task);
@@ -2305,7 +2830,13 @@ function showFlightTask(task) {
   taskType.textContent = task.type;
   taskTitle.textContent = task.title;
   taskText.textContent = task.text;
+  renderPromptMeta(taskMeta, [
+    { label: "完成后继续", tone: "success" },
+    { label: "可跳过 / 换题", tone: "skip" },
+    { label: `计时 ${task.timerSeconds || 30} 秒`, tone: "active" },
+  ]);
   skipTaskButton.disabled = false;
+  beginTaskTimer("flight", task.timerSeconds || 30);
   if (taskDialog.showModal) {
     taskDialog.showModal();
   } else {
@@ -2315,19 +2846,23 @@ function showFlightTask(task) {
 
 function handleTaskClose() {
   if (!pendingTask || state.mode !== "flight") return;
+  clearTaskTimer("flight");
   const player = getCurrentPlayer();
   if (taskDialog.returnValue === "skip") {
     if (player?.skipTokens > 0) {
       player.skipTokens -= 1;
       addLog(`${player.name} 使用跳过券。`);
+      setPlayerFeedback(player, "skip", "跳过券");
       showTableToast("使用跳过券", `${player.name} 跳过本次任务。`, "skip");
     } else {
       addLog(`${player?.name || "玩家"} 跳过任务，后退 1 格。`);
+      setPlayerFeedback(player, "skip", "后退");
       stepBackCurrentPiece();
       showTableToast("任务已跳过", "后退 1 格，仍可继续本轮流程。", "skip");
     }
   } else {
     addLog(`${player?.name || "玩家"} 完成任务：${pendingTask.title}。`);
+    setPlayerFeedback(player, "success", "完成");
     showTableToast("任务完成", pendingTask.title, "success");
   }
   pendingTask = null;
@@ -2353,6 +2888,7 @@ function nextTurn() {
   }
   state.lastRoll = null;
   state.lastMovedPieceId = null;
+  state.lastMovedPlayerId = null;
   state.phase = "roll";
   renderFlight();
 }
@@ -2361,6 +2897,22 @@ function renderTruth() {
   const player = getCurrentPlayer();
   const availableKinds = getAvailableTruthKinds();
   const hasCurrentPrompt = Boolean(state.currentPrompt);
+  setSurfaceState(truthView, player, hasCurrentPrompt ? "prompt" : "ready", "var(--teal)");
+  setPromptCardState(promptCard, state.currentPrompt?.cardTone || "waiting", hasCurrentPrompt);
+  renderPromptMeta(
+    promptMeta,
+    hasCurrentPrompt
+      ? [
+          { label: "完成 +1", tone: "success" },
+          { label: "可跳过", tone: "skip" },
+          { label: "计时 30 秒", tone: "active" },
+        ]
+      : [
+          { label: getSpiceName(state.spiceLevel), tone: "ready" },
+          { label: state.spiceLevel === "fantasy" ? "只抽大冒险" : "真心话 / 大冒险", tone: "active" },
+        ],
+  );
+  ensureTaskTimer("truth", hasCurrentPrompt, state.currentPrompt?.timerSeconds || 30);
   truthRoundTitle.textContent = `第 ${state.round} 轮`;
   truthPlayerName.textContent = player?.name || "游戏结束";
   renderTurnAvatar(truthTurnAvatar, player);
@@ -2378,6 +2930,11 @@ function renderTruth() {
   if (randomPromptButton) randomPromptButton.disabled = hasCurrentPrompt || !availableKinds.length;
   skipPromptButton.disabled = !state.currentPrompt;
   completePromptButton.disabled = !state.currentPrompt;
+  setRecommendedAction(truthButton, !hasCurrentPrompt && availableKinds.includes("truth"));
+  setRecommendedAction(dareButton, !hasCurrentPrompt && availableKinds.includes("dare"));
+  setRecommendedAction(randomPromptButton, !hasCurrentPrompt && availableKinds.length > 1);
+  setRecommendedAction(completePromptButton, hasCurrentPrompt);
+  setRecommendedAction(skipPromptButton, hasCurrentPrompt);
 
   renderPlayers(truthPlayersList, (item, index) => {
     const prefix = index === state.currentPlayerIndex ? "当前 · " : "";
@@ -2389,6 +2946,16 @@ function renderTruth() {
     { label: "尺度", value: getSpiceName(state.spiceLevel) },
     { label: "回合", value: `第 ${state.round} 轮` },
   ]);
+  renderActionCue(
+    truthCue,
+    hasCurrentPrompt ? "处理卡牌" : "下一步",
+    hasCurrentPrompt
+      ? "完成得 1 分；不合适就跳过进入下一位。"
+      : state.spiceLevel === "fantasy"
+        ? `${player?.name || "当前玩家"} 抽一张大冒险。`
+        : `${player?.name || "当前玩家"} 选择一种卡牌。`,
+    hasCurrentPrompt ? "active" : "ready",
+  );
   renderLog(truthLogList);
 }
 
@@ -2404,7 +2971,7 @@ function drawPrompt(kind) {
     return;
   }
   const card = deck[Math.floor(Math.random() * deck.length)];
-  state.currentPrompt = card;
+  state.currentPrompt = { ...card, cardTone: resolvedKind, timerSeconds: 30 };
   promptType.textContent = card.type;
   promptTitle.textContent = card.title;
   promptText.textContent = card.text;
@@ -2416,7 +2983,9 @@ function drawPrompt(kind) {
       ? `${getCurrentPlayer().name} 拿到${card.type}：${card.title}。`
       : `${getCurrentPlayer().name} 抽到${card.type}：${card.title}。`,
   );
+  setPlayerFeedback(getCurrentPlayer(), "active", card.type);
   showTableToast(`抽到${card.type}`, card.title, "active");
+  beginTaskTimer("truth", 30);
   renderTruth();
 }
 
@@ -2426,6 +2995,7 @@ function completePrompt() {
   const title = state.currentPrompt.title;
   player.score += 1;
   addLog(`${player.name} 完成：${title}，获得 1 分。`);
+  setPlayerFeedback(player, "success", "完成 +1");
   clearPromptCard();
   advancePlayer();
   showTableToast("完成 +1", `${player.name} 完成：${title}`, "success");
@@ -2438,6 +3008,7 @@ function skipPrompt() {
   const title = state.currentPrompt.title;
   player.skips += 1;
   addLog(`${player.name} 跳过：${title}。`);
+  setPlayerFeedback(player, "skip", "跳过");
   clearPromptCard();
   advancePlayer();
   showTableToast("已跳过", `${player.name} 跳过：${title}`, "skip");
@@ -2445,6 +3016,7 @@ function skipPrompt() {
 }
 
 function clearPromptCard() {
+  clearTaskTimer("truth");
   state.currentPrompt = null;
   const isFantasy = state.spiceLevel === "fantasy";
   promptType.textContent = isFantasy ? "等待题目" : "等待抽卡";
@@ -2466,6 +3038,8 @@ function renderTurnAvatar(target, player) {
   target.style.setProperty("--player-color", player?.color || "var(--gold)");
   if (!player?.avatar) {
     target.classList.add("is-empty");
+    const initial = player?.name ? player.name.trim().slice(0, 1).toUpperCase() : "";
+    target.textContent = initial || "?";
     return;
   }
   target.classList.remove("is-empty");
@@ -2475,38 +3049,144 @@ function renderTurnAvatar(target, player) {
   target.append(image);
 }
 
+function getPlayerProgressPercent(player) {
+  if (!player) return 0;
+  if (state.mode === "flight" && Array.isArray(player.pieces)) {
+    const travelled = player.pieces.reduce((sum, piece) => {
+      const progress =
+        piece.progress === FINISH_PROGRESS
+          ? FINISH_PROGRESS
+          : piece.progress >= 0
+            ? piece.progress + 1
+            : 0;
+      return sum + progress;
+    }, 0);
+    return Math.round((travelled / (FINISH_PROGRESS * PIECES_PER_PLAYER)) * 100);
+  }
+  const bestScore = Math.max(1, ...state.players.map((item) => item.score || 0));
+  return Math.round(((player.score || 0) / bestScore) * 100);
+}
+
+function getPlayerRankMetric(player) {
+  if (!player) return 0;
+  if (state.mode === "flight" && Array.isArray(player.pieces)) {
+    const finished = player.pieces.filter((piece) => piece.progress === FINISH_PROGRESS).length;
+    const travelled = player.pieces.reduce((sum, piece) => {
+      const progress =
+        piece.progress === FINISH_PROGRESS
+          ? FINISH_PROGRESS
+          : piece.progress >= 0
+            ? piece.progress + 1
+            : 0;
+      return sum + progress;
+    }, 0);
+    return finished * 1000 + travelled;
+  }
+  return (player.score || 0) * 1000 - (player.skips || 0) * 4;
+}
+
+function getPlayerRanks() {
+  const ranked = state.players
+    .map((player, index) => ({ index, metric: getPlayerRankMetric(player) }))
+    .sort((a, b) => b.metric - a.metric || a.index - b.index);
+  const ranks = new Map();
+  let currentRank = 0;
+  let lastMetric = null;
+  ranked.forEach((item, order) => {
+    if (lastMetric === null || item.metric !== lastMetric) currentRank = order + 1;
+    ranks.set(item.index, { rank: currentRank, metric: item.metric });
+    lastMetric = item.metric;
+  });
+  return ranks;
+}
+
+function renderPlayerSummary(target, ranks) {
+  if (!target || !state.players.length) return;
+  const ranked = [...ranks.entries()].sort((a, b) => a[1].rank - b[1].rank || a[0] - b[0]);
+  const leaderEntry = ranked[0];
+  const leader = leaderEntry && leaderEntry[1].metric > 0 ? state.players[leaderEntry[0]] : null;
+  const current = getCurrentPlayer();
+  const feedback = state.lastPlayerFeedback;
+  const feedbackPlayer = feedback ? state.players.find((player) => player.id === feedback.playerId) : null;
+  const summary = document.createElement("div");
+  summary.className = "leader-summary";
+  summary.innerHTML = `
+    <span>
+      <small>领先</small>
+      <strong>${escapeHtml(leader?.name || "未拉开")}</strong>
+    </span>
+    <span>
+      <small>当前</small>
+      <strong>${escapeHtml(current?.name || "结束")}</strong>
+    </span>
+    <span>
+      <small>最近</small>
+      <strong>${escapeHtml(feedbackPlayer ? `${feedbackPlayer.name} · ${feedback.label}` : "等待行动")}</strong>
+    </span>
+  `;
+  target.append(summary);
+}
+
 function renderPlayers(target, getMeta) {
   if (!target) return;
   target.innerHTML = "";
+  const ranks = getPlayerRanks();
+  renderPlayerSummary(target, ranks);
   state.players.forEach((item, index) => {
     const meta = getMeta(item, index);
     const isCurrent = index === state.currentPlayerIndex && state.winnerId === null;
+    const rankMeta = ranks.get(index) || { rank: index + 1, metric: 0 };
+    const progress = Number.isFinite(meta.progress) ? meta.progress : getPlayerProgressPercent(item);
+    const feedback = state.lastPlayerFeedback;
+    const hasFeedback = feedback?.playerId === item.id;
     const row = document.createElement("div");
     row.className = "player-row";
+    row.style.setProperty("--player-color", item.color);
+    row.style.setProperty("--player-progress", `${Math.min(Math.max(progress, 0), 100)}%`);
     row.classList.toggle("is-current", isCurrent);
     row.classList.toggle("has-avatar", Boolean(item.avatar));
+    row.classList.toggle("is-leading", rankMeta.rank === 1 && rankMeta.metric > 0);
+    row.classList.toggle("has-feedback", hasFeedback);
+    row.dataset.rank = String(rankMeta.rank);
+    if (hasFeedback) row.dataset.feedbackTone = feedback.tone;
     if (isCurrent) row.setAttribute("aria-current", "true");
     const marker = item.avatar
       ? `<span class="player-avatar" style="--player-color: ${escapeHtml(item.color)}" aria-hidden="true"><img src="${escapeHtml(item.avatar)}" alt="" /></span>`
       : `<span class="player-color" style="--player-color: ${escapeHtml(item.color)}"></span>`;
     row.innerHTML = `
       ${marker}
-      <span class="player-name">${escapeHtml(meta.name)}</span>
+      <span class="player-name"><span class="player-rank">#${rankMeta.rank}</span>${escapeHtml(meta.name)}</span>
       <span class="player-score">${escapeHtml(meta.score)}</span>
+      ${hasFeedback ? `<span class="player-feedback">${escapeHtml(feedback.label)}</span>` : ""}
+      <span class="player-progress" aria-hidden="true"><i></i></span>
     `;
     target.append(row);
   });
 }
 
+function getLogTone(entry) {
+  if (/完成|抵达|获胜|得 1 分|\+1/.test(entry)) return { tone: "success", label: "完成" };
+  if (/跳过|没有可移动|清空|后退/.test(entry)) return { tone: "skip", label: "跳过" };
+  if (/抽到|拿到|摆出|投出|掷出|落点|撞机/.test(entry)) return { tone: "active", label: "事件" };
+  if (/下一位|继续|开始|准备/.test(entry)) return { tone: "ready", label: "回合" };
+  return { tone: "note", label: "记录" };
+}
+
 function renderLog(target) {
   if (!target) return;
   target.innerHTML = "";
-  state.log.slice(0, 10).forEach((entry) => {
+  state.log.slice(0, 10).forEach((entry, index) => {
     const player = state.players.find((item) => entry.startsWith(item.name));
+    const tone = getLogTone(entry);
     const item = document.createElement("div");
     item.className = "log-item";
+    item.dataset.tone = tone.tone;
+    item.classList.toggle("is-latest", index === 0);
     if (player) item.style.setProperty("--log-color", player.color);
-    item.textContent = entry;
+    item.innerHTML = `
+      <span class="log-tag">${tone.label}</span>
+      <span class="log-copy">${escapeHtml(entry)}</span>
+    `;
     target.append(item);
   });
 }
@@ -2595,6 +3275,17 @@ endTurnButton?.addEventListener("click", nextTurn);
 restartButton?.addEventListener("click", () => showLobby(true));
 flightHomeButton?.addEventListener("click", () => showLobby(false));
 taskDialog?.addEventListener("close", handleTaskClose);
+timerCommandButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const scope = button.dataset.timerScope;
+    if (!scope) return;
+    if (button.dataset.timerCommand === "add") {
+      addTaskTimer(scope, button.dataset.seconds);
+    } else {
+      toggleTaskTimer(scope);
+    }
+  });
+});
 
 truthButton?.addEventListener("click", () => drawPrompt("truth"));
 dareButton?.addEventListener("click", () => drawPrompt("dare"));

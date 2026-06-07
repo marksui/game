@@ -294,10 +294,15 @@
           </div>
         </header>
         <div class="round-flow" id="flightFlow" aria-live="polite"></div>
+        <div class="action-cue" id="flightCue" aria-live="polite">
+          <span>下一步</span>
+          <strong>点击掷骰开始这一回合。</strong>
+        </div>
 
         <div class="game-layout">
           <aside class="side-panel" aria-label="玩家状态">
-            <div class="turn-card" id="turnCard">
+            <div class="turn-card has-turn-avatar" id="turnCard">
+              <span class="turn-avatar" id="flightTurnAvatar" aria-hidden="true"></span>
               <span class="status-label">当前玩家</span>
               <strong id="currentPlayerName">玩家 1</strong>
               <p id="turnHint">点击掷骰开始这一回合。</p>
@@ -335,10 +340,15 @@
           </div>
         </header>
         <div class="round-flow" id="truthFlow" aria-live="polite"></div>
+        <div class="action-cue" id="truthCue" aria-live="polite">
+          <span>下一步</span>
+          <strong>选择真心话、大冒险或随机抽卡。</strong>
+        </div>
 
         <div class="truth-layout">
           <aside class="side-panel" aria-label="当前玩家">
-            <div class="turn-card truth-turn" id="truthTurnCard">
+            <div class="turn-card truth-turn has-turn-avatar" id="truthTurnCard">
+              <span class="turn-avatar" id="truthTurnAvatar" aria-hidden="true"></span>
               <span class="status-label">轮到</span>
               <strong id="truthPlayerName">玩家 1</strong>
               <p id="truthHint">选择真心话、大冒险或随机抽卡。</p>
@@ -359,8 +369,16 @@
             <article class="prompt-card" id="promptCard">
               <p class="eyebrow" id="promptType">等待抽卡</p>
               <h3 id="promptTitle">选择一种卡牌</h3>
+              <div class="prompt-meta" id="promptMeta" aria-label="任务信息"></div>
               <p id="promptText">抽到的任务会显示在这里。完成后加 1 分，跳过会记录一次。</p>
             </article>
+            <div class="task-timer is-hidden" id="truthTimer" aria-live="polite">
+              <span>任务计时</span>
+              <strong data-timer-time>00:30</strong>
+              <div class="timer-track" aria-hidden="true"><i></i></div>
+              <button class="secondary-action" type="button" data-timer-command="toggle" data-timer-scope="truth">开始</button>
+              <button class="secondary-action" type="button" data-timer-command="add" data-timer-scope="truth" data-seconds="15">+15s</button>
+            </div>
             <div class="prompt-actions">
               <button class="secondary-action" id="skipPromptButton" type="button" disabled>跳过</button>
               <button class="primary-action" id="completePromptButton" type="button" disabled>完成</button>
@@ -386,10 +404,15 @@
           </div>
         </header>
         <div class="round-flow" id="diceFlow" aria-live="polite"></div>
+        <div class="action-cue" id="diceCue" aria-live="polite">
+          <span>下一步</span>
+          <strong>点击投骰，等待任务翻开。</strong>
+        </div>
 
         <div class="dice-layout">
           <aside class="side-panel" aria-label="骰子玩家">
-            <div class="turn-card dice-turn" id="diceTurnCard">
+            <div class="turn-card dice-turn has-turn-avatar" id="diceTurnCard">
+              <span class="turn-avatar" id="diceTurnAvatar" aria-hidden="true"></span>
               <span class="status-label">轮到</span>
               <strong id="dicePlayerName">玩家 1</strong>
               <p id="diceHint">点击投骰，点数会组合成升温任务。</p>
@@ -411,8 +434,16 @@
             <article class="prompt-card dice-prompt" id="dicePromptCard">
               <p class="eyebrow" id="dicePromptType">等待投骰</p>
               <h3 id="dicePromptTitle">选择骰子数量后开始</h3>
+              <div class="prompt-meta" id="dicePromptMeta" aria-label="骰子任务信息"></div>
               <p id="dicePromptText">骰子点数会决定升温等级、互动时长和本轮任务。</p>
             </article>
+            <div class="task-timer is-hidden" id="diceTimer" aria-live="polite">
+              <span>任务计时</span>
+              <strong data-timer-time>00:30</strong>
+              <div class="timer-track" aria-hidden="true"><i></i></div>
+              <button class="secondary-action" type="button" data-timer-command="toggle" data-timer-scope="dice">开始</button>
+              <button class="secondary-action" type="button" data-timer-command="add" data-timer-scope="dice" data-seconds="15">+15s</button>
+            </div>
             <div class="prompt-actions">
               <button class="secondary-action" id="skipDiceButton" type="button" disabled>跳过</button>
               <button class="primary-action" id="completeDiceButton" type="button" disabled>完成</button>
@@ -438,6 +469,10 @@
           </div>
         </header>
         <div class="round-flow" id="quickDiceFlow" aria-live="polite"></div>
+        <div class="action-cue" id="quickDiceCue" aria-live="polite">
+          <span>下一步</span>
+          <strong>选择骰子数量，然后投骰。</strong>
+        </div>
 
         <div class="quick-dice-layout">
           <section class="quick-dice-stage" aria-label="纯骰子结果">
@@ -504,10 +539,15 @@
           </div>
         </header>
         <div class="round-flow" id="syncFlow" aria-live="polite"></div>
+        <div class="action-cue" id="syncCue" aria-live="polite">
+          <span>下一步</span>
+          <strong>抽一个默契挑战。</strong>
+        </div>
 
         <div class="sync-layout">
           <aside class="side-panel" aria-label="默契玩家">
-            <div class="turn-card sync-turn" id="syncTurnCard">
+            <div class="turn-card sync-turn has-turn-avatar" id="syncTurnCard">
+              <span class="turn-avatar" id="syncTurnAvatar" aria-hidden="true"></span>
               <span class="status-label">轮到</span>
               <strong id="syncPlayerName">玩家 1</strong>
               <p id="syncHint">抽一个默契挑战，答对或完成得 1 分。</p>
@@ -526,8 +566,16 @@
             <article class="prompt-card" id="syncPromptCard">
               <p class="eyebrow" id="syncPromptType">等待挑战</p>
               <h3 id="syncPromptTitle">抽一个升温默契题</h3>
+              <div class="prompt-meta" id="syncPromptMeta" aria-label="默契挑战信息"></div>
               <p id="syncPromptText">同步回答、盲猜偏好或完成一个双方都舒服的小互动。</p>
             </article>
+            <div class="task-timer is-hidden" id="syncTimer" aria-live="polite">
+              <span>任务计时</span>
+              <strong data-timer-time>00:45</strong>
+              <div class="timer-track" aria-hidden="true"><i></i></div>
+              <button class="secondary-action" type="button" data-timer-command="toggle" data-timer-scope="sync">开始</button>
+              <button class="secondary-action" type="button" data-timer-command="add" data-timer-scope="sync" data-seconds="15">+15s</button>
+            </div>
             <div class="prompt-actions">
               <button class="secondary-action" id="skipSyncButton" type="button" disabled>跳过</button>
               <button class="primary-action" id="completeSyncButton" type="button" disabled>完成</button>
@@ -553,10 +601,15 @@
           </div>
         </header>
         <div class="round-flow" id="miniFlow" aria-live="polite"></div>
+        <div class="action-cue" id="miniCue" aria-live="polite">
+          <span>下一步</span>
+          <strong>开始本轮小游戏。</strong>
+        </div>
 
         <div class="mini-layout">
           <aside class="side-panel" aria-label="小游戏玩家">
-            <div class="turn-card mini-turn" id="miniTurnCard">
+            <div class="turn-card mini-turn has-turn-avatar" id="miniTurnCard">
+              <span class="turn-avatar" id="miniTurnAvatar" aria-hidden="true"></span>
               <span class="status-label">轮到</span>
               <strong id="miniPlayerName">玩家 1</strong>
               <p id="miniHint">抽取本轮小游戏题目，完成得 1 分。</p>
@@ -581,8 +634,16 @@
             <article class="prompt-card" id="miniPromptCard">
               <p class="eyebrow" id="miniPromptType">等待开始</p>
               <h3 id="miniPromptTitle">准备进入小游戏</h3>
+              <div class="prompt-meta" id="miniPromptMeta" aria-label="小游戏任务信息"></div>
               <p id="miniPromptText">根据玩法抽取轮盘、盲盒或角色剧本。</p>
             </article>
+            <div class="task-timer is-hidden" id="miniTimer" aria-live="polite">
+              <span>任务计时</span>
+              <strong data-timer-time>00:40</strong>
+              <div class="timer-track" aria-hidden="true"><i></i></div>
+              <button class="secondary-action" type="button" data-timer-command="toggle" data-timer-scope="mini">开始</button>
+              <button class="secondary-action" type="button" data-timer-command="add" data-timer-scope="mini" data-seconds="15">+15s</button>
+            </div>
             <div class="prompt-actions">
               <button class="secondary-action" id="skipMiniButton" type="button" disabled>跳过</button>
               <button class="primary-action" id="completeMiniButton" type="button" disabled>完成</button>
@@ -596,6 +657,7 @@
         </div>
       </section>
 
+      <div class="table-moment" id="tableMoment" aria-hidden="true"></div>
       <div class="table-toast" id="tableToast" role="status" aria-live="polite" aria-atomic="true"></div>
     </main>
 
@@ -603,7 +665,15 @@
       <form method="dialog">
         <p class="eyebrow" id="taskType">心动任务</p>
         <h3 id="taskTitle">任务卡</h3>
+        <div class="prompt-meta" id="taskMeta" aria-label="飞行棋任务信息"></div>
         <p id="taskText"></p>
+        <div class="task-timer is-hidden" id="flightTaskTimer" aria-live="polite">
+          <span>任务计时</span>
+          <strong data-timer-time>00:30</strong>
+          <div class="timer-track" aria-hidden="true"><i></i></div>
+          <button class="secondary-action" type="button" data-timer-command="toggle" data-timer-scope="flight">开始</button>
+          <button class="secondary-action" type="button" data-timer-command="add" data-timer-scope="flight" data-seconds="15">+15s</button>
+        </div>
         <div class="dialog-actions">
           <button class="secondary-action" id="skipTaskButton" value="skip" type="submit">跳过 / 换题</button>
           <button class="primary-action" id="completeTaskButton" value="done" type="submit">完成</button>
