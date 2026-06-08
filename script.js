@@ -2,7 +2,7 @@ const TRACK_LENGTH =48;
 const HOME_STRETCH = 5;
 const FINISH_PROGRESS = TRACK_LENGTH + HOME_STRETCH;
 const PIECES_PER_PLAYER = 4;
-
+ 
 const playerPresets= [
   { name: "Boy", color: "#ff0000", start: 6, baseClass: "base-0" },
   { name: "Girl", color: "#f6ff00f6", start: 18, baseClass: "base-1" },
