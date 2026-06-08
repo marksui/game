@@ -663,24 +663,32 @@
 
     <dialog class="task-dialog" id="taskDialog">
       <form method="dialog">
-        <p class="eyebrow" id="taskType">心动任务</p>
-        <h3 id="taskTitle">任务卡</h3>
-        <div class="prompt-meta" id="taskMeta" aria-label="飞行棋任务信息"></div>
-        <p id="taskText"></p>
-        <div class="task-timer is-hidden" id="flightTaskTimer" aria-live="polite">
-          <span>任务计时</span>
-          <strong data-timer-time>00:30</strong>
-          <div class="timer-track" aria-hidden="true"><i></i></div>
-          <button class="secondary-action" type="button" data-timer-command="toggle" data-timer-scope="flight">开始</button>
-          <button class="secondary-action" type="button" data-timer-command="add" data-timer-scope="flight" data-seconds="15">+15s</button>
+        <div class="task-dialog-head">
+          <div>
+            <p class="eyebrow" id="taskType">心动任务</p>
+            <h3 id="taskTitle">任务卡</h3>
+          </div>
+          <button class="secondary-action task-collapse-button" id="taskCollapseButton" type="button" aria-expanded="true" aria-controls="taskDialogBody">收起</button>
         </div>
-        <div class="dialog-actions">
-          <button class="secondary-action" id="skipTaskButton" value="skip" type="submit">跳过 / 换题</button>
-          <button class="primary-action" id="completeTaskButton" value="done" type="submit">完成</button>
+        <div class="task-dialog-body" id="taskDialogBody">
+          <div class="prompt-meta" id="taskMeta" aria-label="飞行棋任务信息"></div>
+          <p id="taskText"></p>
+          <div class="task-timer is-hidden" id="flightTaskTimer" aria-live="polite">
+            <span>任务计时</span>
+            <strong data-timer-time>00:30</strong>
+            <div class="timer-track" aria-hidden="true"><i></i></div>
+            <button class="secondary-action" type="button" data-timer-command="toggle" data-timer-scope="flight">开始</button>
+            <button class="secondary-action" type="button" data-timer-command="add" data-timer-scope="flight" data-seconds="15">+15s</button>
+          </div>
+          <div class="dialog-actions">
+            <button class="secondary-action" id="skipTaskButton" value="skip" type="submit">跳过 / 换题</button>
+            <button class="primary-action" id="completeTaskButton" value="done" type="submit">完成</button>
+          </div>
         </div>
       </form>
     </dialog>
 
+    <script src="data/extra-decks.generated.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

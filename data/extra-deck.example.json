@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "name": "Example extra deck pack",
+    "note": "This file shows the import shape accepted by window.NightVoyageDecks.addPack(pack, { \"persist\": true })."
+  },
+  "truth": {
+    "soft": {
+      "truth": [
+        {
+          "title": "示例真心话",
+          "text": "说一个今天让你觉得被照顾的小细节。"
+        }
+      ],
+      "dare": [
+        {
+          "title": "示例大冒险",
+          "text": "用一句温柔的话邀请对方选择继续、慢一点或换题。"
+        }
+      ]
+    }
+  },
+  "dice": {
+    "soft": [
+      {
+        "type": "示例骰",
+        "title": "导入点数",
+        "text": "按骰子数量说出同样多的安全关键词。"
+      }
+    ]
+  }
+}

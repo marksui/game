@@ -2642,6 +2642,26 @@ legend {
   border-color: var(--gold);
 }
 
+.game-view .primary-action,
+.game-view .secondary-action,
+.truth-view .primary-action,
+.truth-view .secondary-action,
+.dice-view .primary-action,
+.dice-view .secondary-action,
+.quick-dice-view .primary-action,
+.quick-dice-view .secondary-action,
+.sync-view .primary-action,
+.sync-view .secondary-action,
+.mini-view .primary-action,
+.mini-view .secondary-action,
+.task-dialog .primary-action,
+.task-dialog .secondary-action {
+  min-width: 0;
+  line-height: 1.18;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
 .action-alt {
   background: linear-gradient(135deg, #1b7069, var(--teal));
   color: #071512;
@@ -2877,7 +2897,18 @@ legend {
 
 .top-actions {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 10px;
+}
+
+.top-bar > div:first-child {
+  min-width: 0;
+}
+
+.top-bar h2,
+.top-bar .eyebrow {
+  overflow-wrap: anywhere;
 }
 
 .round-flow {
@@ -2973,12 +3004,17 @@ legend {
 .action-cue::after {
   content: "";
   position: absolute;
-  inset: 0 auto 0 -40%;
-  width: 28%;
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--active-player) 16%, transparent), transparent);
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 0 38%,
+    color-mix(in srgb, var(--active-player) 16%, transparent) 50%,
+    transparent 62% 100%
+  );
+  background-size: 230% 100%;
+  background-position: -160% 0;
   opacity: 0;
   pointer-events: none;
-  transform: skewX(-18deg);
 }
 
 .action-cue[data-tone="active"] {
@@ -3096,12 +3132,15 @@ legend {
 
 .turn-card strong {
   font-size: 1.45rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .turn-card p {
   margin: 0;
   color: var(--muted);
   line-height: 1.55;
+  overflow-wrap: anywhere;
 }
 
 .truth-turn {
@@ -3236,6 +3275,11 @@ legend {
   color: var(--ink);
   padding: 8px 10px;
   text-align: left;
+}
+
+.move-button > span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .move-button:hover {
@@ -4396,17 +4440,23 @@ body.quick-dice-page .page-texture {
 .prompt-card::after {
   content: "";
   position: absolute;
-  inset: 0 auto 0 -44%;
-  width: 32%;
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--card-tone) 18%, transparent), transparent);
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 0 38%,
+    color-mix(in srgb, var(--card-tone) 18%, transparent) 50%,
+    transparent 62% 100%
+  );
+  background-size: 230% 100%;
+  background-position: -160% 0;
   opacity: 0;
   pointer-events: none;
-  transform: skewX(-18deg);
 }
 
 .prompt-card > * {
   position: relative;
   z-index: 1;
+  min-width: 0;
 }
 
 .prompt-card[data-card-tone="truth"] {
@@ -4454,6 +4504,11 @@ body.quick-dice-page .page-texture {
   color: var(--muted);
   font-size: clamp(1.05rem, 2.2vw, 1.28rem);
   line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.prompt-card h3 {
+  overflow-wrap: anywhere;
 }
 
 .prompt-meta {
@@ -4482,7 +4537,8 @@ body.quick-dice-page .page-texture {
   font-size: 0.76rem;
   font-weight: 1000;
   line-height: 1;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  text-align: center;
 }
 
 .prompt-meta span[data-tone="success"] {
@@ -4565,11 +4621,16 @@ body.quick-dice-page .page-texture {
 .task-timer::before {
   content: "";
   position: absolute;
-  inset: 0 auto 0 -38%;
-  width: 28%;
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--card-tone, var(--gold)) 16%, transparent), transparent);
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 0 38%,
+    color-mix(in srgb, var(--card-tone, var(--gold)) 16%, transparent) 50%,
+    transparent 62% 100%
+  );
+  background-size: 230% 100%;
+  background-position: -160% 0;
   opacity: 0;
-  transform: skewX(-18deg);
   pointer-events: none;
 }
 
@@ -4762,6 +4823,7 @@ body.quick-dice-page .page-texture {
 }
 
 .player-row.is-leading {
+  grid-template-columns: 12px minmax(0, 1fr) auto auto;
   border-color: color-mix(in srgb, var(--gold) 68%, var(--player-color));
   box-shadow:
     inset 0 0 0 1px rgba(255, 216, 128, 0.12),
@@ -4771,10 +4833,11 @@ body.quick-dice-page .page-texture {
 
 .player-row.is-leading::after {
   content: "领先";
-  position: absolute;
-  top: 6px;
-  right: 8px;
-  z-index: 2;
+  position: relative;
+  z-index: 1;
+  grid-column: 4;
+  grid-row: 1;
+  justify-self: end;
   border: 1px solid rgba(255, 216, 128, 0.46);
   border-radius: 999px;
   background:
@@ -4791,6 +4854,10 @@ body.quick-dice-page .page-texture {
 .player-row.has-avatar {
   grid-template-columns: 44px minmax(0, 1fr) auto;
   min-height: 58px;
+}
+
+.player-row.has-avatar.is-leading {
+  grid-template-columns: 44px minmax(0, 1fr) auto auto;
 }
 
 .player-row.has-avatar .player-avatar {
@@ -4858,10 +4925,13 @@ body.quick-dice-page .page-texture {
   font-size: 0.86rem;
   font-weight: 900;
   padding-right: 0;
+  max-width: 13ch;
+  overflow-wrap: anywhere;
+  text-align: right;
 }
 
 .player-row.is-leading .player-score {
-  padding-right: 42px;
+  padding-right: 0;
 }
 
 .player-feedback {
@@ -4948,6 +5018,97 @@ body.quick-dice-page .page-texture {
   padding-right: 2px;
 }
 
+.log-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.log-panel-title {
+  min-width: 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 1000;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.log-toggle {
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  gap: 7px;
+  align-items: center;
+  min-height: 36px;
+  border: 1px solid color-mix(in srgb, var(--active-player, var(--gold)) 42%, var(--line));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--active-player, var(--gold)) 9%, transparent);
+  color: color-mix(in srgb, var(--active-player, var(--gold)) 74%, white);
+  padding: 6px 10px;
+  font-size: 0.76rem;
+  font-weight: 1000;
+  line-height: 1;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.log-toggle:hover {
+  border-color: color-mix(in srgb, var(--active-player, var(--gold)) 70%, white);
+  transform: translateY(-1px);
+}
+
+.log-toggle::after {
+  content: "";
+  width: 7px;
+  aspect-ratio: 1;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 180ms ease;
+}
+
+.log-count {
+  display: inline-grid;
+  min-width: 24px;
+  height: 22px;
+  place-items: center;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--active-player, var(--gold)) 18%, transparent);
+  color: var(--ink);
+  font-size: 0.68rem;
+}
+
+.log-history-body {
+  display: grid;
+  min-height: 0;
+  max-height: min(46vh, 440px);
+  overflow: hidden;
+  opacity: 1;
+  transform-origin: top;
+  transition:
+    max-height 220ms ease,
+    opacity 160ms ease,
+    transform 180ms ease;
+}
+
+.log-panel.is-history-collapsed .log-history-body {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: scaleY(0.96);
+}
+
+.log-panel.is-history-collapsed .log-toggle::after {
+  transform: translateY(2px) rotate(-135deg);
+}
+
 .log-item {
   --log-color: var(--gold);
   position: relative;
@@ -5029,24 +5190,25 @@ body.quick-dice-page .page-texture {
   --moment-color: var(--gold);
   position: fixed;
   left: 50%;
-  top: clamp(92px, 16vh, 150px);
+  top: clamp(70px, 9vh, 112px);
   z-index: 88;
   display: grid;
-  width: min(520px, calc(100vw - 36px));
-  gap: 6px;
-  place-items: center;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 4px 10px;
+  align-items: center;
+  width: min(430px, calc(100vw - 32px));
   border: 1px solid color-mix(in srgb, var(--moment-color) 58%, var(--line));
-  border-radius: 18px;
+  border-radius: 999px;
   background:
-    radial-gradient(circle at 50% 0, color-mix(in srgb, var(--moment-color) 24%, transparent), transparent 38%),
+    radial-gradient(circle at 8% 0, color-mix(in srgb, var(--moment-color) 18%, transparent), transparent 38%),
     linear-gradient(135deg, rgba(255, 248, 239, 0.06), transparent),
     color-mix(in srgb, var(--surface) 92%, black);
   color: var(--ink);
-  padding: 18px 20px;
-  text-align: center;
+  padding: 9px 12px;
+  text-align: left;
   box-shadow:
-    0 24px 70px rgba(0, 0, 0, 0.42),
-    0 0 44px color-mix(in srgb, var(--moment-color) 18%, transparent),
+    0 16px 42px rgba(0, 0, 0, 0.34),
+    0 0 28px color-mix(in srgb, var(--moment-color) 14%, transparent),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
   opacity: 0;
   pointer-events: none;
@@ -5054,7 +5216,7 @@ body.quick-dice-page .page-texture {
 }
 
 .table-moment.is-visible {
-  animation: tableMomentPop 1300ms cubic-bezier(0.16, 0.92, 0.28, 1) both;
+  animation: tableMomentPop 980ms cubic-bezier(0.16, 0.92, 0.28, 1) both;
 }
 
 .table-moment[data-tone="success"] {
@@ -5071,24 +5233,25 @@ body.quick-dice-page .page-texture {
 
 .table-moment span {
   display: inline-grid;
-  min-height: 26px;
+  min-height: 24px;
   place-items: center;
   border: 1px solid color-mix(in srgb, var(--moment-color) 50%, transparent);
   border-radius: 999px;
   background: color-mix(in srgb, var(--moment-color) 13%, transparent);
   color: color-mix(in srgb, var(--moment-color) 76%, white);
-  padding: 5px 12px;
-  font-size: 0.76rem;
+  padding: 4px 9px;
+  font-size: 0.7rem;
   font-weight: 1000;
   line-height: 1;
 }
 
 .table-moment strong {
+  min-width: 0;
   max-width: 100%;
   color: var(--ink);
-  font-size: clamp(1.45rem, 4vw, 2.35rem);
+  font-size: clamp(0.95rem, 2.2vw, 1.18rem);
   font-weight: 1000;
-  line-height: 1.05;
+  line-height: 1.12;
   overflow-wrap: anywhere;
   text-shadow:
     0 0 22px color-mix(in srgb, var(--moment-color) 24%, transparent),
@@ -5096,19 +5259,24 @@ body.quick-dice-page .page-texture {
 }
 
 .table-moment small {
+  grid-column: 2;
+  min-width: 0;
   max-width: 100%;
   color: var(--muted);
-  line-height: 1.45;
-  overflow-wrap: anywhere;
+  font-size: 0.74rem;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .table-toast {
   position: fixed;
   right: clamp(14px, 2vw, 28px);
-  bottom: clamp(14px, 2vw, 28px);
+  bottom: calc(clamp(14px, 2vw, 28px) + env(safe-area-inset-bottom, 0px));
   z-index: 90;
   display: grid;
-  width: min(360px, calc(100vw - 28px));
+  width: min(340px, calc(100vw - 28px));
   gap: 4px;
   border: 1px solid color-mix(in srgb, var(--gold) 54%, var(--line));
   border-radius: 16px;
@@ -5116,7 +5284,7 @@ body.quick-dice-page .page-texture {
     radial-gradient(circle at 8% 0, rgba(225, 173, 79, 0.2), transparent 34%),
     color-mix(in srgb, var(--surface) 92%, black);
   color: var(--ink);
-  padding: 14px 16px;
+  padding: 12px 14px;
   box-shadow:
     0 22px 54px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -5150,34 +5318,97 @@ body.quick-dice-page .page-texture {
 .table-toast strong {
   font-size: 1.02rem;
   line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
 .table-toast small {
   color: var(--muted);
   line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .task-dialog {
-  width: min(560px, calc(100% - 32px));
+  position: fixed;
+  inset: auto clamp(14px, 2vw, 28px) calc(clamp(14px, 2vw, 28px) + env(safe-area-inset-bottom, 0px)) auto;
+  width: min(392px, calc(100% - 32px));
+  max-height: min(68vh, 600px);
+  margin: 0;
   border: 0;
   background: transparent;
   color: var(--ink);
   padding: 0;
+  overflow: visible;
 }
 
 .task-dialog::backdrop {
-  background: rgba(10, 8, 13, 0.76);
-  backdrop-filter: blur(4px);
+  background: transparent;
+  backdrop-filter: none;
 }
 
 .task-dialog form {
-  padding: 24px;
+  display: grid;
+  gap: 12px;
+  max-height: inherit;
+  overflow: auto;
+  padding: 18px;
   animation: cardDeal 320ms ease both;
 }
 
+.task-dialog-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: start;
+}
+
+.task-dialog-head > div {
+  min-width: 0;
+}
+
+.task-collapse-button {
+  min-height: 36px;
+  padding-inline: 12px;
+}
+
+.task-dialog-body {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.task-dialog.is-collapsed {
+  width: min(340px, calc(100% - 32px));
+  max-height: none;
+}
+
+.task-dialog.is-collapsed form {
+  overflow: hidden;
+  padding: 12px 14px;
+}
+
+.task-dialog.is-collapsed .task-dialog-body {
+  display: none;
+}
+
+.task-dialog.is-collapsed h3 {
+  font-size: 1.05rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .task-dialog p {
+  margin: 0;
   color: var(--muted);
-  line-height: 1.75;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.task-dialog h3 {
+  margin: 0;
+  font-size: clamp(1.28rem, 3vw, 1.75rem);
+  line-height: 1.12;
+  overflow-wrap: anywhere;
 }
 
 .dialog-actions {
@@ -5185,6 +5416,10 @@ body.quick-dice-page .page-texture {
   justify-content: flex-end;
   gap: 10px;
   margin-top: 22px;
+}
+
+.task-dialog .dialog-actions {
+  margin-top: 4px;
 }
 
 .is-hidden {
@@ -5217,11 +5452,11 @@ body.quick-dice-page .page-texture {
 @keyframes cueSweep {
   0%,
   36% {
-    transform: translateX(0) skewX(-18deg);
+    background-position: -160% 0;
   }
   68%,
   100% {
-    transform: translateX(520%) skewX(-18deg);
+    background-position: 160% 0;
   }
 }
 
@@ -5844,22 +6079,22 @@ body.quick-dice-page .page-texture {
 @keyframes cardGlowSweep {
   0%,
   54% {
-    transform: translateX(0) skewX(-18deg);
+    background-position: -160% 0;
   }
   84%,
   100% {
-    transform: translateX(520%) skewX(-18deg);
+    background-position: 160% 0;
   }
 }
 
 @keyframes timerSweep {
   0%,
   46% {
-    transform: translateX(0) skewX(-18deg);
+    background-position: -160% 0;
   }
   78%,
   100% {
-    transform: translateX(540%) skewX(-18deg);
+    background-position: 160% 0;
   }
 }
 
@@ -6682,6 +6917,14 @@ body.quick-dice-page .page-texture {
     padding-top: 4px;
   }
 
+  .index-page.has-task-dialog .game-view {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .index-page.has-expanded-task-dialog .game-view {
+    padding-bottom: calc(min(54vh, 440px) + env(safe-area-inset-bottom, 0px));
+  }
+
   .index-page .top-bar {
     gap: 10px;
     padding: 12px;
@@ -6778,9 +7021,17 @@ body.quick-dice-page .page-texture {
   }
 
   .index-page .task-timer {
-    grid-template-columns: auto auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 8px;
     padding: 9px;
+  }
+
+  .index-page .task-timer span {
+    white-space: normal;
+  }
+
+  .index-page .task-timer strong {
+    justify-self: end;
   }
 
   .index-page .task-timer .timer-track {
@@ -6788,7 +7039,10 @@ body.quick-dice-page .page-texture {
   }
 
   .index-page .task-timer .secondary-action {
+    width: 100%;
+    min-width: 0;
     min-height: 44px;
+    white-space: normal;
   }
 
   .index-page .players-list {
@@ -6829,8 +7083,12 @@ body.quick-dice-page .page-texture {
   }
 
   .index-page .log-panel {
-    max-height: 260px;
-    overflow: hidden;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .index-page .log-history-body {
+    max-height: 176px;
   }
 
   .index-page .log-list {
@@ -6875,27 +7133,41 @@ body.quick-dice-page .page-texture {
     font-size: 0.72rem;
   }
 
+  .index-page .task-dialog {
+    inset: auto 10px calc(10px + env(safe-area-inset-bottom, 0px)) 10px;
+    width: calc(100vw - 20px);
+    max-height: 68vh;
+  }
+
+  .index-page .task-dialog.is-collapsed {
+    width: calc(100vw - 20px);
+  }
+
   .index-page .task-dialog form {
-    padding: 18px;
+    padding: 14px;
+  }
+
+  .index-page .task-dialog.is-collapsed form {
+    padding: 10px 12px;
   }
 
   .index-page .table-toast {
     right: 10px;
-    bottom: 10px;
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
     width: calc(100vw - 20px);
     border-radius: 14px;
     padding: 12px 14px;
   }
 
   .index-page .table-moment {
-    top: 78px;
+    top: 74px;
     width: calc(100vw - 24px);
-    border-radius: 16px;
-    padding: 14px;
+    border-radius: 999px;
+    padding: 8px 10px;
   }
 
   .index-page .table-moment strong {
-    font-size: clamp(1.25rem, 7vw, 1.8rem);
+    font-size: clamp(0.92rem, 4.8vw, 1.08rem);
   }
 
   .index-page .page-texture {

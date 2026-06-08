@@ -632,6 +632,424 @@ const miniGameDecks = {
   },
 };
 
+const communityDeckPack = {
+  flight: {
+    soft: [
+      { type: "互动", title: "同频手势", text: "两个人各设计一个继续、减速、停止手势，马上演练一遍。" },
+      { type: "真心话", title: "今晚关键词", text: "说出一个你希望今晚一直保留的关键词，并解释它代表什么。" },
+      { type: "默契", title: "三秒选择", text: "主持人报出拥抱、牵手、对视，双方 3 秒内同时选择一个。" },
+      { type: "奖励", title: "轻松改写", text: "把刚抽到的任务改写得更舒服、更适合当下气氛。" },
+    ],
+    warm: [
+      { type: "亲密", title: "靠近许可", text: "提出一个靠近方式，得到明确同意后保持 15 秒；任何人都能叫停。" },
+      { type: "挑战", title: "低声回合", text: "到下次行动前，只能用低声和一位玩家交流。" },
+      { type: "默契", title: "温度排序", text: "把对视、牵手、拥抱、耳语按今晚舒适程度排序并对比。" },
+      { type: "反转", title: "边界先说", text: "先说一个今晚不想越过的边界，再选择是否完成当前任务。" },
+    ],
+    hot: [
+      { type: "亲密", title: "慢速邀请", text: "用 20 秒做出邀请靠近的动作，对方决定继续、暂停或改成击掌。" },
+      { type: "挑战", title: "停顿台词", text: "说一句让气氛升温的话，中间必须停顿两次，每次 5 秒。" },
+      { type: "默契", title: "开放刻度", text: "用 1 到 10 表示今晚开放程度，再说一个能让你更安心的条件。" },
+      { type: "奖励", title: "收尾照顾", text: "完成后由对方选择拥抱、喝水、聊天或安静靠一会儿。" },
+    ],
+  },
+  truth: {
+    soft: {
+      truth: [
+        { title: "被记住的细节", text: "你希望别人今晚记住你身上的哪一个小细节？" },
+        { title: "舒服距离", text: "现在这个空间里，什么距离最让你放松？" },
+        { title: "想被怎样称呼", text: "今晚你喜欢被怎样称呼？有没有不喜欢的称呼？" },
+        { title: "安全感来源", text: "一个人做什么会让你更愿意进入游戏状态？" },
+      ],
+      dare: [
+        { title: "三词夸奖", text: "用三个不重复的词认真夸当前玩家。" },
+        { title: "同步呼吸", text: "和一位同意的玩家同步呼吸 12 秒。" },
+        { title: "眼神暗号", text: "用眼神传一个词，让对方猜；猜不中就一起笑过。" },
+        { title: "今晚手势", text: "设计一个代表继续的手势和一个代表暂停的手势。" },
+      ],
+    },
+    warm: {
+      truth: [
+        { title: "心动节奏", text: "你更喜欢慢慢升温，还是突然被点亮？为什么？" },
+        { title: "亲密边界", text: "说一种你愿意尝试的亲密互动，以及一种你今天不想要的互动。" },
+        { title: "被邀请方式", text: "什么样的邀请方式最容易让你答应靠近？" },
+        { title: "收尾偏好", text: "亲密互动之后，你最希望对方怎么照顾你的感受？" },
+      ],
+      dare: [
+        { title: "耳边一句", text: "贴近对方耳边，说一句克制但真诚的邀请；不舒服就改成轻声朗读。" },
+        { title: "慢慢靠近", text: "用 15 秒慢慢靠近，对方可随时喊停或后退一步。" },
+        { title: "掌心路线", text: "在对方掌心画一条路线，让对方猜它通向哪里。" },
+        { title: "角色互换", text: "把下一个任务的完成方式交给对方改写到舒服为止。" },
+      ],
+    },
+    hot: {
+      truth: [
+        { title: "今晚许可", text: "说一件你愿意尝试但必须先确认同意的事。" },
+        { title: "强烈但安全", text: "描述一个强烈但安全、可停止的幻想方向，不需要细节。" },
+        { title: "不能越过", text: "无论气氛多好，今天绝对不能越过的边界是什么？" },
+        { title: "被主导程度", text: "你愿意在多大程度上让对方安排节奏？用 1 到 10 回答。" },
+      ],
+      dare: [
+        { title: "许可复述", text: "双方复述继续、减速、停止信号，再决定是否完成一个靠近动作。" },
+        { title: "克制命令", text: "给对方一句强势但温柔、可拒绝的小指令。" },
+        { title: "停顿游戏", text: "气氛升温时停住 10 秒，只用眼神交流。" },
+        { title: "改写升级", text: "把当前任务升级一点点，同时明确如何暂停和如何退出。" },
+      ],
+    },
+  },
+  dice: {
+    soft: [
+      { type: "骰子", title: "点数问题", text: "按点数说出同样数量的今晚关键词。" },
+      { type: "骰子", title: "轻声复述", text: "用最轻松的语气复述当前玩家说过的一句可爱的话。" },
+      { type: "骰子", title: "安全词检查", text: "快速确认继续、减速、停止三个信号。" },
+      { type: "骰子", title: "随机夸奖", text: "按骰子总点数倒数，然后说一句认真夸奖。" },
+    ],
+    warm: [
+      { type: "升温骰", title: "靠近步数", text: "点数为几，就用几秒慢慢靠近；任何人可暂停。" },
+      { type: "升温骰", title: "低声选择", text: "当前玩家给出两个温柔选项，对方选一个完成或改写。" },
+      { type: "升温骰", title: "同步动作", text: "两个人同时做一个小动作，结束后说出感受。" },
+      { type: "升温骰", title: "眼神计时", text: "按骰子点数对视，最多 20 秒，不舒服就换题。" },
+    ],
+    hot: [
+      { type: "夜深骰", title: "开放刻度", text: "用骰子总点数映射今晚开放程度，再补充一个边界。" },
+      { type: "夜深骰", title: "温柔主导", text: "当前玩家安排接下来 30 秒节奏，对方可以修改任意细节。" },
+      { type: "夜深骰", title: "暂停确认", text: "完成任何动作前，先问一句许可问题并等待明确回应。" },
+      { type: "夜深骰", title: "收尾选择", text: "完成后对方在拥抱、喝水、聊天、安静中选一个收尾。" },
+    ],
+  },
+  sync: {
+    soft: [
+      { type: "默契", title: "同色联想", text: "同时说出今晚最像哪种颜色，解释相同或不同的原因。" },
+      { type: "默契", title: "舒适按钮", text: "同时选择继续、慢一点、换题，看看是否一致。" },
+      { type: "默契", title: "三词画像", text: "同时用三个词形容当前玩家。" },
+      { type: "默契", title: "下一首歌", text: "同时说出适合此刻的一首歌或一个音乐风格。" },
+    ],
+    warm: [
+      { type: "升温默契", title: "亲密排序", text: "把牵手、拥抱、耳语、靠肩按愿意程度排序后对比。" },
+      { type: "升温默契", title: "邀请台词", text: "各说一句邀请靠近的话，对方选更心动的一句。" },
+      { type: "升温默契", title: "边界对齐", text: "双方各说一个今天需要被尊重的边界。" },
+      { type: "升温默契", title: "节奏投票", text: "同时选择慢热、主动、被引导或安静陪伴。" },
+    ],
+    hot: [
+      { type: "夜深默契", title: "许可清单", text: "各说一个愿意尝试的互动和一个绝对不做的边界。" },
+      { type: "夜深默契", title: "减速信号", text: "同时设计一个减速信号，再马上演练。" },
+      { type: "夜深默契", title: "安全幻想", text: "各说一个安全、可停止、不露骨的幻想方向，找共同区间。" },
+      { type: "夜深默契", title: "收尾方式", text: "猜对方更喜欢拥抱、聊天、喝水还是安静靠着。" },
+    ],
+  },
+  mini: {
+    wheel: {
+      soft: [
+        { type: "轮盘", title: "视线转向", text: "轮盘指向的人决定一个轻松问题。" },
+        { type: "轮盘", title: "同频词", text: "指向的人和当前玩家同时说一个今晚关键词。" },
+      ],
+      warm: [
+        { type: "升温轮盘", title: "靠近或保持", text: "指向的人选择靠近一步、保持距离或换题。" },
+        { type: "升温轮盘", title: "耳语改写", text: "把当前任务改写成一句更克制、更舒服的耳语。" },
+      ],
+      hot: [
+        { type: "夜深轮盘", title: "节奏指针", text: "轮盘决定本轮节奏：更慢、更近、暂停或交换主动权。" },
+        { type: "夜深轮盘", title: "许可指令", text: "提出一个亲密请求，并允许对方改写到舒服为止。" },
+      ],
+    },
+    box: {
+      soft: [
+        { type: "盲盒", title: "轻松问题", text: "问一个能让大家更了解彼此的小问题。" },
+        { type: "盲盒", title: "今晚暗号", text: "和一位玩家共同设计一个继续暗号和一个暂停暗号。" },
+      ],
+      warm: [
+        { type: "升温盲盒", title: "慢速选择", text: "用 10 秒做出邀请动作，对方决定继续或改写。" },
+        { type: "升温盲盒", title: "台词盲盒", text: "用认真语气说一句让对方心动但不越界的话。" },
+      ],
+      hot: [
+        { type: "夜深盲盒", title: "边界盲盒", text: "先说一个边界，再完成一个双方舒服的小互动。" },
+        { type: "夜深盲盒", title: "主导盲盒", text: "当前玩家决定 30 秒氛围，对方可以随时减速或停止。" },
+      ],
+    },
+    story: {
+      soft: [
+        { type: "剧本", title: "雨夜等车", text: "角色 A 借伞，角色 B 只能用问题回应。" },
+        { type: "剧本", title: "错拿外套", text: "两人发现拿错外套，用三句台词完成道歉和邀请。" },
+      ],
+      warm: [
+        { type: "升温剧本", title: "电梯停顿", text: "两人被困 20 秒，只能聊此刻最想做的小事。" },
+        { type: "升温剧本", title: "午夜电话", text: "一人打电话，一人回应，每句都不超过 8 个字。" },
+      ],
+      hot: [
+        { type: "夜深剧本", title: "规则谈判", text: "角色 A 提出一分钟规则，角色 B 修改到舒服为止。" },
+        { type: "夜深剧本", title: "安全收尾", text: "演完后角色 B 选择如何收尾和照顾情绪。" },
+      ],
+    },
+  },
+};
+
+const webInspiredDeckPack = {
+  flight: {
+    soft: [
+      { type: "二选一", title: "靠近还是对视", text: "当前玩家选择靠近一步或对视 8 秒，对方可以改成击掌。" },
+      { type: "真心话", title: "爱的语言", text: "说出你最容易接收到善意的方式：语言、陪伴、触碰、行动或礼物。" },
+      { type: "互动", title: "共同播放列表", text: "各说一首适合现在气氛的歌，选一首成为本轮背景。" },
+      { type: "奖励", title: "无压力换题", text: "本回合可以把任何任务改写成更轻松的版本。" },
+    ],
+    warm: [
+      { type: "二选一", title: "耳语还是牵手", text: "在耳语一句夸奖和牵手 15 秒之间选择一个；对方可改写。" },
+      { type: "亲密", title: "慢热许可", text: "先问一句许可问题，得到明确回应后再完成一个小靠近。" },
+      { type: "默契", title: "今晚节奏", text: "双方同时说出今晚希望更慢、更近、更主动还是更安静。" },
+      { type: "反转", title: "对方定边界", text: "让对方说一个必须被尊重的边界，你用一句话复述确认。" },
+    ],
+    hot: [
+      { type: "二选一", title: "主导还是被引导", text: "选择接下来 30 秒更想主导还是被引导，并允许对方调整。" },
+      { type: "挑战", title: "停顿邀请", text: "说一句邀请靠近的话，中间停顿 5 秒，再问对方是否继续。" },
+      { type: "亲密", title: "升温清单", text: "列出一个愿意尝试、一个需要减速、一个今天不做的互动。" },
+      { type: "奖励", title: "温柔收口", text: "完成后安排一个双方舒服的收口：喝水、拥抱、聊天或暂停。" },
+    ],
+  },
+  truth: {
+    soft: {
+      truth: [
+        { title: "二选一偏好", text: "你更喜欢被认真夸奖，还是被安静陪伴？" },
+        { title: "第一信号", text: "你想靠近别人时，通常会先释放什么信号？" },
+        { title: "被尊重的瞬间", text: "最近一次感到被尊重，是因为对方做了什么？" },
+        { title: "换题底气", text: "什么情况下你会希望大家自然地帮你换题？" },
+      ],
+      dare: [
+        { title: "二选一执行", text: "选择给当前玩家一个认真夸奖，或邀请 TA 共同设计暂停手势。" },
+        { title: "无声夸奖", text: "不用说话，用一个动作表达对对方的欣赏。" },
+        { title: "轻松采访", text: "问对方一个不会冒犯、但能更了解 TA 的问题。" },
+        { title: "换题演练", text: "模拟一次自然换题：说“我们换个舒服点的版本”。" },
+      ],
+    },
+    warm: {
+      truth: [
+        { title: "喜欢的主动", text: "你喜欢别人怎样主动，才会觉得心动而不是有压力？" },
+        { title: "靠近速度", text: "如果用 1 到 10 表示靠近速度，你今晚希望是多少？" },
+        { title: "可改写任务", text: "什么样的任务你愿意做，但需要改写一下？" },
+        { title: "亲密后的照顾", text: "互动结束后，你希望对方先说话、拥抱、倒水还是给空间？" },
+      ],
+      dare: [
+        { title: "许可提问", text: "用一句自然的话询问对方是否愿意靠近一点。" },
+        { title: "耳语二选一", text: "在耳语夸奖和轻声提问中选一个完成。" },
+        { title: "节奏确认", text: "双方各说“继续 / 慢一点 / 换题”中现在最适合的一项。" },
+        { title: "温柔主持", text: "用 20 秒主持一段让大家都舒服的安静气氛。" },
+      ],
+    },
+    hot: {
+      truth: [
+        { title: "开放但不失控", text: "你觉得怎样的“开放”仍然是安全、可停止、可沟通的？" },
+        { title: "被邀请台词", text: "哪一种邀请台词会让你愿意继续，但不会觉得被推着走？" },
+        { title: "最想改写", text: "如果某个任务太刺激，你希望它被改写成什么方向？" },
+        { title: "暂停后的回应", text: "当你说暂停时，最希望对方第一句话是什么？" },
+      ],
+      dare: [
+        { title: "边界复述", text: "请对方说一个边界，你复述确认后再决定是否继续任务。" },
+        { title: "主导 20 秒", text: "安排 20 秒节奏，但每一步都允许对方改写或停止。" },
+        { title: "升温二选一", text: "在靠近一点和停顿对视中选一个；双方都舒服才执行。" },
+        { title: "收尾确认", text: "完成后问对方：现在想继续、慢一点、聊天还是暂停？" },
+      ],
+    },
+  },
+  dice: {
+    soft: [
+      { type: "骰子二选一", title: "点数选择", text: "总点数为偶数就夸一句，为奇数就问一个轻松问题。" },
+      { type: "骰子", title: "边界快问", text: "按骰子数量说出同样多的舒适边界关键词。" },
+      { type: "骰子", title: "歌单点数", text: "总点数小于 7 说一首歌，大于等于 7 说一句歌词般的夸奖。" },
+      { type: "骰子", title: "换题许可", text: "说一句让任何人都能无压力换题的话。" },
+    ],
+    warm: [
+      { type: "升温二选一", title: "牵手或靠肩", text: "在牵手和靠肩之间选一个，计时不超过骰子总点数秒。" },
+      { type: "升温骰", title: "许可倒数", text: "用骰子总点数倒数，结束时问对方是否愿意靠近一点。" },
+      { type: "升温骰", title: "三档节奏", text: "按点数选择慢一点、近一点或停一下，并说出原因。" },
+      { type: "升温骰", title: "对方改写", text: "把本轮任务交给对方改写到双方都舒服。" },
+    ],
+    hot: [
+      { type: "夜深二选一", title: "引导或暂停", text: "总点数高就安排 20 秒温柔引导，低就做一次暂停确认。" },
+      { type: "夜深骰", title: "开放刻度", text: "用总点数换算开放刻度，再补充一句安全条件。" },
+      { type: "夜深骰", title: "不越界邀请", text: "提出一个更刺激但不越界的邀请，对方可以直接改写。" },
+      { type: "夜深骰", title: "收尾骰", text: "按最高点数那颗骰子的数值，选择同样秒数的安静收尾。" },
+    ],
+  },
+  sync: {
+    soft: [
+      { type: "默契二选一", title: "语言或陪伴", text: "同时选择更想收到语言肯定还是安静陪伴。" },
+      { type: "默契", title: "换题手势", text: "不商量，同时做出你觉得适合作为换题的手势。" },
+      { type: "默契", title: "今晚形容词", text: "同时说一个形容今晚氛围的词，接近就都得分。" },
+      { type: "默契", title: "安全词颜色", text: "同时选择一个颜色代表暂停信号。" },
+    ],
+    warm: [
+      { type: "升温默契", title: "主动偏好", text: "同时说更想主动、被引导、轮流还是安静陪伴。" },
+      { type: "升温默契", title: "靠近方式", text: "同时选择牵手、靠肩、对视或耳语。" },
+      { type: "升温默契", title: "减速语言", text: "各说一句能让对方体面减速的话。" },
+      { type: "升温默契", title: "改写方向", text: "同时说本轮更想轻松、甜一点、近一点还是停一下。" },
+    ],
+    hot: [
+      { type: "夜深默契", title: "边界对照", text: "各说一个愿意继续的点和一个今天不碰的点。" },
+      { type: "夜深默契", title: "升温方式", text: "同时选择语言、距离、触碰或停顿哪一个最有效。" },
+      { type: "夜深默契", title: "暂停回应", text: "猜对方说暂停后最想听到哪句话。" },
+      { type: "夜深默契", title: "收尾默契", text: "同时选择拥抱、喝水、聊天、安静，猜中就双方得分。" },
+    ],
+  },
+  mini: {
+    wheel: {
+      soft: [
+        { type: "轮盘二选一", title: "夸奖或问题", text: "指针指到的人选择收到夸奖或回答轻松问题。" },
+        { type: "轮盘", title: "安全按钮", text: "指针指到的人设计一个安全按钮台词。" },
+      ],
+      warm: [
+        { type: "升温轮盘", title: "靠近档位", text: "指针指到的人决定本轮靠近档位：0、1 或 2 步。" },
+        { type: "升温轮盘", title: "邀请改写", text: "把当前任务改写成一句更让人愿意答应的邀请。" },
+      ],
+      hot: [
+        { type: "夜深轮盘", title: "主导权", text: "指针指到的人决定当前玩家主导、被引导、暂停或收尾。" },
+        { type: "夜深轮盘", title: "开放确认", text: "双方各说一个继续条件，再决定是否执行。" },
+      ],
+    },
+    box: {
+      soft: [
+        { type: "盲盒二选一", title: "歌或问题", text: "抽到后选择说一首歌，或问一个轻松问题。" },
+        { type: "盲盒", title: "舒服版本", text: "把任意任务改写成小学生也能听懂但仍然心动的版本。" },
+      ],
+      warm: [
+        { type: "升温盲盒", title: "低声邀请", text: "用低声发出一个可拒绝的邀请。" },
+        { type: "升温盲盒", title: "改写权限", text: "让对方拥有本轮全部改写权。" },
+      ],
+      hot: [
+        { type: "夜深盲盒", title: "升级一点", text: "把当前任务只升级一点点，同时说清暂停信号。" },
+        { type: "夜深盲盒", title: "收尾盲盒", text: "完成任务后必须安排一个温柔收尾。" },
+      ],
+    },
+    story: {
+      soft: [
+        { type: "剧本二选一", title: "咖啡店重逢", text: "角色 A 邀请角色 B 留下，B 只能用问题回应。" },
+        { type: "剧本", title: "音乐太响", text: "两人只能靠近一点听清对方，但必须先确认距离舒服。" },
+      ],
+      warm: [
+        { type: "升温剧本", title: "走廊停顿", text: "两人擦肩停住 20 秒，只能说克制的台词。" },
+        { type: "升温剧本", title: "规则改写", text: "角色 A 提出任务，角色 B 改写到愿意执行。" },
+      ],
+      hot: [
+        { type: "夜深剧本", title: "许可合同", text: "两人用角色身份制定继续、减速、停止三条规则。" },
+        { type: "夜深剧本", title: "收尾独白", text: "演完后各说一句对方怎么照顾自己会更舒服。" },
+      ],
+    },
+  },
+};
+
+const externalDeckStorageKey = "night-voyage:v1:extraDeckPacks";
+
+function appendDeckCards(target, cards) {
+  if (!Array.isArray(target) || !Array.isArray(cards)) return;
+  cards
+    .filter((card) => card && typeof card === "object" && card.title && card.text)
+    .forEach((card) => target.push({ ...card }));
+}
+
+function mergeLevelDecks(targetDeck, sourceDeck) {
+  Object.entries(sourceDeck || {}).forEach(([level, cards]) => {
+    if (Array.isArray(targetDeck?.[level])) appendDeckCards(targetDeck[level], cards);
+  });
+}
+
+function mergeTruthDecks(sourceDeck) {
+  Object.entries(sourceDeck || {}).forEach(([level, deck]) => {
+    if (!truthDecks[level] || !deck) return;
+    appendDeckCards(truthDecks[level].truth, deck.truth);
+    appendDeckCards(truthDecks[level].dare, deck.dare);
+  });
+}
+
+function mergeMiniDecks(sourceDeck) {
+  Object.entries(sourceDeck || {}).forEach(([game, deck]) => {
+    if (miniGameDecks[game]) mergeLevelDecks(miniGameDecks[game], deck);
+  });
+}
+
+function mergeDeckPack(pack = {}) {
+  mergeLevelDecks(flightDecks, pack.flight || pack.flightDecks);
+  mergeTruthDecks(pack.truth || pack.truthDare || pack.truthDecks);
+  mergeLevelDecks(diceDecks, pack.dice || pack.diceDecks);
+  mergeLevelDecks(syncDecks, pack.sync || pack.syncDecks);
+  mergeMiniDecks(pack.mini || pack.miniGameDecks);
+}
+
+function normalizeDeckPacks(packs) {
+  if (!packs) return [];
+  return (Array.isArray(packs) ? packs : [packs]).filter((pack) => pack && typeof pack === "object");
+}
+
+function readStoredDeckPacks() {
+  if (typeof window === "undefined") return [];
+  try {
+    return normalizeDeckPacks(JSON.parse(window.localStorage.getItem(externalDeckStorageKey) || "[]"));
+  } catch {
+    return [];
+  }
+}
+
+function writeStoredDeckPacks(packs) {
+  if (typeof window === "undefined") return false;
+  try {
+    window.localStorage.setItem(externalDeckStorageKey, JSON.stringify(normalizeDeckPacks(packs)));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function mergeRuntimeDeckPacks() {
+  if (typeof window === "undefined") return;
+  [...readStoredDeckPacks(), ...normalizeDeckPacks(window.NIGHT_VOYAGE_EXTRA_DECKS)].forEach((pack) =>
+    mergeDeckPack(pack),
+  );
+}
+
+function getDeckCountsSummary() {
+  return {
+    flight: Object.fromEntries(Object.entries(flightDecks).map(([level, cards]) => [level, cards.length])),
+    truth: Object.fromEntries(
+      Object.entries(truthDecks).map(([level, deck]) => [level, (deck.truth?.length || 0) + (deck.dare?.length || 0)]),
+    ),
+    dice: Object.fromEntries(Object.entries(diceDecks).map(([level, cards]) => [level, cards.length])),
+    sync: Object.fromEntries(Object.entries(syncDecks).map(([level, cards]) => [level, cards.length])),
+    mini: Object.fromEntries(
+      Object.entries(miniGameDecks).map(([game, levels]) => [
+        game,
+        Object.fromEntries(Object.entries(levels).map(([level, cards]) => [level, cards.length])),
+      ]),
+    ),
+  };
+}
+
+function refreshDeckUi() {
+  if (typeof renderQuestionBank === "function") renderQuestionBank();
+  if (typeof renderDdfDareBank === "function") renderDdfDareBank();
+}
+
+function exposeDeckPackApi() {
+  if (typeof window === "undefined") return;
+  window.NightVoyageDecks = {
+    addPack(pack, options = {}) {
+      mergeDeckPack(pack);
+      if (options.persist) {
+        const stored = options.replace ? [] : readStoredDeckPacks();
+        writeStoredDeckPacks([...stored, pack]);
+      }
+      refreshDeckUi();
+      return getDeckCountsSummary();
+    },
+    clearStoredPacks() {
+      writeStoredDeckPacks([]);
+      return getDeckCountsSummary();
+    },
+    counts: getDeckCountsSummary,
+    merge: mergeDeckPack,
+  };
+}
+
+mergeDeckPack(communityDeckPack);
+mergeDeckPack(webInspiredDeckPack);
+mergeRuntimeDeckPacks();
+exposeDeckPackApi();
+
 const eventTypes = [
   { key: "truth", color: "#e1ad4f" },
   { key: "touch", color: "#3dc2b4" },
@@ -855,6 +1273,8 @@ const miniRestartButton = document.querySelector("#miniRestartButton");
 const taskDialog = document.querySelector("#taskDialog");
 const taskType = document.querySelector("#taskType");
 const taskTitle = document.querySelector("#taskTitle");
+const taskCollapseButton = document.querySelector("#taskCollapseButton");
+const taskDialogBody = document.querySelector("#taskDialogBody");
 const taskMeta = document.querySelector("#taskMeta");
 const taskText = document.querySelector("#taskText");
 const skipTaskButton = document.querySelector("#skipTaskButton");
@@ -865,6 +1285,7 @@ const siteHeader = document.querySelector(".site-header");
 const navToggle = document.querySelector(".nav-toggle");
 const headerContent = document.querySelector("#siteMenu");
 const timerCommandButtons = document.querySelectorAll("[data-timer-command]");
+const logPanels = document.querySelectorAll(".log-panel");
 
 const isFantasyPage = document.body.classList.contains("fantasy-mode");
 const isDdfPage = document.body.classList.contains("ddf-dare-only");
@@ -881,6 +1302,9 @@ let diceAnimationId = 0;
 let miniAnimationId = 0;
 let tableMomentTimer = 0;
 let tableToastTimer = 0;
+let taskDialogCollapsed = false;
+let logHistoryCollapsed = window.matchMedia("(max-width: 760px)").matches;
+let logHistoryUserSet = false;
 let taskTimerState = {
   scope: null,
   total: 30,
@@ -968,6 +1392,130 @@ function setRecommendedAction(target, active) {
   }
 }
 
+function dismissTableToast() {
+  if (!tableToast) return;
+  window.clearTimeout(tableToastTimer);
+  tableToast.classList.remove("is-visible");
+}
+
+function setTaskDialogCollapsed(collapsed) {
+  taskDialogCollapsed = Boolean(collapsed);
+  taskDialog?.classList.toggle("is-collapsed", taskDialogCollapsed);
+  if (taskCollapseButton) {
+    taskCollapseButton.textContent = taskDialogCollapsed ? "展开" : "收起";
+    taskCollapseButton.setAttribute("aria-expanded", String(!taskDialogCollapsed));
+  }
+  taskDialogBody?.setAttribute("aria-hidden", String(taskDialogCollapsed));
+  syncTaskDialogPageState();
+  if (taskDialog?.open) scheduleTaskDialogClearance();
+}
+
+function syncTaskDialogPageState() {
+  const isOpen = Boolean(taskDialog?.open);
+  document.body.classList.toggle("has-task-dialog", isOpen);
+  document.body.classList.toggle("has-expanded-task-dialog", isOpen && !taskDialogCollapsed);
+}
+
+function shouldUseCompactFlow() {
+  return window.matchMedia("(max-width: 760px)").matches;
+}
+
+function getComfortScrollBehavior() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+}
+
+function shouldDockTaskDialog() {
+  return shouldUseCompactFlow();
+}
+
+function scheduleTaskDialogClearance() {
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(keepTaskDialogClearOfBoard);
+  });
+}
+
+function keepTaskDialogClearOfBoard() {
+  if (!shouldDockTaskDialog() || !taskDialog?.open || !board) return;
+  const dialogRect = taskDialog.getBoundingClientRect();
+  const boardRect = board.getBoundingClientRect();
+  const overlapsBoard =
+    dialogRect.bottom > boardRect.top &&
+    dialogRect.top < boardRect.bottom &&
+    dialogRect.right > boardRect.left &&
+    dialogRect.left < boardRect.right;
+  if (!overlapsBoard) return;
+  const offset = Math.ceil(boardRect.bottom - dialogRect.top + 14);
+  if (offset <= 0) return;
+  window.scrollBy({ top: offset, left: 0, behavior: getComfortScrollBehavior() });
+}
+
+function scheduleComfortScroll(target, block = "center") {
+  if (!target || !shouldUseCompactFlow()) return;
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => scrollElementIntoComfortView(target, block));
+  });
+}
+
+function scrollElementIntoComfortView(target, block = "center") {
+  if (!target || !shouldUseCompactFlow()) return;
+  const rect = target.getBoundingClientRect();
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  const topGutter = 76;
+  const bottomGutter = 108;
+  const alreadyComfortable = rect.top >= topGutter && rect.bottom <= viewportHeight - bottomGutter;
+  if (alreadyComfortable) return;
+  target.scrollIntoView({
+    block,
+    inline: "nearest",
+    behavior: getComfortScrollBehavior(),
+  });
+}
+
+function setLogHistoryCollapsed(collapsed, userSet = false) {
+  logHistoryCollapsed = Boolean(collapsed);
+  if (userSet) logHistoryUserSet = true;
+  logPanels.forEach((panel) => {
+    const button = panel.querySelector("[data-log-toggle]");
+    const label = panel.querySelector(".log-toggle-label");
+    const history = panel.querySelector(".log-history-body");
+    panel.classList.toggle("is-history-collapsed", logHistoryCollapsed);
+    if (button) {
+      button.setAttribute("aria-expanded", String(!logHistoryCollapsed));
+      button.setAttribute("aria-label", logHistoryCollapsed ? "展开记录" : "收起记录");
+    }
+    if (label) label.textContent = logHistoryCollapsed ? "展开" : "记录";
+    history?.setAttribute("aria-hidden", String(logHistoryCollapsed));
+  });
+}
+
+function initLogHistoryPanels() {
+  logPanels.forEach((panel, index) => {
+    const list = panel.querySelector(".log-list");
+    if (!list || panel.dataset.enhanced === "true") return;
+    panel.dataset.enhanced = "true";
+    const historyId = list.id ? `${list.id}History` : `logHistory${index}`;
+    const head = document.createElement("div");
+    head.className = "log-panel-head";
+    head.innerHTML = `
+      <span class="log-panel-title">桌面状态</span>
+      <button class="log-toggle" type="button" data-log-toggle aria-controls="${historyId}" aria-expanded="true" aria-label="收起记录">
+        <span class="log-toggle-label">记录</span>
+        <span class="log-count" aria-hidden="true">0</span>
+      </button>
+    `;
+    const history = document.createElement("div");
+    history.className = "log-history-body";
+    history.id = historyId;
+    list.before(head);
+    history.append(list);
+    panel.append(history);
+    head.querySelector("[data-log-toggle]")?.addEventListener("click", () => {
+      setLogHistoryCollapsed(!logHistoryCollapsed, true);
+    });
+  });
+  setLogHistoryCollapsed(logHistoryCollapsed);
+}
+
 function showTableToast(title, text = "", tone = "success") {
   if (!tableToast) return;
   window.clearTimeout(tableToastTimer);
@@ -986,7 +1534,7 @@ function showTableToast(title, text = "", tone = "success") {
   tableToast.classList.add("is-visible");
   tableToastTimer = window.setTimeout(() => {
     tableToast.classList.remove("is-visible");
-  }, 2200);
+  }, 1700);
 }
 
 function getMomentLabel(tone = "active") {
@@ -1016,7 +1564,7 @@ function showTableMoment(title, text = "", tone = "active") {
   tableMoment.classList.add("is-visible");
   tableMomentTimer = window.setTimeout(() => {
     tableMoment.classList.remove("is-visible");
-  }, 1300);
+  }, 980);
 }
 
 function setPlayerFeedback(player, tone = "ready", label = "更新") {
@@ -1562,7 +2110,9 @@ function showLobby(resetForm = false) {
   document.body.classList.remove("is-quick-dice-active");
   state = createEmptyState();
   pendingTask = null;
+  setTaskDialogCollapsed(false);
   if (taskDialog?.open) taskDialog.close();
+  syncTaskDialogPageState();
   gameView?.classList.add("is-hidden");
   truthView?.classList.add("is-hidden");
   diceView?.classList.add("is-hidden");
@@ -1856,6 +2406,7 @@ function finishWarmDiceRoll() {
   showTableToast(`${total} 点 · ${band.title}`, state.currentPrompt.title, "active");
   beginTaskTimer("dice", duration);
   renderDice();
+  scheduleComfortScroll(dicePromptCard);
 }
 
 function getDiceBand(total, count) {
@@ -2107,6 +2658,7 @@ function drawSyncPrompt() {
   showTableToast("抽到默契挑战", card.title, "active");
   beginTaskTimer("sync", 45);
   renderSync();
+  scheduleComfortScroll(syncPromptCard);
 }
 
 function completeSyncPrompt() {
@@ -2329,6 +2881,7 @@ function prepareMiniChoices() {
   setPlayerFeedback(getCurrentPlayer(), "active", "摆盲盒");
   showTableToast("盲盒就绪", "选择 A / B / C 后翻开任务。", "active");
   renderMini();
+  scheduleComfortScroll(miniChoiceGrid, "center");
 }
 
 function chooseMiniBox(index) {
@@ -2352,6 +2905,7 @@ function revealMiniPrompt(card) {
   showTableToast(`抽到${miniGameMeta[state.miniGame].name}`, card.title, "active");
   beginTaskTimer("mini", 40);
   renderMini();
+  scheduleComfortScroll(miniPromptCard);
 }
 
 function getRandomMiniCard() {
@@ -2652,6 +3206,7 @@ function getFlightPhaseLabel() {
   if (state.winnerId !== null) return "终局";
   if (state.phase === "roll") return "掷骰";
   if (state.phase === "choose") return "选飞机";
+  if (state.phase === "task") return "任务";
   if (state.phase === "afterMove" && state.lastRoll === 6) return "继续行动";
   if (state.phase === "afterMove") return "结束回合";
   return "进行中";
@@ -2661,6 +3216,7 @@ function getTurnHint() {
   if (state.winnerId !== null) return `${state.players[state.winnerId].name} 已抵达终点。`;
   if (state.phase === "roll") return "点击掷骰开始这一回合。";
   if (state.phase === "choose") return `掷出 ${state.lastRoll}，选择一架可移动的飞机。`;
+  if (state.phase === "task") return "先处理当前任务，完成或跳过后再继续回合。";
   if (state.phase === "afterMove" && state.lastRoll === 6) return "掷到 6，完成任务后可继续掷骰。";
   return "完成当前互动后结束回合。";
 }
@@ -2673,6 +3229,7 @@ function getFlightActionCue() {
     if (moves.length === 1) return `只有一个可选行动：${moves[0].label}。`;
     return `选择一架发光飞机移动；共有 ${moves.length} 个可选行动。`;
   }
+  if (state.phase === "task") return "任务卡已停靠在桌面边缘，完成或跳过后会进入下一步。";
   if (state.phase === "afterMove" && state.lastRoll === 6) return "掷到 6，点击继续掷骰。";
   if (state.phase === "afterMove") return "本回合已处理完，点击下一位。";
   return "按当前阶段继续行动。";
@@ -2777,6 +3334,9 @@ function movePiece(playerId, pieceId) {
     setPlayerFeedback(player, "active", "移动");
     handleCollision(player, piece);
     drawFlightTask(player);
+    state.phase = "task";
+    renderFlight();
+    return;
   }
 
   if (player.pieces.every((item) => item.progress === FINISH_PROGRESS)) {
@@ -2827,6 +3387,8 @@ function drawFlightTask(player) {
 
 function showFlightTask(task) {
   pendingTask = task;
+  dismissTableToast();
+  setTaskDialogCollapsed(shouldDockTaskDialog());
   taskType.textContent = task.type;
   taskTitle.textContent = task.title;
   taskText.textContent = task.text;
@@ -2837,8 +3399,10 @@ function showFlightTask(task) {
   ]);
   skipTaskButton.disabled = false;
   beginTaskTimer("flight", task.timerSeconds || 30);
-  if (taskDialog.showModal) {
-    taskDialog.showModal();
+  if (taskDialog.show) {
+    if (!taskDialog.open) taskDialog.show();
+    syncTaskDialogPageState();
+    scheduleTaskDialogClearance();
   } else {
     alert(`${task.title}\n${task.text}`);
   }
@@ -2866,6 +3430,8 @@ function handleTaskClose() {
     showTableToast("任务完成", pendingTask.title, "success");
   }
   pendingTask = null;
+  syncTaskDialogPageState();
+  if (state.phase === "task") state.phase = "afterMove";
   renderFlight();
 }
 
@@ -2878,6 +3444,7 @@ function stepBackCurrentPiece() {
 
 function nextTurn() {
   if (state.winnerId !== null) return;
+  if (pendingTask) return;
   const keepTurn = state.lastRoll === 6 && state.phase === "afterMove";
   if (!keepTurn) {
     advancePlayer();
@@ -2987,6 +3554,7 @@ function drawPrompt(kind) {
   showTableToast(`抽到${card.type}`, card.title, "active");
   beginTaskTimer("truth", 30);
   renderTruth();
+  scheduleComfortScroll(promptCard);
 }
 
 function completePrompt() {
@@ -3189,6 +3757,10 @@ function renderLog(target) {
     `;
     target.append(item);
   });
+  const panel = target.closest(".log-panel");
+  const count = panel?.querySelector(".log-count");
+  if (count) count.textContent = String(Math.min(state.log.length, 99));
+  panel?.classList.toggle("has-log-items", state.log.length > 0);
 }
 
 function getCurrentPlayer() {
@@ -3239,7 +3811,11 @@ gameCards.forEach((card) => {
   card.addEventListener("click", () => setSelectedGame(card.dataset.game));
 });
 
+initLogHistoryPanels();
 setHeaderMenu(false);
+window.matchMedia("(max-width: 760px)").addEventListener("change", (event) => {
+  if (!logHistoryUserSet) setLogHistoryCollapsed(event.matches);
+});
 navToggle?.addEventListener("click", (event) => {
   event.stopPropagation();
   setHeaderMenu(!siteHeader?.classList.contains("is-menu-open"));
@@ -3275,6 +3851,7 @@ endTurnButton?.addEventListener("click", nextTurn);
 restartButton?.addEventListener("click", () => showLobby(true));
 flightHomeButton?.addEventListener("click", () => showLobby(false));
 taskDialog?.addEventListener("close", handleTaskClose);
+taskCollapseButton?.addEventListener("click", () => setTaskDialogCollapsed(!taskDialogCollapsed));
 timerCommandButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const scope = button.dataset.timerScope;
