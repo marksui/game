@@ -3,11 +3,11 @@ const HOME_STRETCH = 5;
 const FINISH_PROGRESS = TRACK_LENGTH + HOME_STRETCH;
 const PIECES_PER_PLAYER = 4;
 
-const playerPresets = [
-  { name: "Boy", color: "#dc5d72", start: 6, baseClass: "base-0" },
-  { name: "Girl", color: "#e1ad4f", start: 18, baseClass: "base-1" },
-  { name: "Player 3", color: "#3dc2b4", start: 30, baseClass: "base-2" },
-  { name: "Player 4", color: "#8d78ea", start: 42, baseClass: "base-3" },
+const playerPresets= [
+  { name: "Boy", color: "#ff0000", start: 6, baseClass: "base-0" },
+  { name: "Girl", color: "#f6ff00f6", start: 18, baseClass: "base-1" },
+  { name: "Player 3", color: "#00c3ff", start: 30, baseClass: "base-2" },
+  { name: "Player 4", color: "#00ff5e", start: 42, baseClass: "base-3" },
 ];
 
 const ddfAvatarPresets = [
