@@ -235,6 +235,7 @@ const truthDecks = {
 };
 
 
+
 const importedTruthDareDecks = {
   soft: {
     truth: [
@@ -291,6 +292,7 @@ const importedTruthDareDecks = {
       { title: "百事可乐", text: "百事或可口，你选哪一个？" },
       { title: "早中晚", text: "今天早上、中午、晚上分别吃了什么？" },
     ],
+    
     dare: [
       { title: "唱高音", text: "唱《青藏高原》最后一句。" },
       { title: "走秀一圈", text: "学超级名模走秀绕场一周。" },
