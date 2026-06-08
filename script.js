@@ -234,6 +234,7 @@ const truthDecks = {
   },
 };
 
+
 const importedTruthDareDecks = {
   soft: {
     truth: [
