@@ -11,7 +11,7 @@ const playerPresets= [
 ];
 
 const ddfAvatarPresets = [
-  { name: "Van♂", avatar: "assets/ddf-vhs-poster.png" },
+  { name: "Van♂", avatar:"assets/ddf-vhs-poster.png" },
   { name: "比♂利♂王", avatar: "assets/ddf-slide-asswecan.png" },
   { name: "最强♂人类木吉", avatar: "assets/ddf-slide-strongest.png" },
   { name: "裂♂天♂使魔男", avatar: "assets/ddf-slide-punk.png" },
