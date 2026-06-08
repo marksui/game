@@ -16,7 +16,7 @@ const ddfAvatarPresets = [
   { name: "最强♂人类木吉", avatar: "assets/ddf-slide-strongest.png" },
   { name: "裂♂天♂使魔男", avatar: "assets/ddf-slide-punk.png" },
 ];
- 
+  
 const ddfPlayerPresets = playerPresets.map((preset, index) => ({
   ...preset,
   name: ddfAvatarPresets[index]?.name || preset.name,
