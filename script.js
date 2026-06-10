@@ -1398,7 +1398,7 @@ function setRecommendedAction(target, active) {
 function dismissTableToast() {
   if (!tableToast) return;
   window.clearTimeout(tableToastTimer);
-  tableToast.classList.remove("is-visible");
+  tableToast.classList.remove("is-visible", "is-audio-only");
 }
 
 function setTaskDialogCollapsed(collapsed) {
@@ -1421,6 +1421,10 @@ function syncTaskDialogPageState() {
 
 function shouldUseCompactFlow() {
   return window.matchMedia("(max-width: 760px)").matches;
+}
+
+function shouldUseAssistedScroll() {
+  return shouldUseCompactFlow() || window.matchMedia("(max-height: 920px)").matches;
 }
 
 function getComfortScrollBehavior() {
@@ -1453,14 +1457,21 @@ function keepTaskDialogClearOfBoard() {
 }
 
 function scheduleComfortScroll(target, block = "center") {
-  if (!target || !shouldUseCompactFlow()) return;
+  if (!target || !shouldUseAssistedScroll()) return;
   window.requestAnimationFrame(() => {
     window.requestAnimationFrame(() => scrollElementIntoComfortView(target, block));
   });
 }
 
+function scheduleBottomClearance(target, bottomGutter = 24) {
+  if (!target || !shouldUseAssistedScroll()) return;
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => keepElementClearOfViewportBottom(target, bottomGutter));
+  });
+}
+
 function scrollElementIntoComfortView(target, block = "center") {
-  if (!target || !shouldUseCompactFlow()) return;
+  if (!target || !shouldUseAssistedScroll()) return;
   const rect = target.getBoundingClientRect();
   const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
   const topGutter = 76;
@@ -1472,6 +1483,15 @@ function scrollElementIntoComfortView(target, block = "center") {
     inline: "nearest",
     behavior: getComfortScrollBehavior(),
   });
+}
+
+function keepElementClearOfViewportBottom(target, bottomGutter = 24) {
+  if (!target || !shouldUseAssistedScroll()) return;
+  const rect = target.getBoundingClientRect();
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  const overflow = Math.ceil(rect.bottom - (viewportHeight - bottomGutter));
+  if (overflow <= 0) return;
+  window.scrollBy({ top: overflow + 8, left: 0, behavior: getComfortScrollBehavior() });
 }
 
 function setLogHistoryCollapsed(collapsed, userSet = false) {
@@ -1525,6 +1545,7 @@ function showTableToast(title, text = "", tone = "success") {
   pulseDeviceFeedback(tone);
   showTableMoment(title, text, tone);
   tableToast.dataset.tone = tone;
+  tableToast.classList.remove("is-audio-only");
   tableToast.innerHTML = "";
   const strong = document.createElement("strong");
   strong.textContent = title;
@@ -1534,10 +1555,19 @@ function showTableToast(title, text = "", tone = "success") {
     small.textContent = text;
     tableToast.append(small);
   }
+  if (shouldUseCompactFeedback()) {
+    tableToast.classList.remove("is-visible");
+    tableToast.classList.add("is-audio-only");
+    return;
+  }
   tableToast.classList.add("is-visible");
   tableToastTimer = window.setTimeout(() => {
     tableToast.classList.remove("is-visible");
   }, 1700);
+}
+
+function shouldUseCompactFeedback() {
+  return shouldUseCompactFlow() && document.body.classList.contains("is-playing");
 }
 
 function getMomentLabel(tone = "active") {
@@ -2410,6 +2440,7 @@ function finishWarmDiceRoll() {
   beginTaskTimer("dice", duration);
   renderDice();
   scheduleComfortScroll(dicePromptCard);
+  scheduleBottomClearance(completeDiceButton?.closest(".prompt-actions") || completeDiceButton);
 }
 
 function getDiceBand(total, count) {
@@ -2474,6 +2505,7 @@ function startQuickDiceGame() {
   miniView?.classList.add("is-hidden");
   addLog("纯骰子开始。选择数量后可随时切换并连续投掷。");
   renderQuickDice();
+  scheduleComfortScroll(quickDiceRollButton || quickDiceView, "center");
 }
 
 function renderQuickDice() {
@@ -2553,6 +2585,7 @@ function finishQuickDiceRoll() {
     void quickDiceFaces.offsetWidth;
     quickDiceFaces.classList.add("is-bursting");
   }
+  scheduleComfortScroll(quickDiceFaces || quickDiceRollButton, "center");
 }
 
 function setQuickDiceCount(count) {
@@ -2561,6 +2594,7 @@ function setQuickDiceCount(count) {
   state.diceRolls = [];
   syncSelectedDiceCount(state.diceCount);
   renderQuickDice();
+  scheduleComfortScroll(quickDiceRollButton || quickDiceCounts, "center");
 }
 
 function resetQuickDiceHistory() {
@@ -2569,6 +2603,7 @@ function resetQuickDiceHistory() {
   state.diceRolls = [];
   showTableToast("记录已清空", "纯骰子历史重新开始。", "skip");
   renderQuickDice();
+  scheduleComfortScroll(quickDiceRollButton || quickDiceView, "center");
 }
 
 function syncSelectedDiceCount(count) {
@@ -2662,6 +2697,7 @@ function drawSyncPrompt() {
   beginTaskTimer("sync", 45);
   renderSync();
   scheduleComfortScroll(syncPromptCard);
+  scheduleBottomClearance(completeSyncButton?.closest(".prompt-actions") || completeSyncButton);
 }
 
 function completeSyncPrompt() {
@@ -2909,6 +2945,7 @@ function revealMiniPrompt(card) {
   beginTaskTimer("mini", 40);
   renderMini();
   scheduleComfortScroll(miniPromptCard);
+  scheduleBottomClearance(completeMiniButton?.closest(".prompt-actions") || completeMiniButton);
 }
 
 function getRandomMiniCard() {
@@ -3558,6 +3595,7 @@ function drawPrompt(kind) {
   beginTaskTimer("truth", 30);
   renderTruth();
   scheduleComfortScroll(promptCard);
+  scheduleBottomClearance(completePromptButton?.closest(".prompt-actions") || completePromptButton);
 }
 
 function completePrompt() {

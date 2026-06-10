@@ -2135,7 +2135,7 @@ h3 {
 
 .launch-row {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
   align-items: stretch;
 }
@@ -3618,6 +3618,7 @@ legend {
   inset: 22px 22px auto auto;
   display: grid;
   gap: 8px;
+  pointer-events: none;
 }
 
 .deck-rail span {
@@ -4200,6 +4201,7 @@ body.quick-dice-page .page-texture {
   width: 120px;
   aspect-ratio: 1;
   opacity: 0.52;
+  pointer-events: none;
 }
 
 .sync-orbits span {
@@ -4509,6 +4511,28 @@ body.quick-dice-page .page-texture {
 
 .prompt-card h3 {
   overflow-wrap: anywhere;
+}
+
+@media (max-width: 760px), (max-height: 920px) {
+  .prompt-card.has-live-prompt {
+    align-self: stretch;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    max-height: min(54vh, 520px);
+    min-height: min(300px, 46vh);
+  }
+
+  .prompt-card.has-live-prompt h3 {
+    max-height: 4.4em;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+
+  .prompt-card.has-live-prompt p:last-child {
+    min-height: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+    padding-right: 4px;
+  }
 }
 
 .prompt-meta {
@@ -5299,6 +5323,23 @@ body.quick-dice-page .page-texture {
 .table-toast.is-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
+}
+
+.table-toast.is-audio-only {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  box-shadow: none;
+  opacity: 1;
+  overflow: hidden;
+  padding: 0;
+  pointer-events: none;
+  transform: none;
+  white-space: nowrap;
 }
 
 .table-toast[data-tone="success"] {
@@ -6724,6 +6765,7 @@ body.quick-dice-page .page-texture {
 
   .sync-orbits {
     width: 92px;
+    inset: 16px 18px auto auto;
   }
 
   .mini-stage {
@@ -7157,6 +7199,24 @@ body.quick-dice-page .page-texture {
     width: calc(100vw - 20px);
     border-radius: 14px;
     padding: 12px 14px;
+  }
+
+  .index-page .table-toast.is-audio-only {
+    top: 0;
+    right: auto;
+    bottom: auto;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    box-shadow: none;
+    overflow: hidden;
+    padding: 0;
+    transform: none;
+    white-space: nowrap;
   }
 
   .index-page .table-moment {
