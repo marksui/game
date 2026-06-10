@@ -5379,6 +5379,14 @@ body.quick-dice-page .page-texture {
   color: var(--ink);
   padding: 0;
   overflow: visible;
+  z-index: 95;
+}
+
+.ddf-dare-only .task-dialog {
+  inset: auto auto calc(clamp(16px, 2.4vw, 32px) + env(safe-area-inset-bottom, 0px)) 50%;
+  width: min(720px, calc(100% - 32px));
+  max-height: min(56vh, 460px);
+  transform: translateX(-50%);
 }
 
 .task-dialog::backdrop {
@@ -5461,6 +5469,17 @@ body.quick-dice-page .page-texture {
 
 .task-dialog .dialog-actions {
   margin-top: 4px;
+}
+
+.ddf-dare-only .task-dialog .dialog-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.ddf-dare-only .task-dialog .primary-action,
+.ddf-dare-only .task-dialog .secondary-action {
+  min-height: 52px;
 }
 
 .is-hidden {

@@ -237,10 +237,7 @@
               <span class="turn-avatar" id="truthTurnAvatar" aria-hidden="true"></span>
               <span class="status-label">轮到</span>
               <strong id="truthPlayerName">玩家 1</strong>
-              <p id="truthHint">点击大冒险抽题。</p>
-            </div>
-            <div class="truth-controls">
-              <button class="primary-action action-alt ddf-dare-action" id="dareButton" type="button">大冒险</button>
+              <p id="truthHint">点击下一题抽题。</p>
             </div>
           </aside>
 
@@ -257,11 +254,11 @@
             </div>
             <article class="prompt-card" id="promptCard">
               <p class="eyebrow" id="promptType">等待题目</p>
-              <h3 id="promptTitle">选择大冒险</h3>
-              <p id="promptText">Deep♂Dark♂Fantasy 大冒险题目会显示在这里。完成后加 1 分，跳过会记录一次。</p>
+              <h3 id="promptTitle">点击下一题开始</h3>
+              <p id="promptText">Deep♂Dark♂Fantasy 题目会显示在这里。完成后加 1 分，下一题会直接换给下一位。</p>
             </article>
             <div class="prompt-actions">
-              <button class="secondary-action" id="skipPromptButton" type="button" disabled>跳过</button>
+              <button class="secondary-action" id="skipPromptButton" type="button">下一题</button>
               <button class="primary-action" id="completePromptButton" type="button" disabled>完成</button>
             </div>
           </section>
@@ -291,7 +288,7 @@
         <h3 id="taskTitle">挑战</h3>
         <p id="taskText"></p>
         <div class="dialog-actions">
-          <button class="secondary-action" id="skipTaskButton" value="skip" type="submit">跳过 / 换题</button>
+          <button class="secondary-action" id="skipTaskButton" value="skip" type="submit">下一题</button>
           <button class="primary-action" id="completeTaskButton" value="done" type="submit">完成</button>
         </div>
       </form>

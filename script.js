@@ -1136,7 +1136,7 @@ const setupForm = document.querySelector("#setupForm");
 const nameFields = document.querySelector("#nameFields");
 const gameCards = document.querySelectorAll(".game-card");
 const startButton = document.querySelector("#startButton");
-const bankSection = document.querySelector("#bankSection");
+const bankSection = document.querySelector("#bankSection, #ddfDareBankSection");
 const questionBank = document.querySelector("#questionBank");
 const bankSummary = document.querySelector("#bankSummary");
 const ddfDareBank = document.querySelector("#ddfDareBank");
@@ -2202,7 +2202,7 @@ function startTruthGame() {
   miniView?.classList.add("is-hidden");
   truthView?.classList.remove("is-hidden");
   if (state.spiceLevel === "fantasy") {
-    state.log = ["Deep♂Dark♂Fantasy 大冒险开始。完成挑战得 1 分，跳过会记录一次。"];
+    state.log = ["Deep♂Dark♂Fantasy 大冒险开始。点下一题抽题，完成挑战得 1 分。"];
   } else {
     addLog("真心话大冒险开始。完成题目得 1 分，跳过会记录一次。");
   }
@@ -3437,7 +3437,10 @@ function showFlightTask(task) {
     { label: "可跳过 / 换题", tone: "skip" },
     { label: `计时 ${task.timerSeconds || 30} 秒`, tone: "active" },
   ]);
-  skipTaskButton.disabled = false;
+  if (skipTaskButton) {
+    skipTaskButton.textContent = isDdfPage ? "下一题" : "跳过 / 换题";
+    skipTaskButton.disabled = false;
+  }
   beginTaskTimer("flight", task.timerSeconds || 30);
   if (taskDialog.show) {
     if (!taskDialog.open) taskDialog.show();
@@ -3453,7 +3456,22 @@ function handleTaskClose() {
   clearTaskTimer("flight");
   const player = getCurrentPlayer();
   if (taskDialog.returnValue === "skip") {
-    if (player?.skipTokens > 0) {
+    if (isDdfPage) {
+      addLog(`${player?.name || "玩家"} 下一题：${pendingTask.title}。`);
+      setPlayerFeedback(player, "active", "下一题");
+      if (state.phase === "task" && state.winnerId === null) {
+        const nextTaskPlayer = player;
+        pendingTask = null;
+        syncTaskDialogPageState();
+        window.setTimeout(() => {
+          if (state.mode !== "flight" || state.phase !== "task" || state.winnerId !== null) return;
+          drawFlightTask(nextTaskPlayer);
+          renderFlight();
+        }, 0);
+        return;
+      }
+      showTableToast("下一题", "本轮任务已收起。", "active");
+    } else if (player?.skipTokens > 0) {
       player.skipTokens -= 1;
       addLog(`${player.name} 使用跳过券。`);
       setPlayerFeedback(player, "skip", "跳过券");
@@ -3504,6 +3522,8 @@ function renderTruth() {
   const player = getCurrentPlayer();
   const availableKinds = getAvailableTruthKinds();
   const hasCurrentPrompt = Boolean(state.currentPrompt);
+  const isFantasyPrompt = state.spiceLevel === "fantasy";
+  const usesDdfNextPrompt = isDdfPage && isFantasyPrompt;
   setSurfaceState(truthView, player, hasCurrentPrompt ? "prompt" : "ready", "var(--teal)");
   setPromptCardState(promptCard, state.currentPrompt?.cardTone || "waiting", hasCurrentPrompt);
   renderPromptMeta(
@@ -3511,12 +3531,12 @@ function renderTruth() {
     hasCurrentPrompt
       ? [
           { label: "完成 +1", tone: "success" },
-          { label: "可跳过", tone: "skip" },
+          { label: usesDdfNextPrompt ? "下一题" : "可跳过", tone: "skip" },
           { label: "计时 30 秒", tone: "active" },
         ]
       : [
           { label: getSpiceName(state.spiceLevel), tone: "ready" },
-          { label: state.spiceLevel === "fantasy" ? "只抽大冒险" : "真心话 / 大冒险", tone: "active" },
+          { label: isFantasyPrompt ? "下一题抽题" : "真心话 / 大冒险", tone: "active" },
         ],
   );
   ensureTaskTimer("truth", hasCurrentPrompt, state.currentPrompt?.timerSeconds || 30);
@@ -3525,27 +3545,30 @@ function renderTruth() {
   renderTurnAvatar(truthTurnAvatar, player);
   truthTurnCard.style.borderLeftColor = player?.color || "var(--teal)";
   truthHint.textContent =
-    state.spiceLevel === "fantasy"
+    isFantasyPrompt
       ? state.currentPrompt
-        ? "完成或跳过当前 Deep♂Dark♂Fantasy 后进入下一位。"
-        : "点击大冒险抽题。"
+        ? "完成加 1 分；下一题会换给下一位。"
+        : "点击下一题抽题。"
       : state.currentPrompt
         ? "完成或跳过当前卡牌后进入下一位。"
         : "选择真心话、大冒险或随机抽卡。";
   if (truthButton) truthButton.disabled = hasCurrentPrompt || !availableKinds.includes("truth");
-  if (dareButton) dareButton.disabled = hasCurrentPrompt || !availableKinds.includes("dare");
+  if (dareButton) dareButton.disabled = usesDdfNextPrompt || hasCurrentPrompt || !availableKinds.includes("dare");
   if (randomPromptButton) randomPromptButton.disabled = hasCurrentPrompt || !availableKinds.length;
-  skipPromptButton.disabled = !state.currentPrompt;
+  if (skipPromptButton) {
+    skipPromptButton.textContent = usesDdfNextPrompt ? "下一题" : "跳过";
+    skipPromptButton.disabled = usesDdfNextPrompt ? !availableKinds.includes("dare") : !state.currentPrompt;
+  }
   completePromptButton.disabled = !state.currentPrompt;
   setRecommendedAction(truthButton, !hasCurrentPrompt && availableKinds.includes("truth"));
-  setRecommendedAction(dareButton, !hasCurrentPrompt && availableKinds.includes("dare"));
+  setRecommendedAction(dareButton, !usesDdfNextPrompt && !hasCurrentPrompt && availableKinds.includes("dare"));
   setRecommendedAction(randomPromptButton, !hasCurrentPrompt && availableKinds.length > 1);
   setRecommendedAction(completePromptButton, hasCurrentPrompt);
-  setRecommendedAction(skipPromptButton, hasCurrentPrompt);
+  setRecommendedAction(skipPromptButton, usesDdfNextPrompt ? !hasCurrentPrompt : hasCurrentPrompt);
 
   renderPlayers(truthPlayersList, (item, index) => {
     const prefix = index === state.currentPlayerIndex ? "当前 · " : "";
-    return { name: `${prefix}${item.name}`, score: `${item.score} 分 / 跳过 ${item.skips}` };
+    return { name: `${prefix}${item.name}`, score: usesDdfNextPrompt ? `${item.score} 分 / 下一题 ${item.skips}` : `${item.score} 分 / 跳过 ${item.skips}` };
   });
   renderRoundFlow(truthFlow, [
     { label: "当前", value: player?.name || "结束", tone: "active" },
@@ -3557,9 +3580,11 @@ function renderTruth() {
     truthCue,
     hasCurrentPrompt ? "处理卡牌" : "下一步",
     hasCurrentPrompt
-      ? "完成得 1 分；不合适就跳过进入下一位。"
-      : state.spiceLevel === "fantasy"
-        ? `${player?.name || "当前玩家"} 抽一张大冒险。`
+      ? usesDdfNextPrompt
+        ? "完成得 1 分；下一题会换给下一位。"
+        : "完成得 1 分；不合适就跳过进入下一位。"
+      : isFantasyPrompt
+        ? `${player?.name || "当前玩家"} 点击下一题抽一张挑战。`
         : `${player?.name || "当前玩家"} 选择一种卡牌。`,
     hasCurrentPrompt ? "active" : "ready",
   );
@@ -3624,14 +3649,33 @@ function skipPrompt() {
   renderTruth();
 }
 
+function nextDdfPrompt() {
+  if (state.mode !== "truth") return;
+  if (!state.currentPrompt) {
+    drawPrompt("dare");
+    return;
+  }
+  const player = getCurrentPlayer();
+  const title = state.currentPrompt.title;
+  player.skips += 1;
+  addLog(`${player.name} 下一题：${title}。`);
+  setPlayerFeedback(player, "skip", "下一题");
+  clearPromptCard();
+  advancePlayer();
+  drawPrompt("dare");
+}
+
 function clearPromptCard() {
   clearTaskTimer("truth");
   state.currentPrompt = null;
   const isFantasy = state.spiceLevel === "fantasy";
+  const isDdfTruth = isDdfPage && isFantasy;
   promptType.textContent = isFantasy ? "等待题目" : "等待抽卡";
-  promptTitle.textContent = isFantasy ? "选择大冒险" : "选择一种卡牌";
-  promptText.textContent = isFantasy
-    ? "Deep♂Dark♂Fantasy 大冒险题目会显示在这里。完成后加 1 分，跳过会记录一次。"
+  promptTitle.textContent = isDdfTruth ? "点击下一题开始" : isFantasy ? "选择大冒险" : "选择一种卡牌";
+  promptText.textContent = isDdfTruth
+    ? "Deep♂Dark♂Fantasy 题目会显示在这里。完成后加 1 分，下一题会直接换给下一位。"
+    : isFantasy
+      ? "Deep♂Dark♂Fantasy 大冒险题目会显示在这里。完成后加 1 分，跳过会记录一次。"
     : "抽到的任务会显示在这里。完成后加 1 分，跳过会记录一次。";
   promptCard.classList.remove("is-dealt");
 }
@@ -3909,7 +3953,13 @@ truthButton?.addEventListener("click", () => drawPrompt("truth"));
 dareButton?.addEventListener("click", () => drawPrompt("dare"));
 randomPromptButton?.addEventListener("click", () => drawPrompt("random"));
 completePromptButton?.addEventListener("click", completePrompt);
-skipPromptButton?.addEventListener("click", skipPrompt);
+skipPromptButton?.addEventListener("click", () => {
+  if (isDdfPage) {
+    nextDdfPrompt();
+    return;
+  }
+  skipPrompt();
+});
 truthRestartButton?.addEventListener("click", () => showLobby(true));
 truthHomeButton?.addEventListener("click", () => showLobby(false));
 
