@@ -1276,17 +1276,6 @@ const sharedOpenPromptPool = {
   ],
 };
 
-const sharedDdfOpenPrompts = [
-  { title: "救♂赎71", text: "以最开放的气势喊出今晚战斗宣言，然后给全场一个哲♂学称号。" },
-  { title: "救♂赎72", text: "完成 15 秒兄贵觉醒独白，必须包含 Van♂、比♂利王 和 ASS♂WE♂CAN。" },
-  { title: "救♂赎73", text: "摆出压制、反击、胜利三个姿势，每个姿势都要喊一声救♂赎。" },
-  { title: "救♂赎74", text: "用热血播音腔介绍下一位玩家登场，语气越夸张越好。" },
-  { title: "救♂赎75", text: "做 10 秒假想绳索拉力赛，结束时宣布自己获得哲♂学力量。" },
-  { title: "救♂赎76", text: "模仿 Dungeon♂ 最终挑战开场，慢慢走三步再定格。" },
-  { title: "救♂赎77", text: "给当前局面来一段开放式兄贵解说，至少 12 秒。" },
-  { title: "救♂赎78", text: "终极开放版：任选一个兄贵口号连续喊三遍，并摆出胜利 pose。" },
-];
-
 function createEmptySharedDeckPack() {
   return {
     flight: { soft: [], warm: [], hot: [] },
@@ -1306,7 +1295,7 @@ function createEmptySharedDeckPack() {
   };
 }
 
-function buildSharedOpenDeckPack(pool, fantasyCards = []) {
+function buildSharedOpenDeckPack(pool) {
   const pack = createEmptySharedDeckPack();
   const toneLabel = { soft: "开放", warm: "升温开放", hot: "夜深开放" };
   Object.entries(pool).forEach(([level, cards]) => {
@@ -1321,11 +1310,10 @@ function buildSharedOpenDeckPack(pool, fantasyCards = []) {
       pack.mini.story[level].push({ type: `${toneLabel[level]}剧本`, title: card.title, text: card.story });
     });
   });
-  pack.truth.fantasy.dare.push(...fantasyCards);
   return pack;
 }
 
-const sharedOpenDeckPack = buildSharedOpenDeckPack(sharedOpenPromptPool, sharedDdfOpenPrompts);
+const sharedOpenDeckPack = buildSharedOpenDeckPack(sharedOpenPromptPool);
 
 const massiveOpenThemes = [
   { key: "invite", title: "开放邀请", focus: "邀请", action: "提出一个更直接的邀请" },
@@ -1463,18 +1451,7 @@ function makeMassiveOpenVariant(level, index) {
   };
 }
 
-function makeMassiveDdfCard(index) {
-  const chants = ["ASS♂WE♂CAN", "Deep♂Dark♂Fantasy", "王♂道征途", "神之♂救济", "新日暮里", "哲♂学永存"];
-  const poses = ["觉醒 pose", "压制 pose", "胜利 pose", "防守架势", "登场慢走", "最终定格"];
-  const action = ["战前动员", "热血解说", "兄贵宣言", "哲♂学审判", "力量蓄力", "终局召唤"][index % 6];
-  const serial = String(index + 79).padStart(3, "0");
-  return {
-    title: `救♂赎${serial}`,
-    text: `开放救♂赎第 ${serial} 式：完成 ${10 + (index % 11)} 秒${action}，加入${poses[index % poses.length]}，最后喊 ${chants[index % chants.length]}！`,
-  };
-}
-
-function buildMassiveOpenDeckPack(cardsPerLevel = 360, ddfCount = 1000) {
+function buildMassiveOpenDeckPack(cardsPerLevel = 360) {
   const pack = createEmptySharedDeckPack();
   ["soft", "warm", "hot"].forEach((level) => {
     for (let index = 0; index < cardsPerLevel; index += 1) {
@@ -1489,9 +1466,6 @@ function buildMassiveOpenDeckPack(cardsPerLevel = 360, ddfCount = 1000) {
       pack.mini.story[level].push(card.story);
     }
   });
-  for (let index = 0; index < ddfCount; index += 1) {
-    pack.truth.fantasy.dare.push(makeMassiveDdfCard(index));
-  }
   return pack;
 }
 
