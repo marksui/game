@@ -634,6 +634,92 @@ body.is-playing .site-header {
   background: transparent;
 }
 
+.ddf-dare-only.ddf-locked {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.ddf-dare-only.ddf-locked .app-shell {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ddf-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(255, 0, 180, 0.2), transparent 34%),
+    radial-gradient(circle at 18% 92%, rgba(225, 173, 79, 0.12), transparent 34%),
+    rgba(5, 2, 10, 0.92);
+  backdrop-filter: blur(18px);
+}
+
+.ddf-gate[hidden] {
+  display: none;
+}
+
+.ddf-gate-card {
+  display: grid;
+  gap: 14px;
+  width: min(460px, 100%);
+  border: 1px solid rgba(255, 0, 180, 0.36);
+  border-radius: 18px;
+  padding: clamp(22px, 5vw, 34px);
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255, 0, 180, 0.18), transparent 34%),
+    linear-gradient(145deg, rgba(27, 11, 38, 0.96), rgba(7, 3, 12, 0.98));
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.62),
+    0 0 48px rgba(255, 0, 180, 0.16);
+}
+
+.ddf-gate-card h1,
+.ddf-gate-card p {
+  margin: 0;
+}
+
+.ddf-gate-card h1 {
+  font-size: clamp(2rem, 6vw, 3rem);
+  line-height: 1;
+}
+
+.ddf-gate-card label {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.ddf-gate-card input {
+  min-height: 54px;
+  border: 1px solid rgba(255, 0, 180, 0.38);
+  border-radius: 14px;
+  background: rgba(4, 2, 8, 0.78);
+  color: var(--ink);
+  padding: 0 16px;
+  font: inherit;
+  font-weight: 900;
+}
+
+.ddf-gate-card input:focus-visible {
+  outline: 3px solid rgba(255, 0, 180, 0.32);
+  outline-offset: 2px;
+}
+
+.ddf-gate-error {
+  min-height: 1.35em;
+  color: #ff8eb8;
+  font-weight: 900;
+}
+
+.ddf-dare-only:not(.ddf-locked) .ddf-gate {
+  display: none;
+}
+
 .ddf-dare-only .brand-block,
 .ddf-dare-only .setup-form,
 .ddf-dare-only .bank-section,

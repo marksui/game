@@ -6,7 +6,7 @@
     <title>Deep♂Dark♂Fantasy | 夜航游戏局</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="fantasy-mode ddf-dare-only">
+  <body class="fantasy-mode ddf-dare-only ddf-locked">
     <div class="page-texture" aria-hidden="true"></div>
     <div class="ddf-symbol-storm" aria-hidden="true">
       <span>♂</span>
@@ -16,6 +16,17 @@
       <span>♂</span>
       <span>♂</span>
       <span>♂</span>
+    </div>
+
+    <div class="ddf-gate" id="ddfGate" role="dialog" aria-modal="true" aria-labelledby="ddfGateTitle">
+      <form class="ddf-gate-card" id="ddfGateForm">
+        <p class="eyebrow">Deep♂Dark♂Fantasy</p>
+        <h1 id="ddfGateTitle">需要密码</h1>
+        <label for="ddfGatePassword">输入密码进入 DDF 页面</label>
+        <input id="ddfGatePassword" type="password" autocomplete="off" inputmode="text" />
+        <p class="ddf-gate-error" id="ddfGateError" aria-live="polite"></p>
+        <button class="primary-action" type="submit">进入</button>
+      </form>
     </div>
 
     <main class="app-shell">

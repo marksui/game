@@ -1680,6 +1680,10 @@ const ddfDareBank = document.querySelector("#ddfDareBank");
 const ddfDareBankSummary = document.querySelector("#ddfDareBankSummary");
 const heroQuestionCount = document.querySelector("#heroQuestionCount");
 const diceOptions = document.querySelector("#diceOptions");
+const ddfGate = document.querySelector("#ddfGate");
+const ddfGateForm = document.querySelector("#ddfGateForm");
+const ddfGatePassword = document.querySelector("#ddfGatePassword");
+const ddfGateError = document.querySelector("#ddfGateError");
 
 const gameView = document.querySelector("#gameView");
 const board = document.querySelector("#board");
@@ -1854,6 +1858,36 @@ let taskTimerState = {
   endAt: 0,
   intervalId: 0,
 };
+
+function unlockDdfGate() {
+  document.body.classList.remove("ddf-locked");
+  if (ddfGate) {
+    ddfGate.hidden = true;
+    ddfGate.setAttribute("aria-hidden", "true");
+  }
+}
+
+function initDdfGate() {
+  if (!isDdfPage) return;
+  if (!ddfGate || !ddfGateForm || !ddfGatePassword) {
+    unlockDdfGate();
+    return;
+  }
+  ddfGate.hidden = false;
+  ddfGate.setAttribute("aria-hidden", "false");
+  ddfGatePassword.focus({ preventScroll: true });
+  ddfGateForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (ddfGatePassword.value.trim() === "van") {
+      ddfGatePassword.value = "";
+      if (ddfGateError) ddfGateError.textContent = "";
+      unlockDdfGate();
+      return;
+    }
+    if (ddfGateError) ddfGateError.textContent = "密码不对。";
+    ddfGatePassword.select();
+  });
+}
 
 function createEmptyState() {
   return {
@@ -4532,6 +4566,7 @@ miniChoiceGrid?.querySelectorAll("button").forEach((button) => {
 if (isQuickDicePage) {
   startQuickDiceGame();
 } else {
+  initDdfGate();
   const restoredIndexSetup = restoreIndexSetupControls();
   syncNameFields();
   restoreIndexPlayerNames(restoredIndexSetup);
