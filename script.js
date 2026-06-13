@@ -1069,6 +1069,434 @@ const lateNightExpansionPack = {
   },
 };
 
+const sharedOpenPromptPool = {
+  soft: [
+    {
+      title: "主动一点",
+      truth: "说一个你今晚希望别人更主动一点的小地方。",
+      dare: "向一位同意的玩家提出一个更直接但可拒绝的小邀请。",
+      flight: "当前玩家提出一个更主动的小互动，对方可以接受、改写或换题。",
+      dice: "总点数为偶数就说主动请求，为奇数就执行一个可拒绝的小邀请。",
+      sync: "同时说出现在更想主动、被邀请、旁观还是换题。",
+      wheel: "指针指到的人决定本轮主动一点、慢一点或换题。",
+      box: "打开后说一个今晚愿意接受的主动邀请。",
+      story: "角色 A 发出一个更直接的邀请，角色 B 必须改写到自己舒服为止。",
+    },
+    {
+      title: "靠近许可",
+      truth: "如果要靠近一点，你最需要听到哪一句确认？",
+      dare: "先问一句许可问题，再靠近一步或改成击掌。",
+      flight: "先说清许可，再选择靠近一步、保持距离或让对方决定。",
+      dice: "用最高点数决定靠近秒数，上限 12 秒，任何人可停。",
+      sync: "同时用 0 到 3 表示现在愿意靠近的档位。",
+      wheel: "指针指到的人用手势给出 0 到 3 的靠近档位。",
+      box: "抽到后先确认许可，再选择靠近、牵手或换题。",
+      story: "两人在门口停住，角色 A 先确认距离，角色 B 决定继续或改写。",
+    },
+    {
+      title: "今晚想要",
+      truth: "说一个你今晚想要但还没说出口的请求。",
+      dare: "把一个今晚想要的请求说出来，对方可以只回应不执行。",
+      flight: "说出一个今晚想要的氛围词，并让全场按这个词调整 30 秒。",
+      dice: "按骰子数量说出同样多的今晚请求关键词。",
+      sync: "同时说一个今晚想要的关键词，相近就双方得分。",
+      wheel: "指针指到的人说一个想要的氛围，当前玩家负责配合 15 秒。",
+      box: "打开后必须说一个真实但不强迫别人执行的请求。",
+      story: "角色 A 说出一个请求，角色 B 只用确认、改写或暂停回应。",
+    },
+    {
+      title: "更大胆的夸奖",
+      truth: "说一句比平时更大胆的夸奖，但不要让对方不舒服。",
+      dare: "看着对方说一句更大胆的夸奖，结束后问对方是否舒服。",
+      flight: "当前玩家给一位玩家一句更大胆的夸奖，对方决定是否收下。",
+      dice: "总点数越高，夸奖越直接；说完必须补一句尊重边界的话。",
+      sync: "同时写下一个想夸对方的身体或气质细节，再选择是否公开。",
+      wheel: "指针指到的人获得一句更大胆但尊重边界的夸奖。",
+      box: "抽到后从外貌、气质、动作里选一个方向大胆夸奖。",
+      story: "角色 A 夸得更直接一点，角色 B 用一句话决定继续还是降温。",
+    },
+    {
+      title: "允许改写",
+      truth: "说一个你愿意做但需要改写后才舒服的任务类型。",
+      dare: "把当前任务改写得更开放一点，同时说清停止方式。",
+      flight: "获得一次开放改写权：可以把任务升级一点点或降温一点点。",
+      dice: "掷出高点就升级一点，低点就降温一点，双方都可否决。",
+      sync: "同时说当前任务更适合升级、降温、换题还是完成。",
+      wheel: "指针指到的人拥有本轮改写权，可以更开放也可以更安全。",
+      box: "打开后把任意任务改写成更适合当前关系的版本。",
+      story: "角色 A 提出开放版本，角色 B 修改到愿意演。",
+    },
+    {
+      title: "停止也好玩",
+      truth: "你希望别人怎样回应你的暂停，才不会破坏气氛？",
+      dare: "演练一次暂停：一人说暂停，另一人用一句温柔的话接住。",
+      flight: "全场演练一次暂停和继续，让游戏后面更敢玩。",
+      dice: "总点数决定暂停秒数，暂停后说一句重新开始的台词。",
+      sync: "同时设计一个暂停后的恢复台词，选更自然的一句。",
+      wheel: "指针指到的人指定暂停、继续、换题三句台词各一句。",
+      box: "打开后练一次体面停止，再选择是否继续本轮。",
+      story: "剧本中必须自然出现一次暂停，另一方要温柔接住。",
+    },
+  ],
+  warm: [
+    {
+      title: "低声要求",
+      truth: "说一句你希望对方低声对你说的话。",
+      dare: "贴近对方耳边说一句低声要求，对方可以改写或拒绝。",
+      flight: "当前玩家用低声提出一个要求，对方决定完成、改写或换题。",
+      dice: "用骰子总点数倒数，结束时低声说一句可拒绝的要求。",
+      sync: "同时写一个想听到的低声要求，愿意的话读出来。",
+      wheel: "指针指到的人选择听低声夸奖、低声邀请或直接换题。",
+      box: "打开后用低声说一个请求，必须给对方选择权。",
+      story: "角色 A 只能低声说话，角色 B 每句都要选择继续或慢一点。",
+    },
+    {
+      title: "亲密选择题",
+      truth: "牵手、靠肩、拥抱、耳语里，此刻你最想选哪一个？",
+      dare: "给对方四选一：牵手、靠肩、拥抱、耳语；对方可换题。",
+      flight: "让对方从四个亲密动作里选一个，或指定一个更舒服替代项。",
+      dice: "点数 1-2 牵手，3-4 靠肩，5-6 耳语；不舒服就改成夸奖。",
+      sync: "同时在牵手、靠肩、拥抱、耳语中选择一个，重合就完成。",
+      wheel: "指针指到的人从四个亲密选项里决定本轮。",
+      box: "盲盒打开后抽一个亲密方向，但执行前必须确认。",
+      story: "角色 A 给四个亲密选项，角色 B 选择并设定边界。",
+    },
+    {
+      title: "更近一点",
+      truth: "你愿意让今晚的距离更近到什么程度？",
+      dare: "用 15 秒慢慢靠近，对方用手势决定停、继续或后退。",
+      flight: "当前玩家慢慢靠近一位同意玩家，最多 15 秒。",
+      dice: "最高点数就是靠近秒数，过程中任何人可说慢一点。",
+      sync: "同时说近一点、保持、后退或换题，按更保守的一方执行。",
+      wheel: "指针指到的人决定靠近秒数，上限 15 秒。",
+      box: "打开后完成一次更近一点的互动，或改成低声夸奖。",
+      story: "两人在狭窄走廊擦肩停住，必须用边界词决定距离。",
+    },
+    {
+      title: "主导请求",
+      truth: "你喜欢被怎样主导，才会觉得刺激又安心？",
+      dare: "安排 20 秒节奏，但每一步都问对方是否继续。",
+      flight: "当前玩家获得 20 秒温柔主导权，对方可以随时改写。",
+      dice: "点数越高主导越直接，但必须先说一个安全条件。",
+      sync: "同时说主导、被引导、轮流或旁观，按一致或更保守结果执行。",
+      wheel: "指针指到的人决定主导者和安全条件。",
+      box: "打开后获得一次主导请求，必须先给出退出方式。",
+      story: "角色 A 主导 20 秒，角色 B 可以用一句台词改写规则。",
+    },
+    {
+      title: "开放台词",
+      truth: "说一句你能接受的开放台词，以及一句会让你不舒服的台词。",
+      dare: "说一句更开放的台词，说完立刻问对方是否要改写。",
+      flight: "用一句开放台词升温，再由对方选择继续、慢一点或换题。",
+      dice: "总点数小于 7 说甜一点，大于等于 7 说开放一点。",
+      sync: "同时给当前气氛写一句开放台词，选择更自然的一句读出来。",
+      wheel: "指针指到的人指定台词风格：甜、强势、克制或换题。",
+      box: "打开后抽一个台词方向，当前玩家要说出版本并允许改写。",
+      story: "角色 A 用开放台词试探，角色 B 用边界台词回应。",
+    },
+    {
+      title: "被看见",
+      truth: "身体、气质、声音、动作里，你最希望哪一部分被看见？",
+      dare: "夸对方一个身体或气质细节，必须温柔且可被拒收。",
+      flight: "当前玩家选择一个被看见的方向，收下一句更直接的夸奖。",
+      dice: "按点数选择夸身体、气质、声音、动作、眼神或氛围。",
+      sync: "同时写一个最吸引你的细节，愿意就公开。",
+      wheel: "指针指到的人获得一个被看见的关键词，由当前玩家夸奖。",
+      box: "打开后从身体、气质、声音、动作中抽一个方向夸奖。",
+      story: "角色 A 注意到一个细节，角色 B 决定接受、害羞或转移话题。",
+    },
+  ],
+  hot: [
+    {
+      title: "继续条件",
+      truth: "如果今晚继续升温，你的三个条件是什么？",
+      dare: "说出继续、减速、停止三个条件，再完成一个双方同意的小互动。",
+      flight: "当前玩家提出继续条件，对方补充后才可执行任务。",
+      dice: "按三颗最高点数分别说继续、减速、停止条件。",
+      sync: "同时说一个继续条件和一个停止条件，先对齐再行动。",
+      wheel: "指针指到的人拥有继续条件最终解释权。",
+      box: "打开后先写下继续条件，再决定是否升级任务。",
+      story: "角色 A 想继续升温，角色 B 必须先谈条件再决定。",
+    },
+    {
+      title: "大胆但可停",
+      truth: "说一个大胆一点但必须随时可停的互动方向。",
+      dare: "提出一个大胆一点的动作，只能在对方明确同意后执行替代版本。",
+      flight: "把当前任务升级一点点，但任何人一句话就能停。",
+      dice: "高点升级一点，低点停顿确认；执行前必须重复停止信号。",
+      sync: "同时判断当前任务是否可升级一点点，不一致就不升级。",
+      wheel: "指针指到的人决定升级、原版、降温或换题。",
+      box: "打开后抽到升级权，但必须先说停止信号。",
+      story: "角色 A 提出大胆版本，角色 B 设置停止条件后才继续。",
+    },
+    {
+      title: "主导边界",
+      truth: "你愿意交给对方安排的边界在哪里？",
+      dare: "让对方安排 20 秒节奏，但你保留随时停止权。",
+      flight: "当前玩家把 20 秒节奏交给对方安排，先说清不可越过的点。",
+      dice: "总点数决定主导秒数，上限 20 秒，先说不可越过的点。",
+      sync: "同时说最想交给对方安排的一件小事，看是否重合。",
+      wheel: "指针指到的人获得主导权，但必须复述对方边界。",
+      box: "打开后交出一个小范围主导权，边界由你先定。",
+      story: "角色 A 交出节奏，角色 B 必须复述边界后才行动。",
+    },
+    {
+      title: "亲密后照顾",
+      truth: "更开放的互动结束后，你最需要怎样被照顾？",
+      dare: "完成一个小互动后，主动给对方一个照顾选项。",
+      flight: "任务完成后必须安排收尾照顾：拥抱、喝水、聊天或暂停。",
+      dice: "最高点数决定收尾秒数，期间只做照顾不再升级。",
+      sync: "同时选择收尾方式，优先执行对方更需要的那个。",
+      wheel: "指针指到的人选择本轮收尾照顾方式。",
+      box: "打开后无论任务是否完成，都要安排一个温柔收尾。",
+      story: "剧本结尾必须有照顾动作：倒水、拥抱、聊天或留空间。",
+    },
+    {
+      title: "更开放的问题",
+      truth: "问自己一个更开放的问题，并选择是否公开答案。",
+      dare: "向对方问一个更开放的问题，对方可以只回答一半或换题。",
+      flight: "当前玩家问一个更开放的问题，被问者拥有改写权。",
+      dice: "总点数小于 7 问甜问题，大于等于 7 问更开放的问题。",
+      sync: "同时写一个想问的问题，交换后可以选择不回答。",
+      wheel: "指针指到的人从甜问题、开放问题、换题里选一个。",
+      box: "打开后抽到一个开放问题，但回答者可以改写。",
+      story: "角色 A 问一个开放问题，角色 B 用真话、改写或沉默回应。",
+    },
+    {
+      title: "升温刹车",
+      truth: "你喜欢在什么时刻踩刹车，让气氛反而更心动？",
+      dare: "升温到一半突然停 8 秒，只看着对方，之后问是否继续。",
+      flight: "当前任务必须加入一次 8 秒刹车，结束后重新确认。",
+      dice: "最高点数决定刹车秒数，刹车后只能问许可问题。",
+      sync: "同时决定此刻该继续、刹车、收尾还是换题。",
+      wheel: "指针指到的人可以随时按下升温刹车。",
+      box: "打开后获得一次刹车权，使用后不扣分。",
+      story: "剧本中途必须停顿一次，停顿后由对方决定继续或收尾。",
+    },
+  ],
+};
+
+const sharedDdfOpenPrompts = [
+  { title: "救♂赎71", text: "以最开放的气势喊出今晚战斗宣言，然后给全场一个哲♂学称号。" },
+  { title: "救♂赎72", text: "完成 15 秒兄贵觉醒独白，必须包含 Van♂、比♂利王 和 ASS♂WE♂CAN。" },
+  { title: "救♂赎73", text: "摆出压制、反击、胜利三个姿势，每个姿势都要喊一声救♂赎。" },
+  { title: "救♂赎74", text: "用热血播音腔介绍下一位玩家登场，语气越夸张越好。" },
+  { title: "救♂赎75", text: "做 10 秒假想绳索拉力赛，结束时宣布自己获得哲♂学力量。" },
+  { title: "救♂赎76", text: "模仿 Dungeon♂ 最终挑战开场，慢慢走三步再定格。" },
+  { title: "救♂赎77", text: "给当前局面来一段开放式兄贵解说，至少 12 秒。" },
+  { title: "救♂赎78", text: "终极开放版：任选一个兄贵口号连续喊三遍，并摆出胜利 pose。" },
+];
+
+function createEmptySharedDeckPack() {
+  return {
+    flight: { soft: [], warm: [], hot: [] },
+    truth: {
+      soft: { truth: [], dare: [] },
+      warm: { truth: [], dare: [] },
+      hot: { truth: [], dare: [] },
+      fantasy: { truth: [], dare: [] },
+    },
+    dice: { soft: [], warm: [], hot: [] },
+    sync: { soft: [], warm: [], hot: [] },
+    mini: {
+      wheel: { soft: [], warm: [], hot: [] },
+      box: { soft: [], warm: [], hot: [] },
+      story: { soft: [], warm: [], hot: [] },
+    },
+  };
+}
+
+function buildSharedOpenDeckPack(pool, fantasyCards = []) {
+  const pack = createEmptySharedDeckPack();
+  const toneLabel = { soft: "开放", warm: "升温开放", hot: "夜深开放" };
+  Object.entries(pool).forEach(([level, cards]) => {
+    cards.forEach((card) => {
+      pack.flight[level].push({ type: toneLabel[level], title: card.title, text: card.flight });
+      pack.truth[level].truth.push({ title: card.title, text: card.truth });
+      pack.truth[level].dare.push({ title: card.title, text: card.dare });
+      pack.dice[level].push({ type: `${toneLabel[level]}骰`, title: card.title, text: card.dice });
+      pack.sync[level].push({ type: `${toneLabel[level]}默契`, title: card.title, text: card.sync });
+      pack.mini.wheel[level].push({ type: `${toneLabel[level]}轮盘`, title: card.title, text: card.wheel });
+      pack.mini.box[level].push({ type: `${toneLabel[level]}盲盒`, title: card.title, text: card.box });
+      pack.mini.story[level].push({ type: `${toneLabel[level]}剧本`, title: card.title, text: card.story });
+    });
+  });
+  pack.truth.fantasy.dare.push(...fantasyCards);
+  return pack;
+}
+
+const sharedOpenDeckPack = buildSharedOpenDeckPack(sharedOpenPromptPool, sharedDdfOpenPrompts);
+
+const massiveOpenThemes = [
+  { key: "invite", title: "开放邀请", focus: "邀请", action: "提出一个更直接的邀请" },
+  { key: "distance", title: "距离试探", focus: "距离", action: "调整一次彼此距离" },
+  { key: "voice", title: "低声命令", focus: "声音", action: "用低声说出一个可拒绝的要求" },
+  { key: "touch", title: "触碰许可", focus: "触碰", action: "确认许可后完成一个轻触替代动作" },
+  { key: "gaze", title: "眼神压迫", focus: "眼神", action: "用眼神停留制造一点压力" },
+  { key: "role", title: "角色交换", focus: "角色", action: "交换主导和被引导的位置" },
+  { key: "control", title: "主导边界", focus: "主导", action: "安排一段短暂节奏" },
+  { key: "confession", title: "坦白欲望", focus: "请求", action: "说出一个更开放的真实请求" },
+  { key: "slowdown", title: "升温刹车", focus: "停顿", action: "在升温时主动暂停确认" },
+  { key: "aftercare", title: "收尾照顾", focus: "照顾", action: "安排一个温柔收尾" },
+  { key: "praise", title: "大胆夸奖", focus: "夸奖", action: "给出一句更直接的夸奖" },
+  { key: "rewrite", title: "开放改写", focus: "改写", action: "把任务改写得更开放一点" },
+];
+
+const massiveOpenSubjects = [
+  "当前玩家",
+  "左手边玩家",
+  "右手边玩家",
+  "你指定的一位玩家",
+  "本轮领先玩家",
+  "刚刚完成任务的玩家",
+  "最安静的玩家",
+  "最会接话的玩家",
+];
+
+const massiveOpenStyles = [
+  "更直接",
+  "更慢",
+  "更大胆",
+  "更克制",
+  "更有压迫感",
+  "更甜",
+  "更强势但温柔",
+  "更像电影对白",
+];
+
+const massiveOpenSafeties = [
+  "任何人都可以说暂停",
+  "对方可以改写或拒绝",
+  "先复述继续、减速、停止信号",
+  "只在双方都点头后继续",
+  "不舒服就换成夸奖",
+  "结束后必须问一次感受",
+  "按更保守的一方执行",
+  "保留随时退出权",
+];
+
+const massiveOpenScenes = [
+  "门口停顿",
+  "深夜电话",
+  "电梯相遇",
+  "酒吧重逢",
+  "雨夜借伞",
+  "后台休息",
+  "舞池边缘",
+  "沙发角落",
+  "电影散场",
+  "走廊擦肩",
+];
+
+function getMassiveOpenLevelMeta(level) {
+  return {
+    soft: {
+      label: "开放",
+      intensity: "说清边界后",
+      limit: "10 秒",
+      question: "愿意尝试到什么程度",
+    },
+    warm: {
+      label: "升温开放",
+      intensity: "确认许可后",
+      limit: "15 秒",
+      question: "想把氛围推进到哪里",
+    },
+    hot: {
+      label: "夜深开放",
+      intensity: "先说继续条件和停止信号后",
+      limit: "20 秒",
+      question: "更大胆但仍可停止的版本是什么",
+    },
+  }[level];
+}
+
+function makeMassiveOpenVariant(level, index) {
+  const theme = massiveOpenThemes[index % massiveOpenThemes.length];
+  const subject = massiveOpenSubjects[(index + 2) % massiveOpenSubjects.length];
+  const style = massiveOpenStyles[(index + 5) % massiveOpenStyles.length];
+  const safety = massiveOpenSafeties[(index + 7) % massiveOpenSafeties.length];
+  const scene = massiveOpenScenes[(index + 11) % massiveOpenScenes.length];
+  const meta = getMassiveOpenLevelMeta(level);
+  const serial = String(index + 1).padStart(4, "0");
+  const title = `${theme.title}${serial}`;
+  return {
+    title,
+    flight: {
+      type: meta.label,
+      title,
+      text: `${subject}${meta.intensity}${theme.action}，风格要${style}，控制在 ${meta.limit} 内；${safety}。`,
+    },
+    truth: {
+      title,
+      text: `围绕“${theme.focus}”回答：你现在${meta.question}？请给一个开放一点的真实答案，也说一个不能越过的点。`,
+    },
+    dare: {
+      title,
+      text: `${meta.intensity}${theme.action}，对象是${subject}，语气要${style}；${safety}。`,
+    },
+    dice: {
+      type: `${meta.label}骰`,
+      title,
+      text: `用最高点数决定${theme.focus}强度，用最低点数决定停顿秒数；执行前${safety}。`,
+    },
+    sync: {
+      type: `${meta.label}默契`,
+      title,
+      text: `两人同时选择“继续、慢一点、升级、换题”之一，再各说一个关于${theme.focus}的边界；不一致就按更保守结果。`,
+    },
+    wheel: {
+      type: `${meta.label}轮盘`,
+      title,
+      text: `指针指到的人指定${theme.focus}方向，当前玩家用${style}方式完成；${safety}。`,
+    },
+    box: {
+      type: `${meta.label}盲盒`,
+      title,
+      text: `打开后进入“${theme.focus}”任务：${theme.action}，必须先给对方改写权。`,
+    },
+    story: {
+      type: `${meta.label}剧本`,
+      title,
+      text: `${scene}剧本：角色 A 围绕${theme.focus}提出更开放的请求，角色 B 决定继续、减速或改写。`,
+    },
+  };
+}
+
+function makeMassiveDdfCard(index) {
+  const chants = ["ASS♂WE♂CAN", "Deep♂Dark♂Fantasy", "王♂道征途", "神之♂救济", "新日暮里", "哲♂学永存"];
+  const poses = ["觉醒 pose", "压制 pose", "胜利 pose", "防守架势", "登场慢走", "最终定格"];
+  const action = ["战前动员", "热血解说", "兄贵宣言", "哲♂学审判", "力量蓄力", "终局召唤"][index % 6];
+  const serial = String(index + 79).padStart(3, "0");
+  return {
+    title: `救♂赎${serial}`,
+    text: `开放救♂赎第 ${serial} 式：完成 ${10 + (index % 11)} 秒${action}，加入${poses[index % poses.length]}，最后喊 ${chants[index % chants.length]}！`,
+  };
+}
+
+function buildMassiveOpenDeckPack(cardsPerLevel = 360, ddfCount = 1000) {
+  const pack = createEmptySharedDeckPack();
+  ["soft", "warm", "hot"].forEach((level) => {
+    for (let index = 0; index < cardsPerLevel; index += 1) {
+      const card = makeMassiveOpenVariant(level, index);
+      pack.flight[level].push(card.flight);
+      pack.truth[level].truth.push(card.truth);
+      pack.truth[level].dare.push(card.dare);
+      pack.dice[level].push(card.dice);
+      pack.sync[level].push(card.sync);
+      pack.mini.wheel[level].push(card.wheel);
+      pack.mini.box[level].push(card.box);
+      pack.mini.story[level].push(card.story);
+    }
+  });
+  for (let index = 0; index < ddfCount; index += 1) {
+    pack.truth.fantasy.dare.push(makeMassiveDdfCard(index));
+  }
+  return pack;
+}
+
+const massiveOpenDeckPack = buildMassiveOpenDeckPack();
+
 const externalDeckStorageKey = "night-voyage:v1:extraDeckPacks";
 
 function appendDeckCards(target, cards) {
@@ -1183,6 +1611,8 @@ function exposeDeckPackApi() {
 mergeDeckPack(communityDeckPack);
 mergeDeckPack(webInspiredDeckPack);
 mergeDeckPack(lateNightExpansionPack);
+mergeDeckPack(sharedOpenDeckPack);
+mergeDeckPack(massiveOpenDeckPack);
 mergeRuntimeDeckPacks();
 exposeDeckPackApi();
 
