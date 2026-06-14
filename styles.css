@@ -2232,44 +2232,6 @@ h3 {
   align-content: space-between;
 }
 
-.ddf-entry {
-  display: grid;
-  gap: 8px;
-  border: 1px solid rgba(192, 38, 79, 0.5);
-  border-radius: 16px;
-  background:
-    linear-gradient(135deg, rgba(192, 38, 79, 0.16), rgba(225, 173, 79, 0.06)),
-    var(--surface-strong);
-  color: var(--ink);
-  padding: 16px;
-  text-decoration: none;
-  transition:
-    border-color 180ms ease,
-    transform 180ms ease,
-    background-color 180ms ease;
-}
-
-.ddf-entry:hover {
-  transform: translateY(-2px);
-  border-color: #ff6b93;
-}
-
-.ddf-entry span {
-  color: #ff6b93;
-  font-size: 0.8rem;
-  font-weight: 1000;
-  text-transform: uppercase;
-}
-
-.ddf-entry strong {
-  font-size: 1.08rem;
-}
-
-.ddf-entry small {
-  color: var(--muted);
-  line-height: 1.55;
-}
-
 .game-icon {
   position: relative;
   display: grid;
@@ -6713,6 +6675,19 @@ body.quick-dice-page .page-texture {
 }
 
 @media (max-width: 760px) {
+  button,
+  .primary-action,
+  .secondary-action,
+  .quick-nav a,
+  .game-card,
+  .segmented span,
+  .name-input input,
+  .move-button,
+  .mini-choice-grid button {
+    min-height: 48px;
+    touch-action: manipulation;
+  }
+
   .app-shell {
     padding: 10px 12px 28px;
   }
@@ -6823,11 +6798,16 @@ body.quick-dice-page .page-texture {
   }
 
   .board-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
     padding: 8px;
   }
 
   .board {
-    width: calc(100vw - 40px);
+    width: min(640px, calc(100vw - 40px));
+    min-width: 320px;
   }
 
   .base {
@@ -6883,6 +6863,226 @@ body.quick-dice-page .page-texture {
 
   .mini-choice-grid {
     grid-template-columns: 1fr;
+  }
+
+  body.bank-page,
+  body.quick-dice-page,
+  body.ddf-dare-only {
+    overflow-x: hidden;
+  }
+
+  .bank-page .app-shell,
+  .quick-dice-page .app-shell,
+  .ddf-dare-only .app-shell {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 10px 26px;
+  }
+
+  .bank-page .site-header,
+  .quick-dice-page .site-header,
+  .ddf-dare-only .site-header {
+    z-index: 120;
+  }
+
+  .bank-page-hero,
+  .bank-section,
+  .quick-dice-view,
+  .ddf-panel,
+  .ddf-dare-only .game-view,
+  .ddf-dare-only .truth-view {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .bank-page-hero,
+  .section-heading,
+  .bank-section,
+  .quick-dice-stage,
+  .quick-dice-log,
+  .ddf-dare-only .top-bar,
+  .ddf-dare-only .side-panel,
+  .ddf-dare-only .board-wrap,
+  .ddf-dare-only .truth-stage,
+  .ddf-gate-card {
+    border-radius: 14px;
+  }
+
+  .bank-page-hero,
+  .bank-section {
+    padding: 14px;
+  }
+
+  .bank-page-hero h1 {
+    font-size: clamp(2.05rem, 12vw, 3.1rem);
+    line-height: 0.98;
+  }
+
+  .bank-page .bank-grid,
+  .ddf-bank-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .bank-card,
+  .ddf-bank-card {
+    min-height: 0;
+    padding: 12px;
+  }
+
+  .bank-card h3,
+  .ddf-bank-card h3 {
+    font-size: 1.05rem;
+    line-height: 1.15;
+  }
+
+  .bank-card p,
+  .ddf-bank-card p {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .quick-dice-view {
+    gap: 12px;
+  }
+
+  .quick-dice-stage {
+    min-height: 420px;
+    padding: 16px;
+  }
+
+  .quick-roll-button {
+    min-height: 112px;
+  }
+
+  .quick-dice-log {
+    max-height: 220px;
+  }
+
+  .ddf-gate {
+    padding: 14px;
+  }
+
+  .ddf-gate-card {
+    padding: 20px;
+  }
+
+  .ddf-gate-card h1 {
+    font-size: clamp(1.8rem, 11vw, 2.6rem);
+  }
+
+  .ddf-panel {
+    padding-top: 0;
+  }
+
+  .ddf-panel .brand-block {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .ddf-hero-poster {
+    width: min(100%, 360px);
+    justify-self: center;
+  }
+
+  .ddf-copy {
+    gap: 12px;
+  }
+
+  .ddf-title {
+    font-size: clamp(1.85rem, 11vw, 2.8rem);
+    line-height: 0.94;
+  }
+
+  .ddf-hero-intro {
+    gap: 8px;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .ddf-stamps,
+  .ddf-panel .hero-metrics {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .ddf-panel .setup-form {
+    padding: 14px;
+  }
+
+  .ddf-panel .game-card {
+    grid-template-columns: 44px minmax(0, 1fr);
+    min-height: 72px;
+    padding: 10px;
+  }
+
+  .ddf-panel .game-card b {
+    grid-column: 2;
+    justify-self: start;
+    text-align: left;
+  }
+
+  .ddf-panel .name-fields,
+  .ddf-panel .setup-grid,
+  .ddf-panel .segmented {
+    grid-template-columns: 1fr;
+  }
+
+  .ddf-panel .name-input {
+    grid-template-columns: 44px minmax(0, 1fr);
+  }
+
+  .ddf-panel .consent-row {
+    align-items: flex-start;
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .ddf-dare-only .game-layout,
+  .ddf-dare-only .truth-layout {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .ddf-dare-only .top-bar {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .ddf-dare-only .top-actions,
+  .ddf-dare-only .prompt-actions,
+  .ddf-dare-only .dialog-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .ddf-dare-only .turn-card {
+    min-height: 0;
+    padding: 12px;
+  }
+
+  .ddf-dare-only .truth-stage {
+    min-height: 360px;
+    padding: 14px;
+  }
+
+  .ddf-dare-only .prompt-card {
+    padding: 18px;
+  }
+
+  .ddf-dare-only .prompt-card h3 {
+    font-size: clamp(1.6rem, 9vw, 2.35rem);
+  }
+
+  .ddf-dare-only .task-dialog {
+    inset: auto 10px calc(10px + env(safe-area-inset-bottom, 0px)) 10px;
+    width: calc(100vw - 20px);
+    max-height: 62vh;
+    transform: none;
   }
 
   .index-page .app-shell {
@@ -7032,14 +7232,6 @@ body.quick-dice-page .page-texture {
 
   .index-page .rules-preview article {
     padding: 12px;
-  }
-
-  .index-page .ddf-entry {
-    padding: 12px;
-  }
-
-  .index-page .ddf-entry small {
-    display: none;
   }
 
   .index-page .consent-row {
