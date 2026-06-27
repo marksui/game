@@ -1777,6 +1777,7 @@ let tableToastTimer = 0;
 let taskDialogCollapsed = false;
 let logHistoryCollapsed = window.matchMedia("(max-width: 760px)").matches;
 let logHistoryUserSet = false;
+let viewportFitRaf = 0;
 let languageToggleButton = null;
 let languageObserver = null;
 let languageRefreshScheduled = false;
@@ -2189,6 +2190,86 @@ function shouldUseAssistedScroll() {
 
 function getComfortScrollBehavior() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+}
+
+function clampNumber(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function getViewportSize() {
+  const visual = window.visualViewport;
+  return {
+    width: Math.round(visual?.width || window.innerWidth || document.documentElement.clientWidth || 0),
+    height: Math.round(visual?.height || window.innerHeight || document.documentElement.clientHeight || 0),
+  };
+}
+
+function getVisiblePlayView() {
+  return [gameView, truthView, diceView, quickDiceView, syncView, miniView].find(
+    (view) => view && !view.classList.contains("is-hidden"),
+  );
+}
+
+function getActivePlayLayout(view) {
+  return view?.querySelector(
+    ".game-layout, .truth-layout, .dice-layout, .quick-dice-layout, .sync-layout, .mini-layout",
+  );
+}
+
+function getBoxInsetSize(element) {
+  if (!element) return { x: 0, y: 0 };
+  const styles = window.getComputedStyle(element);
+  const toNumber = (value) => Number.parseFloat(value) || 0;
+  return {
+    x:
+      toNumber(styles.paddingLeft) +
+      toNumber(styles.paddingRight) +
+      toNumber(styles.borderLeftWidth) +
+      toNumber(styles.borderRightWidth),
+    y:
+      toNumber(styles.paddingTop) +
+      toNumber(styles.paddingBottom) +
+      toNumber(styles.borderTopWidth) +
+      toNumber(styles.borderBottomWidth),
+  };
+}
+
+function updateViewportFit() {
+  viewportFitRaf = 0;
+  const root = document.documentElement;
+  const { width, height } = getViewportSize();
+  if (!width || !height) return;
+
+  root.style.setProperty("--visual-vh", `${height}px`);
+
+  const view = getVisiblePlayView();
+  const layout = getActivePlayLayout(view);
+  if (!document.body.classList.contains("is-playing") || !view || !layout) {
+    document.body.classList.remove("is-fit-tight");
+    root.style.setProperty("--game-content-height", "none");
+    root.style.setProperty("--board-fit-size", "min(78vh, 820px)");
+    return;
+  }
+
+  const layoutRect = layout.getBoundingClientRect();
+  const boardWrap = layout.querySelector(".board-wrap");
+  const boardWrapRect = boardWrap?.getBoundingClientRect();
+  const boardInsets = getBoxInsetSize(boardWrap);
+  const bottomGutter = clampNumber(Math.round(height * 0.022), 10, 24);
+  const availableHeight = Math.max(240, height - Math.max(layoutRect.top, 0) - bottomGutter);
+  const availableBoardHeight = Math.max(220, availableHeight - boardInsets.y);
+  const availableBoardWidth = Math.max(220, (boardWrapRect?.width || width) - boardInsets.x);
+  const boardMax = width >= 1181 ? 820 : width >= 761 ? 720 : 640;
+  const boardFit = Math.floor(clampNumber(Math.min(availableBoardHeight, availableBoardWidth, boardMax), 220, boardMax));
+
+  root.style.setProperty("--game-content-height", `${Math.floor(availableHeight)}px`);
+  root.style.setProperty("--board-fit-size", `${boardFit}px`);
+  document.body.classList.toggle("is-fit-tight", availableHeight < 720 || boardFit < 660 || height < 920);
+}
+
+function scheduleViewportFit() {
+  if (viewportFitRaf) window.cancelAnimationFrame(viewportFitRaf);
+  viewportFitRaf = window.requestAnimationFrame(updateViewportFit);
 }
 
 function shouldDockTaskDialog() {
@@ -2948,6 +3029,7 @@ function hideLobby() {
   setupPanel?.classList.add("is-hidden");
   bankSection?.classList.add("is-hidden");
   scrollToTop();
+  scheduleViewportFit();
 }
 
 function cancelMotionEffects() {
@@ -2987,6 +3069,7 @@ function showLobby(resetForm = false) {
   renderQuestionBank();
   saveIndexSetup();
   scrollToTop();
+  scheduleViewportFit();
 }
 
 function startFlightGame() {
@@ -3138,6 +3221,7 @@ function renderDice() {
     { label: "回合", value: `第 ${state.round} 轮` },
   ]);
   renderLog(diceLogList);
+  scheduleViewportFit();
 }
 
 function renderDiceFaces() {
@@ -3411,6 +3495,7 @@ function renderQuickDice() {
     state.diceRolling ? "active" : "ready",
   );
   renderLog(quickDiceLogList);
+  scheduleViewportFit();
 }
 
 function rollQuickDice() {
@@ -3533,6 +3618,7 @@ function renderSync() {
     { label: "回合", value: `第 ${state.round} 轮` },
   ]);
   renderLog(syncLogList);
+  scheduleViewportFit();
 }
 
 function drawSyncPrompt() {
@@ -3701,6 +3787,7 @@ function renderMini() {
   ]);
   renderActionCue(miniCue, getMiniCueLabel(), getMiniCueText(player, meta), state.currentPrompt || state.miniSpinning || state.miniChoices.length ? "active" : "ready");
   renderLog(miniLogList);
+  scheduleViewportFit();
 }
 
 function getMiniCueLabel() {
@@ -3967,6 +4054,7 @@ function renderFlight() {
   renderFlightSidebar();
   renderMoves();
   renderLog(logList);
+  scheduleViewportFit();
 }
 
 function renderBoardPieces() {
@@ -4467,6 +4555,7 @@ function renderTruth() {
     hasCurrentPrompt ? "active" : "ready",
   );
   renderLog(truthLogList);
+  scheduleViewportFit();
 }
 
 function drawPrompt(kind) {
@@ -4780,7 +4869,12 @@ setHeaderMenu(false);
 applyLanguageToDocument();
 window.matchMedia("(max-width: 760px)").addEventListener("change", (event) => {
   if (!logHistoryUserSet) setLogHistoryCollapsed(event.matches);
+  scheduleViewportFit();
 });
+window.addEventListener("resize", scheduleViewportFit);
+window.addEventListener("orientationchange", scheduleViewportFit);
+window.visualViewport?.addEventListener("resize", scheduleViewportFit);
+window.visualViewport?.addEventListener("scroll", scheduleViewportFit, { passive: true });
 navToggle?.addEventListener("click", (event) => {
   event.stopPropagation();
   setHeaderMenu(!siteHeader?.classList.contains("is-menu-open"));
