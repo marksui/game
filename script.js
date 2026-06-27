@@ -2178,6 +2178,7 @@ function syncTaskDialogPageState() {
   const isOpen = Boolean(taskDialog?.open);
   document.body.classList.toggle("has-task-dialog", isOpen);
   document.body.classList.toggle("has-expanded-task-dialog", isOpen && !taskDialogCollapsed);
+  scheduleViewportFit();
 }
 
 function shouldUseCompactFlow() {
@@ -4979,3 +4980,4 @@ if (isQuickDicePage) {
 
 renderDdfDareBank();
 initDdfPosterCarousel();
+scheduleViewportFit();
