@@ -12,6 +12,7 @@ const playerPresets= [
 
 const ddfContent = window.DDF_CONTENT || {};
 const ddfAvatarPresets = Array.isArray(ddfContent.avatarPresets) ? ddfContent.avatarPresets : [];
+const englishContent = window.NIGHT_VOYAGE_ENGLISH || {};
 
 const ddfPlayerPresets = playerPresets.map((preset, index) => ({
   ...preset,
@@ -1761,10 +1762,13 @@ const isBankPage = document.body.classList.contains("bank-page");
 const isQuickDicePage = document.body.classList.contains("quick-dice-page");
 const isIndexPage = document.body.classList.contains("index-page");
 const indexSetupStorageKey = "night-voyage:v1:indexSetup";
+const languageStorageKey = "night-voyage:v1:language";
+const supportedLanguages = new Set(["zh", "en"]);
 const indexGameIds = new Set(["flight", "truth", "dice", "quickDice", "sync", "wheel", "box", "story"]);
 const indexSpiceLevels = new Set(["soft", "warm", "hot"]);
 let selectedGame = isDdfPage ? "truth" : document.body.dataset.defaultGame || "flight";
 let state = createEmptyState();
+let activeLanguage = getInitialLanguage();
 let pendingTask = null;
 let diceAnimationId = 0;
 let miniAnimationId = 0;
@@ -1773,6 +1777,13 @@ let tableToastTimer = 0;
 let taskDialogCollapsed = false;
 let logHistoryCollapsed = window.matchMedia("(max-width: 760px)").matches;
 let logHistoryUserSet = false;
+let languageToggleButton = null;
+let languageObserver = null;
+let languageRefreshScheduled = false;
+let isApplyingLanguage = false;
+let originalDocumentTitle = document.title;
+const originalTextValues = new WeakMap();
+const originalAttributeValues = new WeakMap();
 let taskTimerState = {
   scope: null,
   total: 30,
@@ -1808,7 +1819,7 @@ function initDdfGate() {
       unlockDdfGate();
       return;
     }
-    if (ddfGateError) ddfGateError.textContent = "密码不对。";
+    if (ddfGateError) ddfGateError.textContent = isEnglish() ? "Wrong password." : "密码不对。";
     ddfGatePassword.select();
   });
 }
@@ -1838,6 +1849,257 @@ function createEmptyState() {
   };
 }
 
+function getInitialLanguage() {
+  const params = new URLSearchParams(window.location.search);
+  const urlLang = params.get("lang");
+  if (supportedLanguages.has(urlLang)) {
+    try {
+      window.localStorage.setItem(languageStorageKey, urlLang);
+    } catch {
+      // Language should still work when storage is unavailable.
+    }
+    return urlLang;
+  }
+
+  try {
+    const stored = window.localStorage.getItem(languageStorageKey);
+    if (supportedLanguages.has(stored)) return stored;
+  } catch {
+    // Fall through to browser language.
+  }
+
+  return navigator.language?.toLowerCase().startsWith("zh") ? "zh" : "en";
+}
+
+function isEnglish() {
+  return activeLanguage === "en";
+}
+
+function getEnglishUi() {
+  return englishContent.ui || {};
+}
+
+function translatePattern(text) {
+  const patterns = [
+    [/^第 (\d+) 轮$/, "Round $1"],
+    [/^玩家 (\d+)$/, "Player $1"],
+    [/^(\d+) 位$/, "$1 players"],
+    [/^(\d+) 颗$/, "$1 dice"],
+    [/^(\d+) 颗骰子$/, "$1 dice"],
+    [/^(\d+) 点$/, "$1 pts"],
+    [/^(\d+) 个题目$/, "$1 prompts"],
+    [/^(\d+) 档尺度$/, "$1 intensity levels"],
+    [/^(\d+) 分 \/ 跳过 (\d+)$/, "$1 pts / skips $2"],
+    [/^(\d+) 分 \/ 下一题 (\d+)$/, "$1 pts / redraws $2"],
+    [/^当前 · (.+)$/, "Current · $1"],
+    [/^(.+)：不需要玩家人数，当前快掷 (\d+) 颗骰子。$/, "$1: no player setup needed, currently rolling $2 dice."],
+    [/^(.+) · (.+)：当前使用 (\d+) 颗骰子，题库 (\d+) 个。$/, "$1 · $2: using $3 dice with $4 prompts."],
+    [/^(.+) · (.+)：当前测试会抽取 (\d+) 张卡。$/, "$1 · $2: drawing from $3 cards."],
+    [/^(.+) · (.+)：只显示 Deep♂Dark♂Fantasy 题目，共 (\d+) 个。$/, "$1 · $2: showing $3 Deep Dark Fantasy prompts."],
+    [/^显示 Deep♂Dark♂Fantasy 大冒险词条，共 (\d+) 条。$/, "Showing $1 Deep Dark Fantasy dare prompts."],
+    [/^当前 (\d+) 颗骰子，点一下开始。$/, "Current dice: $1. Tap to roll."],
+    [/^上次是 (\d+) 点，可以换数量或继续投。$/, "Last total was $1. Change dice count or roll again."],
+    [/^(\d+) 颗骰子：(.+) = (\d+)$/, "$1 dice: $2 = $3"],
+    [/^(.+) 完成：(.+)，获得 1 分。$/, "$1 completed: $2, +1 point."],
+    [/^(.+) 跳过：(.+)。$/, "$1 skipped: $2."],
+    [/^(.+) 下一题：(.+)。$/, "$1 redrew: $2."],
+    [/^(.+) 抽到(.+)：(.+)。$/, "$1 drew $2: $3."],
+    [/^(.+) 拿到(.+)：(.+)。$/, "$1 got $2: $3."],
+    [/^(.+) 完成任务：(.+)。$/, "$1 completed task: $2."],
+    [/^(.+) 跳过任务，后退 1 格。$/, "$1 skipped the task and moves back 1 space."],
+    [/^(.+) 使用跳过券。$/, "$1 used a skip token."],
+    [/^(.+) 完成骰子任务：(.+)，获得 1 分。$/, "$1 completed dice task: $2, +1 point."],
+    [/^(.+) 跳过骰子任务：(.+)。$/, "$1 skipped dice task: $2."],
+    [/^(.+) 完成默契挑战：(.+)，获得 1 分。$/, "$1 completed sync challenge: $2, +1 point."],
+    [/^(.+) 跳过默契挑战：(.+)。$/, "$1 skipped sync challenge: $2."],
+    [/^(.+) 完成(.+)：(.+)，获得 1 分。$/, "$1 completed $2: $3, +1 point."],
+    [/^(.+) 跳过(.+)：(.+)。$/, "$1 skipped $2: $3."],
+    [/^(.+) 获胜。今晚的夜航抵达终点。$/, "$1 wins. Tonight's voyage has reached the finish."],
+  ];
+
+  for (const [pattern, replacement] of patterns) {
+    if (pattern.test(text)) return text.replace(pattern, replacement);
+  }
+
+  return text;
+}
+
+function translateText(text) {
+  if (!isEnglish()) return text;
+  const source = String(text);
+  const trimmed = source.trim();
+  if (!trimmed) return source;
+  const leading = source.match(/^\s*/)?.[0] || "";
+  const trailing = source.match(/\s*$/)?.[0] || "";
+  const translations = getEnglishUi();
+  let translated = translations[trimmed] || translatePattern(trimmed);
+
+  if (translated === trimmed) {
+    Object.entries(translations)
+      .sort((a, b) => b[0].length - a[0].length)
+      .forEach(([from, to]) => {
+        translated = translated.split(from).join(to);
+      });
+  }
+
+  translated = translated
+    .replace(/真心话/g, "Truth")
+    .replace(/大冒险/g, "Dare")
+    .replace(/默契/g, "Sync")
+    .replace(/亲密/g, "Intimacy")
+    .replace(/挑战/g, "Challenge")
+    .replace(/互动/g, "Action")
+    .replace(/奖励/g, "Bonus")
+    .replace(/反转/g, "Twist")
+    .replace(/骰子/g, "Dice")
+    .replace(/任务/g, "Task")
+    .replace(/玩家/g, "Player")
+    .replace(/当前/g, "Current")
+    .replace(/完成/g, "Complete")
+    .replace(/跳过/g, "Skip")
+    .replace(/记录/g, "Log")
+    .replace(/等待/g, "Waiting")
+    .replace(/开始/g, "Start")
+    .replace(/选择/g, "Choose");
+
+  return `${leading}${translated}${trailing}`;
+}
+
+function localizeTextNode(node) {
+  if (!node?.nodeValue?.trim()) return;
+  if (!originalTextValues.has(node)) {
+    originalTextValues.set(node, node.nodeValue);
+  } else {
+    const original = originalTextValues.get(node);
+    const translatedOriginal = isEnglish() ? translateText(original) : original;
+    if (node.nodeValue !== original && node.nodeValue !== translatedOriginal) {
+      originalTextValues.set(node, node.nodeValue);
+    }
+  }
+  const original = originalTextValues.get(node);
+  const nextValue = isEnglish() ? translateText(original) : original;
+  if (node.nodeValue !== nextValue) node.nodeValue = nextValue;
+}
+
+function getOriginalAttribute(element, attr) {
+  let attrs = originalAttributeValues.get(element);
+  if (!attrs) {
+    attrs = {};
+    originalAttributeValues.set(element, attrs);
+  }
+  const currentValue = element.getAttribute(attr);
+  if (!(attr in attrs)) {
+    attrs[attr] = currentValue;
+  } else {
+    const original = attrs[attr];
+    const translatedOriginal = isEnglish() ? translateText(original) : original;
+    if (currentValue !== original && currentValue !== translatedOriginal) attrs[attr] = currentValue;
+  }
+  return attrs[attr];
+}
+
+function localizeElementAttributes(element) {
+  ["aria-label", "title", "alt", "placeholder"].forEach((attr) => {
+    if (!element.hasAttribute(attr)) return;
+    const original = getOriginalAttribute(element, attr);
+    const nextValue = isEnglish() ? translateText(original) : original;
+    if (element.getAttribute(attr) !== nextValue) element.setAttribute(attr, nextValue);
+  });
+}
+
+function localizeDomTree(root) {
+  if (!root) return;
+  if (root.nodeType === Node.TEXT_NODE) {
+    if (root.parentElement?.closest("[data-no-i18n]")) return;
+    localizeTextNode(root);
+    return;
+  }
+  if (root.nodeType !== Node.ELEMENT_NODE && root.nodeType !== Node.DOCUMENT_FRAGMENT_NODE) return;
+  if (root.matches?.("script, style, noscript")) return;
+  if (root.matches?.("[data-no-i18n], [data-no-i18n] *")) return;
+  if (root.nodeType === Node.ELEMENT_NODE) localizeElementAttributes(root);
+  root.childNodes.forEach(localizeDomTree);
+}
+
+function updateLanguageToggle() {
+  if (!languageToggleButton) return;
+  languageToggleButton.textContent = isEnglish() ? "中文" : "EN";
+  languageToggleButton.setAttribute("aria-label", isEnglish() ? "Switch to Chinese" : "Switch to English");
+  languageToggleButton.title = isEnglish() ? "Switch to Chinese" : "Switch to English";
+}
+
+function applyLanguageToDocument() {
+  if (isApplyingLanguage) return;
+  isApplyingLanguage = true;
+  languageObserver?.disconnect();
+  document.documentElement.lang = isEnglish() ? "en" : "zh-CN";
+  document.body.dataset.language = activeLanguage;
+  document.title = isEnglish() ? translateText(originalDocumentTitle) : originalDocumentTitle;
+  updateLanguageToggle();
+  localizeDomTree(document.body);
+  isApplyingLanguage = false;
+  startLanguageObserver();
+}
+
+function scheduleLanguageApply() {
+  if (!isEnglish() || languageRefreshScheduled || isApplyingLanguage) return;
+  languageRefreshScheduled = true;
+  window.requestAnimationFrame(() => {
+    languageRefreshScheduled = false;
+    applyLanguageToDocument();
+  });
+}
+
+function startLanguageObserver() {
+  if (!document.body || !window.MutationObserver) return;
+  if (!languageObserver) {
+    languageObserver = new MutationObserver(scheduleLanguageApply);
+  }
+  languageObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+    characterData: true,
+    attributes: true,
+    attributeFilter: ["aria-label", "title", "alt", "placeholder"],
+  });
+}
+
+function initLanguageToggle() {
+  if (!headerContent || languageToggleButton) return;
+  languageToggleButton = document.createElement("button");
+  languageToggleButton.className = "language-toggle";
+  languageToggleButton.type = "button";
+  languageToggleButton.dataset.noI18n = "true";
+  languageToggleButton.addEventListener("click", () => setLanguage(isEnglish() ? "zh" : "en"));
+  headerContent.append(languageToggleButton);
+  updateLanguageToggle();
+}
+
+function refreshLanguageSensitiveViews() {
+  if (state.mode === "quickDice") renderQuickDice();
+  if (state.mode === "dice") renderDice();
+  if (state.mode === "sync") renderSync();
+  if (state.mode === "mini") renderMini();
+  if (state.mode === "flight") renderFlight();
+  if (state.mode === "truth") renderTruth();
+  renderQuestionBank();
+  renderDdfDareBank();
+  syncNameFields();
+  setSelectedGame(selectedGame);
+}
+
+function setLanguage(lang) {
+  if (!supportedLanguages.has(lang) || lang === activeLanguage) return;
+  activeLanguage = lang;
+  try {
+    window.localStorage.setItem(languageStorageKey, activeLanguage);
+  } catch {
+    // Keep the in-memory language even if storage is unavailable.
+  }
+  refreshLanguageSensitiveViews();
+  applyLanguageToDocument();
+}
+
 function getSelectedSpiceLevel() {
   if (!setupForm) return "soft";
   return new FormData(setupForm).get("spiceLevel") || "soft";
@@ -1849,7 +2111,10 @@ function getSelectedDiceCount() {
 }
 
 function getSpiceName(spiceLevel = getSelectedSpiceLevel()) {
-  return { soft: "暧昧", warm: "升温", hot: "夜深", fantasy: "Deep♂Dark♂Fantasy" }[spiceLevel] || "暧昧";
+  const names = isEnglish()
+    ? { soft: "Soft", warm: "Warm", hot: "Late Night", fantasy: "Deep Dark Fantasy" }
+    : { soft: "暧昧", warm: "升温", hot: "夜深", fantasy: "Deep♂Dark♂Fantasy" };
+  return names[spiceLevel] || names.soft;
 }
 
 function renderRoundFlow(target, items) {
@@ -2367,23 +2632,82 @@ function getDeckLevels(spiceLevel) {
   return ["soft", "warm", "hot"];
 }
 
+function getActiveDeckPack() {
+  return isEnglish() && englishContent.deckPack ? englishContent.deckPack : null;
+}
+
+function getActiveTruthDeckRoot() {
+  return getActiveDeckPack()?.truth || truthDecks;
+}
+
+function getActiveMiniDeckRoot() {
+  return getActiveDeckPack()?.mini || miniGameDecks;
+}
+
+function getDdfDareCards() {
+  return (isEnglish() && englishContent.ddf?.dareCards?.length ? englishContent.ddf.dareCards : null) ||
+    getActiveTruthDeckRoot().fantasy?.dare ||
+    truthDecks.fantasy.dare;
+}
+
+function getActiveMiniGameMeta(game) {
+  return (isEnglish() && englishContent.miniGameMeta?.[game]) || miniGameMeta[game];
+}
+
+function getGameName(game = selectedGame, spiceLevel = getSelectedSpiceLevel()) {
+  if (spiceLevel === "fantasy") return isEnglish() ? "Deep Dark Fantasy Dare" : "Deep♂Dark♂Fantasy 大冒险";
+  const names = isEnglish()
+    ? {
+        flight: "Night Flight Ludo",
+        truth: "Truth or Dare",
+        dice: "Dice Heat",
+        quickDice: "Quick Dice",
+        sync: "Sync Challenge",
+        wheel: "Heart Wheel",
+        box: "Mystery Box",
+        story: "Role Scene",
+      }
+    : {
+        flight: "夜航飞行棋",
+        truth: "真心话大冒险",
+        dice: "骰子升温",
+        quickDice: "纯骰子",
+        sync: "默契挑战",
+        wheel: "心动轮盘",
+        box: "任务盲盒",
+        story: "角色剧本",
+      };
+  return names[game] || names.flight;
+}
+
+function getTruthType(kind) {
+  if (isEnglish()) return kind === "truth" ? "Truth" : "Dare";
+  return kind === "truth" ? "真心话" : "大冒险";
+}
+
+function getActiveQuickDiceCards() {
+  return isEnglish() && Array.isArray(englishContent.quickDiceCards) ? englishContent.quickDiceCards : quickDiceCards;
+}
+
 function getFlightDeck(spiceLevel = state.spiceLevel) {
-  return getDeckLevels(spiceLevel).flatMap((level) => flightDecks[level]);
+  const decks = getActiveDeckPack()?.flight || flightDecks;
+  return getDeckLevels(spiceLevel).flatMap((level) => decks[level] || []);
 }
 
 function getDdfFlightDeck() {
-  return truthDecks.fantasy.dare.map((card) => ({
+  return getDdfDareCards().map((card) => ({
     ...card,
-    type: "大冒险",
+    type: getTruthType("dare"),
     kind: "dare",
   }));
 }
 
 function getTruthDeck(kind, spiceLevel = state.spiceLevel) {
-  const cards = getDeckLevels(spiceLevel).flatMap((level) => truthDecks[level][kind]);
+  const decks = getActiveTruthDeckRoot();
+  const cards = getDeckLevels(spiceLevel).flatMap((level) => decks[level]?.[kind] || []);
   return cards.map((card) => ({
     ...card,
-    type: kind === "truth" ? "真心话" : "大冒险",
+    type: getTruthType(kind),
     kind,
   }));
 }
@@ -2393,15 +2717,18 @@ function getAvailableTruthKinds(spiceLevel = state.spiceLevel) {
 }
 
 function getDiceDeck(spiceLevel = state.spiceLevel) {
-  return getDeckLevels(spiceLevel).flatMap((level) => diceDecks[level]);
+  const decks = getActiveDeckPack()?.dice || diceDecks;
+  return getDeckLevels(spiceLevel).flatMap((level) => decks[level] || []);
 }
 
 function getSyncDeck(spiceLevel = state.spiceLevel) {
-  return getDeckLevels(spiceLevel).flatMap((level) => syncDecks[level]);
+  const decks = getActiveDeckPack()?.sync || syncDecks;
+  return getDeckLevels(spiceLevel).flatMap((level) => decks[level] || []);
 }
 
 function getMiniDeck(game = state.miniGame, spiceLevel = state.spiceLevel) {
-  return getDeckLevels(spiceLevel).flatMap((level) => miniGameDecks[game][level]);
+  const decks = getActiveMiniDeckRoot();
+  return getDeckLevels(spiceLevel).flatMap((level) => decks[game]?.[level] || []);
 }
 
 function getVisibleQuestionCards() {
@@ -2409,39 +2736,39 @@ function getVisibleQuestionCards() {
   if (spiceLevel === "fantasy") {
     return [...getTruthDeck("truth", spiceLevel), ...getTruthDeck("dare", spiceLevel)].map((card) => ({
       ...card,
-      mode: "Deep♂Dark♂Fantasy 大冒险",
+      mode: getGameName("truth", spiceLevel),
     }));
   }
   if (selectedGame === "flight") {
     return getFlightDeck(spiceLevel).map((card) => ({
       ...card,
-      mode: "飞行棋",
+      mode: getGameName("flight", spiceLevel),
     }));
   }
   if (selectedGame === "dice") {
     return getDiceDeck(spiceLevel).map((card) => ({
       ...card,
-      mode: "骰子升温",
+      mode: getGameName("dice", spiceLevel),
     }));
   }
   if (selectedGame === "quickDice") {
-    return quickDiceCards;
+    return getActiveQuickDiceCards();
   }
   if (selectedGame === "sync") {
     return getSyncDeck(spiceLevel).map((card) => ({
       ...card,
-      mode: "默契挑战",
+      mode: getGameName("sync", spiceLevel),
     }));
   }
-  if (miniGameMeta[selectedGame]) {
+  if (getActiveMiniGameMeta(selectedGame)) {
     return getMiniDeck(selectedGame, spiceLevel).map((card) => ({
       ...card,
-      mode: miniGameMeta[selectedGame].name,
+      mode: getActiveMiniGameMeta(selectedGame).name,
     }));
   }
   return [...getTruthDeck("truth", spiceLevel), ...getTruthDeck("dare", spiceLevel)].map((card) => ({
     ...card,
-    mode: "真心话大冒险",
+    mode: getGameName("truth", spiceLevel),
   }));
 }
 
@@ -2449,24 +2776,19 @@ function renderQuestionBank() {
   const cards = getVisibleQuestionCards();
   const spiceLevel = getSelectedSpiceLevel();
   const spiceName = getSpiceName(spiceLevel);
-  const gameName =
-    spiceLevel === "fantasy"
-      ? "Deep♂Dark♂Fantasy 大冒险"
-      : {
-          flight: "夜航飞行棋",
-          truth: "真心话大冒险",
-          dice: "骰子升温",
-          quickDice: "纯骰子",
-          sync: "默契挑战",
-          wheel: "心动轮盘",
-          box: "任务盲盒",
-          story: "角色剧本",
-        }[selectedGame];
+  const gameName = getGameName(selectedGame, spiceLevel);
   document.body.classList.toggle("fantasy-mode", spiceLevel === "fantasy");
   if (heroQuestionCount) heroQuestionCount.textContent = String(cards.length);
   if (!questionBank || !bankSummary) return;
-  bankSummary.textContent =
-    spiceLevel === "fantasy"
+  bankSummary.textContent = isEnglish()
+    ? spiceLevel === "fantasy"
+      ? `${gameName} · ${spiceName}: showing ${cards.length} Deep Dark Fantasy prompts.`
+      : selectedGame === "quickDice"
+        ? `${gameName}: no player setup needed, currently rolling ${getSelectedDiceCount()} dice.`
+      : selectedGame === "dice"
+        ? `${gameName} · ${spiceName}: using ${getSelectedDiceCount()} dice with ${cards.length} prompts.`
+        : `${gameName} · ${spiceName}: drawing from ${cards.length} cards.`
+    : spiceLevel === "fantasy"
       ? `${gameName} · ${spiceName}：只显示 Deep♂Dark♂Fantasy 题目，共 ${cards.length} 个。`
       : selectedGame === "quickDice"
         ? `${gameName}：不需要玩家人数，当前快掷 ${getSelectedDiceCount()} 颗骰子。`
@@ -2490,8 +2812,10 @@ function renderQuestionBank() {
 
 function renderDdfDareBank() {
   if (!ddfDareBank || !ddfDareBankSummary) return;
-  const cards = truthDecks.fantasy.dare;
-  ddfDareBankSummary.textContent = `显示 Deep♂Dark♂Fantasy 大冒险词条，共 ${cards.length} 条。`;
+  const cards = getDdfDareCards();
+  ddfDareBankSummary.textContent = isEnglish()
+    ? `Showing ${cards.length} Deep Dark Fantasy dare prompts.`
+    : `显示 Deep♂Dark♂Fantasy 大冒险词条，共 ${cards.length} 条。`;
   ddfDareBank.innerHTML = "";
 
   cards.forEach((card, index) => {
@@ -2499,7 +2823,7 @@ function renderDdfDareBank() {
     item.className = "bank-card ddf-bank-card";
     item.style.animationDelay = `${Math.min(index, 18) * 18}ms`;
     item.innerHTML = `
-      <span>Deep♂Dark♂Fantasy / 大冒险</span>
+      <span>Deep♂Dark♂Fantasy / ${getTruthType("dare")}</span>
       <strong>${escapeHtml(card.title)}</strong>
       <p>${escapeHtml(card.text)}</p>
     `;
@@ -2519,20 +2843,26 @@ function setSelectedGame(game) {
     card.setAttribute("aria-pressed", String(active));
   });
   if (startButton) {
-    startButton.textContent = fantasy
-      ? selectedGame === "flight"
-        ? "开始 DDF 飞行棋"
-        : "开始 DDF 大冒险"
-      : {
-          flight: "开始夜航飞行棋",
-          truth: "开始真心话大冒险",
-          dice: "开始骰子升温",
-          quickDice: "开始纯骰子",
-          sync: "开始默契挑战",
-          wheel: "开始心动轮盘",
-          box: "开始任务盲盒",
-          story: "开始角色剧本",
-        }[selectedGame];
+    startButton.textContent = isEnglish()
+      ? fantasy
+        ? selectedGame === "flight"
+          ? "Start DDF Ludo"
+          : "Start DDF Dare"
+        : `Start ${getGameName(selectedGame)}`
+      : fantasy
+        ? selectedGame === "flight"
+          ? "开始 DDF 飞行棋"
+          : "开始 DDF 大冒险"
+        : {
+            flight: "开始夜航飞行棋",
+            truth: "开始真心话大冒险",
+            dice: "开始骰子升温",
+            quickDice: "开始纯骰子",
+            sync: "开始默契挑战",
+            wheel: "开始心动轮盘",
+            box: "开始任务盲盒",
+            story: "开始角色剧本",
+          }[selectedGame];
   }
   renderQuestionBank();
   saveIndexSetup();
@@ -2553,7 +2883,7 @@ function syncNameFields() {
       : "";
     label.innerHTML = `
       ${avatarMarkup}
-      <span>玩家 ${index + 1}</span>
+      <span>${isEnglish() ? "Player" : "玩家"} ${index + 1}</span>
       <input name="playerName${index}" maxlength="12" value="${escapeHtml(existing.get(`playerName${index}`) || preset.name)}" />
     `;
     nameFields.append(label);
@@ -2605,7 +2935,7 @@ function startGame(event) {
     startSyncGame();
     return;
   }
-  if (miniGameMeta[selectedGame]) {
+  if (getActiveMiniGameMeta(selectedGame)) {
     startMiniGame(selectedGame);
     return;
   }
@@ -2674,9 +3004,13 @@ function startFlightGame() {
   miniView?.classList.add("is-hidden");
   gameView?.classList.remove("is-hidden");
   addLog(
-    state.spiceLevel === "fantasy"
-      ? "DDF 飞行棋开始。掷到 6 可以起飞，事件格抽兄贵♂挑战。"
-      : "游戏开始。掷到 6 可以起飞，四架飞机全部进入终点即获胜。",
+    isEnglish()
+      ? state.spiceLevel === "fantasy"
+        ? "DDF Ludo started. Roll a 6 to take off; event spaces draw DDF challenges."
+        : "Game started. Roll a 6 to take off; get all four planes to the finish to win."
+      : state.spiceLevel === "fantasy"
+        ? "DDF 飞行棋开始。掷到 6 可以起飞，事件格抽兄贵♂挑战。"
+        : "游戏开始。掷到 6 可以起飞，四架飞机全部进入终点即获胜。",
   );
   buildBoard();
   renderFlight();
@@ -2697,9 +3031,17 @@ function startTruthGame() {
   miniView?.classList.add("is-hidden");
   truthView?.classList.remove("is-hidden");
   if (state.spiceLevel === "fantasy") {
-    state.log = ["Deep♂Dark♂Fantasy 大冒险开始。点下一题抽题，完成挑战得 1 分。"];
+    state.log = [
+      isEnglish()
+        ? "Deep Dark Fantasy Dare started. Tap Next Prompt to draw; complete a challenge for +1 point."
+        : "Deep♂Dark♂Fantasy 大冒险开始。点下一题抽题，完成挑战得 1 分。",
+    ];
   } else {
-    addLog("真心话大冒险开始。完成题目得 1 分，跳过会记录一次。");
+    addLog(
+      isEnglish()
+        ? "Truth or Dare started. Complete prompts for +1 point; skips are recorded."
+        : "真心话大冒险开始。完成题目得 1 分，跳过会记录一次。",
+    );
   }
   renderTruth();
 }
@@ -2719,7 +3061,11 @@ function startDiceGame() {
   quickDiceView?.classList.add("is-hidden");
   syncView?.classList.add("is-hidden");
   miniView?.classList.add("is-hidden");
-  addLog(`骰子升温开始。当前使用 ${state.diceCount} 颗骰子，完成得 1 分。`);
+  addLog(
+    isEnglish()
+      ? `Dice Heat started. Using ${state.diceCount} dice; completed prompts score +1 point.`
+      : `骰子升温开始。当前使用 ${state.diceCount} 颗骰子，完成得 1 分。`,
+  );
   clearDicePrompt();
   renderDice();
 }
@@ -2919,9 +3265,11 @@ function finishWarmDiceRoll() {
     ...task,
     cardTone: "dice",
     timerSeconds: duration,
-    type: `${state.diceCount} 骰 / ${total} 点`,
+    type: isEnglish() ? `${state.diceCount} dice / ${total} pts` : `${state.diceCount} 骰 / ${total} 点`,
     title: `${band.title} · ${task.title}`,
-    text: `${task.text} 计时 ${duration} 秒；任何人都可以改写、减速或跳过。`,
+    text: isEnglish()
+      ? `${task.text} Timer: ${duration} seconds; anyone may rewrite, slow down, or skip.`
+      : `${task.text} 计时 ${duration} 秒；任何人都可以改写、减速或跳过。`,
   };
   dicePromptType.textContent = state.currentPrompt.type;
   dicePromptTitle.textContent = state.currentPrompt.title;
@@ -2929,9 +3277,13 @@ function finishWarmDiceRoll() {
   dicePromptCard.classList.remove("is-dealt");
   void dicePromptCard.offsetWidth;
   dicePromptCard.classList.add("is-dealt");
-  addLog(`${getCurrentPlayer().name} 投出 ${state.diceRolls.join(" + ")} = ${total}，拿到 ${band.title}。`);
-  setPlayerFeedback(getCurrentPlayer(), "active", `${total} 点`);
-  showTableToast(`${total} 点 · ${band.title}`, state.currentPrompt.title, "active");
+  addLog(
+    isEnglish()
+      ? `${getCurrentPlayer().name} rolled ${state.diceRolls.join(" + ")} = ${total} and got ${band.title}.`
+      : `${getCurrentPlayer().name} 投出 ${state.diceRolls.join(" + ")} = ${total}，拿到 ${band.title}。`,
+  );
+  setPlayerFeedback(getCurrentPlayer(), "active", isEnglish() ? `${total} pts` : `${total} 点`);
+  showTableToast(isEnglish() ? `${total} pts · ${band.title}` : `${total} 点 · ${band.title}`, state.currentPrompt.title, "active");
   beginTaskTimer("dice", duration);
   renderDice();
   scheduleComfortScroll(dicePromptCard);
@@ -2940,6 +3292,12 @@ function finishWarmDiceRoll() {
 
 function getDiceBand(total, count) {
   const ratio = (total - count) / (count * 5);
+  if (isEnglish()) {
+    if (ratio < 0.26) return { title: "Slow Burn" };
+    if (ratio < 0.52) return { title: "Soft Spark" };
+    if (ratio < 0.78) return { title: "Warm Up" };
+    return { title: "Bold Move" };
+  }
   if (ratio < 0.26) return { title: "慢热" };
   if (ratio < 0.52) return { title: "暧昧" };
   if (ratio < 0.78) return { title: "升温" };
@@ -2951,11 +3309,11 @@ function completeDicePrompt() {
   const player = getCurrentPlayer();
   const title = state.currentPrompt.title;
   player.score += 1;
-  addLog(`${player.name} 完成骰子任务：${title}，获得 1 分。`);
-  setPlayerFeedback(player, "success", "完成 +1");
+  addLog(isEnglish() ? `${player.name} completed dice task: ${title}, +1 point.` : `${player.name} 完成骰子任务：${title}，获得 1 分。`);
+  setPlayerFeedback(player, "success", isEnglish() ? "Complete +1" : "完成 +1");
   clearDicePrompt();
   advancePlayer();
-  showTableToast("任务完成 +1", `${player.name} 完成：${title}`, "success");
+  showTableToast(isEnglish() ? "Task Complete +1" : "任务完成 +1", isEnglish() ? `${player.name} completed: ${title}` : `${player.name} 完成：${title}`, "success");
   renderDice();
 }
 
@@ -2964,11 +3322,11 @@ function skipDicePrompt() {
   const player = getCurrentPlayer();
   const title = state.currentPrompt.title;
   player.skips += 1;
-  addLog(`${player.name} 跳过骰子任务：${title}。`);
-  setPlayerFeedback(player, "skip", "跳过");
+  addLog(isEnglish() ? `${player.name} skipped dice task: ${title}.` : `${player.name} 跳过骰子任务：${title}。`);
+  setPlayerFeedback(player, "skip", isEnglish() ? "Skip" : "跳过");
   clearDicePrompt();
   advancePlayer();
-  showTableToast("已跳过", `${player.name} 跳过：${title}`, "skip");
+  showTableToast(isEnglish() ? "Skipped" : "已跳过", isEnglish() ? `${player.name} skipped: ${title}` : `${player.name} 跳过：${title}`, "skip");
   renderDice();
 }
 
@@ -2978,9 +3336,11 @@ function clearDicePrompt() {
   state.diceRolls = [];
   state.diceRolling = false;
   if (!dicePromptType) return;
-  dicePromptType.textContent = "等待投骰";
-  dicePromptTitle.textContent = "选择骰子数量后开始";
-  dicePromptText.textContent = "骰子点数会决定升温等级、互动时长和本轮任务。";
+  dicePromptType.textContent = isEnglish() ? "Waiting to Roll" : "等待投骰";
+  dicePromptTitle.textContent = isEnglish() ? "Choose dice count to start" : "选择骰子数量后开始";
+  dicePromptText.textContent = isEnglish()
+    ? "The dice total decides the intensity, duration, and prompt for this round."
+    : "骰子点数会决定升温等级、互动时长和本轮任务。";
   dicePromptCard.classList.remove("is-dealt");
 }
 
@@ -2998,7 +3358,7 @@ function startQuickDiceGame() {
   quickDiceView?.classList.remove("is-hidden");
   syncView?.classList.add("is-hidden");
   miniView?.classList.add("is-hidden");
-  addLog("纯骰子开始。选择数量后可随时切换并连续投掷。");
+  addLog(isEnglish() ? "Quick Dice started. Change the count anytime and roll continuously." : "纯骰子开始。选择数量后可随时切换并连续投掷。");
   renderQuickDice();
   scheduleComfortScroll(quickDiceRollButton || quickDiceView, "center");
 }
@@ -3072,8 +3432,8 @@ function finishQuickDiceRoll() {
   state.diceRolling = false;
   state.diceRolls = Array.from({ length: state.diceCount }, () => Math.floor(Math.random() * 6) + 1);
   const total = state.diceRolls.reduce((sum, value) => sum + value, 0);
-  addLog(`${state.diceCount} 颗骰子：${state.diceRolls.join(" + ")} = ${total}`);
-  showTableToast(`落点 ${total}`, state.diceRolls.join(" + "), "active");
+  addLog(isEnglish() ? `${state.diceCount} dice: ${state.diceRolls.join(" + ")} = ${total}` : `${state.diceCount} 颗骰子：${state.diceRolls.join(" + ")} = ${total}`);
+  showTableToast(isEnglish() ? `Rolled ${total}` : `落点 ${total}`, state.diceRolls.join(" + "), "active");
   renderQuickDice();
   quickDiceFaces?.classList.remove("is-bursting");
   if (quickDiceFaces) {
@@ -3096,7 +3456,7 @@ function resetQuickDiceHistory() {
   if (state.mode !== "quickDice") return;
   state.log = [];
   state.diceRolls = [];
-  showTableToast("记录已清空", "纯骰子历史重新开始。", "skip");
+  showTableToast(isEnglish() ? "Log Cleared" : "记录已清空", isEnglish() ? "Quick Dice history restarted." : "纯骰子历史重新开始。", "skip");
   renderQuickDice();
   scheduleComfortScroll(quickDiceRollButton || quickDiceView, "center");
 }
@@ -3120,7 +3480,7 @@ function startSyncGame() {
   quickDiceView?.classList.add("is-hidden");
   syncView?.classList.remove("is-hidden");
   miniView?.classList.add("is-hidden");
-  addLog("默契挑战开始。抽挑战、完成得 1 分，任何题都可跳过。");
+  addLog(isEnglish() ? "Sync Challenge started. Draw a challenge, complete for +1 point, and skip any prompt." : "默契挑战开始。抽挑战、完成得 1 分，任何题都可跳过。");
   clearSyncPrompt();
   renderSync();
 }
@@ -3186,9 +3546,9 @@ function drawSyncPrompt() {
   syncPromptCard.classList.remove("is-dealt");
   void syncPromptCard.offsetWidth;
   syncPromptCard.classList.add("is-dealt");
-  addLog(`${getCurrentPlayer().name} 抽到默契挑战：${card.title}。`);
-  setPlayerFeedback(getCurrentPlayer(), "active", "抽挑战");
-  showTableToast("抽到默契挑战", card.title, "active");
+  addLog(isEnglish() ? `${getCurrentPlayer().name} drew Sync Challenge: ${card.title}.` : `${getCurrentPlayer().name} 抽到默契挑战：${card.title}。`);
+  setPlayerFeedback(getCurrentPlayer(), "active", isEnglish() ? "Draw Challenge" : "抽挑战");
+  showTableToast(isEnglish() ? "Drew Sync Challenge" : "抽到默契挑战", card.title, "active");
   beginTaskTimer("sync", 45);
   renderSync();
   scheduleComfortScroll(syncPromptCard);
@@ -3200,11 +3560,11 @@ function completeSyncPrompt() {
   const player = getCurrentPlayer();
   const title = state.currentPrompt.title;
   player.score += 1;
-  addLog(`${player.name} 完成默契挑战：${title}，获得 1 分。`);
-  setPlayerFeedback(player, "success", "完成 +1");
+  addLog(isEnglish() ? `${player.name} completed sync challenge: ${title}, +1 point.` : `${player.name} 完成默契挑战：${title}，获得 1 分。`);
+  setPlayerFeedback(player, "success", isEnglish() ? "Complete +1" : "完成 +1");
   clearSyncPrompt();
   advancePlayer();
-  showTableToast("默契完成 +1", `${player.name} 完成：${title}`, "success");
+  showTableToast(isEnglish() ? "Sync Complete +1" : "默契完成 +1", isEnglish() ? `${player.name} completed: ${title}` : `${player.name} 完成：${title}`, "success");
   renderSync();
 }
 
@@ -3213,11 +3573,11 @@ function skipSyncPrompt() {
   const player = getCurrentPlayer();
   const title = state.currentPrompt.title;
   player.skips += 1;
-  addLog(`${player.name} 跳过默契挑战：${title}。`);
-  setPlayerFeedback(player, "skip", "跳过");
+  addLog(isEnglish() ? `${player.name} skipped sync challenge: ${title}.` : `${player.name} 跳过默契挑战：${title}。`);
+  setPlayerFeedback(player, "skip", isEnglish() ? "Skip" : "跳过");
   clearSyncPrompt();
   advancePlayer();
-  showTableToast("已跳过", `${player.name} 跳过：${title}`, "skip");
+  showTableToast(isEnglish() ? "Skipped" : "已跳过", isEnglish() ? `${player.name} skipped: ${title}` : `${player.name} 跳过：${title}`, "skip");
   renderSync();
 }
 
@@ -3225,9 +3585,11 @@ function clearSyncPrompt() {
   clearTaskTimer("sync");
   state.currentPrompt = null;
   if (!syncPromptType) return;
-  syncPromptType.textContent = "等待挑战";
-  syncPromptTitle.textContent = "抽一个升温默契题";
-  syncPromptText.textContent = "同步回答、盲猜偏好或完成一个双方都舒服的小互动。";
+  syncPromptType.textContent = isEnglish() ? "Waiting for Challenge" : "等待挑战";
+  syncPromptTitle.textContent = isEnglish() ? "Draw a Sync Prompt" : "抽一个升温默契题";
+  syncPromptText.textContent = isEnglish()
+    ? "Answer together, guess preferences, or complete a mutually comfortable interaction."
+    : "同步回答、盲猜偏好或完成一个双方都舒服的小互动。";
   syncPromptCard.classList.remove("is-dealt");
 }
 
@@ -3246,7 +3608,12 @@ function startMiniGame(game) {
   quickDiceView?.classList.add("is-hidden");
   syncView?.classList.add("is-hidden");
   miniView?.classList.remove("is-hidden");
-  addLog(`${miniGameMeta[game].name}开始。完成得 1 分，任何题都可跳过。`);
+  const meta = getActiveMiniGameMeta(game);
+  addLog(
+    isEnglish()
+      ? `${meta.name} started. Complete prompts for +1 point; every prompt can be skipped.`
+      : `${meta.name}开始。完成得 1 分，任何题都可跳过。`,
+  );
   clearMiniPrompt();
   renderMini();
 }
@@ -3254,7 +3621,7 @@ function startMiniGame(game) {
 function renderMini() {
   if (!miniView) return;
   const player = getCurrentPlayer();
-  const meta = miniGameMeta[state.miniGame];
+  const meta = getActiveMiniGameMeta(state.miniGame);
   setSurfaceState(
     miniView,
     player,
@@ -3289,7 +3656,7 @@ function renderMini() {
               { label: "计时 40 秒", tone: "active" },
             ]
           : [
-              { label: miniGameMeta[state.miniGame]?.name || "小游戏", tone: "ready" },
+              { label: getActiveMiniGameMeta(state.miniGame)?.name || (isEnglish() ? "Mini Game" : "小游戏"), tone: "ready" },
               { label: "抽题开始", tone: "active" },
             ],
   );
@@ -3380,9 +3747,9 @@ function spinMiniWheel() {
   state.miniSpinning = true;
   miniVisual.style.setProperty("--wheel-start", `${state.miniWheelRotation}deg`);
   miniVisual.style.setProperty("--wheel-spin", `${spinAmount}deg`);
-  miniPromptType.textContent = "轮盘旋转中";
-  miniPromptTitle.textContent = "指针正在选择对象";
-  miniPromptText.textContent = "轮盘停下后，本轮题目会自动翻开。";
+  miniPromptType.textContent = isEnglish() ? "Wheel Spinning" : "轮盘旋转中";
+  miniPromptTitle.textContent = isEnglish() ? "The pointer is choosing a target" : "指针正在选择对象";
+  miniPromptText.textContent = isEnglish() ? "When the wheel stops, this round's prompt opens automatically." : "轮盘停下后，本轮题目会自动翻开。";
   miniPromptCard.classList.remove("is-dealt");
   renderMini();
 
@@ -3405,15 +3772,15 @@ function prepareMiniChoices() {
   const deck = shuffleCards(getMiniDeck()).slice(0, 3);
   state.miniChoices = deck;
   miniChoiceGrid.classList.remove("is-hidden");
-  miniPromptType.textContent = "任务盲盒";
+  miniPromptType.textContent = isEnglish() ? "Mystery Box" : "任务盲盒";
   miniPromptTitle.textContent = "选择 A / B / C";
-  miniPromptText.textContent = "三个盲盒都可以拒绝、改写或跳过。";
+  miniPromptText.textContent = isEnglish() ? "All three boxes can be refused, rewritten, or skipped." : "三个盲盒都可以拒绝、改写或跳过。";
   miniPromptCard.classList.remove("is-dealt");
   void miniPromptCard.offsetWidth;
   miniPromptCard.classList.add("is-dealt");
-  addLog(`${getCurrentPlayer().name} 摆出 3 个任务盲盒。`);
-  setPlayerFeedback(getCurrentPlayer(), "active", "摆盲盒");
-  showTableToast("盲盒就绪", "选择 A / B / C 后翻开任务。", "active");
+  addLog(isEnglish() ? `${getCurrentPlayer().name} prepared 3 mystery boxes.` : `${getCurrentPlayer().name} 摆出 3 个任务盲盒。`);
+  setPlayerFeedback(getCurrentPlayer(), "active", isEnglish() ? "Boxes Ready" : "摆盲盒");
+  showTableToast(isEnglish() ? "Boxes Ready" : "盲盒就绪", isEnglish() ? "Choose A / B / C to reveal a prompt." : "选择 A / B / C 后翻开任务。", "active");
   renderMini();
   scheduleComfortScroll(miniChoiceGrid, "center");
 }
@@ -3434,9 +3801,13 @@ function revealMiniPrompt(card) {
   miniPromptCard.classList.remove("is-dealt");
   void miniPromptCard.offsetWidth;
   miniPromptCard.classList.add("is-dealt");
-  addLog(`${getCurrentPlayer().name} 拿到${miniGameMeta[state.miniGame].name}：${card.title}。`);
+  addLog(
+    isEnglish()
+      ? `${getCurrentPlayer().name} drew ${getActiveMiniGameMeta(state.miniGame).name}: ${card.title}.`
+      : `${getCurrentPlayer().name} 拿到${getActiveMiniGameMeta(state.miniGame).name}：${card.title}。`,
+  );
   setPlayerFeedback(getCurrentPlayer(), "active", "抽题");
-  showTableToast(`抽到${miniGameMeta[state.miniGame].name}`, card.title, "active");
+  showTableToast(isEnglish() ? `Drew ${getActiveMiniGameMeta(state.miniGame).name}` : `抽到${getActiveMiniGameMeta(state.miniGame).name}`, card.title, "active");
   beginTaskTimer("mini", 40);
   renderMini();
   scheduleComfortScroll(miniPromptCard);
@@ -3454,7 +3825,7 @@ function renderMiniPromptText(text) {
     miniPromptText.innerHTML = `
       <span class="prompt-copy">${escapeHtml(text)}</span>
       <span class="target-callout">
-        <small>本轮对象</small>
+        <small>${isEnglish() ? "Target This Round" : "本轮对象"}</small>
         <strong>${escapeHtml(target)}</strong>
       </span>
     `;
@@ -3464,7 +3835,11 @@ function renderMiniPromptText(text) {
 }
 
 function decorateMiniPrompt(text) {
-  if (state.miniGame === "story") return `${text} 表演 30-60 秒，结束后可以互换角色再来一次。`;
+  if (state.miniGame === "story") {
+    return isEnglish()
+      ? `${text} Act it for 30-60 seconds; you may swap roles and replay.`
+      : `${text} 表演 30-60 秒，结束后可以互换角色再来一次。`;
+  }
   return text;
 }
 
@@ -3493,11 +3868,15 @@ function completeMiniPrompt() {
   const player = getCurrentPlayer();
   const title = state.currentPrompt.title;
   player.score += 1;
-  addLog(`${player.name} 完成${miniGameMeta[state.miniGame].name}：${title}，获得 1 分。`);
-  setPlayerFeedback(player, "success", "完成 +1");
+  addLog(
+    isEnglish()
+      ? `${player.name} completed ${getActiveMiniGameMeta(state.miniGame).name}: ${title}, +1 point.`
+      : `${player.name} 完成${getActiveMiniGameMeta(state.miniGame).name}：${title}，获得 1 分。`,
+  );
+  setPlayerFeedback(player, "success", isEnglish() ? "Complete +1" : "完成 +1");
   clearMiniPrompt();
   advancePlayer();
-  showTableToast("完成 +1", `${player.name} 完成：${title}`, "success");
+  showTableToast(isEnglish() ? "Complete +1" : "完成 +1", isEnglish() ? `${player.name} completed: ${title}` : `${player.name} 完成：${title}`, "success");
   renderMini();
 }
 
@@ -3506,11 +3885,15 @@ function skipMiniPrompt() {
   const player = getCurrentPlayer();
   const title = state.currentPrompt.title;
   player.skips += 1;
-  addLog(`${player.name} 跳过${miniGameMeta[state.miniGame].name}：${title}。`);
-  setPlayerFeedback(player, "skip", "跳过");
+  addLog(
+    isEnglish()
+      ? `${player.name} skipped ${getActiveMiniGameMeta(state.miniGame).name}: ${title}.`
+      : `${player.name} 跳过${getActiveMiniGameMeta(state.miniGame).name}：${title}。`,
+  );
+  setPlayerFeedback(player, "skip", isEnglish() ? "Skip" : "跳过");
   clearMiniPrompt();
   advancePlayer();
-  showTableToast("已跳过", `${player.name} 跳过：${title}`, "skip");
+  showTableToast(isEnglish() ? "Skipped" : "已跳过", isEnglish() ? `${player.name} skipped: ${title}` : `${player.name} 跳过：${title}`, "skip");
   renderMini();
 }
 
@@ -3520,7 +3903,7 @@ function clearMiniPrompt() {
   state.miniChoices = [];
   state.miniSpinning = false;
   if (!miniPromptType) return;
-  const meta = miniGameMeta[state.miniGame] || miniGameMeta.wheel;
+  const meta = getActiveMiniGameMeta(state.miniGame) || getActiveMiniGameMeta("wheel");
   miniChoiceGrid.classList.add("is-hidden");
   miniPromptType.textContent = "等待开始";
   miniPromptTitle.textContent = meta.waitingTitle;
@@ -3566,7 +3949,7 @@ function buildBoard() {
   const finish = document.createElement("div");
   finish.className = "cell finish";
   finish.dataset.finish = "true";
-  finish.innerHTML = '<span class="finish-label">终点<br />LOUNGE</span>';
+  finish.innerHTML = isEnglish() ? '<span class="finish-label">FINISH<br />LOUNGE</span>' : '<span class="finish-label">终点<br />LOUNGE</span>';
   board.append(finish);
 
   state.players.forEach((player) => {
@@ -4313,11 +4696,11 @@ function renderPlayers(target, getMeta) {
 }
 
 function getLogTone(entry) {
-  if (/完成|抵达|获胜|得 1 分|\+1/.test(entry)) return { tone: "success", label: "完成" };
-  if (/跳过|没有可移动|清空|后退/.test(entry)) return { tone: "skip", label: "跳过" };
-  if (/抽到|拿到|摆出|投出|掷出|落点|撞机/.test(entry)) return { tone: "active", label: "事件" };
-  if (/下一位|继续|开始|准备/.test(entry)) return { tone: "ready", label: "回合" };
-  return { tone: "note", label: "记录" };
+  if (/完成|抵达|获胜|得 1 分|\+1|completed|wins|finish/i.test(entry)) return { tone: "success", label: isEnglish() ? "Done" : "完成" };
+  if (/跳过|没有可移动|清空|后退|skipped|skip|cleared|moves back/i.test(entry)) return { tone: "skip", label: isEnglish() ? "Skip" : "跳过" };
+  if (/抽到|拿到|摆出|投出|掷出|落点|撞机|drew|got|rolled|landed|event/i.test(entry)) return { tone: "active", label: isEnglish() ? "Event" : "事件" };
+  if (/下一位|继续|开始|准备|started|ready|continue|round/i.test(entry)) return { tone: "ready", label: isEnglish() ? "Round" : "回合" };
+  return { tone: "note", label: isEnglish() ? "Log" : "记录" };
 }
 
 function renderLog(target) {
@@ -4392,7 +4775,9 @@ gameCards.forEach((card) => {
 });
 
 initLogHistoryPanels();
+initLanguageToggle();
 setHeaderMenu(false);
+applyLanguageToDocument();
 window.matchMedia("(max-width: 760px)").addEventListener("change", (event) => {
   if (!logHistoryUserSet) setLogHistoryCollapsed(event.matches);
 });
