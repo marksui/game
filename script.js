@@ -2256,7 +2256,7 @@ function updateViewportFit() {
   const boardWrap = layout.querySelector(".board-wrap");
   const boardWrapRect = boardWrap?.getBoundingClientRect();
   const boardInsets = getBoxInsetSize(boardWrap);
-  const bottomGutter = clampNumber(Math.round(height * 0.022), 10, 24);
+  const bottomGutter = clampNumber(Math.round(height * 0.045), 28, 56);
   const availableHeight = Math.max(240, height - Math.max(layoutRect.top, 0) - bottomGutter);
   const availableBoardHeight = Math.max(220, availableHeight - boardInsets.y);
   const availableBoardWidth = Math.max(220, (boardWrapRect?.width || width) - boardInsets.x);
@@ -2265,7 +2265,10 @@ function updateViewportFit() {
 
   root.style.setProperty("--game-content-height", `${Math.floor(availableHeight)}px`);
   root.style.setProperty("--board-fit-size", `${boardFit}px`);
-  document.body.classList.toggle("is-fit-tight", availableHeight < 720 || boardFit < 660 || height < 920);
+  const wasTight = document.body.classList.contains("is-fit-tight");
+  const isTight = availableHeight < 720 || boardFit < 660 || height < 920;
+  document.body.classList.toggle("is-fit-tight", isTight);
+  if (wasTight !== isTight) scheduleViewportFit();
 }
 
 function scheduleViewportFit() {

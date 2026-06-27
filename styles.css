@@ -3183,6 +3183,8 @@ body.is-playing .dice-layout,
 body.is-playing .quick-dice-layout,
 body.is-playing .sync-layout,
 body.is-playing .mini-layout {
+  height: var(--game-content-height, auto);
+  max-height: var(--game-content-height, none);
   min-height: 0;
   align-items: stretch;
 }
