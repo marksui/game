@@ -6657,6 +6657,110 @@ body.quick-dice-page .page-texture {
   }
 }
 
+@media (min-width: 1181px) {
+  body.is-playing .game-layout {
+    grid-template-columns: minmax(210px, 0.72fr) minmax(420px, 1.26fr) minmax(230px, 0.8fr);
+  }
+
+  body.is-playing.is-fit-tight .game-view,
+  body.is-playing.is-fit-tight .truth-view,
+  body.is-playing.is-fit-tight .dice-view,
+  body.is-playing.is-fit-tight .quick-dice-view,
+  body.is-playing.is-fit-tight .sync-view,
+  body.is-playing.is-fit-tight .mini-view {
+    --game-stage-gap: 10px;
+    padding-top: 8px;
+  }
+
+  body.is-playing.is-fit-tight .top-bar {
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 16px;
+  }
+
+  body.is-playing.is-fit-tight .top-bar h2 {
+    font-size: clamp(1.75rem, 2.8vw, 2.55rem);
+    line-height: 1;
+  }
+
+  body.is-playing.is-fit-tight .top-actions {
+    gap: 8px;
+  }
+
+  body.is-playing.is-fit-tight .top-actions .primary-action,
+  body.is-playing.is-fit-tight .top-actions .secondary-action,
+  body.is-playing.is-fit-tight .top-actions button {
+    min-height: 40px;
+    border-radius: 11px;
+    padding-inline: 14px;
+  }
+
+  body.is-playing.is-fit-tight .game-layout,
+  body.is-playing.is-fit-tight .truth-layout,
+  body.is-playing.is-fit-tight .dice-layout,
+  body.is-playing.is-fit-tight .quick-dice-layout,
+  body.is-playing.is-fit-tight .sync-layout,
+  body.is-playing.is-fit-tight .mini-layout {
+    gap: 10px;
+  }
+
+  body.is-playing.is-fit-tight .side-panel {
+    gap: 10px;
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  body.is-playing.is-fit-tight .turn-card {
+    min-height: 0;
+    gap: 6px;
+    padding: 12px;
+  }
+
+  body.is-playing.is-fit-tight .dice-box {
+    gap: 8px;
+  }
+
+  body.is-playing.is-fit-tight .dice-button {
+    min-height: 62px;
+    padding: 8px 10px;
+  }
+
+  body.is-playing.is-fit-tight .dice-button span {
+    width: 44px;
+    font-size: 1.65rem;
+  }
+
+  body.is-playing.is-fit-tight .round-flow {
+    gap: 8px;
+  }
+
+  body.is-playing.is-fit-tight .round-flow span {
+    min-height: 44px;
+    border-radius: 12px;
+    padding: 8px 10px;
+  }
+
+  body.is-playing.is-fit-tight .action-cue {
+    min-height: 46px;
+    border-radius: 14px;
+    padding: 9px 10px;
+  }
+
+  body.is-playing.is-fit-tight .board-wrap {
+    padding: 10px;
+    border-radius: 16px;
+  }
+
+  body.is-playing.is-fit-tight .log-list {
+    max-height: min(24vh, 210px);
+  }
+
+  body.is-playing.is-fit-tight .player-row {
+    min-height: 38px;
+    padding-block: 7px;
+  }
+}
+
 @media (max-width: 1180px) {
   .setup-panel,
   .game-layout,
@@ -6673,7 +6777,7 @@ body.quick-dice-page .page-texture {
   }
 
   .board {
-    width: min(92vw, 720px);
+    width: min(var(--board-fit-size, 720px), 92vw, 720px);
   }
 
   .bank-grid {
@@ -6869,6 +6973,14 @@ body.quick-dice-page .page-texture {
     align-items: stretch;
   }
 
+  .top-actions {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
   .section-heading {
     display: grid;
     align-items: start;
@@ -6883,8 +6995,8 @@ body.quick-dice-page .page-texture {
   }
 
   .board {
-    width: min(640px, calc(100vw - 40px));
-    min-width: 320px;
+    width: min(var(--board-fit-size, 640px), calc(100vw - 40px));
+    min-width: 0;
   }
 
   .base {
@@ -7137,6 +7249,14 @@ body.quick-dice-page .page-texture {
     gap: 8px;
   }
 
+  .ddf-dare-only .top-actions {
+    display: flex;
+    grid-template-columns: none;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+
   .ddf-dare-only .turn-card {
     min-height: 0;
     padding: 12px;
@@ -7353,8 +7473,11 @@ body.quick-dice-page .page-texture {
   }
 
   .index-page .top-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    grid-template-columns: none;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
     gap: 8px;
   }
 
